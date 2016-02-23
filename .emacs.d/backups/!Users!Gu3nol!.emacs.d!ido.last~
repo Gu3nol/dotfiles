@@ -2,6 +2,10 @@
 
 ;; ----- ido-last-directory-list -----
 (
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/" . "drone-browser/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/" . "node_modules/")
+ ("/Users/Gu3nol/Google Drive/Perso/" . "Dev/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/" . "public/")
  ("/Users/Gu3nol/.oh-my-zsh/custom/plugins/" . "example/")
  ("/Users/Gu3nol/.oh-my-zsh/custom/" . "plugins/")
  ("/Users/Gu3nol/.oh-my-zsh/" . "tools/")
@@ -25,7 +29,7 @@
  ("/Users/Gu3nol/Downloads/project_code/project_code/" . "hardware_files/")
  ("/Users/Gu3nol/Downloads/project_code/" . "project_code/")
  ("/Users/" . "Gu3nol/")
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/" . "Project/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/" . "VHDL_and_Logic_Synthesis/")
  ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/DepotGIT/Soft/" . "KubzProgram/")
  ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/DepotGIT/" . "Soft/")
  ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/" . "DepotGIT/")
@@ -77,11 +81,14 @@
  ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/" . "ELEC222/")
  ("/Users/Gu3nol/Google Drive/Cours/" . "MScImperialCollege/")
  ("/Users/Gu3nol/Google Drive/" . "Cours/")
- ("/Users/Gu3nol/" . ".oh-my-zsh/")
+ ("/Users/Gu3nol/" . "Google Drive/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/public/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/"
  "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/"
  "/Users/Gu3nol/.oh-my-zsh/"
  "/Users/Gu3nol/.oh-my-zsh/themes/"
@@ -129,32 +136,48 @@
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/behav_files/"
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/VHDL-master/"
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/IC-VHDL-Coursework-master/source/"
- "/Users/Gu3nol/Downloads/project_code/project_code/hardware_files/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/ModelSim_project/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/IC-VHDL-Coursework-master/doc/"
 )
 
 ;; ----- ido-work-file-list -----
 (
+ "client.js"
+ "client.coffee"
+ "server.coffee"
+ "server.js"
+ "package.json"
+ ".gitignore"
+ "readme.md"
+ "screenshot.png"
  "Makefile"
  "README.md"
- "oh-my-zsh.sh"
- "my_theme.zsh-theme"
- "agnoster.zsh-theme"
- "3den.zsh-theme"
- "example.zsh"
- "zshrc"
- ".zshrc"
- "Chapter2.tex"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/" (22220 32990 0 0) "server.js" "server.coffee" "screenshot.png" "readme.md" "public/" "package.json" "node_modules/" "components/" "component.json" "Cakefile" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/" (22103 39166 0 0) "VHDL_and_Logic_Synthesis/" "Project/" "Optical_Communication/" "MEMS_and_nanotechnology/" "High_Performance_Analog_Elec/" "Full_Custom_Integrated_Circuit_Design/" "First Destination Form.doc" "Feedback form.doc" "CMOS_Circuit_Design__Layout__and_Simulation__3rd_Edition.pdf" "Analogue_Signal_Processing.7z" "Analogue_Signal_Processing/" "Analogue_Integrated_Circuitsand_Systems/" "Analog Design Essentials, Sansen.pdf" "Advanced_Electronic_Devices/" "ADSD/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/" (22071 27430 0 0) "PhD/" "nainA-Télécom ParisTech/" "MScImperialCollege/" "2A-TelecomParisTech/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/" (22220 32906 0 0) "VirtualBox VMs/" "Public/" "Pictures/" "Music/" "Movies/" "Library/" "Google Drive/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc" ".zsh_save/" ".zsh_history" ".zsh-update" ".zcompdump-Mururoa-5.0.8" ".zcompdump" ".zcompcache/" ".Xauthority" ".wireshark-etc/" ".wireshark/" ".wget-hsts" ".Trash/" ".thefuck/" ".subversion/" ".ssh/" ".sh_history" ".serverauth.535" ".serverauth.2023" ".rnd" ".putty/" ".profile" ".oh-my-zsh/" ".npm/" ".node-gyp/" ".matlab/" ".macports/" ".local/" ".latexmkrc" ".inkscape-etc/" ".gnupg/" ".gnome2/" ".gitconfig" ".fontconfig/" ".epspdf/" ".emacs.d/" ".emacs" ".DS_Store" ".cups/" ".config/" ".CFUserTextEncoding" ".cache/" ".bash_history" ".aspell.en.pws" ".aspell.en.prepl" ".android/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/" (22220 31903 0 0) "drone-browser/" "ar-drone/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/" (22220 30060 0 0) "node_modules/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/" (22220 27924 0 0) "Voyage Asie/" "Transcripts/" "Prêt taux 0% - Télécom ParisTech Alumni/" "Papiers Identité/" "Logement Londres/" "LeBonCoin/" "Justificatif de domicile.doc" "Dev/" "Cours Particulier/" "Banque/" "Aide à la mobilité - Télécom ParisTech/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/" (22215 13116 0 0) "Temp/" "Pro/" "Perso/" "Icon
+" "Divers/" "Cours/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/public/" (22220 32001 0 0) "style.css" "index.html" "default.jpg" "client.js" "client.coffee" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/" (22220 32127 0 0) "faye/" "express/" "ar-drone/" "../" "./")
+
  ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/" (22220 28339 0 0) "test/" "repl.js" "README.md" "package.json" "node_modules/" "Makefile" "LICENSE" "lib/" "index.js" "examples/" "CONTRIBUTING.md" "Changes.md" ".travis.yml" ".npmignore" ".jshintrc" "../" "./")
 
  ("/Users/Gu3nol/.oh-my-zsh/log/" (22218 58751 0 0) ".easter-egg" "../" "./")
-
- ("/Users/Gu3nol/" (22219 10287 0 0) "zsh_save/" "VirtualBox VMs/" "Public/" "Pictures/" "Music/" "Movies/" "Library/" "Google Drive/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zcompdump-Mururoa-5.0.8" ".zcompdump" ".zcompcache/" ".Xauthority" ".wireshark-etc/" ".wireshark/" ".wget-hsts" ".Trash/" ".thefuck/" ".subversion/" ".ssh/" ".sh_history" ".serverauth.535" ".serverauth.52498" ".serverauth.2023" ".rnd" ".putty/" ".profile" ".oh-my-zsh/" ".matlab/" ".macports/" ".local/" ".latexmkrc" ".inkscape-etc/" ".gnupg/" ".gnome2/" ".gitconfig" ".fontconfig/" ".epspdf/" ".emacs.d/" ".emacs" ".DS_Store" ".cups/" ".config/" ".CFUserTextEncoding" ".cache/" ".bash_history" ".aspell.en.pws" ".aspell.en.prepl" ".android/" ".#.zshrc" "../" "./")
 
  ("/Users/Gu3nol/.oh-my-zsh/themes/" (22219 10113 0 0) "zhann.zsh-theme" "ys.zsh-theme" "xiong-chiamiov.zsh-theme" "xiong-chiamiov-plus.zsh-theme" "wuffers.zsh-theme" "wezm.zsh-theme" "wezm+.zsh-theme" "wedisagree.zsh-theme" "trapd00r.zsh-theme" "tonotdo.zsh-theme" "tjkirch_mod.zsh-theme" "tjkirch.zsh-theme" "theunraveler.zsh-theme" "terminalparty.zsh-theme" "takashiyoshida.zsh-theme" "suvash.zsh-theme" "superjarin.zsh-theme" "sunrise.zsh-theme" "sunaku.zsh-theme" "strug.zsh-theme" "steeef.zsh-theme" "sporty_256.zsh-theme" "sorin.zsh-theme" "sonicradish.zsh-theme" "Soliah.zsh-theme" "smt.zsh-theme" "skaro.zsh-theme" "simple.zsh-theme" "simonoff.zsh-theme" "sammy.zsh-theme" "robbyrussell.zsh-theme" "rkj.zsh-theme" "rkj-repos.zsh-theme" "rixius.zsh-theme" "risto.zsh-theme" "rgm.zsh-theme" "re5et.zsh-theme" "pygmalion.zsh-theme" "pure.zsh-theme" "pmcgee.zsh-theme" "philips.zsh-theme" "peepcode.zsh-theme" "obraun.zsh-theme" "norm.zsh-theme" "nicoulaj.zsh-theme" "nebirhos.zsh-theme" "nanotech.zsh-theme" "my_theme.zsh-theme" "muse.zsh-theme" "murilasso.zsh-theme" "mrtazz.zsh-theme" "mortalscumbag.zsh-theme" "mira.zsh-theme" "minimal.zsh-theme" "miloshadzic.zsh-theme" "mikeh.zsh-theme" "michelebologna.zsh-theme" "mh.zsh-theme" "mgutz.zsh-theme" "maran.zsh-theme" "macovsky.zsh-theme" "macovsky-ruby.zsh-theme" "lukerandall.zsh-theme" "linuxonly.zsh-theme" "lambda.zsh-theme" "kphoen.zsh-theme" "kolo.zsh-theme" "kiwi.zsh-theme" "kennethreitz.zsh-theme" "kardan.zsh-theme" "kafeitu.zsh-theme" "junkfood.zsh-theme" "juanghurtado.zsh-theme" "jtriley.zsh-theme" "jreese.zsh-theme" "josh.zsh-theme" "jonathan.zsh-theme" "jnrowe.zsh-theme" "jispwoso.zsh-theme" "jbergantine.zsh-theme" "jaischeema.zsh-theme" "itchy.zsh-theme" "intheloop.zsh-theme" "imajes.zsh-theme" "humza.zsh-theme" "honukai.zsh-theme" "half-life.zsh-theme" "gozilla.zsh-theme" "gnzh.zsh-theme" "gianu.zsh-theme" "geoffgarside.zsh-theme" "gentoo.zsh-theme" "garyblessington.zsh-theme" "gallois.zsh-theme" "gallifrey.zsh-theme" "fwalch.zsh-theme" "funky.zsh-theme" "frontcube.zsh-theme" "frisk.zsh-theme" "fox.zsh-theme" "fletcherm.zsh-theme" "flazz.zsh-theme" "fishy.zsh-theme" "fino.zsh-theme" "fino-time.zsh-theme" "example.zsh-theme" "evan.zsh-theme" "essembeh.zsh-theme" "emotty.zsh-theme" "edvardm.zsh-theme" "eastwood.zsh-theme" "duellj.zsh-theme" "dstufft.zsh-theme" "dst.zsh-theme" "dpoggi.zsh-theme" "dogenpunk.zsh-theme" "dieter.zsh-theme" "daveverwer.zsh-theme" "darkblood.zsh-theme" "dallas.zsh-theme" "cypher.zsh-theme" "crunch.zsh-theme" "crcandy.zsh-theme" "cloud.zsh-theme" "clean.zsh-theme" "candy.zsh-theme" "candy-kingdom.zsh-theme" "bureau.zsh-theme" "blinks.zsh-theme" "bira.zsh-theme" "awesomepanda.zsh-theme" "avit.zsh-theme" "aussiegeek.zsh-theme" "arrow.zsh-theme" "apple.zsh-theme" "amuse.zsh-theme" "alanpeabody.zsh-theme" "agnoster.zsh-theme" "afowler.zsh-theme" "af-magic.zsh-theme" "adben.zsh-theme" "3den.zsh-theme" ".#honukai.zsh-theme" "../" "./")
 
@@ -216,11 +239,6 @@
 
  ("/Volumes/" (21977 3032 0 0) "Macintosh HD/" "../" "./")
 
- ("/Users/Gu3nol/Google Drive/" (21976 63724 0 0) "Temp/" "Pro/" "Perso/" "Icon
-" "Divers/" "Cours/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/" (21971 1827 0 0) "nainA-Télécom ParisTech/" "MScImperialCollege/" "2A-TelecomParisTech/" ".DS_Store" "../" "./")
-
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/" (21977 5880 0 0) "SourceFiles_SAVE_22_08_15.zip" "SourceFiles/" "Skeleton.gdoc" "Notes.gdoc" "Literrature review - HexFET.gdoc" "Illustrations/" "Content (1).gdoc" "Biblio_Notes.gsheet" "auto/" ".DS_Store" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/guenole/ChibiOS_2.6.3/demos/ARM7-AT91SAM7X-FATFS-GCC/" (21586 2203 0 0) "readme.txt" "mcuconf.h" "Makefile" "main.c" "halconf.h" "ffconf.h" "chconf.h" "../" "./")
@@ -274,8 +292,6 @@
  ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/median/" (21890 43935 0 0) "synthese/" "src/" "simulation/" ".DS_Store" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/" (21694 40176 0 0) "wishbone/" "median/" "Exercices/" "Divers/" "Cours/" ".gitignore" ".git/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/" (21917 28879 0 0) "VHDL_and_Logic_Synthesis/" "Project/" "Optical_Communication/" "MEMS_and_nanotechnology/" "High_Performance_Analog_Elec/" "Full_Custom_Integrated_Circuit_Design/" "CMOS_Circuit_Design__Layout__and_Simulation__3rd_Edition.pdf" "Analogue_Signal_Processing/" "Analogue_Integrated_Circuitsand_Systems/" "Analog Design Essentials, Sansen.pdf" "Advanced_Electronic_Devices/" "ADSD/" ".DS_Store" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/TB/" (21935 31780 0 0) "tb_global.vhd" "tb_clu_inputs_SPI.vhd" "tb_clu_inputs.vhd" "tb_clu.vhd" "clu_pack.vhd" ".DS_Store" "../" "./")
 
@@ -338,18 +354,6 @@
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_src/" (21771 11788 0 0) "rs232.c" "Readme.txt" "memorybase.c" "float.c" "experiment.c" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/src/" (21768 7037 0 0) "testData.h" "testData.c" "SV.h" "SV.c" "result.h" "result.c" "MemoryGenerationExtended.m" "MemoryGeneration.m" "fp_type.h" "fp_test.c" "fp_tanh.h" "fp_tanh.c" "fp_svm.h" "fp_svm.c" "fp_hyp_cordic.h" "fp_hyp_cordic.c" "alpha.h" "alpha.c" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SVM_dataset/" (21766 58429 0 0) "testData_raw.h" "testData.h" "SV_new.h" "SV_float.h" "SV.h" "result.h" "parse_SV_vector.py" "description.rtf" "alpha_raw.h" "alpha.h" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/" (21734 8397 0 0) "Zynq_doc/" "Reports/" "GITrepo/" "Coursework/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/" (21766 54124 0 0) "SVM_Project/" "README.md" ".gitignore" ".git/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/DepotGIT/Soft/KubzProgram/" (21759 1600 0 0) "Tap_Detection.pdf" "STM32F103xB.ld" "sleepUntil.h" "sleepUntil.c" "RX_thread.h" "RX_thread.c~" "RX_thread.c" "RGB_thread.h" "RGB_thread.c" "resultat_analyse.txt" "plot.cmd" "openocd.cfg" "MPU_thread.h" "MPU_thread.c~" "MPU_thread.c" "minicom.cap" "mcuconf.h" "Makefile" "main.c~" "main.c" "led_transition.h" "led_transition.c" "Init_thread.h" "Init_thread.c" "halconf.h" "debug.h" "chconf.h" "board/" "analyse2.py" "analyse.py" ".gdbinit" "#resultat_analyse.txt#" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/receiver/STM32/src/" (21586 55942 0 0) "serial_shell.c" "nrf.c" "my_uart.c" "measure.c" "main.c" "leds.c" "debug.c" "custom_commands.c" "conf.codec" "communication.c" "codec_configurations/" "codec.c" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex4/project_ex4/" (21753 41184 0 0) "work/" "wave.do" "vsim.wlf" "pix_word_cache_tb.vhd" "pix_word_cache.vhd" "pix_tb_pak.vhd" "pix_cache_pak.vhd" "ex4_data_pak.vhd" "ex4.mpf" "ex4.cr.mti" ".DS_Store" "../" "./")
 )
 
 ;; ----- ido-unc-hosts-cache -----

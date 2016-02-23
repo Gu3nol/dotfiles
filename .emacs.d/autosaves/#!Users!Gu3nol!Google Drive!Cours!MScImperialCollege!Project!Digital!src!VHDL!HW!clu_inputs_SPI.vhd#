@@ -1,0 +1,103 @@
+---------------------------------------------------------
+-- Top level Control Logic Unit Input generation
+-- clu_inputs_SPI.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is used to generate the inputs for the
+-- CLU
+
+-- It is for TB purposed only
+--------------------------------------------------------
+
+LIBRARY IEEE;
+
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+
+-- Declaration of the entity
+ENTITY clu_inputs_SPI IS
+  PORT(
+    -- Master input clock
+    mclk    : IN  std_logic;
+    -- SPI input clock
+    spi_clk : IN  std_logic;
+    -- Reset
+    nrst    : IN  std_logic;
+    -- Handshake signal
+    rdy     : IN  std_logic;
+    -- SPI
+    CS      : OUT std_logic;
+    SPI_din : OUT std_logic;
+    -- SPI clk enable
+    CLK_EN  : IN std_logic
+    );
+END ENTITY clu_inputs_SPI;
+
+-- Declaration of the architecture
+ARCHITECTURE rtl OF clu_inputs_SPI IS
+  -- Constants definining commands from the host CPU to CLU using SPI
+  CONSTANT op_stop  : std_logic_vector(1 DOWNTO 0) := "11";
+  CONSTANT op_start : std_logic_vector(1 DOWNTO 0) := "01";
+  CONSTANT op_reset : std_logic_vector(1 DOWNTO 0) := "10";
+
+  -- Constants definining commands from the CLU to the host CPU using SPI
+-- CONSTANT st_rdy   : std_logic_vector(1 DOWNTO 0) := "11";
+--  CONSTANT st_wip   : std_logic_vector(1 DOWNTO 0) := "01";
+--  CONSTANT st_reset : std_logic_vector(1 DOWNTO 0) := "10";
+
+  SIGNAL op_cmd_i      : std_logic_vector(1 DOWNTO 0);
+  SIGNAL array_coord_i : std_logic_vector(5 DOWNTO 0);
+  SIGNAL anag_coord_i  : std_logic_vector(3 DOWNTO 0);
+
+  SIGNAL din     : std_logic_vector(15 DOWNTO 0);
+  SIGNAL en      : std_logic;
+  SIGNAL chip_s  : std_logic;
+  SIGNAL din_tmp : std_logic_vector(15 DOWNTO 0);
+
+  CONSTANT zero_pad : std_logic_vector(3 DOWNTO 0) := (OTHERS => '0');
+
+BEGIN
+
+  outputs : PROCESS(mclk)
+  BEGIN
+    IF rising_edge(mclk) THEN
+      op_cmd_i <= op_start;
+      IF nrst = '0' THEN
+        op_cmd_i      <= op_reset;
+        anag_coord_i  <= (OTHERS => '0');
+        array_coord_i <= (OTHERS => '0');
+      ELSE
+        IF rdy = '1' THEN
+          anag_coord_i  <= std_logic_vector(unsigned(anag_coord_i) + 1);
+          array_coord_i <= std_logic_vector(unsigned(array_coord_i) + 1);
+        ELSE
+          --op_cmd_i      <= op_stop;
+          anag_coord_i  <= anag_coord_i;
+          array_coord_i <= array_coord_i;
+        END IF;
+      END IF;
+    --din <= zero_pad & anag_coord_i & op_cmd_i & array_coord_i;
+    END IF;
+  END PROCESS outputs;
+
+  din <= zero_pad & anag_coord_i & op_cmd_i & array_coord_i;
+
+
+  SPI_input : PROCESS(spi_clk)
+  BEGIN
+    IF rising_edge(spi_clk) THEN
+      IF CLK_EN = '1' THEN
+        din_tmp(0)           <= '0';
+        din_tmp(15 DOWNTO 1) <= din_tmp(14 DOWNTO 0);
+      ELSE
+        din_tmp <= din;
+      END IF;
+
+    END IF;
+  END PROCESS SPI_input;
+
+  SPI_din <= din_tmp(15);
+  CS      <= NOT CLK_EN;
+
+END rtl;

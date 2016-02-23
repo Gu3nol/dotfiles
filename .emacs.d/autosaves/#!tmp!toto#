@@ -1,0 +1,32 @@
+  video_in video_out_inst ("video_in","video_in");
+  video_out_inst.signal_clk              (signal_clk);
+  video_out_inst.signal_resetn           (signal_resetn);
+  video_out_inst.pixel_clk               (pixel_clk);
+  video_out_inst.line_valid              (line_valid_in);
+  video_out_inst.frame_valid             (frame_valid_in);
+  video_out_inst.pixel_in                (pixel_in);
+  video_out_inst.p_int				    (signal_video_out_irq);
+  // WB master signal
+  video_out_inst.p_wb_master_DAT_I        (signal_wb_slave_video_in.MRDAT);
+  video_out_inst.p_wb_master_DAT_O        (signal_wb_slave_video_in.MWDAT);
+  video_out_inst.p_wb_master_ADR_O        (signal_wb_slave_video_in.ADR);
+  video_out_inst.p_wb_master_ACK_I        (signal_wb_slave_video_in.ACK);
+  video_out_inst.p_wb_master_CYC_O        (signal_wb_slave_video_in.CYC);
+  video_out_inst.p_wb_master_ERR_I        (signal_wb_slave_video_in.ERR);
+  video_out_inst.p_wb_master_LOCK_O       (signal_wb_slave_video_in.LOCK);
+  video_out_inst.p_wb_master_RTY_I        (signal_wb_slave_video_in.RTY);
+  video_out_inst.p_wb_master_SEL_O        (signal_wb_slave_video_in.SEL);
+  video_out_inst.p_wb_master_STB_O        (signal_wb_slave_video_in.STB);
+  video_out_inst.p_wb_master_WE_O         (signal_wb_slave_video_in.WE);
+  // WB slave signal
+  video_out_inst.p_wb_slave_DAT_I        (signal_wb_video_in.MRDAT);
+  video_out_inst.p_wb_slave_DAT_O        (signal_wb_video_in.MRDAT);
+  video_out_inst.p_wb_slave_ADR_I        (signal_wb_video_in.ADR);
+  video_out_inst.p_wb_slave_ACK_O        (signal_wb_video_in.ACK);
+  video_out_inst.p_wb_slave_CYC_I        (signal_wb_video_in.CYC);
+  video_out_inst.p_wb_slave_ERR_O        (signal_wb_video_in.ERR);
+  video_out_inst.p_wb_slave_LOCK_I       (signal_wb_video_in.LOCK);
+  video_out_inst.p_wb_slave_RTY_O        (signal_wb_video_in.RTY);
+  video_out_inst.p_wb_slave_SEL_I        (signal_wb_video_in.SEL);
+  video_out_inst.p_wb_slave_STB_I        (signal_wb_video_in.STB);
+  video_out_inst.p_wb_slave_WE_I         (signal_wb_video_in.WE);

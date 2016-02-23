@@ -1,0 +1,45 @@
+LIBRARY IEEE;
+USE ieee.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+USE work.project_pack.ALL;
+
+PACKAGE db_data_pack IS
+  TYPE cyc IS (
+    txt_default,
+    txt_set,
+    txt_draw,
+    txt_clear
+    );
+  TYPE data_t_rec IS
+  RECORD
+    txt   : cyc;
+    --hdb_op      : std_logic_vector(1 DOWNTO 0);
+    hdb_x : integer;
+    hdb_y : integer;
+    --hdb_pen     : std_logic_vector(1 DOWNTO 0);
+
+    --dav         : std_logic;
+    busy : std_logic;
+
+    x, y  : integer;
+    cmd   : std_logic_vector(2 DOWNTO 0);
+    start : std_logic;
+    delay : std_logic;
+
+    finished : std_logic;
+  END RECORD;
+  TYPE data_t IS ARRAY (natural RANGE <>) OF data_t_rec;
+
+  CONSTANT data : data_t := (
+
+    (txt_set, 2, 3, '1', 2, 3, move, '1', '0', '0'),
+    (txt_set, 2, 3, '1', 2, 3, move, '1', '1', '0'),
+    (txt_default, 0, 0, '0', 0, 0, "XXX", '0', '0', '0'),
+    (txt_set, 1, 0, '1', 1, 0, move, '1', '0', '0'),
+
+    (txt_default, 0, 0, '0', 0, 0, "XXX", '0', '0', '0'),
+    (txt_draw, 2, 0, '1', 1, 0, draw_white, '1', '0', '0'),
+    (txt_draw, 2, 0, '1', 2, 0, draw_white, '1', '0', '0'),
+    (txt_default, 0, 0, '0', 0, 0, "XXX", '0', '0', '0')
+    );
+END PACKAGE db_data_pack;

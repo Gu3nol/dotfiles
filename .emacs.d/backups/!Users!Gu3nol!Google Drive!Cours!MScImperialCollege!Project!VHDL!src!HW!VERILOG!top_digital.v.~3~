@@ -1,0 +1,203 @@
+// Verilog HDL and netlist files of
+// "Gu3nol_lib TOP_DIGITAL schematic"
+
+
+// alias module. For internal use only.
+//hdlFilesDir/cds_alias.v
+
+// Netlisted models
+
+// Library - Gu3nol_lib, Cell - clu, View - schematic
+// LAST TIME SAVED: Jul 20 10:34:33 2015
+// NETLIST TIME: Jul 21 15:01:10 2015
+`timescale 1ns / 1ps
+
+
+
+// Library - Gu3nol_lib, Cell - SPI_16_bits, View - schematic
+// LAST TIME SAVED: Jul 21 14:51:51 2015
+// NETLIST TIME: Jul 21 15:01:11 2015
+`timescale 1ns / 1ps
+
+module SPI_16_bits ( SPI_DATA_OUT, SPI_IN, CS, SPI_CLK, SPI_DATA_IN,
+     SPI_OUT );
+
+output  SPI_DATA_OUT;
+
+input  CS, SPI_CLK, SPI_DATA_IN;
+
+output [11:0]  SPI_IN;
+
+input [11:0]  SPI_OUT;
+
+// Buses in the design
+
+wire  [0:15]  SPI_PAR;
+
+
+specify
+    specparam CDS_LIBNAME  = "Gu3nol_lib";
+    specparam CDS_CELLNAME = "SPI_16_bits";
+    specparam CDS_VIEWNAME = "schematic";
+endspecify
+
+INVX1  I167 ( .Q(SEL), .A(CS));
+INVX1  I94 ( .Q(SPI_CLK_N), .A(SPI_CLK));
+INVX1  I72 ( .Q(net06), .A(SIG));
+INVX1  I43 ( .Q(net34), .A(CS));
+NAND2X1  I163 ( .A(SIG), .B(net0162), .Q(net0164));
+NAND2X1  I162 ( .A(net0165), .B(net0164), .Q(net0167));
+NAND2X1  I161 ( .A(cds_globals.gnd_), .B(net06), .Q(net0165));
+NAND2X1  I158 ( .A(cds_globals.gnd_), .B(net06), .Q(net0158));
+NAND2X1  I157 ( .A(net0158), .B(net0157), .Q(net0160));
+NAND2X1  I156 ( .A(SIG), .B(net0155), .Q(net0157));
+NAND2X1  I153 ( .A(SIG), .B(net0148), .Q(net0150));
+NAND2X1  I152 ( .A(net0151), .B(net0150), .Q(net0153));
+NAND2X1  I151 ( .A(cds_globals.gnd_), .B(net06), .Q(net0151));
+NAND2X1  I148 ( .A(cds_globals.gnd_), .B(net06), .Q(net0144));
+NAND2X1  I147 ( .A(net0144), .B(net0143), .Q(net0146));
+NAND2X1  I146 ( .A(SIG), .B(net0141), .Q(net0143));
+NAND2X1  I143 ( .A(SIG), .B(net0133), .Q(net0136));
+NAND2X1  I142 ( .A(net0137), .B(net0136), .Q(net0139));
+NAND2X1  I141 ( .A(SPI_OUT[11]), .B(net06), .Q(net0137));
+NAND2X1  I138 ( .A(SPI_OUT[10]), .B(net06), .Q(net0127));
+NAND2X1  I137 ( .A(net0127), .B(net0126), .Q(net0131));
+NAND2X1  I136 ( .A(SIG), .B(net0124), .Q(net0126));
+NAND2X1  I133 ( .A(SIG), .B(net0114), .Q(net0117));
+NAND2X1  I132 ( .A(net0118), .B(net0117), .Q(net0121));
+NAND2X1  I131 ( .A(SPI_OUT[9]), .B(net06), .Q(net0118));
+NAND2X1  I128 ( .A(SPI_OUT[8]), .B(net06), .Q(net0109));
+NAND2X1  I127 ( .A(net0109), .B(net0108), .Q(net0112));
+NAND2X1  I126 ( .A(SIG), .B(net0106), .Q(net0108));
+NAND2X1  I116 ( .A(SIG), .B(net088), .Q(net090));
+NAND2X1  I117 ( .A(net091), .B(net090), .Q(net094));
+NAND2X1  I118 ( .A(SPI_OUT[6]), .B(net06), .Q(net091));
+NAND2X1  I121 ( .A(SPI_OUT[7]), .B(net06), .Q(net0100));
+NAND2X1  I122 ( .A(net0100), .B(net099), .Q(net0103));
+NAND2X1  I123 ( .A(SIG), .B(net096), .Q(net099));
+NAND2X1  I85 ( .A(net064), .B(net063), .Q(net067));
+NAND2X1  I112 ( .A(net082), .B(net081), .Q(net085));
+NAND2X1  I108 ( .A(net073), .B(net072), .Q(net076));
+NAND2X1  I81 ( .A(SIG), .B(net061), .Q(net063));
+NAND2X1  I80 ( .A(SPI_OUT[3]), .B(net06), .Q(net064));
+NAND2X1  I79 ( .A(net055), .B(net054), .Q(net058));
+NAND2X1  I111 ( .A(SPI_OUT[5]), .B(net06), .Q(net082));
+NAND2X1  I107 ( .A(SIG), .B(net069), .Q(net072));
+NAND2X1  I75 ( .A(SPI_OUT[2]), .B(net06), .Q(net055));
+NAND2X1  I74 ( .A(SIG), .B(net050), .Q(net054));
+NAND2X1  I73 ( .A(net045), .B(net044), .Q(net048));
+NAND2X1  I109 ( .A(SPI_OUT[4]), .B(net06), .Q(net073));
+NAND2X1  I67 ( .A(SPI_OUT[1]), .B(net06), .Q(net045));
+NAND2X1  I66 ( .A(SIG), .B(net041), .Q(net044));
+NAND2X1  I113 ( .A(SIG), .B(net079), .Q(net081));
+NAND2X1  I42 ( .A(SPI_CLK), .B(net34), .Q(SC));
+DFX1  I166 ( .D(net0167), .Q(SPI_DATA_OUT), .QN(net0199),
+     .CP(SPI_CLK));
+DFX1  I164 ( .D(net0160), .Q(net0162), .QN(net0198), .CP(SPI_CLK));
+DFX1  I155 ( .D(net0153), .Q(net0155), .QN(net0193), .CP(SPI_CLK));
+DFX1  I154 ( .D(net0146), .Q(net0148), .QN(net0192), .CP(SPI_CLK));
+DFX1  I145 ( .D(net0139), .Q(net0141), .QN(net0194), .CP(SPI_CLK));
+DFX1  I144 ( .D(net0131), .Q(net0133), .QN(net0196), .CP(SPI_CLK));
+DFX1  I135 ( .D(net0121), .Q(net0124), .QN(net0195), .CP(SPI_CLK));
+DFX1  I134 ( .D(net0112), .Q(net0114), .QN(net0197), .CP(SPI_CLK));
+DFX1  I125 ( .D(net0103), .Q(net0106), .QN(net0186), .CP(SPI_CLK));
+DFX1  I124 ( .D(net094), .Q(net096), .QN(net0188), .CP(SPI_CLK));
+DFX1  I115 ( .D(net085), .Q(net088), .QN(net0185), .CP(SPI_CLK));
+DFX1  I106 ( .D(net067), .Q(net069), .QN(net0189), .CP(SPI_CLK));
+DFX1  I84 ( .D(net058), .Q(net061), .QN(net0190), .CP(SPI_CLK));
+DFX1  I78 ( .D(net048), .Q(net050), .QN(net0168), .CP(SPI_CLK));
+DFX1  I114 ( .D(net076), .Q(net079), .QN(net0187), .CP(SPI_CLK));
+DFX1  I70 ( .D(SPI_OUT[0]), .Q(net041), .QN(net0191), .CP(SPI_CLK));
+DFX1  I65 ( .D(SPI_PAR[15]), .Q(cds_globals.gnd_), .QN(net63),
+     .CP(CS));
+DFX1  I63 ( .D(SPI_PAR[14]), .Q(SPI_PAR[15]), .QN(net59), .CP(SC));
+DFX1  I61 ( .D(SPI_PAR[14]), .Q(cds_globals.gnd_), .QN(net60),
+     .CP(CS));
+DFX1  I59 ( .D(SPI_PAR[13]), .Q(SPI_PAR[14]), .QN(net61), .CP(SC));
+DFX1  I57 ( .D(SPI_PAR[13]), .Q(cds_globals.gnd_), .QN(net57),
+     .CP(CS));
+DFX1  I55 ( .D(SPI_PAR[12]), .Q(SPI_PAR[13]), .QN(net58), .CP(SC));
+DFX1  I53 ( .D(SPI_PAR[12]), .Q(cds_globals.gnd_), .QN(net71),
+     .CP(CS));
+DFX1  I51 ( .D(SPI_PAR[11]), .Q(SPI_PAR[12]), .QN(net67), .CP(SC));
+DFX1  I49 ( .D(SPI_PAR[11]), .Q(SPI_IN[11]), .QN(net68), .CP(CS));
+DFX1  I47 ( .D(SPI_PAR[10]), .Q(SPI_PAR[11]), .QN(net69), .CP(SC));
+DFX1  I45 ( .D(SPI_PAR[10]), .Q(SPI_IN[10]), .QN(net64), .CP(CS));
+DFX1  I41 ( .D(SPI_PAR[9]), .Q(SPI_PAR[10]), .QN(net65), .CP(SC));
+DFX1  I39 ( .D(SPI_PAR[9]), .Q(SPI_IN[9]), .QN(net66), .CP(CS));
+DFX1  I29 ( .D(SPI_PAR[8]), .Q(SPI_PAR[9]), .QN(net62), .CP(SC));
+DFX1  I27 ( .D(SPI_PAR[8]), .Q(SPI_IN[8]), .QN(net72), .CP(CS));
+DFX1  I25 ( .D(SPI_PAR[7]), .Q(SPI_PAR[8]), .QN(net70), .CP(SC));
+DFX1  I23 ( .D(SPI_PAR[4]), .Q(SPI_IN[4]), .QN(net79), .CP(CS));
+DFX1  I22 ( .D(SPI_PAR[5]), .Q(SPI_IN[5]), .QN(net78), .CP(CS));
+DFX1  I21 ( .D(SPI_PAR[7]), .Q(SPI_IN[7]), .QN(net77), .CP(CS));
+DFX1  I19 ( .D(SPI_PAR[6]), .Q(SPI_IN[6]), .QN(net76), .CP(CS));
+DFX1  I15 ( .D(SPI_PAR[6]), .Q(SPI_PAR[7]), .QN(net80), .CP(SC));
+DFX1  I14 ( .D(SPI_PAR[5]), .Q(SPI_PAR[6]), .QN(net73), .CP(SC));
+DFX1  I13 ( .D(SPI_PAR[4]), .Q(SPI_PAR[5]), .QN(net74), .CP(SC));
+DFX1  I12 ( .D(SPI_PAR[3]), .Q(SPI_PAR[4]), .QN(net75), .CP(SC));
+DFX1  I30 ( .D(SPI_PAR[0]), .Q(SPI_IN[0]), .QN(net0213), .CP(CS));
+DFX1  I33 ( .D(SPI_PAR[1]), .Q(SPI_IN[1]), .QN(net0214), .CP(CS));
+DFX1  I36 ( .D(SPI_PAR[3]), .Q(SPI_IN[3]), .QN(net0215), .CP(CS));
+DFX1  I35 ( .D(SPI_PAR[2]), .Q(SPI_IN[2]), .QN(net84), .CP(CS));
+DFX1  I5 ( .D(SPI_PAR[2]), .Q(SPI_PAR[3]), .QN(net0211), .CP(SC));
+DFX1  I4 ( .D(SPI_PAR[1]), .Q(SPI_PAR[2]), .QN(net81), .CP(SC));
+DFX1  I3 ( .D(SPI_PAR[0]), .Q(SPI_PAR[1]), .QN(net82), .CP(SC));
+DFX1  I2 ( .D(SPI_DATA_IN), .Q(SPI_PAR[0]), .QN(net83), .CP(SC));
+OR2X1  I90 ( .A(net0156), .B(net0154), .Q(net0269));
+AND2X1  I95 ( .A(SEL), .B(net0170), .Q(SIG));
+OR3X1  I169 ( .C(net0269), .A(net0172), .B(net0166), .Q(net0170));
+DFCX1  I168 ( .RN(SEL), .D(net0270), .Q(net0172), .QN(net0270),
+     .CP(net0161));
+DFCX1  I91 ( .RN(SEL), .D(net0161), .Q(net0166), .QN(net0161),
+     .CP(net0267));
+DFCX1  I88 ( .RN(SEL), .D(net0267), .Q(net0156), .QN(net0267),
+     .CP(net0149));
+DFCX1  I86 ( .RN(SEL), .D(net0149), .Q(net0154), .QN(net0149),
+     .CP(SPI_CLK_N));
+
+endmodule
+// Library - Gu3nol_lib, Cell - TOP_DIGITAL, View - schematic
+// LAST TIME SAVED: Jul 21 14:55:05 2015
+// NETLIST TIME: Jul 21 15:01:11 2015
+`timescale 1ns / 1ps
+
+module TOP_DIGITAL ( C, MISO, MOSI, Mclk, R, RDY, SC, {S_anag[11],
+     S_anag[10], S_anag[9], S_anag[8], S_anag[7], S_anag[6], S_anag[5],
+     S_anag[4], S_anag[3], S_anag[2], S_anag[1], S_anag[0]}, Sclk,
+     adc_data, eoc, pd, start );
+
+inout  MISO, MOSI, Mclk, RDY, SC, Sclk, eoc, pd, start;
+
+inout [7:0]  C;
+inout [7:0]  R;
+inout [0:11]  S_anag;
+inout [9:0]  adc_data;
+
+// Buses in the design
+
+wire  [11:0]  dout;
+
+wire  [11:0]  din;
+
+
+specify
+    specparam CDS_LIBNAME  = "Gu3nol_lib";
+    specparam CDS_CELLNAME = "TOP_DIGITAL";
+    specparam CDS_VIEWNAME = "schematic";
+endspecify
+
+clu I26 ( .anag_mux(S_anag[0:11]), .row(R[7:0]), .col(C[7:0]),
+     .adc_pd(pd), .adc_start(start), .dout(dout[11:0]), .rdy(RDY),
+     .adc_data(adc_data[9:0]), .adc_eoc(eoc), .din(din[11:0]),
+     .mclk(Mclk));
+SPI_16_bits I67 ( .SPI_IN(din[11:0]), .SPI_OUT(dout[11:0]), .CS(SC),
+     .SPI_CLK(Sclk), .SPI_DATA_IN(MOSI), .SPI_DATA_OUT(MISO));
+
+endmodule
+
+
+// End HDL models
+
+// globals file
+hdlFilesDir/cds_globals.v

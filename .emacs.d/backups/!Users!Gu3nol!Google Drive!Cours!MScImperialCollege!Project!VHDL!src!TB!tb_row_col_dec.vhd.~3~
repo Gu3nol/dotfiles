@@ -1,0 +1,61 @@
+---------------------------------------------------------
+-- Testbench for the Columns and Row switches
+-- tb_row_col_dec.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is for testing purpose
+
+-- It is developed for an 8 switches selector
+--------------------------------------------------------
+
+LIBRARY IEEE;
+
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+USE work.ALL;
+
+-- Alias
+ALIAS sl IS std_logic;
+ALIAS slv IS std_logic_vector;
+
+ALIAS sg IS signed;
+ALIAS unsg IS unsigned;
+
+
+ENTITY tb_dec IS
+  PORT(
+    -- Columns/Row signals
+    col : OUT slv(array_size-1 DOWNTO 0);
+    row : OUT slv(array_size-1 DOWNTO 0)
+    );
+END tb_dec;
+
+ARCHITECTURE behav OF tb_dec IS
+
+  -- Array coordinate
+  SIGNAL array_coord : slv(5 DOWNTO 0);
+
+
+    -- One hot decoder functions
+    FUNCTION one_hot_dec_row(array_coord : slv(5 DOWNTO 0)) RETURN integer IS
+    VARIABLE num_row                     : integer;
+  BEGIN
+    num_row := To_integer(unsg(array_coord(5 DOWNTO 3)));
+    RETURN num_row;
+  END FUNCTION one_hot_dec_row;
+
+  FUNCTION one_hot_dec_col(array_coord : slv(5 DOWNTO 0)) RETURN integer IS
+    VARIABLE num_col : integer;
+  BEGIN
+    num_col := To_integer(unsg(array_coord(2 DOWNTO 0)));
+    RETURN num_col;
+  END FUNCTION one_hot_dec_col;
+
+BEGIN
+
+  output_process : PROCESS(array_coord)
+
+
+
+  END behav;

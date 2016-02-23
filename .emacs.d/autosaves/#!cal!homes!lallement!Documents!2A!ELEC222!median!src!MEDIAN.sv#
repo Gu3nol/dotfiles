@@ -1,0 +1,102 @@
+/* 
+ * Creation du module MEDIAN
+ * 
+ * Entrees : DI, bus sur 8 bit
+ *           DSI, signal de validation, 1 bit
+ *           nRST, signal de reinitialisation asynchrone. Actif a 0
+ *           CLK, horloge, 1 bit
+ * 
+ * Sorties : DO, bus sur 8 bit
+ *           DSO, signal de validation de DO, 1 bit
+ * 
+ * Fonction : Lorsque MEDIAN a fini son calcul il délivre la valeur mediane des 9 pixels d'entrés sur DO
+ * 
+ */
+
+module MEDIAN (input logic [7 : 0] DI,
+	       input logic 	    DSI, nRST, CLK, 
+	       output logic [7 : 0] DO,
+	       output logic 	    DSO);
+
+   // On declare les variables internes a notre systeme
+   logic 			    BYP;
+   logic [3:0] 			    CMPT;
+ 			       
+   // On instancie un module MED
+   MED I_MED(.DI(DI), .DSI(DSI), .BYP(BYP), .CLK(CLK), .DO(DO));
+
+   // On delcare les etats de notre MAE
+   enum logic [2:0] 			  {LOAD, INIT, S1, S2, S3, S4, S5}  state;
+
+   always_ff @(posedge CLK or negedge nRST)
+     begin   
+	if (~nRST) // Procedure de reset
+	  begin
+	     state <= INIT;
+	     CMPT <= 4'd0;
+	  end
+	else
+	  begin
+	     CMPT <= (CMPT + 1); // Demarage du compteur
+
+	     case(state)
+	       INIT : if (DSI == 4'd1)
+		 begin
+		    state <= LOAD;
+		    CMPT <= 4'd0;
+		 end
+	       LOAD : if (CMPT == 4'd7)
+		 begin
+		    state <= S1;
+		    CMPT <= 4'd0;
+		 end
+	       S1 : if (CMPT == 4'd8)
+		 begin
+		    CMPT <= 4'd0;
+		    state <= S2;
+		 end
+	       S2 : if (CMPT == 4'd8)
+		 begin
+		    CMPT <= 4'd0;
+		    state <= S3;
+		 end
+	       S3 : if (CMPT == 4'd8)
+		 begin
+		    CMPT <= 4'd0;
+		    state <= S4;
+		 end
+	       S4 : if (CMPT == 4'd8)
+		 begin
+		    CMPT <= 4'd0;
+		    state <= S5;
+		 end
+	       S5 : if (CMPT == 4'd4)
+		 begin
+		    CMPT <= 4'd0;
+		    state <= INIT;
+		 end
+	     endcase
+	  end // else: !if(~nRST)
+     end // always_ff @
+
+   always_comb
+     begin
+	BYP <= 'd1;
+	
+	case(state)
+	  S1 : if (CMPT < 4'd8)
+	    BYP <= 'd0;
+	  S2 : if (CMPT < 4'd7)
+	    BYP <= 'd0;
+	  S3 : if (CMPT < 4'd6)
+	    BYP <= 'd0;
+	  S4 : if (CMPT < 4'd5)
+	    BYP <= 'd0;
+	  S5 : if (CMPT < 4'd4)
+	    BYP <= 'd0;
+	  	endcase
+     end // always_comb
+   
+   assign DSO = (state == S5 && CMPT >= 4'd4);
+	  	
+endmodule // MEDIAN

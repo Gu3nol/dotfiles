@@ -1,0 +1,126 @@
+LIBRARY IEEE;
+USE ieee.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+USE work.db;
+USE work.db_data_pack.ALL;
+USE work.config_pack.ALL;
+USE work.project_pack.ALL;
+
+ENTITY draw_block_tb IS
+END draw_block_tb;
+
+ARCHITECTURE behav OF draw_block_tb IS
+  SIGNAL clk, reset   : std_logic;
+  SIGNAL hdb_op       : std_logic_vector(1 DOWNTO 0);
+  SIGNAL hdb_x, hdb_y : std_logic_vector(5 DOWNTO 0);
+  SIGNAL hdb_pen      : std_logic_vector(1 DOWNTO 0);
+  SIGNAL dav          : std_logic;
+  SIGNAL busy         : std_logic;
+
+  SIGNAL x, y  : std_logic_vector(5 DOWNTO 0);
+  SIGNAL cmd   : std_logic_vector(2 DOWNTO 0);
+  SIGNAL start : std_logic;
+  SIGNAL delay : std_logic;
+
+  SIGNAL finished : std_logic;
+BEGIN
+  d1 : ENTITY db PORT MAP (
+    clk   => clk,
+    reset => reset,
+
+    host_2_db_bus.hdb(15 DOWNTO 14) => hdb_op,
+    host_2_db_bus.hdb(13 DOWNTO 8)  => hdb_x,
+    host_2_db_bus.hdb(7 DOWNTO 2)   => hdb_y,
+    host_2_db_bus.hdb(1 DOWNTO 0)   => hdb_pen,
+    host_2_db_bus.dav               => dav,
+    db_2_host_bus.hdb_busy          => busy,
+
+    db_2_rcb_bus.x         => x,
+    db_2_rcb_bus.y         => y,
+    db_2_rcb_bus.rcbcmd    => cmd,
+    db_2_rcb_bus.startcmd  => start,
+    rcb_2_db_bus.delay_cmd => delay,
+
+    db_finished => finished
+    );
+
+  p_clkgen : PROCESS
+  BEGIN
+    clk <= '0';
+    WAIT FOR 50 ns;
+    clk <= '1';
+    WAIT FOR 50 ns;
+  END PROCESS p_clkgen;
+
+  p_test : PROCESS
+    VARIABLE t_x, t_y : integer;
+  BEGIN
+    reset <= '1';
+    WAIT UNTIL clk'event AND clk = '1';
+    FOR n IN data'range LOOP
+      -- assign inputs
+      reset   <= '0';
+      hdb_op  <= (OTHERS => '0');
+      hdb_x   <= std_logic_vector(to_unsigned(data(n).hdb_x, 6));
+      hdb_y   <= std_logic_vector(to_unsigned(data(n).hdb_y, 6));
+      hdb_pen <= white_h;
+      dav     <= '0';
+      delay   <= data(n).delay;
+      CASE data(n).txt IS
+        WHEN txt_set =>
+          dav    <= '1';
+          hdb_op <= movepen_h;
+        WHEN txt_clear =>
+          dav    <= '1';
+          hdb_op <= clearscreen_h;
+        WHEN txt_draw =>
+          dav    <= '1';
+          hdb_op <= drawline_h;
+        WHEN OTHERS => NULL;
+      END CASE;
+
+      -- check if outputs correspond to inputs from last cycle
+      WAIT FOR 1 ns;
+      IF n > 0 THEN
+        t_x := to_integer(unsigned(x));
+        t_y := to_integer(unsigned(y));
+
+        IF data(n-1).busy /= 'X' AND data(n-1).busy /= busy THEN
+          REPORT "busy IS " & std_logic'image(busy)
+            & " while SHOULD "& std_logic'image(data(n-1).busy)
+            SEVERITY failure;
+        END IF;
+        IF data(n-1).cmd /= "XXX" AND data(n-1).cmd /= cmd THEN
+          REPORT "cmd output is not like it should be"
+            SEVERITY failure;
+        END IF;
+        IF data(n-1).start /= 'X' AND data(n-1).start /= start THEN
+          REPORT "start IS " & std_logic'image(start)
+            & " while SHOULD "& std_logic'image(data(n-1).start)
+            SEVERITY failure;
+        END IF;
+        IF data(n-1).x /= 0 AND data(n-1).x /= t_x THEN
+          REPORT "x IS " & integer'image(t_x)
+            & " while SHOULD "& integer'image(data(n-1).x)
+            SEVERITY failure;
+        END IF;
+        IF data(n-1).y /= 0 AND data(n-1).y /= t_y THEN
+          REPORT "y IS " & integer'image(t_y)
+            & " while SHOULD "& integer'image(data(n-1).y)
+            SEVERITY failure;
+        END IF;
+        IF data(n-1).finished /= 'X' AND data(n-1).finished /= finished THEN
+          REPORT "finished IS " & std_logic'image(finished)
+            & " while SHOULD "& std_logic'image(data(n-1).finished)
+            SEVERITY failure;
+        END IF;
+
+      END IF;
+      WAIT UNTIL clk'event AND clk = '1';
+
+    END LOOP;
+    REPORT "ALL TESTS OK" SEVERITY failure;
+
+  END PROCESS p_test;
+
+END behav;

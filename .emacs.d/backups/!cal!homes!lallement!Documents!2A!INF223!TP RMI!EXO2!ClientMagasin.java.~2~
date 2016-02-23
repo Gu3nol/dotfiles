@@ -1,0 +1,86 @@
+import java.awt.*;
+import java.rmi.*;
+
+//  ClientMagasin : ce client va rechercher sur une liste de machines
+//		    le prix minimal d'un ingredient. La recherche
+//		    s'effectue par une invocation successive des objets
+//		    des differents serveur (utilisation du modele
+//		    client/serveur)
+//
+public class ClientMagasin extends Frame
+{
+
+	// Chaine de caracteres pour formater
+	// le resultat qui sera afficher
+	//
+	static String message = "";
+
+	// Affiche le resultat de la recherche
+	//
+	public void Afficher() {
+		setSize(500,120);
+		setVisible(true);
+	}
+
+	//   Mise a jour de l'interface Homme Machine
+	//
+	public void paint(Graphics g) {
+		g.drawString(message, 25, 50);
+	}
+
+	//  Methode principale
+	//
+	public static void main(String args[]) {
+		// Attribut qui memorise le prix minimal
+		//
+		float Prix = 0, MoinsCher = Float.MAX_VALUE;
+
+		// Nom du site qui detient le prix minimal
+		//
+		String Site ="pas de site";
+
+		// Creation de l'instance
+		//
+		ClientMagasin LeClient = new ClientMagasin();
+
+		if (args.length < 3) {
+			System.out.println("Au moins trois parametres : port-rmiregistry produit site {site} ! ");
+			System.exit(1);
+		}
+
+
+		// On interroe successivement les serveurs
+		// en memorisant le prix minimal obtenu ainsi que le
+		// nom du site qui detient ce prix minimal
+		//
+		for (int i = 2; i < args.length ; i++) {
+			try {
+				// Recuperer la reference du serveur a interroger
+				// il faut donner le nom de la machine ou tournent rmiregistry et le serveur
+				//
+				myHostname machine = new myHostname(args[i]);
+				String nom = machine.nonQualifiedHost();
+				System.out.println("Connexion au service : " + nom);
+				Magasin obj = (Magasin)Naming.lookup(nom);
+
+				// Invocation de l'objet
+				//
+				Prix = obj.RenvoyerPrix(args[i]);
+			}
+			catch (Exception e) {
+				System.out.println("Magasin exception: " + e.getMessage());
+				e.printStackTrace();
+			}
+
+			if (MoinsCher > Prix) {
+				MoinsCher = Prix;
+				Site=args[i];
+			}
+		}
+
+		// On affiche le resultat de la recherche
+		//
+		message = Site + " : Le prix minimum de " + args[1] + " est " + MoinsCher;
+		LeClient.Afficher();
+	}
+}

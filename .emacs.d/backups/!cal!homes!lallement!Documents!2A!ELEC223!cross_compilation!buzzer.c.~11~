@@ -1,0 +1,18 @@
+/* buzzer.c */
+
+#include "buzzer.h"
+#include "timer.h"
+#include "gpio.h"
+#include "port.h"
+
+void buzzer_init(void) {
+  gpio_pin_config(&PCONE, 6, 2); // Passage de PE6 sur le timer3
+}
+
+void buzz(uint16_t time_ms, uint16_t freq_hz) {
+  timer_set(3, freq_hz,2);
+  timer_auto_reload(3, ON);
+  timer_start(3);
+  timer_wait(0, time_ms);
+  timer_stop(3);
+}

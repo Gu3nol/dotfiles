@@ -1,0 +1,16 @@
+/* boot_loader.c */
+
+#include <stdint.h>
+#include "serial.h"
+
+void boot_interface() {
+}
+
+void save_data() {
+}
+
+void jump_to(uint32_t adress) {
+}
+
+uint32_t parser() {
+}

@@ -1,0 +1,9 @@
+#ifndef FIFO_H
+#define FIFO_H
+
+#include <stdint.h>
+
+void send_word_to_fifo (int16_t word)
+void send_stereo_sample (const int16_t sample[2])
+
+#endif

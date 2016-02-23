@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage{minted}
+\begin{document}
+\begin{minted}{java}
+enum Colors {RED, GREEN, BLUE};
+\end{minted}
+\end{document}
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-command-extra-options: "-shell-escape"
+%%% End:

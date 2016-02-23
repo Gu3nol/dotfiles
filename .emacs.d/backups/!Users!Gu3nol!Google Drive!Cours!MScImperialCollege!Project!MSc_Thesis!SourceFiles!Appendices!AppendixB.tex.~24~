@@ -1,0 +1,24 @@
+\renewcommand{\baselinestretch}{1.5}
+\chapter{VHDL and SystemVerilog implementation}
+\label{App:VHDLandSV}
+
+\begin{minted}{java}
+static int a = 0;
+\end{minted}
+
+% \inputminted[
+% frame=lines,
+% framesep=2mm,
+% baselinestretch=1.2,
+% %bgcolor=LightGray,
+% fontsize=\footnotesize,
+% linenos
+% ]{vhdl}{clu.vhd}
+
+
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

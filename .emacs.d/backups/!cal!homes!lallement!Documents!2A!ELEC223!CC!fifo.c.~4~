@@ -1,0 +1,13 @@
+/* fifo.c */
+
+#include "fifo.h"
+#include "port.h"
+
+void send_word_to_fifo (int16_t word, int8_t channel) {
+  while(!(IISFCON & (1<<7)));
+  IISFIF = word;
+
+}
+
+void send_stereo_sample (int16_t sample[2]) {
+}

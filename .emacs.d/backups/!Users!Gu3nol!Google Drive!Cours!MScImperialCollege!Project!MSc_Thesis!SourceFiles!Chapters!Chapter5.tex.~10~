@@ -1,0 +1,66 @@
+\chapter{System Architecture}
+\renewcommand{\baselinestretch}{\mystretch}
+\label{chap:SystemArchitecture}
+%\setlength{\parindent}{0pt}
+
+\PARstart{T}{his} chapter presents the hardware system developed to test, characterise and demonstrate the pixel behaviour. this system includes a “standard” and a characterization array.
+
+\section{Complete system design}
+Presentation of the whole system
+
+\section{System description}
+Operation of each sub blocks
+
+\subsection{Pixel array and row decoder}
+Presentation of the 8x8 array architecture designed according to the pixel design and readout circuit.
+
+\subsubsection{Architecture}
+\subsubsection{Operation}
+\subsubsection{Performance analysis}
+
+\subsection{Characterisation array and switches}
+\subsection{Readout and conversion circuit}
+Include shm of readout circuit (voltage follower, set I, observe V)
+Details on the ADC requirement (resolution, characteristic, decoupling capacitor added)
+Choice of the OpAmp and driving capability
+
+\subsection{SPI}
+SPI block furnish by Nicolas/Ermis. Yet, it has been modified to use only 12 bits + tested again.
+This block manages the communication between the chip and the external world.
+Based on std SPI implementation.
+
+\subsection{Digital core - Control Logic Unit}
+Description/Aims: FSM diagram
+Input/output signals
+Implementation
+
+\section{System execution}
+Order of activation, how to use the system, ways of communication with it. SPI trams/commands
+
+\section{Simulations and tests}
+Test of the CLU + TB created and implemented in VHDL/RTL
+Values at the output of the array
+MC simulations
+
+\section{CMOS fabricated prototype: the BATMAN chip}
+Presentation of the chip
+Tests (DRC/LVS/Antenna/Post-layout simulations) on my own block.
+
+
+\section{Other metrics}
+\subsection{Power consumption}
+\subsection{Speed consideration}
+Maximum speed of operation / Nominal speed / Possible switching speed using hexgonal ISFET comparing to std structure
+
+\subsection{Scaling}
+Area of the array / area of the whole system
+Device densisty and other considerations.
+Create a table with the number of pixel (log scale 10,100,1000) and the size for a square implentation and a hexagonal one
+
+\section{Summary}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

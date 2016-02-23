@@ -1,0 +1,311 @@
+\begin{thebibliography}{10}
+
+\bibitem{RefWorks:125}
+P.~Bergveld.
+\newblock Thirty years of isfetology. what happened in the past 30 years and
+  what may happen in the next 30 years.
+\newblock {\em Sensors and Actuators B (Chemical)}, B88(1):1--20, 01/01 2003.
+
+\bibitem{RefWorks:123}
+P.~Georgiou and C.~Toumazou.
+\newblock Isfet characteristics in cmos and their application to weak inversion
+  operation.
+\newblock {\em Sensors and Actuators: B Chemical}, 143(1):211--17, 12/04 2009.
+
+\bibitem{RefWorks:118}
+P.~Georgiou and C.~Toumazou.
+\newblock Chemical bionics - a novel design approach using ion sensitive field
+  effect transistors.
+\newblock In {\em IEEE Biomedical Circuits and Systems Conference - Intelligent
+  Biomedical Systems}, BioCAS 2008, pages 229--32, Piscataway, NJ, USA, 20-22
+  Nov. 2008 2008. Inst. of Biomed. Eng., Imperial Coll. London, London, United
+  Kingdom, IEEE.
+\newblock T3: BioCAS 2008. IEEE Biomedical Circuits and Systems Conference -
+  Intelligent Biomedical Systems;.
+
+\bibitem{RefWorks:119}
+Yan Liu, P.~Georgiou, T.~Prodromakis, T.~G. Constandinou, and C.~Toumazou.
+\newblock An extended cmos isfet model incorporating the physical design
+  geometry and the effects on performance and offset variation.
+\newblock {\em IEEE Transactions on Electron Devices}, 58(12):4414--22, 12
+  2011.
+
+\bibitem{RefWorks:112}
+S.~Jamasb, J.~N. Churchill, S.~D. Collins, and R.~L. Smith.
+\newblock Accurate continuous monitoring using isfet-based biosensors based on
+  characterization and modeling of drift and low frequency noise.
+\newblock In {\em 20 Biomedical Engineering Towards the Year 2000 and Beyond},
+  volume~6 of {\em Proceedings of the 20th Annual International Conference of
+  the IEEE Engineering in Medicine and Biology Society. Vol}, pages 2864--7,
+  Piscataway, NJ, USA, 29 Oct.-1 Nov. 1998 1998. Commquest, Encinitas, CA,
+  United States, IEEE.
+\newblock T3: Proceedings of the 20th Annual International Conference of the
+  IEEE Engineering in Medicine and Biology Society. Vol.20 Biomedical
+  Engineering Towards the Year 2000 and Beyond (Cat. No.98CH36286);.
+
+\bibitem{RefWorks:150}
+James~D. Watson and Francis~HC Crick.
+\newblock Molecular structure of nucleic acids.
+\newblock {\em Nature}, 171(4356):737--738, 1953.
+
+\bibitem{RefWorks:141}
+Chris~R. Calladine and Horace Drew.
+\newblock {\em Understanding DNA: the molecule and how it works}.
+\newblock Academic press, 1997.
+
+\bibitem{RefWorks:117}
+T.~Prodromakis, Y.~Liu, J.~Yang, D.~Hollinghurst, and C.~Toumazou.
+\newblock A novel design approach for developing chemical sensing platforms
+  using inexpensive technologies.
+\newblock In {\em 2011 IEEE Biomedical Circuits and Systems Conference, BioCAS
+  2011, November 10, 2011 - November 12}, pages 369--372, San Diego, CA, United
+  states, 2011 2011. Department of Electrical and Electronic Engineering,
+  Institute of Biomedical Engineering, Imperial College London, SW7 2AZ, United
+  KingdomCentre for Bio-Inspired Technology, Institute of Biomedical
+  Engineering, Imperial College London, SW7 2AZ, United Kingdom, IEEE Computer
+  Society.
+\newblock Compilation and indexing terms, Copyright 2015 Elsevier Inc.; T3:
+  2011 IEEE Biomedical Circuits and Systems Conference, BioCAS 2011;.
+
+\bibitem{RefWorks:110}
+M.~Schienle, A.~Frey, F.~Hofmann, B.~Holzapfl, C.~Paulus, P.~Schindler-Bauer,
+  and R.~Thewes.
+\newblock A fully electronic dna sensor with 128 positions and in-pixel a/d
+  conversion.
+\newblock In {\em 2004 IEEE International Solid-State Circuits Conference},
+  volume~1, pages 220--524, Piscataway, NJ, USA, 15-19 Feb. 2004 2004. Infineon
+  Technol., Munich, Germany, IEEE.
+\newblock T3: 2004 IEEE International Solid-State Circuits Conference (IEEE
+  Cat. No.04CH37519);.
+
+\bibitem{RefWorks:120}
+Yuanqi Hu, Yan Liu, Christofer Toumazou, and Pantelis Georgiou.
+\newblock A cmos architecture allowing parallel dna comparison for on-chip
+  assembly.
+\newblock In {\em 2012 IEEE International Symposium on Circuits and Systems,
+  ISCAS 2012, May 20, 2012 - May 23}, pages 1544--1547, Seoul, Korea, Republic
+  of, 2012 2012. Department of Electrical and Electronic Engineering, Institute
+  of Biomedical Engineering, Imperial College, London, SW7 2AZ, United Kingdom,
+  IEEE Computer Society.
+\newblock Compilation and indexing terms, Copyright 2015 Elsevier Inc.; T3:
+  ISCAS 2012 - 2012 IEEE International Symposium on Circuits and Systems;.
+
+\bibitem{RefWorks:116}
+S.~Purushothaman, C.~Toumazou, and Chung-Pei Ou.
+\newblock Protons and single nucleotide polymorphism detection: A simple use
+  for the ion sensitive field effect transistor.
+\newblock {\em Sensors and Actuators B (Chemical)}, 114(2):964--8, 04/26 2006.
+
+\bibitem{RefWorks:146}
+L.~Bousse, N.~F.~De Rooij, and Piet Bergveld.
+\newblock Operation of chemically sensitive field-effect sensors as a function
+  of the insulator-electrolyte interface.
+\newblock {\em Electron Devices, IEEE Transactions on}, 30(10):1263--1270,
+  1983.
+\newblock ID: 1.
+
+\bibitem{RefWorks:147}
+L.~M. Shepherd and C.~Toumazou.
+\newblock A biochemical translinear principle with weak inversion isfets.
+\newblock {\em Circuits and Systems I: Regular Papers, IEEE Transactions on},
+  52(12):2614--2619, 2005.
+\newblock ID: 1.
+
+\bibitem{RefWorks:138}
+T.~C.~W. Yeow, M.~R. Haskard, D.~E. Mulcahy, H.~I. Seo, and D.~H. Kwon.
+\newblock A very large integrated ph-isfet sensor array chip compatible with
+  standard cmos processes.
+\newblock In {\em EUROSENSORS X}, volume B44, pages 434--40, Switzerland, 10
+  1997. Microelectron. Centre, Univ. of South Australia, Ingle Farm, SA,
+  Australia, Elsevier.
+\newblock T3: Sens. Actuators B, Chem. (Switzerland);.
+
+\bibitem{RefWorks:139}
+J.~Bausells, J.~Carrabina, A.~Errachid, and A.~Merlos.
+\newblock Ion-sensitive field-effect transistors fabricated in a commercial
+  cmos technology.
+\newblock In {\em Eurosensors Conference}, volume B57, pages 56--62,
+  Switzerland, 13-16 Sept. 1998 1999. Centro Nac. de Microelectron., Barcelona,
+  Spain, Elsevier.
+\newblock T3: Sens. Actuators B, Chem. (Switzerland);.
+
+\bibitem{RefWorks:148}
+Allen~J. Bard and Larry~R. Faulkner.
+\newblock {\em Electrochemical methods: fundamentals and applications},
+  volume~2.
+\newblock Wiley New York, 1980.
+
+\bibitem{RefWorks:149}
+Derek Chan, Thomas~W. Healy, and Lee~R. White.
+\newblock Electrical double layer interactions under regulation by surface
+  ionization equilibria–dissimilar amphoteric surfaces.
+\newblock {\em Journal of the Chemical Society, Faraday Transactions 1:
+  Physical Chemistry in Condensed Phases}, 72:2844--2865, 1976.
+
+\bibitem{RefWorks:111}
+M.~Daniel, M.~Janicki, and A.~Napieralski.
+\newblock Simulation of ion sensitive transistors using a spice compatible
+  model.
+\newblock In {\em Proceedings of IEEE Sensors 2003}, volume~1, pages 543--8,
+  Piscataway, NJ, USA, 22-24 Oct. 2003 2003. Dept. of Microelectron. Comput.
+  Sci., Lodz Tech. Univ., Lodz, Poland, IEEE.
+\newblock T3: Proceedings of IEEE Sensors 2003 (IEEE Cat. No.03CH37498);.
+
+\bibitem{RefWorks:113}
+C.~Y Aw and P.~W. Cheung.
+\newblock A ph-isfet sensor with on-chip temperature sensing.
+\newblock In {\em Annual International Conference of the IEEE Engineering in
+  Medicine and Biology Society}, pages 772--3, New York, NY, USA, 4-7 Nov. 1988
+  1988. Microsensor Res. Lab., Univ. of Washington, Seattle, WA, United States,
+  IEEE.
+\newblock T3: Proceedings of the Annual International Conference of the IEEE
+  Engineering in Medicine and Biology Society (IEEE Cat. No.88CH2566-8);.
+
+\bibitem{RefWorks:104}
+M.~J. Milgrew and D.~R.~S. Cumming.
+\newblock Matching the transconductance characteristics of cmos isfet arrays by
+  removing trapped charge.
+\newblock {\em IEEE Transactions on Electron Devices}, 55(4):1074--9, 04 2008.
+
+\bibitem{RefWorks:114}
+P.~Georgiou and C.~Toumazou.
+\newblock Cmos-based programmable gate isfet.
+\newblock {\em Electronics Letters}, 44(22):1289--1291, 2008.
+\newblock Compilation and indexing terms, Copyright 2015 Elsevier Inc.;.
+
+\bibitem{RefWorks:108}
+Der~Ziel Van.
+\newblock Noise in solid-state devices and lasers.
+\newblock {\em Proceedings of the IEEE}, 58(8):1178--206, 08 1970.
+
+\bibitem{RefWorks:140}
+Hui Tian and Abbas~El Gamal.
+\newblock Analysis of 1/f noise in switched mosfet circuits.
+\newblock {\em Circuits and Systems II: Analog and Digital Signal Processing,
+  IEEE Transactions on}, 48(2):151--157, 2001.
+
+\bibitem{RefWorks:109}
+S.~Jamasb.
+\newblock An analytical technique for counteracting drift in ion-selective
+  field effect transistors (isfets).
+\newblock {\em IEEE Sensors Journal}, 4(6):795--801, 12 2004.
+
+\bibitem{RefWorks:61}
+T.~C. Hales.
+\newblock The honeycomb conjecture.
+\newblock {\em Discrete & Computational Geometry}, 25(1):1--22, 01 2001.
+\newblock undefined; undefined; undefined.
+
+\bibitem{RefWorks:85}
+Jing Li, Tan Yan, Bo~Yang, Juebang Yu, and Chunhui Li.
+\newblock A packing algorithm for non-manhattan hexagon/triangle placement
+  design by using an adaptive o-tree representation.
+\newblock In {\em Design Automation Conference}, Proceedings 2004, pages
+  646--51, New York, NY, USA, 7-11 June 2004 2004. Sch. of Electron. Eng.,
+  Univ. of Electron. Sci. Technol. of China, Chengdu, China, ACM.
+\newblock T3: Proceedings 2004. Design Automation Conference (IEEE Cat.
+  No.04CH37531);.
+
+\bibitem{RefWorks:86}
+Bo~Yang, Juebang Yu, Tan Yan, and Jing Li.
+\newblock A non-manhattan hexagon/triangle placement paradigm.
+\newblock In {\em 2004 International Conference on Communications, Circuits and
+  Systems}, volume~2, pages 1271--5, Piscataway, NJ, USA, 27-29 June 2004 2004.
+  Sch. of Electron. Eng., Univ. of Electron. Sci. Technol. of China, Chengdu,
+  China, IEEE.
+\newblock T3: 2004 International Conference on Communications, Circuits and
+  Systems (IEEE Cat. No.04EX914);.
+
+\bibitem{RefWorks:11}
+Jader A.~De Lima, Salvador~P. Gimenez, and Klaus~H. Cirne.
+\newblock Modeling and characterization of overlapping circular-gate mosfet and
+  its application to power devices.
+\newblock {\em IEEE Transactions on Power Electronics}, 27(3):1622--1631, 2012.
+\newblock Compilation and indexing terms, Copyright 2015 Elsevier Inc.;.
+
+\bibitem{RefWorks:44}
+Liu Xia, Chen Wen-Gao, Wang Wen, Yi~Yang-Bo, and Sun Wei-Feng.
+\newblock The influence on the performance of power double diffused mosfet with
+  different gate layout geometries.
+\newblock {\em IETE Technical Review (Institution of Electronics and
+  Telecommunication Engineers, India)}, 27(5):421--425, 2010.
+\newblock Compilation and indexing terms, Copyright 2015 Elsevier Inc.;.
+
+\bibitem{RefWorks:45}
+Charles Longway and Raymond Siferd.
+\newblock Doughnut layout style for improved switching speed with cmos vlsi
+  gates.
+\newblock {\em IEEE Journal of Solid-State Circuits}, 24(1):194--198, 1989.
+\newblock Compilation and indexing terms, Copyright 2015 Elsevier Inc.;.
+
+\bibitem{RefWorks:53}
+Xibo Zhang, Sang Lam, P.~K. Ko, and Mansun Chan.
+\newblock High-speed mixed signal and rf circuit design with compact waffle
+  mosfet.
+\newblock In {\em Proceedings of 2002 IEEE Hong Kong Electron Devices Meeting},
+  pages 103--6, Piscataway, NJ, USA, 22 June 2002 2002. Dept. of Electr.
+  Electron. Eng., Hong Kong Univ. of Sci. Technol., Kowloon, Kowloon, China,
+  IEEE.
+\newblock T3: Proceedings 2002 IEEE Hong Kong Electron Devices Meeting (Cat.
+  No.02TH8616);.
+
+\bibitem{RefWorks:47}
+Wen Wu, Sang Lam, P.~K. Ko, and Mansun Chan.
+\newblock Comparative analysis and parameter extraction of enhanced waffle
+  mosfet.
+\newblock In {\em 2003 IEEE Conference on Electron Devices and Solid-State
+  Circuits}, pages 193--6, Piscataway, NJ, USA, 16-18 Dec. 2003 2003. Dept. of
+  the Electr. Electron. Eng., Hong Kong Univ. of Sci. Technol., China, IEEE.
+\newblock T3: 2003 IEEE Conference on Electron Devices and Solid-State Circuits
+  (IEEE Cat. No.03TH8668);.
+
+\bibitem{RefWorks:131}
+Ming-Dou Ker, Chung-Yu Wu, Chien-Chang Huang, Chau-Neng Wu, and Ta-Lee Yu.
+\newblock {\em Hexagon CMOS device}, 1998.
+
+\bibitem{RefWorks:132}
+Chung che Yu, Kuo-Wei Peng, and Li-Min Lee.
+\newblock {\em MOSFET layout and structure with common source}, 2013.
+
+\bibitem{RefWorks:133}
+Kuo wei Peng and Li~min Lee.
+\newblock {\em MOSFET LAYOUT AND STRUCTURE}, 2012.
+
+\bibitem{RefWorks:134}
+Jong~O. Kim and Jin~H. Kim.
+\newblock {\em Double diffused MOSFET cell}, 1991.
+
+\bibitem{RefWorks:135}
+Donald~C. Mayer, Jon~V. Osborn, Ronald~C. Lacoe, and Everett~E. King.
+\newblock {\em Annular segmented MOSFET}, 2006.
+
+\bibitem{RefWorks:62}
+P.~Lopez, M.~Oberst, H.~Neubauer, J.~Hauer, and D.~Cabello.
+\newblock Practical considerations on doughnut transistors design.
+\newblock In {\em 2005 European Conference on Circuit Theory and Design, August
+  28, 2005 - September 2}, volume~3, pages 213--216, Cork, Ireland, 2005 2005.
+  Department of Electronics and Computer Science, University of Santiago de
+  Compostela, E-15782 Santiago de Compostela, SpainFraunhofer Institute Fuer
+  Integrierte Schaltungen, Am Wolfsmantel 33, 91058 Erlangen, Germany,
+  Institute of Electrical and Electronics Engineers Computer Society.
+\newblock Compilation and indexing terms, Copyright 2015 Elsevier Inc.; T3:
+  Proceedings of the 2005 European Conference on Circuit Theory and Design;.
+
+\bibitem{RefWorks:48}
+J.~Bastos, M.~Steyaert, B.~Graindourze, and W.~Sansen.
+\newblock Matching of mos transistors with different layout styles.
+\newblock In {\em Proceedings of International Conference on Microelectronic
+  Test Structures}, pages 17--18, New York, NY, USA, 25-28 March 1996 1996.
+  ESAT-MICAS, Katholieke Univ. Leuven, Leuven, Belgium, IEEE.
+\newblock T3: ICMTS 1996. 1996 IEEE International Conference on Microelectronic
+  Test Structures Proceedings (Cat. No.96CH35832);.
+
+\bibitem{RefWorks:56}
+Kadaba~R. Lakshmikumar, Robert~A. Hadaway, and Miles~A. Copeland.
+\newblock Characterization and modeling of mismatch in mos transistors for
+  precision analog design.
+\newblock {\em IEEE Journal of Solid-State Circuits}, SC-21(6):1057--1066,
+  1986.
+\newblock Compilation and indexing terms, Copyright 2015 Elsevier Inc.;.
+
+\end{thebibliography}

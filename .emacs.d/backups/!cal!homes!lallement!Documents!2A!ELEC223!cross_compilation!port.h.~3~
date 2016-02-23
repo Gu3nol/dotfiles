@@ -1,0 +1,23 @@
+/**************************************************
+ * fichier de définition des I/O de la carte *
+ **************************************************/
+
+#ifndef PORT_H
+#define PORT_H
+
+#define ULCON0   (*(volatile uint32_t *)  0x01D00000) // configuration du port série
+#define UBRDIV0  (*(volatile uint32_t *)  0x01D00028) // vitesse du port série
+#define UCNO0    (*(volatile uint32_t *)  0x01D00004) // accès aux registres du port série
+#define UTXH0    (*(volatile uint8_t  *)  0x01D00020) // caractère à transmettre
+#define URXH0    (*(volatile uint8_t  *)  0x01D00024) // caractère reçu
+#define UTRSTAT0 (*(volatile uint32_t *)  0x01D00010) // bit 1 = 1 quand on peut transmettre, bit 0 = 1 quand on a reçu un caractère
+
+#define PCONC  (*(volatile uint32_t *)  0x01D20010) // configuration des pins du port C
+#define PDATC  (*(volatile uint32_t *)  0x01D20014) // donnée du port C
+#define PUPC   (*(volatile uint32_t *)  0x01D20018) // configuration du pull-up du port C
+#define PCONE  (*(volatile uint32_t *)  0x01D20028) // configuration des pins du port E
+#define PDATE  (*(volatile uint32_t *)  0x01D2002C) // donnée du port E
+#define PUPE   (*(volatile uint32_t *)  0x01D20030) // configuration du pull-up du port E
+
+
+#endif

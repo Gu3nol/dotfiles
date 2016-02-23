@@ -1,0 +1,15 @@
+BATMAN_GUENOLE_v1
+@author: Guénolé Lallement
+- Description file of the design organisation -
+
+
+Top Level Block:
+
+Main Sub-Level Blocks:
+ - Array_Row_Dec (sensor)
+ - ARRAY_charac (sensor)
+ - clu (digital)
+ - BIAS_MIRROR (analog)
+ - READOUT_ADC_CIRCUIT (analog)
+
+NB: BIAS_MIRROR must be next to the Array_Row_Dec and clu and READOUT_ADC_CIRCUIT have been designed to be next to each others.

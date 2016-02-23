@@ -1,0 +1,52 @@
+#! /usr/bin/python
+# -*- coding: utf-8 -*-
+
+# Simple program to generate host commands for the VDP
+
+import sys
+import os
+
+from random import randrange
+
+# Constants and variable for the test
+# Width of the screen
+width  = 64
+# Height of the screen
+height = 64
+# Number of host commands to generate
+num_cmd = 1000
+if (len(sys.argv) > 1):
+    num_cmd = sys.argv[1]
+
+# Host commands
+host_cmd = ["M", "D", "C"]
+pen_cmd = ["B", "W", "I"]
+
+# Generation of random host cmd
+print "Creation of  %d host commands... " % num_cmd
+
+output ='''-- VDP full commands test file
+-- %d host commands
+-- Screen width: %d
+-- Screen height: %d
+-- @author: Guénolé Lallement''' % (num_cmd, width, height)
+
+for i in range(num_cmd):
+    # host cmd
+    cmd = host_cmd[randrange(0,len(host_cmd))]
+    pen = pen_cmd[randrange(0,len(pen_cmd))]
+
+    # x, y coordinates
+    x = randrange(0,width)  # results in x = [0, $screenWidth)
+    y = randrange(0,height) # results in y = [0, $screenHeight)
+
+    # Compose the command and add it to the output.
+    output += "%s%s %d %d\n" % (cmd, pen, x, y)
+
+print("OK")
+
+# Store the output.
+filename = "full_commands_{%d}_{%d}x{%d}.txt" % (num_cmd, width, height)
+print "Saving to %s " % filename
+open(filename, 'w').write(output)
+print("OK")

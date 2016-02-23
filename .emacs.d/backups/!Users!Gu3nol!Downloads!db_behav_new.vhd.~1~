@@ -1,0 +1,178 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+USE work.vdp_pack.ALL;
+USE work.project_pack.ALL;
+USE work.config_pack.ALL;
+USE WORK.utility_pack.ALL;
+
+ENTITY db IS
+  GENERIC(vsize : integer := 6);
+  PORT(
+    clk           : IN  std_logic;
+    reset         : IN  std_logic;      -- not used!
+    -- bus from host
+    -- host processor connections
+    host_2_db_bus : IN  host_2_db;
+    db_2_host_bus : OUT db_2_host;
+
+    -- rcb connections
+    db_2_rcb_bus : OUT db_2_rcb;
+    rcb_2_db_bus : IN  rcb_2_db;
+
+    -- to testbench
+    db_finish : OUT std_logic
+    );
+END db;
+
+ARCHITECTURE behav OF db IS
+  -- bus to host
+  SIGNAL hdb      : std_logic_vector(15 DOWNTO 0);
+  SIGNAL dav      : std_logic;
+
+  -- bus to RCB
+  SIGNAL dbb_delaycmd : std_logic;
+  SIGNAL dbb_rcbclear : std_logic;
+
+  SIGNAL dbb_i : db_2_rcb;
+
+  SIGNAL cycle_init, cycle_done, hdb_busy_i : std_logic;
+
+  TYPE rcbcmd_type IS (off, clear_move, clear_black, clear_white, clear_invert);
+
+  SHARED VARIABLE rcbcmd_v : rcbcmd_type := off;
+
+  PROCEDURE write_command_rcb(
+    x                 : IN  integer;
+    y                 : IN  integer;
+    rcbcmd            : IN  rcbcmd_type;
+    SIGNAL cycle_init : OUT std_logic;
+    SIGNAL cycle_done : IN  std_logic) IS
+    -- alters (x,y) pixel in image ram_array as specified by pen
+    -- may need to read and write to ram_array (for invert writing)
+    VARIABLE val : std_logic;  -- initial value in ram of bit to be written
+  BEGIN
+    -- set up parameters for operation
+    --
+    x_rcb_v    := x;
+    y_rcb_v    := y;
+    rcbcmd_v   := rcbcmd;
+    WAIT FOR 0 ns;
+    -- initiate operation
+    cycle_init <= '0';
+    WAIT FOR 0 ns;
+    cycle_init <= '1';
+    WAIT FOR 0 ns;
+    rcbcmd_v   := off;  --set back to default (pen_type) mode for do_vdp_command use  -- wait for completion of operation
+    WAIT UNTIL cycle_done'event AND cycle_done = '1';
+  END write_command_rcb;
+
+BEGIN
+  -- bus to host
+  hdb      <= host_2_db_bus.hdb;
+  dav      <= host_2_db_bus.dav;
+
+  -- bus to RCB
+  dbb_delaycmd <= rcb_2_db_bus.delay_cmd;
+  dbb_rcbclear <= rcb_2_db_bus.rcbclear;
+
+
+  db_2_rcb_bus <= dbb_i;
+  db_2_host_bus.hdb_busy  <= hdb_busy_i;
+  db_finish <= NOT dbb_i.startcmd AND NOT hdb_busy_i AND NOT dav AND b2s(hdb_busy_i'stable(1000 ns));
+
+  command : PROCESS
+    VARIABLE x, y : integer;
+    VARIABLE cmd  : cmd_type;
+    VARIABLE pen  : pen_type;
+
+    TYPE clear_trans_t IS ARRAY (pen_type) OF rcbcmd_type;
+
+    CONSTANT clear_trans : clear_trans_t := (white => clear_white, black => clear_black, invert => clear_invert);
+
+  BEGIN
+    hdb_busy_i <= '1';
+    x          := 0;
+    y          := 0;
+    WAIT UNTIL reset = '1';
+    WAIT UNTIL reset = '0';
+    WHILE true LOOP
+      WAIT UNTIL clk'event AND clk = '1' AND dav = '1';
+      IF dbb_rcbclear = '1' THEN
+        x_old      := x;
+        y_old      := y;
+        decode_paras(hdb, cmd, x, y, pen);
+        hdb_busy_i <= '1';
+        IF cmd = clearscreen THEN
+          write_command_rcb(x_old, y_old, clear_move, cycle_init, cycle_done);
+          write_command_rcb(x, y, clear_trans(pen), cycle_init, cycle_done);
+        ELSE
+          do_vdp_command(cmd, x, y, pen, cycle_init, cycle_done, rcb);
+        END IF;
+
+      ELSE
+        decode_paras(hdb, cmd, x, y, pen);
+        hdb_busy_i <= '1';
+        do_vdp_command(cmd, x, y, pen, cycle_init, cycle_done, rcb);
+      END IF;
+
+      hdb_busy_i <= '0';
+    END LOOP;
+  END PROCESS command;
+
+  rcb_timing : PROCESS
+  BEGIN
+    WAIT UNTIL clk'event AND clk = '1';
+    IF dbb_i.startcmd = '1' AND dbb_delaycmd = '0' THEN
+      cycle_done <= '0';
+      WAIT FOR 0 ns;
+      cycle_done <= '1';
+    END IF;
+  END PROCESS rcb_timing;
+
+  rcbio : PROCESS
+  -- this process implements RCB interface cycles, using 0->1 transitions on
+  -- cycle_init (start a new cycle)
+  -- and cycle_done (cycle is complete)
+  -- to handshake the cycle
+  -- all cycle I/O and R/W control, are specified via shared variables
+  -- which must be written before cycle_init 0->1, or read after
+  -- cycle_done 0->1
+  BEGIN
+    dbb_i.startcmd <= '0';
+    WAIT UNTIL cycle_init'event AND cycle_init = '1';
+    -- at this time x_rcb_v, y_rcb_v, pen_rcb_v specify what RCB cycle is
+    -- required
+    dbb_i.x        <= std_logic_vector(to_unsigned(x_rcb_v, db_2_rcb_bus.x'length));
+    dbb_i.y        <= std_logic_vector(to_unsigned(y_rcb_v, db_2_rcb_bus.y'length));
+
+    IF dbb_rcbclear = '1' THEN
+      CASE rcbcmd_v IS
+        WHEN off =>
+          CASE pen_rcb_v IS
+            WHEN white  => dbb_i.rcb_cmd <= "001";
+            WHEN black  => dbb_i.rcb_cmd <= "010";
+            WHEN invert => dbb_i.rcb_cmd <= "011";
+            WHEN OTHERS => ASSERT false REPORT "Wrong pen type in behav rcb output" SEVERITY error;
+          END CASE;
+        WHEN clear_move   => dbb_i.rcb_cmd <= "000";
+        WHEN clear_black  => dbb_i.rcb_cmd <= "110";
+        WHEN clear_white  => dbb_i.rcb_cmd <= "101";
+        WHEN clear_invert => dbb_i.rcb_cmd <= "111";
+      END CASE;
+
+    ELSE
+      CASE pen_rcb_v IS
+        WHEN white  => dbb_i.rcb_cmd <= "001";
+        WHEN black  => dbb_i.rcb_cmd <= "010";
+        WHEN invert => dbb_i.rcb_cmd <= "011";
+        WHEN OTHERS => ASSERT false REPORT "Wrong pen type in behav rcb output" SEVERITY error;
+      END CASE;
+
+    END IF;
+    dbb_i.startcmd <= '1';
+    WAIT UNTIL cycle_done'event AND cycle_done = '1';
+    dbb_i.startcmd <= '0';
+  END PROCESS;
+
+END behav;

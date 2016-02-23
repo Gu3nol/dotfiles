@@ -1,0 +1,30 @@
+\documentclass{letter}
+\usepackage{hyperref}
+\signature{Gu\'enol\'e Lallement}
+\address{8 rue de Boissy \\ 91470 Forges-les-Bains \\ France}
+
+\longindentation=0pt
+\begin{document}
+
+\begin{letter}{Barclays Bank PLC \\ Leicester LE87 2BB\\ UK}
+\opening{Dear Sir or Madam,}
+
+I am currently the owner of a student bank account at Barclays UK. However, I moved to France for an unlimited time.  I would
+like to update my contact details
+
+Then, I am writing to you to update my address using the enclosed form.
+
+Thank you for your time and consideration.
+
+I look forward to your reply.
+
+\closing{Regards,}
+
+\encl{Changes to customer address form.}
+
+\end{letter}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

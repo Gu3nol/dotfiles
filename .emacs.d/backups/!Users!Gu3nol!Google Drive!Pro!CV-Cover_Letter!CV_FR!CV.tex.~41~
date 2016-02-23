@@ -1,0 +1,201 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.90]{geometry}
+%\setlength{\hintscolumnwidth}{2cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Gu\'enol\'e}{LALLEMENT}
+\title{Curriculum Vit\ae{}}                               % optional, remove / comment the line if not wanted
+%\title{Resume{}}
+\address{8 rue de Boissy}{91470 Forges-les-Bains - FRANCE}{}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+
+%\phone[mobile]{+44~7761~402120}                   % optional, remove / comment the line if not wanted
+\phone[mobile]{+33~(0)6~75~31~20~27}                   % optional, remove / comment the line if not wanted
+%\phone[fixed]{+33~(0)~1~64~91~58~76}                   % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\email{guenole.lallement@gmail.com}                               % optional, remove / comment the line if not wanted
+\social[linkedin]{guenolelallement}
+\social[github]{Gu3nol}
+% optional, remove / comment the line if not wanted
+%\extrainfo{24 ans}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{Formation}
+\cventry{2015 -- 2014}{Master of Science}{Imperial College}{London}{\textit{Electrical and Electronic Engineering}}{Analogue and Digital Integrated Circuit Design}
+
+\cventry{2015 -- 2012}{Dipl\^ome d'Ingénieur}{T\'el\'ecom ParisTech}{Paris 13\textsuperscript{\`eme}}{\textit{\'Electronique \& Informatique}}{Majeurs:
+Systems On Chip - Syst\`emes Embarqu\'es et Robotique}
+\cventry{2012 -- 2009}{Classes Préparatoires}{Lyc\'ee Saint Louis}{Paris 6\textsuperscript{\`eme}}{\textit{Physique \& Science de l'Ingénieur PSI}}{}
+%\cventry{2009}{Baccalauréat Français}{Lyc\'ee Jules Verne}{Limours (91)}{\textit{Mention : BIEN}}{}
+
+
+%\cventry{2012 -- 2013}{Professeur particulier}{Compl\'etude}{Paris}{}{}
+%\cventry{Summer 2013}{Assistant Plateau - Backliner}{Even'on}{Pau}{}{Chargé de la préparation des instruments, du plateau ainsi que de l'assistance technique des artistes.}
+
+
+%\section{Qualifications}
+%\subsection{Development}
+%\cvlistitem {Integrated circuits conception: Virtuoso (Cadence).}
+%\cvlistitem {Printed circuit boards conception: Expedition PCB (Mentor), Eagle.}
+%\subsection{Programming / Hardware description language}
+%\cvlistitem {Advanced experience in C. Experience in Java, Python, ARM Assembler.}
+%\cvlistitem {System Verilog.}
+%\subsection{Embedded systems}
+%\cvlistitem {ARM processors, cross compilation, ChibiOS/RT, sensors.}
+%\subsection{Other}
+%\cvlistitem {LINUX, Mac OSX, Windows.}
+%\cvlistitem {Matlab/Octave, Emacs, Eclipse, GIT, LaTeX.}
+%\cvlistitem {gcc, GNUmake, gdb, objdump.}
+
+\section{Compétences}
+\cventry{}{Architectures Hardware - Syst\`emes int\'egr\'es - System on Chip}{}{}{}{
+  \begin{itemize}%
+  \item {Int\'egrit\'e du signal - Traitement du signal Analogique et Num\'erique - Circuits intégrés \textit{mixed signals}.}
+  \item {Physique des semi-conducteurs et dispositifs \'electroniques avanc\'es.}
+  \item {\'Electronique bio-inspirée et dispositifs bioniques.}
+\end{itemize}}
+
+\cventry{}{Développement}{}{}{}{
+\begin{itemize}%
+\item {Conception de circuits intégrés sur mesure (\textit{full custom}) : Cadence Virtuoso.}
+\item {Conception de circuits imprimés : Expedition PCB (Mentor), Eagle.}
+\end{itemize}}
+
+
+\cventry{}{Langages de programmation / description matériel}{}{}{}{
+\begin{itemize}%
+\item {Compétences avancées in C. Expérience en Java, Python, Assembleur ARM.}
+\item {Synthèse et architectures num\'eriques : VHDL, System Verilog, SystemC, Xilinx Vivado Design Suite.}
+%\item {System Verilog.}
+\end{itemize}}
+
+
+\cventry{}{Systèmes  embarqués}{}{}{}{
+\begin{itemize}%
+\item {Conception et Programmation des systèmes embarqués, des spécifications à la production, intégrité du signal.}
+\item {Programmation embarquée bas niveau : OS, drivers, BSP, ChibiOS/RT, cross-compilation.}
+\end{itemize}}
+
+\cventry{}{Autres}{}{Matlab, Emacs, Eclipse, GIT, \LaTeX \ - GCC, GNUmake - Solidworks, impression 3D et prototypage}{}{}
+
+\section{Expérience}
+\cventry{\'Eté 2013}{Stage en laboratoire}{IEF - Institut d'\'Electronique Fondamentale}{Orsay (91)}{}{UMR de l'université Paris Sud Orsay et du CNRS - \href{http://computational-electronics.ief.u-psud.fr/}{\'Equipe COMICS.  -- Supervisé par: Dr Saint Martin Jérôme}\newline{}%
+Caractérisation du bruit haute-fréquence dans les transistors CMOS à l’aide de simulations de type Monte Carlo.}
+
+
+
+\section{Projets - Prix}
+\cventry{2015 -- 2014}{MSc Thesis}{Bio-inspired pH sensing using ISFETs}{-- Supervis\'e par : Dr Pantelis Georgiou}{}{
+  \begin{itemize}%
+  \item Nouvelle architecture pour micromatrice d'ADN utilisant des ISFETs hexagonaux comme senseurs chimiques.
+\end{itemize}}
+\cventry{2014 -- 2013}{Project de Robotique et Systèmes  embarqués}{Plume}{-- Syst\`eme de localisation magn\'etique 3D}{}{
+  \begin{itemize}%
+  %\item Designed the global embedded part of the system
+  \item {3\textsuperscript{\`eme} place aux Parrot Awards 2013 - Prix de la journ\'ee de l'Innovation 2014 décerné par Télécom ParisTech.}
+\end{itemize}}
+\cventry{2012 -- 2013}{Project étudiant en groupe}{Kubz}{-- Cube sans fil utilisé comme une interface homme-machine}{}{
+\begin{itemize}%
+%\item Chargé du design de la partie système embarqué.
+\item Prix du Public et Prix de l'Originalité décerné par Télécom ParisTech.
+\end{itemize}}
+
+\section{Langues / Autres}
+%\cvitemwithcomment{French}{Native language}{}
+%\cvitemwithcomment{English}{Fluent}{TOEFL}
+%\cvitemwithcomment{Spanish}{Intermediary}{}
+
+\cvitem{}{Français : Langue natale \ \  --  \ \ Anglais : Courant. TOEFL/IELTS \ \  -- \ \ Espagnol : Intermédiaire}
+\cvitem{}{PESC 1 : Prévention et Secours Civique de niveau 1}
+
+\section{Centres d'intérêts}
+\cvitem{Scoutisme}{Scout de France depuis 16 ans.  Responsable pour la tranche d’âge 12/15 ans.}
+\cvitem{Associations}{Télécom Robotics (vice-president), Membre de l’association du réseau informatique des élèves REZEL.}
+%\cvitem{Hobbies}{Sport (V.T.T. – Randonnée), littérature et films. nouvelles technologies, musique/événementiel.}
+
+
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{publications}                        % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+\clearpage
+
+%-----       letter       ---------------------------------------------------------
+% recipient data
+%\recipient{Imperial College}{London}
+%\date{January 01, 1984}
+%\opening{To whom it may concerns}
+%\closing{Yours faithfully,}
+%\enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+%\makelettertitle
+
+%Dear Sir or Madam,
+
+%I remain at your disposal if you need any further details or documents and, in the meantime, thank you in advance for the time you will devote to my application.
+
+%\makeletterclosing
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+
+
+%% end of file `template.tex'.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

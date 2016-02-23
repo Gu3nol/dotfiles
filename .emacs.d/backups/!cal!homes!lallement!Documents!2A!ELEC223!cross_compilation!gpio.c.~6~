@@ -1,0 +1,13 @@
+/* gpio.c */
+
+// Code inspiré de celui de Benjamin Groeneveld
+
+#include "gpio.h"
+
+void gpio_pin_config(volatile uint32_t *port, uint8_t pin, uint8_t mode) {
+  *port = (*port & ~(0x1<<2*pin)) | (mode << 2*pin);
+}
+
+void gpio_pin_data(volatile uint32_t *portData, uint8_t pin, uint8_t value) {
+  *portData = (*portData & ~(0x1<<2*pin)) | (mode << 2*pin);
+}

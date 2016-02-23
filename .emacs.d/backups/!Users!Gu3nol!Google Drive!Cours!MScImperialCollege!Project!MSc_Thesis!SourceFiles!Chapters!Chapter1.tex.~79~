@@ -1,0 +1,104 @@
+\chapter{Introduction}
+\renewcommand{\baselinestretch}{\mystretch}
+\label{chap:Intro}
+%\setlength{\parindent}{0pt}
+
+\section{Motivation}
+
+\PARstart{A}{pril} $25^{th}$ $1953$, two young researchers - Francis Crick, 36, and James Watson, 24 years - published the results of their research in an article of the journal Nature accompanied by some drawings.~\citep{RefWorks:150} Few researchers would then realize the importance of this discovery and it took almost ten years to the scientific community to notice the real revolution engendered by this work. In the early 50's the DNA is no longer unknown to scientists, yet they totally ignore its shape. Watson and Crick have shown that DNA has a spiral structure in the form of double helix. With this fundamental discovery, the genetic code can now be decrypted.
+
+Nowadays, thanks to the progress of biotechnology and sixty years after the discovery of DNA, the genetic code of many species has been decrypted. The one of the human was in 2003, and the sequences of our about 30 000 genes are still studied by scientists all around the world. Indeed, the DNA is present everywhere in the kongdom of the living organism. From tge understanding of diseases to the creation of beauty cream including the forensic investigations, this molecule and its apprehension has become a major issue in our modern societies.
+
+However the study of this complex structure is not so accessible has it costs a lot of money. This thesis represents a straight continuation of the idea that the genome should be accessible to all and contribute of the goal of ``the \$1,000 genome''.~\citep{RefWorks:127} With this aim, a popular solution for modern chemical sensing application has been presented for integrating chemical sensors into solid state platforms. This strategy converge into the concept of Lab-On-Chip (LOC) which perpetuate the continuous trend of scaling the transistor' feature size this time in biomedical and biochemical areas.
+
+This development is possible through the use of new components that translate chemical information into electrical information. This electrical signal can then be processed and configure using modern techniques and signal processing electronics. One of the currently used component it the ISFET which is able to perform pH measurements thus DNA sequencing. However, ISFETs are not ideal components and present defects that need to be compensated to achieve effective measures.
+
+
+%%%%%%%%%%%
+
+
+Bio-electronic designers are looking to integrate more and more sensors on a space which is getting smaller. Looking at the example that nature gives us some structure constant is used to address this problem.
+
+ This is particularly the case of the beehive that is the most compact surface possible and the only way to assemble spheres in the plan.
+
+
+From this idea, some designers we had the idea to create shaped sensing area or bee to minimize space and increase the density sensor.
+
+
+But why do not we go further? Do not it be possible to imagine a hexagonal transistor that would offer us a better integration density?
+
+
+
+
+D'un autre côté, les designers cherches a intégrer de plus en plus de senseurs sur dans un espace de plus en plus petit. Si on regarde les exemple que nous offre la nature on constante que certaines structure permettent de répondre à cette problématique. C'est notamment le cas de la ruche d'abeille qui est la surface la plus compacte possible ainsi que le seul moyen de pouvoir assembler des sphères dans le plan. De cette idée, certain designers on eu l'idée de créer des sensing area en forme de ni d'abeille pour minimiser l'espace et augmenter la densité de capteur. Mais pourquoi ne pourrions-nous pas aller plus loin ? Ne serai-il pas possible d’imaginer un transistor hexagonal qui nous offrirait une meilleure densité d'intégration ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%
+
+
+Therefore, we must be interested in enclosed layout type gate structure especially hex transistors and their properties. It is feasible and applicable to our situation? Investigation shows that the structure has many advantages term e density, speed and stray capacitance. The question then is whether this is beneficial for our pH sensing application.
+The idea of this thesis is to explore the possibility of the hexagonal structure transistors and adapted to this pH-sensing
+
+
+
+
+
+
+
+Dès lors, il faut s'intéressé à des structure du type enclosed gate layout en particulier les transistors hexagonaux et à leur propriétés. Sont-elle réalisable et applicable à notre situation? Investigation démontre que ces structure présente bien des avantages ne terme e de densité, de rapidité et de capacité parasite. La question est alors de savoir si cela est bénéfique pour notre application de pH sensing.
+The idea of this thesis is to explore the possibility of the hexagonal transistors and adapt this structure to pH-sensing
+
+%%%%%%%%%%%%%%%%
+
+
+This work presents a new implementation of ISFETs based on a hexagonal design. The characterization of these structures has been made via simulation using the software suite in cadence virtuoso 0.18 and 0.35 technology. Different structure and different size were tested to evaluate their performance. Finally, a complete prototype that meets the specifications of the technology used was made to conduct future experiments. The system includes a characterization table and a table of 64x64 pixels. On one hand, the hexagonal ISFETs is integrated into a complete system for performing pH measurements. On the other hand characterization of the structure is used to navigate in the practical performance of a hexagonal ISFET compared to a conventional structure.
+
+
+
+Ce travail présente donc une nouvelle implémentation d'ISFETs reposant sur un design hexagonal. La caractérisation de ces structure a été faite via simulation en utilisant la suite logiciel cadence virtuoso en technologie 0.18 et 0.35. Différente structure et différente taille ont été testé pour évaluer leur performance. Finalement, un prototype complet répondant aux spécifications de la technologie utilisé a été réalisé en vue de mener de futures expériences. Ce système comprend une table de caractérisation et une table de 64x64 pixels. D'un côté, L'ISFETs hexagonal est donc intégré dans un système complet permettant d'effectuer des mesures de pH. D'un autre côté la structure de caractérisation permet d'évoluer en pratique les performances d'un ISFET hexagonal comparé à une structure classique.
+
+%%%%%%%%%%%%%%%%%
+
+
+
+
+This is the first time that such a hexagonal structure is applied in the field of ISFETs and DNA sequencing.
+
+
+
+\section{Challenges}
+The main challenges addressed by this thesis are outlined below;
+
+\begin{enumerate}
+\item Development of a novel geometry based on enclosed-gate transistor in the form of an hexagonal transistor. The transistor must be implemented in standard AMS 0.35 $\mu m$ CMOS technology. Adaptation to the technology should be made in order to realize the structures.
+\item Study the advantages of hexagonal transistor over regular rectangular structures in term of parasitics capacitances, attenuation, size and area.
+\item The possible impact of the geometry and technology scaling must be determined through a range of different sizes including the 0.35 $\mu m$ and 0.18 $\mu m$ CMOS technology.
+\item Create a characterization structure with all the necessary requirement to evaluate the performance of hexagonal ISFET with respect of a corresponding rectangular transistor. The hexagonal ISFET should overcome the parasitic capacitance defect of ISFETs to be beneficial.
+\item A pixel architecture must be derived from the hexagonal ISFET and its performance characterized. This pixel is destined to be incorporated in a compact array to be part of a pH based DNA microarray using ISFETs as chemical sensors.
+\end{enumerate}
+
+\section{Thesis outline}
+Chapter~\ref{chap:Background} is based on introducing all the necessary background knowledge to understand the work presented in this thesis. A brief review is done on DNA sequencing before presenting a an actual ion semiconductor sensor, the ISFET. Several considerations about packing in microarray and enclosed gate transistor are also exposed as a possible improvement.
+
+Chapter~\ref{chap:LiteratureReview} presents the latest development about ISFETs as pH-sensors in the literature. The model of ISFETs is completed and readout techniques presented. At the end of the chapter, various analysis on EGTs and hexagonal transistors are given to figure out of non-regular transistors.
+
+A pixel architecture based on an hexagonal transistor is described in Chapter~\ref{chap:VBioinspiredpHSensor}. The performance of the hexagonal transistor and a pros ed architecture are explained first. Then, the evaluation of the pixel simulated performances such as Input Referred Noise and sensitivity are brought to light.
+
+Chapter~\ref{chap:SystemArchitecture} focus on the system-on-chip implementation of the pixel created as well as a characterization system to evaluate the efficiency of the device in practice. The design and specification consed ration are summarized and simulations are presented to guarantee the typical system execution.
+
+Chapter~\ref{chap:Conclusion} concludes upon the developments presented in this thesis as well as presenting a generalized a generalized evaluation. Aspect of possible improvements and future work are finally established.
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

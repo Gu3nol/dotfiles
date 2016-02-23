@@ -1,0 +1,53 @@
+LIBRARY ieee;
+USE work.config_pack.ALL;
+USE ieee.std_logic_1164.ALL;
+
+PACKAGE project_pack IS
+
+-- Length of pixel coordinates. For this project will always be 6.
+  CONSTANT VSIZE : integer := 6;
+
+-- Length of the RAM word.
+  CONSTANT RAM_WORD_SIZE : integer := 16;
+
+-- HOST/DB downstream (HOST->DB) and upstream (HOST<-DB) interface.
+  TYPE host_db_downstream IS RECORD
+    hdb   : std_logic_vector(15 DOWNTO 0);
+    start : std_logic;
+  END RECORD;
+
+  TYPE host_db_upstream IS RECORD
+    busy : std_logic;
+  END RECORD;
+
+-- DB/RCB downstream (DB->RCB) and upstream (DB<-RCB) interface.
+  TYPE db_rcb_downstream IS RECORD
+    x, y  : std_logic_vector(VSIZE-1 DOWNTO 0);
+    cmd   : std_logic_vector(2 DOWNTO 0);
+    start : std_logic;
+  END RECORD;
+
+  TYPE db_rcb_upstream IS RECORD
+    delay : std_logic;
+  END RECORD;
+
+
+  SUBTYPE slv3 IS std_logic_vector(2 DOWNTO 0);
+
+  CONSTANT move_d         : slv3 := "000";
+  CONSTANT draw_white_d   : slv3 := "001";
+  CONSTANT draw_black_d   : slv3 := "010";
+  CONSTANT draw_invert_d  : slv3 := "011";
+  CONSTANT not_used_d     : slv3 := "100";
+  CONSTANT clear_white_d  : slv3 := "101";
+  CONSTANT clear_black_d  : slv3 := "110";
+  CONSTANT clear_invert_d : slv3 := "111";
+
+-- Number of idle cycles that have to pass until the RCB issues a flush
+-- of the pixel operation cache.
+  CONSTANT RCB_FLUSH_CYCLES : integer := 32;
+
+
+END PACKAGE project_pack;
+
+

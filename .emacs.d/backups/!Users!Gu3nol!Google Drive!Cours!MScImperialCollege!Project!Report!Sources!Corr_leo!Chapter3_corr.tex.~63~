@@ -1,0 +1,348 @@
+\chapter{ISFETs in CMOS}
+\renewcommand{\baselinestretch}{\mystretch}
+\label{chap:ISFETsCMOS}
+
+\PARstart{T}{his} chapter describes the latest development about ISFETs to perform DNA sequencing. The specific implementation of ISFETs in CMOS technology are presented in Section~\ref{sec:pH_ISFET}. Then in Section~\ref{ext_ISFET_model} some complementary explanations are given about the capacitance model of the ISFET. In the end, the ISFET sensor must be embedded into an entire system which performs pH detection with the best sensitivity. Therefore Section~\ref{readout} focus on readout techniques for pH sensing. The methods to compensate the defect of ISFET are then presented in Section~\ref{compensation_strat}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{pH sensing using ISFETs}
+\label{sec:pH_ISFET}
+
+\subsection{CMOS ISFET model}
+\subsubsection{Overview}
+The ISFET transistor is a chemically sensitive device based on a FET transistor. Its behavior is very similar to MOSFETs with the difference that it depends on the ion concentration of the solution in contact with the gate of the terminal. The sensitivity to a chemical specie is due to the sensing membrane which replaces the polysicon gate and metal.~\citep{RefWorks:117}
+
+In the case of pH detection, the insulating membrane requires no extra proceeding. Indeed, hydrogen ions can bind to the standard passivation layer used on commercial CMOS technology, generally silicon nitride \chemform{Si_3N_4} or silicon oxynitride \chemform{SiO_xN_y}. Then in a aqueous solution containing \chemform{H+}, the protons are trapped by this sensing membrane and they modulate the threshold voltage of the device. Completed with an external readout circuit the ISFET implements a low cost monolithic pH sensor with fast response.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap1//MOSFET_ISFET.png}
+  \caption{\footnotesize Schematic representation of MOSFET (a) and ISFET (b).~\citep{RefWorks:125}}
+  \label{Fig:ISFETmodel}
+\end{figure}
+
+A reference electrode -- usually \chemform{Ag/AgCl} -- is used to bias the solution and establish a stable phase boundary. As a consequence, the variation of threshold voltage relies on pH only.
+
+\subsubsection{Operation}
+For a MOSFET transistor, the threshold voltage is given by the Eq.~\ref{mosfet_vt}. There the first term is the work function difference between the gate metal and the silicon, respectively $\Phi_{m}$ and $\Phi_{Si}$. The second term reflects the accumulated charges in the oxide $Q_{ox}$, at the oxide-silicon interface $Q_{ss}$ and the depletion region $Q_{B}$. The last term is related to the Fermi potential which depends on the doping concentration of the silicon. All these terms are physical.
+\begin{equation}
+  V_{th(MOSFET)} = \frac{\Phi_{m} - \Phi_{Si}}{q} - \frac{Q_{ox} + Q_{ss} + Q_{B}}{C_{ox}} + 2\Phi_{f}
+\label{mosfet_vt}
+\end{equation}
+
+In the Eq.~\ref{isfet_vt} the expression of the threshold voltage of the ISFET is deduced from the previous expression. This time it depends on a chemical contribution and can be described as a shift of the MOSFET threshold voltage due to the ions in solution.
+\begin{equation}
+  V_{th(ISFET)} = V_{th(MOSFET)} + V_{chem}
+\label{isfet_vt}
+\end{equation}
+
+As reported by~\citep{RefWorks:123} the chemically related terms $V_{chem}$ is given as in Eq.~\ref{v_chem_1}, where $E_{ref}$ is the reference electrode potential, $\Phi_{0}$ is a chemical potential related to pH~\citep{RefWorks:146} and $\chi_{sol}$ is the potential due to dipole molecules in the solution. Because $E_{ref}$ is constant and $\chi_{sol}$ is dependent on solution composition, only the term $\Phi_{0}$ explains the pH dependency of the ISFET.
+\begin{equation}
+V_{chem} = E_{ref} + \Phi_{0} + \chi_{sol} - \frac{\Phi_{m}}{q}
+\label{v_chem_1}
+\end{equation}
+The Nerst equation relates the pH to the reaction quotient and then to the pH of a solution. According to this the maximum sensitivity of a gold standard pH electrode is typically $S_{n} = 2.3 \alpha U_{t} \approx 59mV @25\degree C$. $U_{t}$ is the thermal voltage equal to $\frac{k T}{q}$ where $k$ is the Boltzmann's constant, $T$ is the temperature and $q$ the proton charge.
+
+However, due to various electrochemical effects occurring at the interface between the solution and the semiconductor, the sensitivity is less than the ideal Nerstian response. As a consequence, the expression of $V_{chem}$ defined in~\citep{RefWorks:147} and shown in Eq.~\ref{v_chem_2} is more intuitive to describe the chemical behavior of the ISFET.
+\begin{equation}
+V_{chem} = \gamma + 2.3\alpha U_{t}\ pH
+\label{v_chem_2}
+\end{equation}
+
+The terms $\gamma$ groups all the non-chemically related potentials and $\alpha$ is a value between 0 and 1 which describes the deviation from the ideal sensitivity.
+
+From the model depicted above, ``it may be concluded that an ISFET is electronically identical to a MOSFET and can thus still be seen as an electronic device, with one additional feature: the possibility to chemically modify the threshold voltage via the interfacial potential at the electrolyte/oxide interface.''~\citep{RefWorks:125}
+
+Finally, the ISFET operations in weak inversion and in strong inversion are given respectively by Eq.~\ref{isfet_weak_inv} and Eq.~\ref{isfet_strong_inv}.
+\begin{equation}
+  I_{D} = I_{0}\ exp \left (\frac{V_{GS} - V_{chem}}{nU_{T}} \right) \left [1 - exp\left ( \frac{-V_{DS}}{nU_{T}} \right ) \right ]
+\label{isfet_weak_inv}
+\end{equation}
+\begin{equation}
+  I_{D} = \frac{1}{2} \mu_{n} C_{ox} \frac{W}{L} \ (V_{GS} - V_{chem} - V_{th(MOSFET)})^2 \ (1+\lambda V_{DS})
+\label{isfet_strong_inv}
+\end{equation}
+with;
+\begin{my_itemize}
+\item $\mu_{n}$ the effective mobility of the charge-carriers,
+\item $C_{ox}$ the capacitance of the oxide layer,
+\item $W$ and $L$ respectively the gate width and length
+\item $\lambda$ the channel-length modulation parameter
+\item $I_{0}$ the current at the onset of inversion
+\item $n$ the slope factor defined by n = 1 + $\frac{C_{D}}{C_{ox}}$, where $C_{D}$ is the capacitance of the depletion layer.
+\end{my_itemize}
+
+\subsubsection{ISFET macromodel}
+\label{ISFET_macromodel}
+Since the development of the ISFET in the 70's, the fabrication of pH-sensitive devices using the commercial CMOS technology has been essential to ensure availability, compatibility and scalability of this technology. The first example of a very large ISFET sensor array chip fully fabricated using a standard CMOS process was demonstrated in 1997 by~\citep{RefWorks:138}. The implementation in unmodified CMOS is possible by using the ``extended gate'' approach shown in Fig.~\ref{Fig:ISFETmodel}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.20]{Figs/Chap1//ISFET_unmod_CMOS.png}
+  \caption{\footnotesize ISFET fabricated in commercial CMOS using the ``extended gate''.~\citep{RefWorks:123}}
+  \label{Fig:ISFETmodel}
+\end{figure}
+
+The top passivation layer inherent in all CMOS processes is used as the pH sensing layer and is connected to the polysilicon gate of the transistor using the intermediate metal layers and vias.~\citep{RefWorks:139} For this reason, the implementation of ISFET in CMOS results in the addition of a passivation capacitance at the gate of the FET.
+
+Two additional electrochemical capacitances (double-layer capacitances~\citep{RefWorks:148}) must be included in the ISFET macromodel (Fig.~\ref{Fig:ISFETmodel}). These are due to the distribution of charge at the interface of the sensing area and are called the Gouy-Chapman and Helmholz capacitances. As stated by~\citep{RefWorks:149}, it should be noticed that passivation capacitance is several orders of magnitude smaller than the double-layer capacitances.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.20]{Figs/Chap1//ISFET_model.png}
+  \caption{\footnotesize ISFET macromodel.~\citep{RefWorks:123}}
+  \label{Fig:ISFETmodel}
+\end{figure}
+
+All these capacitances (passivation \& chemicals) scale the gate voltage through a capacitive divider (from G to G' and then G' to G'') and modify the performance of the sensor (\textit{c.f.} Section \ref{ext_ISFET_model}).
+
+\subsection{ISFET defects}
+Whereas the ISFETs macromodel defined in the previous section is useful to explain the general behavior of the component, it suffers from nonidealities resulting in a deviation of the intrinsic characteristics of the transistor. These defects need to be compensated to perform pH measurement with accuracy.
+
+\subsubsection{Temperature dependency}
+As any electronic device, the ISFET is sensitive to the temperature variations.~\citep{RefWorks:111} This dependency is a combination of the MOSFET thermal coefficient of the ISFET and the electrode-electrolyte-insulator parameter (the $\gamma$ coefficient in the expression of $V_{chem}$). Other factors, including the reference electrode, the measuring electronics and the solution itself participate to create an overall negative temperature coefficient for the threshold voltage of the ISFET. It ranges between $-0.5 mV/\degC$ to $-12 mV/\degC$.~\citep{RefWorks:113}
+
+In the rest of this thesis, the influence of temperature on the ISFET output will be taken in account considering the ISFET as a simple MOSFET. Any other factor is ignored to focus on the device itself.
+
+\subsubsection{Trapped charges}
+During the standard CMOS fabrication process trapped charges are left in the passivation layer or on the floating gate of the transistor.~\citep{RefWorks:104} Since the polysilicon gate of an ISFET is only connected to metal which is floating, the charges captured on the layers can not escape.~\citep{RefWorks:114} This results as an offset of the threshold voltage of the transistor and a large threshold voltage deviation from one device to another as presented in Fig.~\ref{Fig:trapped_charges}
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap1/trapped_charges.png}
+  \caption{\footnotesize Influence of the trapped charges on the $I_{D}-V_{gs}$ curves.~\citep{RefWorks:118}}
+  \label{Fig:trapped_charges}
+\end{figure}
+
+As a consequence for two ISFETs fabricated with the same process the output response of the device will react differently for the same value of pH. A change in the threshold voltage and then the characteristic of the device can also appear during the reuse of the same device.
+
+\subsubsection{The electrical and chemical noise}
+The noise model of the ISFET is described by two different contributions. On the one hand, the electrical noise of the device is related to the MOSFET underlying the macromodel of the device. On the other hand, the chemical noise is due to the chemical interface between the solution and the electrode (the gate). These two types of noise present different behaviors.
+
+The electrical noise respects the definitions of noises in solid-state device. This includes thermal noise~\citep{RefWorks:108}, shot noise and flicker noise~\citep{RefWorks:140}. The chemical counterpart is a correlated chemical noise. It exhibits a 1/f relationship due to the slow chemical response. The work presented in~\citep{RefWorks:119} defines the contribution of noise in the ISFET as in Eq.~\ref{isfet_noise}, where $C_{Tfg}$ refers to the equivalent floating gate capacitance and $K$ is ``the chemical related effect due to long-term electrode degradation and surface chemical noise.''~\citep{RefWorks:119}.
+\begin{equation}
+  \overline{V_{n}^2(ISFET)} = \underbrace{\left (\frac{C_{Tfg}}{C_{pass}} \right) ^ 2\frac{K_{f}}{WLC'_{ox}f}}_{MOSFET} + \underbrace{\frac{K}{f}}_{Chemical}
+\label{isfet_noise}
+\end{equation}
+
+In the next parts of this thesis the chemical noise contribution will be assumed negligible to focus on intrinsic noise and behavior of the ISFET devices studied.
+
+\subsubsection{Drift}
+The instability of the DC operating point of ISFET devices is also affected by drift. This phenomenon is defined as a very low frequency correlated noise. There it appears as a continuous monotonic change in the output response of the device without variation of the input signal. In our case, the threshold voltage (and thus the drain current) changes in the absence of pH variation.~\citep{RefWorks:109}
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap1//ISFET_drift.png}
+  \caption{\footnotesize Evolution of the drift for devices fabricated with the same process.~\citep{RefWorks:119}}
+  \label{Fig:ISFET_drift}
+\end{figure}
+
+The long term drift of ISFETs compare to MOSFETs fabricated on the same process is presented in Fig.~\ref{Fig:ISFET_drift} and demonstrates that the drift of ISFETs is at least three times larger than its MOS counterpart. The trend of the drift is an exponential characteristic.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Extended CMOS ISFET model}
+\label{ext_ISFET_model}
+This section presents some important results about the ISFETs model and the impact of its geometry on the device performance in pH-sensing circuits. The intention is to go further in terms of capacitances model and scalability of the technology.
+
+\subsection{Impact of technology scaling}
+The idea of modern DNA sequencing and especially HTS is to increase the number of sample analyzed during a run. One possible solution is to use parallelism on DNA micro-arrays. In this way designers are focusing on techniques to include more and more sensors on a single chip/array.
+
+To solve this problem it would be advantageous to decrease the size of the sensor by following the Moore's law, yet it addresses new challenges that we have to analyze now to go further.
+
+In~\citep{RefWorks:124}, a complete investigation of the impact of technology scaling on ISFET performance for genetic sequencing is presented. It studies the performance of ISFETs as pH sensors for two commercial CMOS process families including the 0.35 and 0.18 $\mu m$ processing nodes which are used in this thesis.
+
+A practical way to evaluate the performance is presented in Fig.~\ref{Fig:ISFET_snr} where the maximum Signal-Noise Ratio for each technology is shown. The amplitude of the input signal is estimated for the maximum Nerstian sensitivity of 59mV/pH.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{Figs/Chap2//ISFET_SNR_pH.png}
+  \caption{\footnotesize SNR for process family 1 (0.35/0.18 $\mu m$) and process family 2 (0.13/0.09 $\mu m$).~\citep{RefWorks:124}}
+  \label{Fig:ISFET_snr}
+\end{figure}
+These graphs approve the fact that noise increases significantly for small process nodes.
+
+As a consequence, when technology scaling happens the pH sensing becomes less and less reliable. With small enough process nodes the increasing of output noise is too important. For respectable pH genetic sequencing the selection of the design process should match the SNR requirement of the whole sensing system.
+
+Finally ``simulation results indicate that the attenuation due to the presence of the passivation capacitance is the dominant factor in determining the input referred noise.''~\citep{RefWorks:124}. For this reason, the next part will describe in detail the impact of the passivation layer.
+
+\subsection{The passivation capacitances}
+As mentioned previously (\textit{c.f.} Section~\ref{ISFET_macromodel}), the ISFET macro model contains electrochemical capacitances which affect the output response of the device. A more complete analysis is given based on the work of~\citep{RefWorks:119} to figure out the effect of the insulating layer.
+
+\subsubsection{CMOS ISFET stack capacitors model}
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap2/ISFET_stack_cap.png}
+  \caption{\footnotesize CMOS ISFET stack capacitors model.~\citep{RefWorks:119}}
+  \label{Fig:ISFET_att}
+\end{figure}
+Fig.~\ref{Fig:ISFET_att} clarifies a new proposed model to incorporate all the capacitances involved in the ISFET. This model includes both chemical and trapped charges capacitances, intrinsic and parasitic capacitors to give a clear relation between the biasing voltage and the floating gate voltage.
+
+However, for the purpose of this thesis, we are going to limit our utilization of this stack capacitor model to only certain capacitances. The capacitive network considered in the rest of this work is presented in Fig.~\label{Fig:ISFET_cap_para}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.15]{Figs/Chap2//ISFET_cap_para.png}
+  \caption{\footnotesize Reduced CMOS ISFET stack capacitors model.~\citep{RefWorks:124}}
+  \label{Fig:ISFET_cap_para}
+\end{figure}
+On the one hand, the intrinsic parasitic capacitances of this model are the gate-source $C_{gs}$, gate-drain $C_{gd}$ and gate-bulk $C_{gb}$ capacitances due to the overlapping conductive area between the gate-source, gate-drain and gate-bulk. Their value is mainly due to the gate area and the operating region of the transistor.\citep{RefWorks:152}. On the other hand, the passivation capacitance is external of the MOS part of the ISFET.
+
+\subsubsection{Evaluation of the passivation capacitance}
+\label{Eval_Pass_Capp}
+When creating a rigorous model of the passivation capacitance of an ISFET, a simple parallel plate capacitance model is not really sufficient because of some fringing field effects. However, for the benefit of this work this capacitance will be modeled by two capacitors in series and we will assume negligible fringing effects.\citep{RefWorks:125}
+
+The two layers responsible of the value of the passivation capacitance are the passivation layer \chemform{Si_xN_y} and the insulating layer \chemform{SiO_2}. The overall capacitance is then approximately given by;
+\begin{equation}
+  \begin{aligned}
+    C_{pass} &= \frac{C_{Si0_{2}} C_{Si_{x}N_{y}}}{C_{Si0_{2}} + C_{Si_{x}N_{y}}} \\
+    &= W_{s}L_{s}\epsilon_{0}\ \frac{\epsilon_{Si0_{2}} \epsilon_{Si_{x}N_{y}}}{\epsilon_{Si0_{2}}t_{Si_{x}N_{y}} + \epsilon_{Si_{x}N_{y}}t_{Si0_{2}}}
+  \end{aligned}
+  \label{c_pass}
+\end{equation}
+where $\epsilon_{Si0_{2}}$ and $\epsilon_{Si_{x}N_{y}}$ are the dielectric constants of the considered layer, $\epsilon_{0}$ the vacuum permittivity, $t_{Si_{x}N_{y}}$ and $t_{Si0_{2}}$ the thickness of each layer, $W_{s}$ and $L_{s}$ the size of the top sensing surface.
+
+In current DNA micro-array, the size of the sensing area is determined by the size of the wells.\citep{RefWorks:128} reports a size of $W_{s}L_{s} = 4\mu m^2$.
+
+\subsubsection{Effects of the passivation capacitance}
+\label{Effect_Pass_Capp}
+
+According to the model presented in Fig.~\ref{Fig:ISFET_cap_para}, a model of attenuation for the ISFET can be derived from the capacitance. Indeed, all these capacitances (passivation \& chemicals) scale the gate voltage through a capacitive divider (\textit{cf}. Fig.~\ref{Fig:ISFET_model}).~\citep{RefWorks:118}
+
+For the sake of clarity, it should be mentioned that in this thesis, the term attenuation refers to a gain \textless 1.
+
+In the pixel architecture that was chosen in this thesis, the bulk (B port) and the drain (D port) are connected respectively to ground and $V_{DD}$, then $C_{gb}$ and $C_{gd}$ are set as constant potentials and will rule the gate potential at low frequencies. The gate voltage can be estimated as;
+\begin{equation}
+  V_{g} = \frac{C_{pass}V_{in} + C_{gs}V_{S} + C_{gd}V_{DD}}{C_{pass} + C_{gs} + C_{gd} + C_{gb}}
+  \label{V_g}
+\end{equation}
+
+On the contrary, at higher frequency, $C_{gb}$ and $C_{gd}$ come out in parallel. Moreover, due to the Miller's effect on the gate-source capacitance -- $C_{gs}$ is connected to the terminals of a source follower which is a voltage amplifier with a negative gain $A_{\nu}$ -- the effective value of this capacitance will decrease by a factor $1-|A_{\nu}|$.
+\begin{equation}
+  C_{gs}' = C_{gs}\ (1-|A_{\nu}|)
+  \label{C_gs}
+\end{equation}
+
+Finally, the attenuation between the input signal and the gate is finally given by;
+\begin{equation}
+  \frac{V_{g}}{V_{in}} = G = \frac{C_{pass}}{C_{pass} + C_{gs}' + C_{gd} + C_{gb}}
+  \label{V_g_V_in}
+\end{equation}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.2]{Figs/Chap2//ISFET_macro.png}
+  \caption{\footnotesize Macro model of attenuation.~\citep{RefWorks:124}}
+  \label{Fig:ISFET_macro}
+\end{figure}
+As a consequence the capacitive network will attenuate any input AC signals. A generalized expected behavior of the ISFET (Fig.~\ref{Fig:ISFET_macro}) describes this network as a gain $G$ on the input signal and/or noise $V_{in}^2$.
+
+The result obtained on the total attenuation between the input and the output of the ISFET sensor is presented in Fig.~\ref{Fig:ISFET_att}
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap2//ISFET_att.png}
+  \caption{\footnotesize Total attenuation between the input and output of ISFET sensor.~\citep{RefWorks:124}}
+  \label{Fig:ISFET_att}
+\end{figure}
+
+These results exhibit the notion that the minimum size in a given process node for an ISFET is associated with the lowest value of parasitic capacitances.\citep{RefWorks:124, RefWorks:119, RefWorks:122} Consequently it leads to less attenuation of the gate potential and less input referred noise. However, in a given process family, decrease the feature size node increases the SNR because the attenuation is reduced (Fig.~\ref{Fig:ISFET_snr}) and the input referred noise is rising.
+
+\subsubsection{Conclusion}
+The works mentioned above suggests that it is necessary to find other approach to reduce the attenuation. In this thesis, the approach will be to modify the geometry of the transistor and reduce the values of $C_{gb}$, $C_{gd}$ and $C_{gs}$.
+
+When the size of the ISFET is decreased, the passivation capacitance $C_{pass}$ becomes smaller and smaller and closer and closer to the values of the parasitic capacitance of the transistor. In this case, the attenuation defined in~\ref{V_g_V_in} will rise and the sensitivity of the pH-sensor will drop.
+
+However, if $C_{gb}$, $C_{gd}$ and $C_{gs}$ stay negligible compared to $C_{pass}$ then $A_{v} \rightarrow 1$. The initial sensitivity of the pH-sensor is preserved.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Readout techniques}
+\label{readout}
+Now that the ISFET parameters such as threshold voltage, transconductance, drift and noise have been defined, readout or calibration circuit designs are required to incorporate the sensor into a measurement system. This part is an overview of the different readout techniques presented in the literature for pH-sensing using ISFETs. For an exhaustive listing, the reader should refer to~\citep{NicoM}.
+
+\subsubsection{Source and drain follower configurations}
+There are two fundamental ISFET readout techniques. On the one hand, the drain current can be fixed and so the source voltage is read. On the other hand, the drain-source voltage is fixed and then the drain current is read. In both cases, a fixed voltage is required for the reference electrode so that changes in pH will directly alter the ISFET’s threshold voltage only.~\citep{RefWorks:107, RefWorks:106}
+
+\subsubsection{Differential measurements}
+The idea behind differential measurements is to cancel the parasitic components, such as the solution potential between two sensors used in a same readout circuit. In~\citep{RefWorks:129} a method uses the subtracted output of two op-amps in feedback mode. The pH sensitivity is the difference between the two ISFET sensitivities. It unwinds the requirements about the ideality of the reference electrode.\citep{RefWorks:100}
+
+The last methods for differential measurements were based on the use of an ion-insensitive transistor as a reference, the REFET. However, this technology is no longer really used for pH sensing because it needs to fabricate a stable REFET which has not been successful yet.~\citep{RefWorks:126}
+
+\subsubsection{pH-to-time measurement}
+An other approach using a digital readout scheme is possible and provides various advantages in term of robustness and dynamic range. When compared with the analogue counterpart it also performs lower power consumption, smaller area and less susceptibility to environmental noise and parasitics.~\citep{RefWorks:96} One common pH-to-time solution is called pulse-width-modulation (PWM).~\citep{RefWorks:98}
+
+To obtain a digital signal and process them, the pH-to-time output needs to be integrated with a time-to-digital converter (TDC)~\citep{RefWorks:97}. In a conventional approach this conversion is done using an analogue-to-digital converter (ADC), which is the system developed in this thesis.
+
+\subsubsection{Frequency measurement}
+The last possible methods to use ISFETs involve proceeding data in the frequency domain to improve the sensitivity and the robustness of the sensing system.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Compensation strategies}
+\label{compensation_strat}
+This section presents the compensation strategies to overcome the defects of ISFETs presented previously. They are classified by ``level'' of utilization, from the high-level compensation (external methods) to methods “closer” to the physic of the device (physical methods).
+
+In this project the idea is to explore a new physical method (\textit{ie.} a new transistor geometry) to compensate the parasitic capacitance effects in ISFETs. Yet, it is interesting to briefly study others methods because most of the time these techniques can be merged to a more robust compensation technique (miscellaneous methods).
+
+\subsection{External methods}
+Most of the external methods use nowadays perform temperature compensation. Indeed, the ISFET presents an athermal point for which the temperature coefficient is minimal. This point is defined for a bias current around 50 $\mu A$.~\citep{RefWorks:113} This athermal point is dependent of the pH, then it is impossible to do temperature compensation directly in a readout circuit. As a consequence, an external circuit must be added to the system.~\citep{RefWorks:95}
+
+Others external methods involving external analytic techniques such as ``Progressive Polynomial Method'' can be used as detailed in~\citep{RefWorks:99} to counteract effects such as drift. Such mathematical methods are generally partially integrated on-chip with an external software part. However using a readout circuitry is a more efficient and less area-consuming way to proceed.
+
+\subsection{Using a readout circuitry}
+Utilizations of a readout circuitry are mostly used to compensate drift and temperature. The first solution is to perform differential measurements between two devices as mentioned before. Providing that the drift is the same in the devices, this parasitic effect is easily compensate during the reading. It should be mentioned that it is either possible to use two ISFETs or one ISFET and one REFET.~\citep{RefWorks:126, RefWorks:129}
+
+An alternative and more elegant solution to counteract ISFET defect is to introduce Correlated Double Sampling as in \citep{RefWorks:105}. This discrete time method helps to reduce drift during the ISFET operation. It is also used for low frequency noise cancellation, for instance 1/f noise.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{Figs/Chap2//CDS.png}
+  \caption{\footnotesize Readout circuit using correlated double sampling (CDS).~\citep{RefWorks:105}}
+  \label{Fig:CDS}
+\end{figure}
+
+The Fig.~\ref{Fig:CDS} presents a circuit using CDS method; the output of the ISFET readout circuit is fed to a CDS stage which uses an Op-Amp and switched capacitor technique. Such methods allow to reduce drift yet they can also be used for array calibration (and counteract trapped charges). In this case, the input of the system is the output of different pixels of the array during a calibration phase.
+
+\subsection{Physical methods}
+The last section presents methods which are directly related to the physic/geometry of the devices. These methods are often used to compensate trapped charge effects. Currently, two common methods are based on using Programmable gate ISFETs and UV illumination. Nevertheless, they require additional processing steps and may lead to extra costs.
+
+CMOS-based programmable gate ISFET~\citep{RefWorks:114} consists of adding an extra capacitor on the floating gate of the device as shown in Fig.~\ref{Fig:PG_ISFET}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{Figs/Chap2//PG_ISFET.png}
+  \caption{\footnotesize Macromodel of a PG-ISFET.~\citep{RefWorks:114}}
+  \label{Fig:PG_ISFET}
+\end{figure}
+
+By applying a control gate voltage $V_{CG}$ and using the capacitive coupling between $C_{pass}$ and $C_{CG}$, the designer can compensate offset, drift and mismatches. For instance, trapped charges can be canceled using the following relation~\citep{RefWorks:115}:
+\begin{equation}
+  C_{pass}V_{TC} = - C_{CG}V_{CG}
+  \label{trapped_charges}
+\end{equation}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap2//UV.png}
+  \caption{\footnotesize UV radiation of CMOS die. Laser treatment brings the threshold voltages back to normal.~\citep{RefWorks:104}}
+  \label{Fig:UV}
+\end{figure}
+For its part, UV illumination removes trapped charges by giving enough energy to the charges in the passivation layer, principally electrons, to escape. It reduces the difference in threshold voltage between ISFETs in a same array and then it improves matching. The Fig.~\ref{Fig:UV} shows the rising of the threshold voltage after 3 and 10 minutes of UV illumination.
+
+\subsection{Miscellaneous}
+The methods aforementioned operate on different level of circuit design. Some examples in the literature develop new intelligent system which use several techniques for the same sensor.\citep{RefWorks:102, RefWorks:121} The essential feature of these pH measurement systems is that they support multiparameters compensation simultaneously.
+
+Even though the accuracy of such system is significantly increased, it also leads to bulky or expensive systems. Nowadays, designers should focus on solutions which present on-chip compensation and complete integration inside a system. It would help to reduce the cost of ISFET pH-sensing and spread the technology.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
+\label{sec:chall-isfet-comp}
+The ISFET pH-sensor provides a promising technology for the future of DNA sequencing. By presenting a MOSFET electrical structure with the gate replaced by a reference electrode and an insulating layer, the transistor is sensitive to pH which modulates its output response. Nevertheless, this chemical transistor suffers from nonidealities such as chemical noise, drift, trapped charges and classical MOSFET defects.
+
+ISFETs present passivation and chemical capacitances which affect the behavior of the device. Yet, with the extended CMOS ISFET model presented, it is now possible to address the issue related to the parasitic capacitance. The impact of the passivation capacitance in term of attenuation or input referred noise should be tackle to increase the sensitivity of the pH-sensor.
+
+The common calibration or readout circuit which requires to incorporate this sensor is going to be useful in the design of a complete pH-sensor using a new architecture of ISFET. Of course, all the on-chip compensation techniques will not be included at the moment but the literature shows that most of the actual techniques described in Section~\ref{readout} and~\ref{compensation_strat} are compatible with an improved ISFET sensor. A advanced system could easily includes a non-regular ISFET to continue toward a less sensitive DNA sequencing system.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

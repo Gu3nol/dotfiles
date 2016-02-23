@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{minted}
+\begin{document}
+\inputminted[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]{vhdl}{clu.vhd}
+%\begin{minted}{java}
+%enum Colors {RED, GREEN, BLUE};
+%\end{minted}
+\end{document}
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-command-extra-options: "-shell-escape"
+%%% End:

@@ -1,0 +1,41 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Cover Page of PhD Thesis %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+
+\begin{center}
+\null \vspace{\stretch{0.2}}
+\renewcommand{\baselinestretch}{2}
+
+\textsc{\huge{Bioinspired pH sensors using Ion Sensitive Field Effect Transitors}}
+
+
+
+\vspace{\stretch{1}}
+\textsc{\large{Gu\'enol\'e Lallement}} \\
+\textit{*B.Eng}(\textit{Hons})*\\
+\vspace{\stretch{1}}
+
+\vspace{\stretch{1}}
+A Thesis submitted in fulfilment of requirements for the degree of \\
+Master of Science\\
+*Title of the MSc Programme*\\
+of Imperial College London
+\vspace{\stretch{1}}
+%\centerline{\special{bmp:ic.bmp x=2cm}}
+%\centerline{\hbox to 2cm{\epsfig{file=ic.eps,width=2cm,clip=}}}
+
+
+\vspace{\stretch{0.1}}
+
+
+Department of Electrical and Electronic Engineering\\
+Imperial College London\\
+\today
+
+\end{center}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

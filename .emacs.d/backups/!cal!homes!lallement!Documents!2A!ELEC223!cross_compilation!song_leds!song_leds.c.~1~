@@ -1,0 +1,32 @@
+/* hello.c */
+
+#include "serial.h"
+#include "leds.h"
+#include "timer.h"
+#include "buzzer.h"
+#include "song.h"
+#include "boot_loader.h"
+
+int main(void) {
+  /* Initialisation du port série */
+  serial_init();
+  serial_puts("\r\n");
+
+  /* Initilisation */
+  // leds
+  leds_init();
+  k2000(TIME(5000));
+  // buzzer
+  buzzer_init();
+  //buzz(TIME(5000), FREQ(4000));
+
+  /* Affichage */
+  serial_puts("ARM >> Hello World !\r\n");
+  serial_puts("\r\n");
+
+  while(1) {
+    option();
+    boot_interface();
+  }
+  return 0;
+}

@@ -1,0 +1,172 @@
+---------------------------------------------------------
+-- Top level Control Logic Unit
+-- clu.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is implemented on-chip using
+-- the Cadence Encounter tool
+
+-- It is developed for an 8x8 hexagonal pixel array
+-- and characterisation array
+--------------------------------------------------------
+
+LIBRARY IEEE;
+
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+USE work.clu_pack.ALL;
+USE work.ALL;
+
+-- Declaration of the entity clu
+ENTITY clu IS
+  GENERIC(array_size : integer := 8);
+  PORT(
+    -- Master input clock
+    mclk      : IN  sl;
+    -- Handshake signal:
+    -- The internal signal is ready to receive data
+    rdy       : OUT sl;
+    -- SPI in/out bits
+    din       : IN  std_logic_vector(15 DOWNTO 0);
+    dout      : OUT std_logic_vector(15 DOWNTO 0);
+    -- ADC signals
+    adc_eoc   : IN  sl;
+    adc_start : OUT sl;
+    adc_pd    : OUT sl;
+    adc_data  : IN  std_logic_vector(9 DOWNTO 0);    -- adc_data(9) = MSB
+    -- Columns/Row signals
+    col       : OUT std_logic_vector(array_size-1 DOWNTO 0);
+    row       : OUT std_logic_vector(array_size-1 DOWNTO 0);
+    -- Analog mux input signals
+    anag_mux  : OUT std_logic_vector(11 DOWNTO 0)
+    );
+END ENTITY clu;
+
+-- Declation of the architecture clu
+ARCHITECTURE rtl OF clu IS
+  -- State of the FSM
+  TYPE state_t IS (reset, idle, meas);
+  SIGNAL state : state_t;
+
+  -- SPI input commands
+  SIGNAL op_cmd      : std_logic_vector(1 DOWNTO 0);
+  SIGNAL array_coord : std_logic_vector(5 DOWNTO 0);
+  SIGNAL anag_coord  : std_logic_vector(3 DOWNTO 0);
+
+  -- SPI output commands
+  SIGNAL status : std_logic_vector(1 DOWNTO 0);
+  SIGNAL value  : std_logic_vector(9 DOWNTO 0);
+
+  -- One hot decoder functions
+  FUNCTION one_hot_dec_row(array_coord : std_logic_vector(5 DOWNTO 0)) RETURN integer IS
+    VARIABLE num_row : integer;
+  BEGIN
+    num_row := To_integer(unsg(array_coord(5 DOWNTO 3)));
+    RETURN num_row;
+  END FUNCTION one_hot_dec_row;
+
+  FUNCTION one_hot_dec_col(array_coord : std_logic_vector(5 DOWNTO 0)) RETURN integer IS
+    VARIABLE num_col : integer;
+  BEGIN
+    num_col := To_integer(unsg(array_coord(2 DOWNTO 0)));
+    RETURN num_col;
+  END FUNCTION one_hot_dec_col;
+
+  FUNCTION anag_mux_num(anag_mux : std_logic_vector(3 DOWNTO 0)) RETURN integer IS
+    VARIABLE num : integer;
+  BEGIN
+    num := To_integer(unsg(anag_mux(3 DOWNTO 0))-1);
+    RETURN num;
+  END FUNCTION anag_mux_num;
+
+
+BEGIN
+  --Parse the SPI input commands
+  parse_input_cmd : PROCESS(din)
+  BEGIN
+    anag_coord  <= din(11 DOWNTO 8);
+    op_cmd      <= din(7 DOWNTO 6);
+    array_coord <= din(5 DOWNTO 0);
+  END PROCESS parse_input_cmd;
+
+  -- Parse the SPI output commands
+  parse_output_cmd : PROCESS(status, value)
+  BEGIN
+    dout(15 DOWNTO 12) <= (OTHERS => '0');
+    dout(11 DOWNTO 10) <= status;
+    dout(9 DOWNTO 0)   <= value;
+  END PROCESS parse_output_cmd;
+
+  -- Generate the outputs for the anag mux
+  anag_mux_output : PROCESS(anag_coord)
+  BEGIN
+    anag_mux <= (OTHERS => '0');
+    CASE anag_coord IS
+      WHEN "0000" =>
+        anag_mux <= (OTHERS => '0');
+      WHEN "1101" | "1110" | "1111" =>
+        NULL;
+      WHEN OTHERS =>
+        anag_mux(anag_mux_num(anag_coord)) <= '1';
+    END CASE;
+  END PROCESS anag_mux_output;
+
+  -- Registered process for the state of the FSM
+  state_machine : PROCESS(mclk)
+  BEGIN
+    IF rising_edge(mclk) THEN
+      IF op_cmd = op_reset THEN         -- nReset from any states
+        state <= reset;
+        REPORT "Coucou petit reset";
+      END IF;
+
+      CASE state IS
+        WHEN reset =>
+          IF NOT(op_cmd = op_reset) THEN
+            state <= idle;
+          END IF;
+        WHEN idle =>
+          IF op_cmd = op_start THEN
+            state <= meas;
+          END IF;
+        WHEN meas =>
+          IF adc_eoc = '1' OR op_cmd = op_stop THEN
+            state <= idle;
+          END IF;
+        -- TODO: Add loop to stay in the measure state in start still OK
+        WHEN OTHERS => NULL;
+      END CASE;
+    END IF;
+  END PROCESS state_machine;
+
+  -- Combinationnal process to generate the outputs
+  state_process : PROCESS(state, array_coord, adc_data)
+  BEGIN
+    adc_start                         <= '1';
+    row                               <= (OTHERS => '0');
+    col                               <= (OTHERS => '0');
+    row(one_hot_dec_row(array_coord)) <= '1';
+    col(one_hot_dec_col(array_coord)) <= '1';
+
+    CASE state IS
+      WHEN reset =>
+        status    <= st_reset;
+        rdy       <= '0';
+        value     <= (OTHERS => '0');
+        col       <= (OTHERS => '0');
+        row       <= (OTHERS => '0');
+        adc_start <= '0';
+      WHEN idle =>
+        adc_pd <= '1';
+        rdy    <= '1';
+        status <= st_rdy;
+      WHEN meas =>
+        adc_pd <= '0';
+        rdy    <= '0';
+        status <= st_wip;
+        value  <= adc_data;
+      WHEN OTHERS => NULL;
+    END CASE;
+  END PROCESS state_process;
+END rtl;

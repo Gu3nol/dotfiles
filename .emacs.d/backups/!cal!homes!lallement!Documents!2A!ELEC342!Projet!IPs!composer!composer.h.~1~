@@ -1,0 +1,47 @@
+/*
+ * =============================================================================
+ *
+ *       Filename:  video_in.h
+ *
+ *    Description:  video_in module
+ *
+ * =============================================================================
+ */
+
+#ifndef _VIDEO_IN_
+#define _VIDEO_IN_
+
+
+#include <systemc>
+
+#include "wb_master_fsm.h"
+#include "wb_slave.h"
+
+namespace soclib { namespace caba {
+
+	template<typename wb_param>
+	    class VideoIn: sc_core::sc_module
+	    {
+	    public:
+		sc_core::sc_in<bool> p_clk;
+		sc_core::sc_in<bool> p_resetn;
+		soclib::caba::WbMaster<wb_param> p_wb;
+		soclib::caba::WbSlave<wb_param> p_wb_slave;
+
+	    private:
+		// main thread
+		void main_loop();
+
+		void     wait_cycles (uint32_t delay);
+		WbMasterFsm<wb_param> master0;
+
+	    protected:
+		SC_HAS_PROCESS(VideoIn);
+
+	    public:
+		// constructor
+		VideoIn ( sc_module_name name );
+	    };
+    }}
+
+#endif //_VIDEO_IN_

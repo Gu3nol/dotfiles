@@ -1,0 +1,183 @@
+#!/usr/bin/env python
+
+import sys
+import matplotlib.pyplot
+
+import dpa_traces
+import dpa_des
+
+from math import sqrt
+
+
+# Improve the speed of the attack by only considering part of the trace
+start_sample = 4000
+end_sample = 8000 # 20002
+num_samples = end_sample - start_sample + 1
+
+sum_y = [[0.0] * num_samples for i in range(5)]
+sum_y2 = [[0.0] * num_samples for i in range(5)]
+
+sum_x = [[[0.0] * num_samples for i in range(5)] for k in range(8)]
+sum_x2 = [[[0.0] * num_samples for i in range(5)] for k in range(8)]
+sum_xy = [[[0.0] * num_samples for i in range(5)] for k in range(8)]
+
+# accumulator[sbox][key_hyp][hd][sample]
+accumulator = [[[[0.0] * num_samples for i in range(5)] for j in range(64)] for k in range(8)]
+
+# acc_num_traces[sbox][key_hyp][hd]
+acc_num_traces = [[[0] * 5 for i in range(64)] for j in range(8)]
+
+# mean_traces[sbox][key_hyp][hd][sample]
+mean_traces = [[[[0.0] * num_samples for i in range(5)] for j in range(64)] for k in range(8)]
+
+# diff_traces[sbox][key_hyp][sample]
+diff_traces = [[[0.0] * num_samples for i in range(64)] for j in range(8)]
+
+# max_diff_traces[sbox][key_hyp]
+max_diff_traces = [[0.0] * 64 for i in range(8)]
+
+
+def display_trace(data):
+    matplotlib.pyplot.plot(data)
+    matplotlib.pyplot.show()
+
+
+# Display all the 64 differential traces for a given SBox
+# and highlight one of them (in green)
+def display_diff_trace(sbox, highlighted_key):
+    fig = matplotlib.pyplot.figure()
+    ax = fig.add_subplot(111)
+
+    for key in range(64):
+        if key == highlighted_key:
+            ax.plot(diff_traces[sbox][key], 'g')
+        else:
+            ax.plot(diff_traces[sbox][key], 'r')
+
+    matplotlib.pyplot.show()
+
+
+# For a given SBox (0..7) and a given key hypothesis (0..63),
+# compute the leakage model (here a HD on 4 bits) for the
+# encryption of the given plaintext (trace.plaintext) and
+# accumulate the trace in the corresponding set:
+# accumulator[sbox][key_hypothesis][hd]
+def accumulate(trace, sbox, key_hypothesis):
+    global accumulator, acc_num_traces, start_sample, end_sample
+
+    hd = dpa_des.des_first_round_hd_4bits(sbox, trace.plaintext, key_hypothesis)
+
+    for i in range(start_sample, end_sample+1):
+        accumulator[sbox][key_hypothesis][hd][i-start_sample] += trace.samples[i]
+    acc_num_traces[sbox][key_hypothesis][hd] += 1
+
+def correlation_accumulate(trace, sbox, key_hypothesis):
+    global accumulator, sum_x, sum_x2, sum_y, sum_y2, sum_xy
+
+    for sbox in range(8):
+        for key in range(64):
+            y = dpa_des.des_first_round_hd_4bits(sbox, trace.plaintext, key_hypothesis)
+            sum_y[sbox][key] += y
+            sum_y2[sbox][key] += y*y
+
+            for sample in range(num_sample):
+                x = trace.samples[sample]
+                sum_x[sbox][key][sample] += x
+                sum_x2[sbox][key][sample] += x*x
+                sum_xy[sbox][key][sample] += x*y
+
+def key_result_correlation():
+    global sum_x, sum_y, sum_x2, sum_y2, sum_xy
+
+    for sbox in range(8):
+        for key in range(64):
+            for sample in range(num_sample):
+                y_var = sqrt(sys.argv[2]*sum_y2-sum_y*sum_y) - sum_x[num_sample]*
+
+
+
+
+# When the accumulation of all the traces is done, compute the mean
+# of all the sets of traces for all sbox and key hypothesis:
+# mean_traces[sbox][key][hd]
+def compute_mean_traces():
+    global mean_traces, accumulator, acc_num_traces, num_samples
+
+    for sbox in range(8):
+        for key in range(64):
+            for hd in range(5):
+                for sample in range(num_samples):
+                    if acc_num_traces[sbox][key][hd] != 0:
+                        mean_traces[sbox][key][hd][sample] = accumulator[sbox][key][hd][sample]/ float(acc_num_traces[sbox][key][hd])
+
+# For all Sbox and key hypothesis, compute the differential trace:
+# diff_traces[sbox][key]
+def compute_diff_traces():
+    global diff_traces, mean_traces, num_samples
+
+    for sbox in range(8):
+        for key in range(64):
+            for sample in range(num_samples):
+                diff_traces[sbox][key][sample] = - 2*mean_traces[sbox][key][0][sample]\
+                                                 - mean_traces[sbox][key][1][sample]\
+                                                 + mean_traces[sbox][key][3][sample]\
+                                                 + 2*mean_traces[sbox][key][4][sample]
+
+# For all Sbox and key hypothesis, find the maximum of the differential trace:
+# max_diff_traces[sbox][key]
+def compute_max_diff_traces():
+    global max_diff_traces, diff_traces, num_samples
+
+    for sbox in range(8):
+        for key in range(64):
+            for sample in range(num_samples):
+                if diff_traces[sbox][key][sample] > max_diff_traces[sbox][key] :
+                    max_diff_traces[sbox][key] = diff_traces[sbox][key][sample]
+
+# Display the result (for all sbox, find and display which key hypothesis gives
+# the maximum value of the differential trace)
+def display_key_results():
+    global max_diff_traces
+
+    best_key = [0] * 8
+
+    for sbox in range(8):
+        for key in range(64):
+            if (max_diff_traces[sbox][key] >= max_diff_traces[sbox][best_key[sbox]]):
+                best_key[sbox] = key
+        print("sbox : " + str(sbox) + "key : " + str(hex(best_key[sbox])))
+
+
+
+def main():
+    if len(sys.argv) < 3:
+        sys.exit("Usage: dpa.py trace_directory number_of_traces_to_use")
+
+    trace_dir = dpa_traces.Trace_dir(sys.argv[1])
+    num_traces = int(sys.argv[2])
+
+    assert(num_traces > 0)
+
+    trace_num = 0
+    for trace in trace_dir:
+        trace_num += 1
+        if trace_num % 20 == 0:
+            print 'Trace #%i...' % (trace_num)
+
+        #display_trace(trace.samples)
+
+        for sbox in range(8):
+            for key_hypothesis in range(64):
+                correlation_accumulate(trace, sbox, key_hypothesis)
+
+        if trace_num == num_traces:
+            #compute_mean_traces()
+            #compute_diff_traces()
+            #compute_max_diff_traces()
+            #display_key_results()
+            break
+
+
+
+if __name__ == "__main__":
+    main()

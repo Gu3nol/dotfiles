@@ -1,0 +1,45 @@
+---------------------------------------------------------
+-- Top level Control Logic Unit Input generation
+-- clu.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is used to generate the inputs for the
+-- CLU
+
+-- It is for TB purposed only
+--------------------------------------------------------
+
+LIBRARY IEEE;
+
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+USE work.clu_pack.ALL;
+USE work.ALL;
+
+ENTITY tb_clu_inputs IS
+END tb_clu_inputs;
+
+ARCHITECTURE behav OF tb_clu_inputs IS
+
+  SIGNAL mclk_i : sl;
+  SIGNAL din_i  : slv(15 DOWNTO 0);
+
+BEGIN
+  -- Declaration of the clu_inpits instance
+  clu_inputs_i : ENTITY clu_inputs
+    PORT MAP(
+      mclk => mcl_i,
+      din  => din_i
+      );
+
+  -- Master clock generation
+  clkgen : PROCESS
+  BEGIN
+    mclk_i <= '0';
+    WAIT FOR 500 ns;
+    mclk_i <= '1';
+    WAIT FOR 500 ns;
+  END PROCESS clkgen;
+
+END behav;

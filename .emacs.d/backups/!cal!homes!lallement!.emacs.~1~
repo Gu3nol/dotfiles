@@ -1,0 +1,157 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                              ;;
+;;                   Custom file for emacs                      ;;
+;;                                                              ;;
+;;  @author : Gu√©no√ LALLEMENT                                 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; ==== Add by emacs ====
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
+ '(current-language-environment "French")
+ '(debug-on-error t)
+ '(gud-gdb-command-name "gdb --annotate=1")
+ '(large-file-warning-threshold nil)
+ '(safe-local-variable-values (quote ((checkdoc-permit-comma-termination-flag . t) (checkdoc-force-docstrings-flag))))
+ '(show-paren-mode t))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; ==== Disable init message ====
+(setq inhibit-startup-message t)
+
+;; ==== Modification for load-path ====
+(add-to-list 'load-path "~/.emacs.d/")
+
+;; ==== Enable Line and Column Numbering ====
+(setq column-number-mode t)
+(setq line-number-mode t)
+(require 'linum)
+(global-linum-mode t)
+(setq linum-format "%4d ")
+
+;; ===== Set standard indent to 4
+(setq standard-indent 4)
+(setq-default tab-width 4)
+(setq-default py-indent-offset 4)
+
+;; ==== Support Wheel Mouse Scrolling =====
+(mouse-wheel-mode t)
+
+;; ==== Line by line scrolling ====
+;; This makes the buffer scroll by only a single line when the up or
+;; down cursor keys push the cursor (tool-bar-mode) outside the
+;; buffer. The standard emacs behaviour is to reposition the cursor in
+;; the center of the screen, but this can make the scrolling confusing
+(setq scroll-step 1)
+
+;; ==== Tab using spaces ====
+(setq-default indent-tabs-mode nil)
+
+;; ==== Better buffer switching ====
+(iswitchb-mode 1)
+
+;; ==== Use font-lock-mode ====
+(global-font-lock-mode 1)
+
+;; ==== default to better frame titles ====
+(setq frame-title-format (concat  "%b - emacs@" system-name))
+
+;; ==== Custom for Mac OS X ====
+(setq default-input-method "MacOSX")
+(setq mac-command-modifier 'meta
+      mac-option-modifier nil
+      mac-allow-anti-aliasing t
+      mac-command-key-is-meta t)
+
+;; ==== Custom for latin-1 ====
+(set-terminal-coding-system 'latin-1)
+(set-keyboard-coding-system 'latin-1)
+(set-language-environment 'latin-1)
+
+;; ==== Custom for utf-8 ====
+(setq locale-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
+;; ==== Shortcut ====
+(global-set-key (kbd "C-c h") 'replace-string)
+(global-set-key (kbd "C-c j") 'replace-regexp)
+(global-set-key (kbd "C-c o") 'bury-buffer)
+(global-set-key (kbd "C-c k") 'kill-this-buffer)
+(global-set-key (kbd "C-c c") 'compile)
+(global-set-key (kbd "C-c g") 'gdb)
+
+;; ==== Autosave files ====
+
+;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+(custom-set-variables
+  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+
+;; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
+
+(setq version-control t ;; Use version numbers for backups
+      kept-new-versions 16 ;; Number of newest versions to keep
+      kept-old-versions 2 ;; Number of oldest versions to keep
+      delete-old-versions t ;; Ask to delete excess backup versions?
+      backup-by-copying-when-linked t) ;; Copy linked files, don't rename.
+
+(defun force-backup-of-buffer ()
+  (let ((buffer-backed-up nil))
+    (backup-buffer)))
+
+(add-hook 'before-save-hook  'force-backup-of-buffer)
+
+;; cleanup on return
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; ==== make scripts executable ====
+(add-hook 'after-save-hook
+  '(lambda ()
+     (if (not (executable-make-buffer-file-executable-if-script-p))
+         (normal-mode))))
+
+;; ==== Custom for Octave ====
+(setq auto-mode-alist
+      (cons
+       '("\\.m$" . octave-mode)
+       auto-mode-alist))
+
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (if (eq window-system 'x)
+                (font-lock-mode 1))))
+
+;; ==== Custom for SystemVerilog ====
+(defun prepend-path ( my-path )
+(setq load-path (cons (expand-file-name my-path) load-path)))
+(defun append-path ( my-path ) (setq load-path (append load-path (list (expand-file-name my-path)))))
+
+
+;; Look first in the directory ~/emacs.d for elisp files
+(prepend-path "~/emacs.d")
+;; Load verilog mode only when needed
+(autoload 'verilog-mode "verilog-mode" "Verilog mode" t )
+;; Any files that end in .v, .dv or .sv should be in verilog mode
+(add-to-list 'auto-mode-alist '("\\.[ds]?v\\'" . verilog-mode))
+;; Any files in verilog mode should have their keywords colorized
+(add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
+
+;; ==== Custom for Python ====
+(load-file "/Users/Gu3nol/.emacs.d/emacs_py/epy-init.el")

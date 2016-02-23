@@ -1,0 +1,37 @@
+BATMAN_GUENOLE_v1
+@author: Guénolé Lallement
+- Description file of the design organisation -
+
+
+#Top Level Block: Global_System_V4
+
+#Main Sub-Level Blocks:
+ - Array_Row_Dec (sensor)
+ - ARRAY_charac (sensor)
+ - clu (digital)
+ - BIAS_MIRROR (analog)
+ - READOUT_ADC_CIRCUIT (analog)
+
+NB: BIAS_MIRROR must be next to the Array_Row_Dec and clu and READOUT_ADC_CIRCUIT have been designed to be next to each others.
+
+PADS:
+# Digital
+## SPI: 7
+SCLK: Serial Clk                       -- INPUT
+MOSI:                                  -- INPUT
+MISO:                                  -- OUTPUT
+CS: Chip Select                        -- INPUT
+## Others
+MCLLK: Master Clk                      -- INPUT
+RDY: Ready signal                      -- OUTPUT
+ADCLK: ADC Clk                         -- INPUT
+
+# Analog: 6
+Output charact pad                     -- 50 Ohm
+Input charact pad                      -- 50 Ohm
+Biasing current pad                    -- 200 Ohm
+READOUT                                -- 200 Ohm
+
+#ADC (analog)
+VRP: Positive reference voltage        -- 200 Ohm ?
+VRN: Negative reference voltage        -- 200 Ohm ?

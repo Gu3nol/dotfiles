@@ -1,0 +1,44 @@
+# This script generates a bunch of random VDP commands for testing in the
+# official coursework testbench.
+
+import random
+
+# Constants. Modify at your discretion.
+screenWidth  = 64 # width of the screen
+screenHeight = 64 # height of the screen
+numCommands = 1000 # number of commands to generate
+if (count($argv) > 1) {
+    $numCommands = $argv[1];
+}
+
+#Seed the random number generator.
+## srand(time());
+
+# Possible commands that may be produced.
+possibleCommands = ["M", "D", "C"]
+possiblePens = ["B", "W", "I"]
+
+#Generate the commands.
+print "Generating %d commands... " % numCommands
+output = '''-- $numCommands Random Commands
+-- This file was generated automatically for the VDP testbench with a screen
+-- size of %d x %. Generated on ".date("Y-m-d").".\n\n''' % (screenWidth, screenHeight)
+for i in range(numCommands):
+    # Choose randomly between move, draw and clear, and a color. 
+    cmd = possibleCommands[rand() % len(possibleCommands)]
+    pen = possiblePens[rand() % len(possiblePens)]
+
+    # Choose random coordinates.
+    x = rand() % screenWidth  # results in x = [0, $screenWidth)
+    y = rand() % screenHeight # results in y = [0, $screenHeight)
+    
+    # Compose the command and add it to the output.
+    output += "%s%s %d %d\n" % (cmd, pen, x, y)
+
+print "done"
+
+# Store the output.
+filename = "random_{%d}_{%d}x{%d}.txt" % (numCommands, screenWidth, screenHeight)
+print "Saving commands to %s... " % filename
+open(filename, 'w').write(output)
+print "done"

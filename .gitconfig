@@ -1,0 +1,12 @@
+[user]
+	name = Gu3nol - Guénolé LALLEMENT
+	email = guenole.lallement@gmail.com
+
+[color]
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+
+[push]
+	default = simple

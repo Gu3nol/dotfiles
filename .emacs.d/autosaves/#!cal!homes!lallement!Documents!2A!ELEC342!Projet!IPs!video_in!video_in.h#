@@ -1,0 +1,67 @@
+/*
+ * =============================================================================
+ *
+ *       Filename:  video_in.h
+ *
+ *    Description:  video_in module
+ *
+ * =============================================================================
+ */
+
+#ifndef _VIDEO_IN_
+#define _VIDEO_IN_
+
+
+#include <systemc>
+
+#include "wb_master_fsm.h"
+#include "wb_slave.h"
+
+#define BURST_SIZE 32
+#define IMAGE_SIZE 307200
+
+namespace soclib { namespace caba {
+
+	template<typename wb_param>
+	    class VideoIn: sc_core::sc_module
+	    {
+	    public:
+		sc_core::sc_in<bool> signal_clk;
+		sc_core::sc_in<bool> pixel_clk;
+		sc_core::sc_in<bool> signal_resetn;
+		sc_core::sc_in<bool> frame_valid;
+		sc_core::sc_in<bool> line_valid;
+		sc_core::sc_in<unsigned char> pixel_in;
+		sc_core::sc_out<bool> p_int;
+		soclib::caba::WbMaster<wb_param> p_wb;
+		soclib::caba::WbSlave<wb_param> p_wb_slave;
+		uint32_t next_address_base;
+		uint32_t current_address_base;
+		uint32_t current_buffer;
+		uint32_t address_offset;
+
+	    private:
+		// main thread
+		void write_loop();
+		void read_input();
+        void slave();
+
+		void     wait_cycles (uint32_t delay);
+		WbMasterFsm<wb_param> master0;
+
+		bool send;
+		uint8_t  pixel_buffer[2][BURST_SIZE];
+		int w_index;
+		int sel;
+		int run;
+
+	    protected:
+		SC_HAS_PROCESS(VideoIn);
+
+	    public:
+		// constructor
+		VideoIn ( sc_module_name name );
+	    };
+    }}
+
+#endif //_VIDEO_IN_

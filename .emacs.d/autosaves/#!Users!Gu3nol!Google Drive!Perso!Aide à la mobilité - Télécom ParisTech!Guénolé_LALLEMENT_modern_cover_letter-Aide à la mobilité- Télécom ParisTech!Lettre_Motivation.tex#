@@ -1,0 +1,109 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+\usepackage[utf8x]{inputenc}                 % if you are not using xelatex ou lualatex, replace by the encoding you are using
+\usepackage[french]{babel}
+\usepackage{textcomp}
+%\usepackage{CJKutf8}                             % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[scale=0.78]{geometry}
+%\setlength{\hintscolumnwidth}{2cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Gu\'enol\'e}{LALLEMENT}
+\title{Lettre de motivation}                               % optional, remove / comment the line if not wanted
+\address{8 rue de Boissy}{91470 Forges-les-Bains - FRANCE}{}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+\phone[mobile]{+33~6~75~31~20~27}                   % optional, remove / comment the line if not wanted
+\phone[fixed]{+33~1~64~91~58~76}                   % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\email{guenole.lallement@telecom-paristech.fr}                               % optional, remove / comment the line if not wanted
+%\homepage{www.johndoe.com}                         % optional, remove / comment the line if not wanted
+%\extrainfo{}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+%\usepackage{multibib}
+%\newcites{book,misc}{{Books},{Others}}
+
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+
+%-----       letter       ---------------------------------------------------------
+% recipient data
+\recipient{Direction des Relations Internationales}{Télécom ParisTech - Paris}
+%\date{January 01, 2014}
+\opening{A l'attention des représentants de la Direction des Relations Internationales de Télécom ParisTech}
+\closing{\ }
+%\enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+\vskip 0.4cm
+\makelettertitle{}
+\setlength{\parindent}{1cm}
+
+\vskip 0.4cm
+Mesdames, Messieurs,
+
+\vskip 0.4cm
+Depuis plus d’un siècle l’\textit{Imperial College} de Londres a établi une réputation d’excellence dans l’enseignement et la recherche. Le département \textit{Electrical and Electronic Engineering} de la faculté d’ingénierie a développé un \textit{Master of Science} dans le design de circuits intégrés analogiques et numériques, qui a attiré mon attention. Les méthodes d'enseignement novatrices portant sur ​​un large éventail de sujets aussi bien fondamentaux que pratiques de la science et des technologies offrent aux étudiants les meilleurs ingrédients pour leurs futures recherches en électronique.
+
+\vskip 0.4cm
+Je suis actuellement étudiant en troisième année à Télécom ParisTech et j’ai pour objectif d’obtenir un diplôme d’ingénieur dans le domaine des Systèmes Embarqués et \textit{Systems On Chip}. Ainsi, je crois que mon implication dans ce master de l’\textit{Imperial College} lié au domaine de la conception des circuits intégrés sera bénéfique dans mon but de devenir un expert et d’exceller dans ce domaine de l’électronique.
+
+\vskip 0.4cm
+Une expérience comme stagiaire à l’Institut d’Électronique Fondamentale, laboratoire dirigé conjointement par l’Université Paris Sud XI - Orsay et le C.N.R.S. m’a donnée l’occasion de développer mon goût pour le domaine des technologies micro et nano électroniques. Au sein d’une équipe de chercheurs et de doctorants, j’ai pu mener une étude complète dans ce domaine. Il s’agissait d’un cas réel qui m’a fait comprendre le processus de la gestion d’un projet de recherche.
+
+\vskip 0.4cm
+En effet, depuis quelques années, ma volonté de devenir ingénieur et chercheur s’est affirmée. Ces personnes participent à améliorer et construire le monde de demain ; ce sont les acteurs du progrès technologique. Je crois que ce master en électronique me permettra de développer les conditions pour devenir un expert dans ce domaine. De plus, l’atmosphère cosmopolite de l’\textit{Imperial College}, l’émulation qui s’en dégage et l’animation de cette ville anglophone sera le lieu d’un enrichissement personnel et culturel.
+
+\vskip 0.4cm
+Je fait appel à la Direction des Relations Internationales de Télécom ParisTech pour m’aider à réaliser ce projet. En comparaison avec une scolarité dans l’enseignement supérieur en France, le master au Royaume-Uni a un coût élevé. Pour mieux comprendre l’ensemble des dépenses auxquelles je vais devoir subvenir j’ai réalisé un budget prévisionnel le plus complet possible. On y retrouve les dépenses concernant la scolarité, le loyer et les besoins de la vie courante. Ces estimations reposent sur l’expérience d’anciens élèves que j’ai contactés, sur les informations fournies par l’\textit{Imperial College} et sur les données que j’ai pu collecter.
+
+\vskip 0.4cm
+Mes parents peuvent partiellement me soutenir pour faire face à ces dépenses. Ils ne sont cependant pas capable de tout couvrir (financement à hauteur de 11900€). Je vais donc devoir faire un prêt au sein d’une banque pour financer mes études. Je suis actuellement en négociation pour obtenir les meilleurs avantages pour un étudiant.
+
+\vskip 0.4cm
+En tant qu’étudiant de Télécom ParisTech, je vous contacte pour demander l’aide à la mobilité pour les étudiants non boursiers auprès de la Direction des Relations Internationales de l’école. Cette aide à la mobilité me permettrait d’appuyer mon projet et serait une reconnaissance de sa cohérence.
+
+\vskip 0.4cm
+Je reste à votre entière disposition pour tout complément d'information ou documents que vous pourriez souhaiter. Par avance, je vous remercie pour le temps que vous consacrerez à ma demande.
+
+\vskip 0.4cm
+Je vous prie d'agréer, Mesdames, Messieurs, mes sincères salutations.
+
+\makeletterclosing{}
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+%% end of file `template.tex'.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

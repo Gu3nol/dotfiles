@@ -1,0 +1,11 @@
+-- VDP full commands test file
+-- 10 host commands
+-- Screen width: 64
+-- Screen height: 64
+-- @author: Guénolé Lallement
+
+
+
+CB 10 10
+CI 10 10
+--CW 10 10

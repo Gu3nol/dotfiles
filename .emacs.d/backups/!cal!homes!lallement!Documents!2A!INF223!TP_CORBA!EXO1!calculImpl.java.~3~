@@ -1,0 +1,55 @@
+package tpcorba;
+
+import org.omg.CORBA.*;
+import java.lang.*;
+
+public class calculImpl extends calculPOA
+{
+
+    private double contenu;
+
+    public calculImpl()
+    {
+	contenu=0;
+    }
+
+    public double memoire()
+    {
+	return contenu;
+    }
+
+	public void ajouteMemoire(double data) {
+        contenu += data;
+        return void;
+    }
+
+    public void soustraitMemoire(double data) {
+
+    }
+
+    public void multiplieMemoire(double data) {
+
+    }
+
+    public void miseAZero() {
+
+    }
+
+    public void diviseMemoire(double data) throws tpcorba.divisionParZero {
+
+    }
+
+    public void bid_racine (IntHolder data)
+    {
+	System.out.println ("Invocation de bid_racine ()");
+
+	data.value = (int) Math.sqrt(data.value);
+    }
+
+    public void bid_carre (IntHolder data)
+    {
+	System.out.println ("Invocation de bid_carre()");
+
+	data.value = data.value * data.value;
+    }
+}

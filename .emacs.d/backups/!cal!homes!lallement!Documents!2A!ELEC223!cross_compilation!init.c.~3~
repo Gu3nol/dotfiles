@@ -1,0 +1,9 @@
+/* init.c */
+
+extern char start_data, end_data,
+            start_bss, end_bss;
+
+int init(void) {
+
+
+}

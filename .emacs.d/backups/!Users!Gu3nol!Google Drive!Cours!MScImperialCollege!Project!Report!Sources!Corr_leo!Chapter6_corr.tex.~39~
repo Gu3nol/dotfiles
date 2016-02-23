@@ -1,0 +1,385 @@
+\chapter{System Architecture}
+\renewcommand{\baselinestretch}{\mystretch}
+\label{chap:SystemArchitecture}
+%\setlength{\parindent}{0pt}
+
+\section{Complete system design}
+\PARstart{T}{his} chapter introduces the hardware system developed to test, experiment and demonstrate the pixel behavior. The two main elements of this architecture are a pH-sensing and a characterization array. The Fig.~\ref{Fig:System} depicts the block diagram of the system. The main Cadence schematics designed are illustrated in Appendix~\ref{App:Schematics}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.40]{Figs/Chap4/System}
+  \caption{\footnotesize Block diagram of the complete system.}
+  \label{Fig:System}
+\end{figure}
+
+The Control Logic Unit (aka. CLU) handles the selection and the measurement phase of each pixel or characterization transistor. Concerning the pH-sensing array, each pixel can be selected using a column and a row decoder. The column selection is done directly in CLU whereas the choice of the row requires an additional circuit at the output of the array. A configurable ADC and readout circuit is used to convert the analog output into a digital signal sent through the SPI bus. The output of the readout is also forwarded to an analog output \verb|READOUT| to perform external measurement. Finally, each transistor of the characterization array can be read through two analog pads. The SPI block manages the digital communication of the system with an external microcontroller.
+
+The analog/digital inputs and outputs of the system are detailed in Table~\ref{Tab:IO}. For the analog pads, the impedance of the pad is also specified.
+\begin{table*}[h]
+\centering
+\ra{1.3}
+\begin{tabular}{@{} l l r @{}}
+\toprule
+\textbf{Digital} \\
+\midrule
+\verb|MCLK|& Master input clock for the CLU\\
+\verb|ADCLK|& ADC input clock\\
+\verb|SCLK|& SPI Input clock\\
+\verb|CS|& SPI chip select\\
+\verb|MOSI|& SPI data in\\
+\verb|MISO|& SPI data out \\
+\verb|READY|& Handshake signal to receive new commands \\
+\bottomrule
+\textbf{Analog} \\
+\midrule
+\verb|VRP|& ADC positive reference voltage & 0$\ohm$\\
+\verb|VRN|& ADC negative reference voltage & 0$\ohm$\\
+\verb|Ibias|& Biasing current for the readout circuit & 200$\ohm$\\
+\verb|CPAD+|& Input characterization pad & 50$\ohm$\\
+\verb|CPAD-|& Output characterization pad & 50$\ohm$\\
+\verb|READOUT|& Analog output of the readout - bypass the ADC & 200$\ohm$\\
+\bottomrule
+\end{tabular}
+\caption{I/Os for the pH-sensing system.}
+\label{Tab:IO}
+\end{table*}
+
+The system is both a proof of concept for the hexagonal transistor and a characterization system for experimental measurements. All the system is realized using the AMS $0.35 \mu m$ CMOS process.
+
+\section{System description}
+This section details the implementation and operation of each sub block aforementioned. The description is quite exhaustive to guarantee the correct operation and utilization during future experimentations.
+
+\subsection{Pixel array and row decoder}
+
+\subsubsection{Architecture}
+In Section~\ref{Pixel_architecture} the architecture of the pixel is presented. From this element a two-dimensional array comprising ISFETs pixels and a suitable column and row decoder is developed. This implantation is based on the patented technology presented in~\ref{RefWorks:156} and presented in Fig.~\ref{Fig:Array} for a NxN array.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{Figs/Chap4/Array.pdf}
+  \caption{\footnotesize Schematic for a NxN array.}
+  \label{Fig:Array}
+\end{figure}
+
+In addition to the sensing pixels, dummies transistors connected to the ground are added on the edges of the system to ensure the proper matching of the system. A particular attention is given to avoid crossing line on active gates. As a consequence, the geometry of the columns and row lines is doing snakes instead of straight lines. Finally, a guard ring is added all around the system to protect these sensitive components from parasitics.
+
+A row decoder is required to select the output of a pixel and connect it to the readout circuit. The row decoder is implemented using transmission gates (TG) and inverters. The TGs are designed to ensure a low resistance and then a low voltage drop from the output of the pixel to the input of the readout circuit. The size of the pMOS and the nMOS are correctly balanced to ensure the same characteristic from low-to-high and high-to-low transitions.
+
+The final layout of the pixel array is presented in Fig.~\ref{Fig:ArrayLayout} with the array enclosed in a guard ring on the left and the row decoder on the right. The array consists of 8 x 8 ISFETs pixels as shown in Fig.~\ref{Fig:} with the necessary dummies.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{Figs/Chap4/ArrayB.png}
+  \caption{\footnotesize Layout of the pixel array.}
+  \label{Fig:ArrayLayout}
+\end{figure}
+
+\subsubsection{Operation}
+The pixel architecture presented previously includes a nMOS switch to enable the output of the device. In an array architecture, the gate of this transistor is connected to a column decoder. In our case this command signal is directly generated by the digital core therefore the column decoder is replaced by a column register. The output of the circuit is for its part connected to the row decoder. By choosing the proper column and row the pixel is selected and its output connected to an external readout circuit.
+
+To address the 64 pixels two signals are required such as row[7:0] and col[7:0]. They are generated by the CLU such that only one row and one column are enabled at a time allowing the selection of only one pixel. The output of the array is always valid; there is always one pixel connected to the readout circuit. Lastly, the ISFET source voltage $V_{DD}$ is provided for each pixel.
+
+\subsubsection{Design analysis}
+In this array configuration the system yields to dimensions of roughly $115 \mu m \times 111 \mu m$. However, by considering only the active pixels, the size of the system is only $80 \mu m \times 70 \mu m$ for a 8 x 8 array. Some scaling considerations are detailed in Section~\ref{scaling}.
+
+\subsection{Characterization array and switches}
+\label{charac_array}
+The characterization array developed for this project is based on 2 x 6 transistors as it shown in Fig.~\ref{Fig:ArrayCharacLayout}. For each hexagonal transistor the standard counterpart is associated with the corresponding width and length; 0.35, 0.5, 0.8, 1.0, 1.5, 2.0 $\mu m$.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap4/Array_characW.png}
+  \caption{\footnotesize Layout of the characterization array.}
+  \label{Fig:ArrayCharacLayout}
+\end{figure}
+
+To select a transistor a TG pair is added respectively on the source and drain of the device. The command for TGs -- associated to a transistor -- is ensure by the same signal to avoid impossible connections. All the transistors are connected to a sensing area at their gates to interface the device with a testing solution. The TG outputs are then tied together to two low resistance pins to ensure external measurements.
+
+Lastly, the sensing area was set to a square of $15 \mu m \times 15 \mu m$. According to the figures of Tab.~\ref{Tab:Value_Pass_Cap}, it should correspond to a passivation capacitance $C_{pass} \approx 500 fF$.
+
+\subsection{Readout and conversion circuit}
+The readout and conversion circuit of the pH-system is composed of three elements as presented in Fig.~\ref{Fig:READOUT_ADC}. The readout circuit ensures the correct biasing of the pixel during a reading. Therefore the drain current is fixed and the source voltage is sent to a buffer to be read by and ADC. An additional pin can be used to directly read the pixel value.
+ \begin{figure}[h]
+   \centering
+   \includegraphics[scale=0.8]{Figs/Chap4/READOUT_ADC}
+   \caption{\footnotesize Block diagram of the Readout and conversion circuit.}
+   \label{Fig:READOUT_ADC}
+ \end{figure}
+
+\subsubsection{Readout circuit}
+The correct operation of the pixel is ensured through a source follower configuration. As a consequence, a constant current source is necessary to correctly bias the output node of the pixel. A cascode current-mirror is used in this case as presented in Fig.~\ref{CurrentMirror}. The input current $I_{bias}$ is provided by the external pin \verb|Ibias| which allows more flexibility in the selection of the pixel operating region.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.7]{Figs/Chap4/CurrentMirror}
+  \caption{\footnotesize Cascode current-mirror.}
+  \label{Fig:CurrentMirror}
+\end{figure}
+
+The output impedance of the current-mirror is given by;
+\begin{equation}
+R_{out} \approx \left ( \frac{g_{m4}}{g_{o4}}\right )\frac{1}{g_{o2}}
+\end{equation}
+Therefore, the width and length of the transistors used is chosen to increase the value of $R_{out}$. The limited output swing was tested and should not affect the output voltage of the pixel. This current source is connected to one pixel at a time through the row decoder.
+
+\subsubsection{Buffer}
+An interposed buffer amplifier was added to prevent the input of the ADC from loading the pixel's current unacceptably and interfering with its desired operation.
+
+Such a block is available in C35 technology in Cadence. A low noise amplifier was used in the context of this system, however it requires a bias current of $7 - 19 \mu A$ which must be provided externally.
+
+Hopefully, a highly stable bias current cell is also ready for use in the technology used for this chip. Both blocks were tested in the context of this design to ensure their correct operation and their driving capability.
+
+\subsubsection{ADC}
+An Analog to Digital converter (ADC) is used in the global system to convert the analog output voltage of the pixel to a digital information. As a consequence, a 10-bits ADC based on successive approximations provided by the C35 technology was selected.
+The architecture is based on two resistor dividers. The converter operates in free running mode. The conversion is carried out over 11 clock cycles of the master clock and the conversion range is given by VRP and VRN. These two inputs are fed through the analog input pins \verb|VRP| and \verb|VRN|. For a full range voltage (\verb|VRP| = 3.3V and \verb|VRN| = 0V) the resolution of the ADC is 3.3mV.
+
+The cell works in continuous conversion. With the first rising \verb|CLOCK| edges after \verb|START| goes high and \verb|PD| goes low the first conversion starts. When the $12^{th}$ rising clock edge is reached the output \verb|Data[9:0]| is latched and a new conversion is started. To interrupt a running conversion or reset the ADC, the signals \verb|START| and \verb|PD| may be used independently.
+
+The signal PD may be used to control a single conversion or a sequence of conversions with power down between conversions. However, after simulations and tests it appeared that the utilization of the signal \verb|PD| causes interferences (\textit{i.e.} spikes) on the input signal. In fact, if \verb|PD| is high, it forces the ADC to enter power down mode, but, during power down a switch in series with a resistor is turned off. A better solution is to use the \verb|START| signal.
+
+Moreover, to reduce the parasitics observed on the input signal due to the switching signals and the parasitic from the ADC, a decoupling capacitance $C_{pass} = 5 pF$ is added between the input of the ADC and the ground. This configuration acts as a low pass filter coupled with the input capacitance of the ADC. This configuration was tested to ensure that the buffer can drive this load.
+
+\subsection{SPI}
+Thanks to the help of Ermis Koutsos, a standard SPI block is used in this system to manage the communication between the chip and the external world.
+
+\noindent The module implements the SPI protocol by employing the following digital signals;
+\begin{my_itemize}
+\item Serial Clock -- \verb|SCLK|: this input signal provides the timing of the serial interface. Data presented at Master Output Slave Input (\verb|MOSI|) is latched on the falling edge of \verb|SCLK|. Data on Master Input Slave Output (\verb|MISO|) is shifted out at the rising edge of \verb|SCLK|.
+\item Master Output Slave Input -- \verb|MOSI|: this input is used to transfer data serially into the device. It receives the data to be written. Values are latched on the falling edge of \verb|SCLK|.
+\item Master Input Slave Output -- \verb|MISO|: this output signal is used to transfer data serially out of the device. Data is shifted out on the rising edge of \verb|SCLK|.
+\item Chip Select -- \verb|CS|: when this input signal is low, the device is not selected and \verb|MISO| is high impedance. Driving this input high enables the communication. The communication must start and stop on a low level of \verb|SCLK|.
+\end{my_itemize}
+This module has been modified to use only 12 bits (the others are not necessary) and was included directly into the digital core during the digital synthesis.
+
+\subsection{Digital core - Control Logic Unit}
+The Digital core of the system CLU manages the FSM of the system to ensure a synchronization with the ADC as well than reading the SPI commands.
+
+\subsubsection{CLU Inputs/Outputs}
+To guarantee the correct communication of the system with the external world a protocol is developed as presented in Fig.~\ref{Fig:CMD}. The input and output signal \verb|din[15:0]| and \verb|dout[15:0]| are both received through the SPI serially and converted to parallel data. The MSB is received first.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{Figs/Chap4/CMD}
+  \caption{\footnotesize Input and Output trams for CLU.}
+  \label{Fig:CMD}
+\end{figure}
+
+\noindent For the input signal \verb|din[15:0]|;
+\begin{my_itemize}
+\item \verb|din[15:12]|: not used.
+\item \verb|din[11:8]|: address to select a transistor in the characterization array.
+\item \verb|din[7:6]|: op command - Start 0b01 - Reset 0b10 - Stop 0b11
+\item \verb|din[5:0]|: address to select a pixel in the pH array.
+\end{my_itemize}
+
+\noindent For the output signal \verb|dout[15:0]|;
+\begin{my_itemize}
+\item \verb|din[15:12]|: not used.
+\item \verb|din[11:10]|: current status of the system - WIP 0b01 - Reset 0b10 - Ready 0b11
+\item \verb|din[9:0]|: Data from the ADC - ADC[9]: MSB
+\end{my_itemize}
+
+Lastly, the internal logic signals \verb|adc_start|, \verb|adc_pd|, \verb|adc_eoc| and \verb|adc_data| are used to communicate with the ADC whereas the signal \verb|col[7:0]|, \verb|row[7:0]| and \verb|anag_mux[11:0]| address respectively, the rows, the columns and the switches of the characterization array.
+
+\subsubsection{Description}
+The correct operation of the system is ensured by an FSM which handles the current state of the system as presented in Fig.~\ref{Fig:FSM_System}.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.3]{Figs/Chap4/FSM}
+  \caption{\footnotesize FSM diagram of CLU.}
+  \label{Fig:FSM_System}
+\end{figure}
+
+From any state, when the op command reset is received the system enters in the RESET state, then when the constraint is released the system enters in IDLE or MEAS state depending on the op command. Only one start command is necessary to enter in the measurement stage. This FSM is implemented to guarantee the synchronization with the ADC which takes time to perform a conversion. As a consequence when the conversion is done (\verb|adc_eoc| is high) or stopped by the user the system returns to the IDLE state.
+
+\verb|col[7:0]|, \verb|row[7:0]| and \verb|anag_mux[11:0]| are generated without any constraint directly from the input \verb|din[15:0]|. The \verb|READY| signal should then be used to avoid changing the address of the pixel during a measure.
+
+\subsubsection{Implementation}
+The code provided in Appendix~\ref{App:VHDL} details the code used to implement the CLU. Because the block uses a FSM, a Mealy machine was designed as shown in Fig.~\ref{Fig:Mealy}
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.28]{Figs/Chap4/MealyMachine}
+  \caption{\footnotesize Synchronized Mealy Machine to implement CLU.}
+  \label{Fig:Mealy}
+\end{figure}
+
+This machine presents two processes;
+\begin{my_itemize}
+\item \textit{state\_machine}: clocked process to modify the state.
+\item \textit{state\_process}: combinational process to generate the outputs according to the state and the inputs of the system.
+\end{my_itemize}
+
+\section{System execution}
+This section exposes the timing diagrams to ensure the correct system execution.
+
+\subsubsection{CLU}
+Two phases are used to perform a measure on the pH array as presented in Fig.~\ref{Fig:FSM_System}. The corresponding timing diagram of the system are given in Fig.~\ref{Fig:row_col}. For the sake of simplicity, the same clock frequency is chosen for \verb|Mclk| and \verb|ADclk|. In practice, they can work at different speed.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.35]{Figs/Chap4/clu}
+  \caption{\footnotesize Timing diagram for the Control Logic Unit.}
+  \label{Fig:row_col}
+\end{figure}
+
+\subsubsection{pH array}
+The selection of a pixel is done independently of the measurement. In Fig.~\ref{Fig:row_col} is presented the timing diagram required to choose all the pixels in order from 0 to 63. Of course, the activation of a pixel can be done in any order at any time.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.40]{Figs/Chap4/row_col}
+  \caption{\footnotesize Timing diagram for the row and columns decoder.}
+  \label{Fig:row_col}
+\end{figure}
+
+From the input address \verb|DIN[5:0]|, a one-hot encoding is done to convert the data into a correct row/column signal. With this system a complex decoder is not required for the row and column selection. Any concurrent affectation is discarded as only one bit of \verb|row[7:0]| or \verb|col[7:0]| is high at a given time. A simple set of switches can be used to select the pixel.
+
+\subsubsection{Characterization array}
+An equivalent encoding handles the conversion of the address for the characterization array from the input \verb|DIN[11:8]|. Fig.~\ref{Fig:switches} exposes the selection of characterization transistor in order.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.45]{Figs/Chap4/switches}
+  \caption{\footnotesize Timing diagram for the characterization switches.}
+  \label{Fig:switches}
+\end{figure}
+
+The table~\ref{Tab:Charac_addr} gives the relation between the address and the pixel. Some addresses are rejected because they do not correspond to a physical device.
+\begin{table*}[h!]
+\centering
+\ra{1.3}
+\begin{tabular}{@{} l | l c @{}}
+\toprule
+Address \verb|DIN[11:8]| & Corresponding device & Length [$\mu m$]\\
+\midrule
+\verb|0x0000|& No device selected & --\\
+\verb|0x0001|& Hexagonal transistor & 0.35\\
+\verb|0x0010|& Standard transistor & 0.35\\
+\verb|0x0011|& Hexagonal transistor &0.5\\
+\verb|0x0100|& Standard transistor & 0.5\\
+\verb|0x0101|& Hexagonal transistor & 0.8\\
+\verb|0x0110|& Standard transistor & 0.8\\
+\verb|0x0111|& Hexagonal transistor & 1.0\\
+\verb|0x1000|& Standard transistor & 1.0\\
+\verb|0x1001|& Hexagonal transistor & 1.5\\
+\verb|0x1010|& Standard transistor & 1.5\\
+\verb|0x1011|& Hexagonal transistor & 2.0\\
+\verb|0x1100|& Standard transistor & 2.0\\
+\verb|0x1101| to \verb|0x1111| & Discarded - No action & --\\
+\bottomrule
+\end{tabular}
+\caption{Addresses and devices for the characterization array.}
+\label{Tab:Charac_addr}
+\end{table*}
+\newpage
+~
+
+
+
+
+
+\section{Simulations and tests}
+In this section, some important simulation results and the correct operation of the system are presented.
+
+
+\subsection{Digital block \& ADC}
+Due to the high number of transistor involved and the different clocks used, the simulation time of the whole system can be quite expensive. Hence, some simplifications were done to reduce the simulation time. This involve to use the same clock for the CLU, the SPI and the ADC. Tests were carried with a 100kHz clock which ensured a normal pH-sequencing as it is done in DNA microarray.\citep{RefWorks:128}. Extended tests with a maximum 1MHz clock for the ADC were also done without any alteration on the output.
+
+VHDL test benches were developed to simulate an external microcontroller or FPGA. They sent the proper command at the right time to perform a pH measurement on the whole array. In opposition to the SPI and CLU blocks, these VHDL test modules were simulated from the code and not on a transistor level.
+
+The Fig.~\ref{Fig:ADC_wave} shows the communication of the CLU block with the ADC as well as the digital conversion of the analog output of the pixel.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.7]{Figs/Chap4/ADCwave.png}
+  \caption{\footnotesize Communication signals between the CLU and the ADC.}
+  \label{Fig:ADC_wave}
+\end{figure}
+
+Subsequently, the digital information \verb|adc_data[9:0]| and the status of the device obtained were then sent to the external world using the SPI block (\textit{c.f.} Fig.~\ref{Fig:SPI_wave}). \verb|SCLK|, \verb|MISO|, \verb|MOSI| and \verb|SC| are respectively in red, blue, yellow and green. The information transmitted correspond to the protocol specified in Fig.~\ref{Fig:CMD}.
+\begin{figure}[h!]
+   \centering
+   \includegraphics[scale=0.4]{Figs/Chap4/SPIwave.png}
+   \caption{\footnotesize Communication signals between the SPI block and a simulated microcontroler.}
+   \label{Fig:SPI_wave}
+ \end{figure}
+
+\subsection{Pixel performance}
+Finally, Fig.~\ref{Fig:bonding} also characterizes the response of a pixel with respect to the number of hybridization to detect. The voltage reference of the output electrode $V_{ref}$ is set to 1.4V, the biasing current $I_{bias}$ to $1 \mu A$ and a $10 mV$ input voltage change is assumed to one bonding variation.
+\begin{figure}[h!]
+   \centering
+   \includegraphics[scale=0.5]{Figs/Chap4/bonding.png}
+   \caption{\footnotesize Output voltage of a pixel with respect to the number of hybridization processes. A 10 mV input voltage variation is assumed per bonding.}
+   \label{Fig:bonding}
+ \end{figure}
+
+Monte-Carlo simulation was also performed on the output of the pixel to give an idea of the mismatch variations. The most important figures obtained are given in Table.~\ref{Tab:MC}.
+\begin{table*}[h!]
+\centering
+\ra{1.3}
+\begin{tabular}{@{} l | c c c c c @{}}
+\toprule
+ & Target & Min & Mean & Max & Sigma\\
+\midrule
+$V_{DC}^{Out Pixel}$ [mV] & -- & 746.4 & 755.5 & 763.7 & 3.103\\
+$V_{DC}^{READOUT}$ [mV] & -- & 746.3 & 755.4 & 763.8 & 3.088\\
+$I_{DC}^{Out Pixel}$ [uA] & 1.000 & 0.933 & 1.001 & 1.057 & 0.02307\\
+\bottomrule
+\end{tabular}
+\caption{Results of Monte-Carlo simulation on the pixel.}
+\label{Tab:Charac_addr}
+\end{table*}
+
+\subsection{I/Os pins}
+The input and output pads with their impedance were included in the simulation. When necessary, standard $200 \ohm$ pads were replaced with $50 \ohm$ or $0 \ohm$ pad. This choice is a trade-off between the voltage drop observed at the output, the sensitivity and the ESD protection required.
+
+For instance, because of the current flowing through \verb|VRP| and \verb|VRN| the utilization of $200 \ohm$ pad leads to a voltage drop of 80 mV. A $0 \ohm$ pad is then used. In the same way the utilization of two analog pads directly on the chip for the characterization array was not the solution adopted because of the small size of the transistors involved. A $50 \ohm$ was selected to ensure a minimum ESD protection on this array.
+
+
+\newpage
+~
+\section{CMOS fabricated prototype: the BATMAN chip \Bat}
+To perform experiments on the hexagonal ISFET, the system was included for tape-out in July 2015. In this section the layout of the whole design and the complete chip is illustrated as it was sent to the foundry. The digital blocks were merged together and generated using the Cadence Encounter tool. All the necessary intensive checking such as DRC, LVS, Antenna and post-layout simulation were done.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.5]{Figs/Chap4/BATMAN_layout.png}
+  \caption{\footnotesize Layout of the complete BATMAN chip.}
+  \label{Fig:BatamLayout}
+\end{figure}
+
+\noindent A extended view of the chip layout is represented in Fig.~\ref{Fig:SystemLayout} with the main blocks highlighted. The total area occupied is approximately $400 \mu m^2$.
+\begin{figure}[p]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap4/Zoom_layoutW.png}
+  \caption{\footnotesize Layout of the whole system for the tape-out.}
+  \label{Fig:SystemLayout}
+\end{figure}
+\newpage
+~
+
+\section{Scaling considerations}
+\label{scaling}
+This section explores the possible impact of the scaling on the pH-sensing array with respect to a standard array.
+
+To estimate the size of the corresponding standard pH array composed of transistor with the same $W/L_{eff}$ a dummy rectangular pixel was imagined. The size of the rectangular structure including the pixel switch and substrate contact is $6 \times 15 = 90 \mu m^2$. The size of the hexagonal array is directly measured on a array by considering a square which encloses the whole array.
+\begin{table*}[h!]
+\centering
+\ra{1.3}
+\begin{tabular}{@{} l | c c c c @{}}
+\toprule
+ & 8x8 & 64x64 & 256x256 & 1024x1024 \\
+\midrule
+Hexagonal pixel array & -- & -- & -- & -- \\
+Standard pixel array & 5760 & 5529600 & 88473600 & 1415577600\\
+\bottomrule
+\end{tabular}
+\caption{Array area in $\mu m^2$ for different pixel density.}
+\label{Tab:scaling}
+\end{table*}
+
+In Table~\ref{Tab:scaling} are presented the possible evolutions of size for two array. According to these figures the size of both arrays are very similar. The hexagonal layout presents a small benefit in term of density. The difference results from the reduced utilization of substrate contact for the hexagonal pixel which should be seen as a result of the Honeycomb conjecture. However, because the two pixel do not present the same area it explains why the advantages of the hexagonal transistor in term of density are reduced.
+
+\section{Summary}
+In this chapter an exhaustive description of the system implementation was given. The respect of the specifications of the lab-on-chip design should help for forthcoming experimentation.
+
+Key blocks are the characterization array and the pH sensing array. The digital core helps to communicate and use the ADC to get digital data. The measurements on the characterization array were done externally but the selection of a transistor was done using the SPI interface.
+
+This system was run under simulations for specific situations to demonstrate the correct operations as well as giving a typical output for the system for a change of 10 mV in the pH voltage. The correct execution of the system was proven and can perform measurement on the chip. However, in cases of malfunction some backdoor solutions are still available to get data from the chip.
+
+From these results the system can be considered as operational to demonstrate the utilization of hexagonal transistor in pH-sensing through two different arrays. Now the whole design is ready to be tested on-chip in order to confirm the benefits of hexagonal transistors.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

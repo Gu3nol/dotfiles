@@ -1,0 +1,13 @@
+--
+--
+SOFTINCLUDE $UCDPRJDIR/.ukcds5/${UK_CDS_PREFIX}cds.lib 
+
+-- DEFINE analogLib $CDS_INST_DIR/tools/dfII/etc/cdslib/artist/analogLib
+DEFINE functional $CDS_INST_DIR/tools/dfII/etc/cdslib/artist/functional
+-- DEFINE basic $CDS_INST_DIR/tools/dfII/etc/cdslib/basic
+DEFINE US_8ths $CDS_INST_DIR/tools/dfII/etc/cdslib/sheets/US_8ths
+
+#Removed by ddDeleteObj: DEFINE DCVS_MUX /cal/homes/lallement/Documents/2A/ELEC221/projet/cadence/DCVS_MUX
+DEFINE DCVS_MUX /cal/homes/lallement/Documents/2A/ELEC221/projet/cadence/DCVS_MUX
+DEFINE CML_CORE65LPSVT /comelec/stkits/cmos065_comelec/CML_CORE65LPSVT/CADENCE/CDSOA
+

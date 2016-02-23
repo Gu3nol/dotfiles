@@ -1,0 +1,114 @@
+/*
+ * SUPELEC - Pierre LERAY & Vincent BUGAUT
+ */
+
+/***************************** Include Files *********************************/
+
+#include "xparameters.h"
+#include "xstatus.h"
+#include "xuartps.h"
+#include "xuartps_hw.h"
+
+/************************** Constant Definitions *****************************/
+
+#define UART_BASEADDR XPAR_PS7_UART_1_BASEADDR
+#define MEM_BASEADDR XPAR_PS7_DDR_0_S_AXI_BASEADDR
+
+#define Ninputs 6166
+
+/**************************** Type Definitions *******************************/
+
+/***************** Macros (Inline Functions) Definitions *********************/
+
+/************************** Function Prototypes ******************************/
+
+void file_to_mem(u32 *ptr_sram, u32 Nvectors);
+
+/************************** Variable Definitions *****************************/
+
+/*****************************************************************************/
+/**
+*
+* Function receive the file and store it in the memory
+*
+* @param	u32 *ptr_sram : Current pointer in the memory.
+*           u32 Nvectors
+*
+* @return	None.
+*
+* @note		None.
+*
+******************************************************************************/
+void file_to_mem(u32 *ptr_sram, u32 Nvectors)
+{
+	u32 var32;
+	u32 var32_tmp[4];
+	u8 var8;
+	u32 i;
+	u8 j;
+	u32 * ptr;
+    u32 Nwords = 16*Nvectors;
+
+	//xil_printf("\n Start of the reception \n\r");
+
+	ptr=ptr_sram;
+
+	// Reception of the bitstream (Sequence of 32 bits: 4 packets of 8 bits received from the UART, 1 packet of 32 bits stored in two times by the EMC)
+	for(i=0;i<Nwords/4;i++)
+	{
+		for (j=0;j<4;j++)
+		{
+			var32_tmp[j]=XUartPs_RecvByte(UART_BASEADDR);  // Reception from the UART
+		}
+
+	// The four bytes received from the UART are reassemble in a 32 bit packet
+		var32= (0xFF000000&(var32_tmp[2]<<24))|(0x00FF0000&(var32_tmp[3]<<16))|(0x0000FF00&(var32_tmp[0]<<8))|(0x000000FF&var32_tmp[1]);
+		*ptr = var32;
+		ptr++;
+	}
+
+	// End of the reception of the bitstream. An acknowledgment (Byte 57) is sent to the PC
+    var8=57;
+    XUartPs_SendByte(UART_BASEADDR, var8);
+
+	//xil_printf("\n\r End of the reception \n\r");
+	
+	return;
+} 
+
+/*****************************************************************************/
+/**
+*
+* Fonction main.
+*
+* @param	None.
+*
+* @return	int : Status
+*
+* @note		None.
+*
+******************************************************************************/
+int main(void)
+{
+	u32 *ptr_SRAM;
+	u32 *ptr_SRAM_read;
+	u32 *ptr_SRAM_write;
+
+	//xil_printf("\n\r********* Start *********\n\r");
+
+	//Pointers initialization
+	ptr_SRAM = (u32 *)MEM_BASEADDR;
+	ptr_SRAM_write = ptr_SRAM;
+	ptr_SRAM_read = ptr_SRAM;
+
+	//File reception
+	file_to_mem(ptr_SRAM_write,Ninputs);
+	ptr_SRAM_write = ptr_SRAM_write + 16*Ninputs;
+
+    //TODO: SW SVM
+
+	//xil_printf("\n\r********* End *********\n\r");
+
+	return XST_SUCCESS;
+}
+

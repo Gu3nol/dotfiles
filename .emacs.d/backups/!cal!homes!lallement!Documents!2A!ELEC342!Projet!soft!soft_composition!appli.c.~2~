@@ -1,0 +1,488 @@
+/**
+ *************************************************************
+ *
+ * @file   appli.c
+ * @brief  Exemple de génération de liste graphique
+ * @author Yves Mathieu (yves.mathieu@telecom-paristech.fr)
+ * @date   2012-05-01
+ *************************************************************
+*/
+
+//#define DEBUG 1
+#include <stdio.h>
+#include <stdlib.h>
+#include "composeur.h"
+#include "images/tpt.h"
+#include "images/cursor.h"
+#include "image.h"
+
+
+// Indice maximal des tuiles en X
+#define TX        20
+// Indice maximal des tuiles en Y
+#define TY        15
+// Largeur de l'image 640
+#define IMAGE_WIDTH    (TX*TILE_SIZE)
+// Hauteur de l'image 480
+#define IMAGE_HEIGHT   (TY*TILE_SIZE)
+// Niveau de gris du fond  (0 : noir , 255 = blanc)
+#define NG_FOND  200
+// Le nombre d'objets de la scène
+#define NB_OBJ 5
+
+// Conversion de constantes flottantes en virgule fixe LG_fp32
+#define to_LG_fp32(a) ((long int) (a * 65536.0))
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//// Les variables globales
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+LGScene_t     *p_scene ;                      // La scène a traiter
+LGPixel_t     *p_image ;                      // L'image a générer
+LGTuile_t     *p_liste_de_tuiles ;            // La liste des tuiles
+LGObj_t       table_des_objets[NB_OBJ] ;      // La table des objets
+LGSurface_t   *table_des_surfaces[NB_OBJ] ;   // La table des surfaces
+LGAttributs_t table_des_attributs[NB_OBJ] ;   // La table des attributs
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+////  Fonction de placement d'un objet dans la scène
+////  Les paramètres fournis sont ceux de la transformée inverse
+//////////////////////////////////////////////////////////////////////////////////////////////////
+// Indicateur de dépassement de taille de cache de surfaces. Utile pour le debug des transformations
+// Sans intéret pour le Hard...
+
+void  obj_inv_transform(
+                    int num_obj,
+                    LG_fp32       x0,
+                    LG_fp32       y0,
+                    LG_fp32       a_x,
+                    LG_fp32       a_y,
+                    LG_fp32       b_x,
+                    LG_fp32       b_y)
+{
+     LGObj_t *p_objet;
+     LGAttributs_t *p_attributs ;
+     LGSurface_t  *p_surfaces;
+     unsigned char row,col ;
+     signed int x00,x01,x10,x11,y00,y01,y10,y11,xmin,ymin,xmax,ymax,w,h ;
+
+     // Récupération des tables
+     p_objet = &table_des_objets[num_obj] ;
+     p_attributs = &table_des_attributs[num_obj];
+     p_surfaces = table_des_surfaces[num_obj] ;
+     LGSurface_t *p_surface ;
+
+     // Initialisation du test de dépasssement de taille de cache
+     char tile_cache_overflow ;
+     tile_cache_overflow = 0 ;
+
+     dbgprintf("\n--- nobj ---\n") ;
+     // sauvegarde des attributs
+     p_attributs->x0  = x0 ;
+     p_attributs->y0  = y0 ;
+     p_attributs->a_x = a_x ;
+     p_attributs->b_x = b_x ;
+     p_attributs->a_y = a_y ;
+     p_attributs->b_y = b_y ;
+     // calcul de la boite entourante
+     for(row=0;row<TY;row++) {
+         for(col=0;col<TX;col++) {
+             x00 = x0  +  TILE_SIZE*(a_x*col + b_x*row) ;
+             y00 = y0  +  TILE_SIZE*(a_y*col + b_y*row) ;
+             x01 = x00 + (TILE_SIZE-1)*a_x ;
+             y01 = y00 + (TILE_SIZE-1)*a_y ;
+             x10 = x00 + (TILE_SIZE-1)*b_x ;
+             y10 = y00 + (TILE_SIZE-1)*b_y ;
+             x11 = x00 + (TILE_SIZE-1)*(a_x+b_x);
+             y11 = y00 + (TILE_SIZE-1)*(a_y+b_y) ;
+             // calcul des sommets de la boite
+             xmin = (x00  < x01 ) ? x00  : x01 ;
+             xmin = (xmin < x10 ) ? xmin : x10 ;
+             xmin = (xmin < x11 ) ? xmin : x11 ;
+             xmax = (x00  > x01 ) ? x00  : x01 ;
+             xmax = (xmax > x10 ) ? xmax : x10 ;
+             xmax = (xmax > x11 ) ? xmax : x11 ;
+             ymin = (y00  < y01 ) ? y00  : y01 ;
+             ymin = (ymin < y10 ) ? ymin : y10 ;
+             ymin = (ymin < y11 ) ? ymin : y11 ;
+             ymax = (y00  > y01 ) ? y00  : y01 ;
+             ymax = (ymax > y10 ) ? ymax : y10 ;
+             ymax = (ymax > y11 ) ? ymax : y11 ;
+             // Ramené au pixel
+             xmin = xmin >> 16 ;
+             xmax = xmax >> 16 ;
+             ymin = ymin >> 16 ;
+             ymax = ymax >> 16 ;
+             // Ajout d'un pixel de bordure a droite pour les interpolations
+             xmax = xmax + 1 ;
+             ymax = ymax + 1 ;
+
+             // saturations sur les bords de la texture
+             if(xmin < 0) xmin = 0 ;
+             if(xmax > p_objet->largeur-1) xmax = p_objet->largeur - 1 ;
+             if(ymin < 0) ymin = 0 ;
+             if(ymax > p_objet->hauteur-1) ymax = p_objet->hauteur - 1 ;
+             w = xmax-xmin+1 ;
+             h = ymax-ymin+1 ;
+
+             // Test d'intersection avec l'image. On force un deltax negatif pour indiquer une surface
+             // qui n'impacte pas la texture
+             if(xmax < 0) w = -1 ;
+             if(ymax < 0) h = -1 ;
+             if(xmin > p_objet->largeur-1) w = -1 ;
+             if(ymin > p_objet->hauteur-1) h = -1 ;
+
+             // pointeur vers la surface dans
+             p_surface = p_surfaces+TX*row+col ;
+
+             if(w < 0 || h < 0) {
+                p_surface->w_texture = -1 ;
+             } else {
+               // Arrondis à des multiples de 4 pixels en direction x
+               xmin = 4*(xmin/4) ;
+               xmax = 4*(xmax/4) + 3 ;
+               w = xmax-xmin+1 ;
+
+               // test de dépassement de capacité dans la texture en cache
+               if(w >= 2*TILE_SIZE) {
+                   w= 2*TILE_SIZE-1 ;
+                   tile_cache_overflow = 1 ;
+               } ;
+               if(h >= 2*TILE_SIZE) {
+                   h = 2*TILE_SIZE-1 ;
+                   tile_cache_overflow = 1 ;
+               } ;
+
+               // Sauvegarde des attributs
+               p_surface->x_texture = xmin ;
+               p_surface->y_texture = ymin ;
+               p_surface->w_texture = w ;
+               p_surface->h_texture = h ;
+               p_surface->ox = (x00>>8) - (xmin<<8) ;
+               p_surface->oy = (y00>>8) - (ymin<<8) ;
+               dbgprintf("row,col %d,%d",row,col)  ;
+               dbgprintf(" box : %d %d %d %d\n",xmin,ymin,w,h)  ;
+             }
+         }
+     }
+     // Message de warning pour le dépassement de taille de cache
+     if(tile_cache_overflow == 1) {
+         printf("Attention, dépassement de taille de cache pour la transformation de l'objet %d\n",num_obj) ;
+     }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+////  Fonction de placement d'un objet dans la scène
+////  Les paramètres fournis sont:
+////       - le numero de l'objet
+////       - la position du coin (haut gauche) de l'objet dans l'image (résolution : le pixel)
+////       - un facteur de zoom sur l'objet (LG_fp32)
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void obj_place(
+              int num_obj,
+              short xi0,
+              short yi0,
+              LG_fp32 zoom
+              )
+{
+   // Calcul de l'inverse du facteur de zoom
+   long long zoom_inv  ;
+   zoom_inv = (1LL << 32) ;
+   zoom_inv = zoom_inv / (long long) zoom ;
+
+   // Calcul des paramètres effectifs de la transformation
+   LG_fp32       x0;
+   LG_fp32       y0;
+   LG_fp32       a_x;
+   LG_fp32       a_y;
+   LG_fp32       b_x;
+   LG_fp32       b_y;
+   x0 = -xi0 * (long) zoom_inv ;
+   y0 = -yi0 * (long) zoom_inv ;
+   a_x = (long) zoom_inv ;
+   a_y = 0 ;
+   b_x = 0 ;
+   b_y = (long) zoom_inv ;
+
+   // Application effective de la transformation inverse
+   obj_inv_transform(num_obj,x0,y0,a_x,a_y,b_x,b_y) ;
+   dbgprintf(" num_obj %d x0 %d y0 %d a_x %d a_y %d b_x %d b_y %d",num_obj,x0,y0,a_x,a_y,b_x,b_y) ;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+////  Fonction de placement d'un objet dans la scène. Permet de gérer translations, rotations et zoom
+////  de façon simple
+////  Les paramètres fournis sont:
+////       - le numero de l'objet
+////       - la position du coin (haut gauche) de l'objet dans l'image (résolution : le pixel)
+////       - la position du coin (bas droite) de l'objet dans l'image (résolution : le pixel)
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void obj_place_corners(
+              int num_obj,
+              short xi0,
+              short yi0,
+              short xi1,
+              short yi1
+              )
+{
+   // On récupère les dimensions de l'objet
+   unsigned short    Wt,Ht   ;
+   Wt = table_des_objets[num_obj].largeur ;
+   Ht = table_des_objets[num_obj].hauteur ;
+
+   // Calcul des paramêtres angulaires renormalisés par le zoom.
+   int denominateur ;
+   denominateur = (xi1-xi0)*(xi1-xi0) + (yi1-yi0)*(yi1-yi0) ;
+
+   // calcul intermédiaire sur 64 bit
+   long long int cos_ll ;
+   cos_ll = Wt*(xi1-xi0) + Ht*(yi1-yi0) ;
+   cos_ll = ((cos_ll << 32)/denominateur) >> 16 ;
+   long long int sin_ll ;
+   sin_ll = Ht*(xi1-xi0) - Wt*(yi1-yi0) ;
+   sin_ll = ((sin_ll << 32)/denominateur) >> 16 ;
+
+   // troncature et arrondi sur 32 bits.
+   LG_fp32 sin_l,cos_l ;
+   sin_l = (LG_fp32) sin_ll ;
+   cos_l = (LG_fp32) cos_ll ;
+
+   // Les paramètres de la transformation inverse à créer
+   LG_fp32       x0;
+   LG_fp32       y0;
+   LG_fp32       a_x;
+   LG_fp32       a_y;
+   LG_fp32       b_x;
+   LG_fp32       b_y;
+   x0 = -xi0 * cos_l + yi0 * sin_l ;
+   y0 = -xi0 * sin_l - yi0 * cos_l ;
+   a_x = cos_l ;
+   a_y = sin_l ;
+   b_x = -sin_l ;
+   b_y = cos_l ;
+
+   // Application effective de la transformation inverse
+   obj_inv_transform(num_obj,x0,y0,a_x,a_y,b_x,b_y) ;
+   dbgprintf(" num_obj %d Wt %d Ht %d x0 %d y0 %d a_x %d a_y %d b_x %d b_y %d",Wt,Ht,num_obj,x0,y0,a_x,a_y,b_x,b_y) ;
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+////  Fonction de mise à jour de la scène après déplacement des objets
+////  ATTENTION : la fonction proposée ici est très SIMPLISTE car basée sur un parcours
+////  exhaustif des tuiles et des objets. Cela risque de CHARGER TRES LOURDEMENT LE PROCESSEUR
+////  même pour un simple déplacement d'un curseur occupant quelques tuiles.
+////  Une fonction mieux écrite consisterait à faire d'abord une boucle sur les objets
+////  et détecter ceux qui ont bougé. Puis en disposant des anciens et nouveaux rectangles entourants de l'objet
+///// de ne traiter que les tuiles "différentes" (celles qui n'impactent plus les tuiles) et les nouvelles.
+///// Ainsi pour le déplacement d'un curseur d'une surface inférieure à une tuile, au pire seules 8 tuiles
+///// seraient mises à jour...
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void maj_scene()
+{
+    LGTuile_t *p_tuile ; // Pointeur vers une tuile
+    LGSurface_t *p_surface, *pn_surface ; // Pointeurs vers des surfaces
+    unsigned char row,col,obj,nobj ;
+    for(row=0;row<TY;row++) {
+       for(col=0;col<TX;col++) {
+           char trouve = 0 ;
+           dbgprintf("\nA Tuile %d %d \n",row,col) ;
+           p_tuile = p_liste_de_tuiles +TX*row+col ;
+           // recherche d'une première surface interceptant
+           for(obj=0;obj<NB_OBJ;obj++) {
+              p_surface = table_des_surfaces[obj]+TX*row+col ;
+              if(p_surface->w_texture > 0) {
+                dbgprintf(" obj %d w %d h %d",obj,p_surface->w_texture,p_surface->h_texture) ;
+                trouve = 1 ;
+                break ;
+              }
+           }
+           if (trouve) {
+             p_tuile->p_liste_de_surfaces = p_surface ;
+             for(nobj=obj+1;nobj<NB_OBJ;nobj++) {
+               pn_surface = table_des_surfaces[nobj]+TX*row+col ;
+               if(pn_surface->w_texture > 0) {
+                 dbgprintf(" obj %d w %d h %d",nobj,pn_surface->w_texture,pn_surface->h_texture) ;
+                 p_surface->p_surface_suivante = pn_surface ;
+                 p_surface = pn_surface  ;
+               }
+             }
+           }
+           dbgprintf("\n") ;
+        }
+    }
+
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+////   L'application principale
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+int main()
+{
+    LGTuile_t *p_tuile ; // Pointeur vers une tuile
+    LGSurface_t *p_surface;  // Pointeur vers une surface
+    unsigned char row,col,obj ;
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    // Phase d'initialisation générale des structures de données
+    // Réalisées une seule fois, ces initialisations ne sont pas sensées être "temps réel"
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    // Création de la liste des tuiles.
+    p_liste_de_tuiles = (LGTuile_t*) malloc(TX*TY*sizeof(LGTuile_t)) ;
+    for(row=0;row<TY;row++) {
+       for(col=0;col<TX;col++) {
+           p_tuile = p_liste_de_tuiles +TX*row+col ;
+           // intitialisation du descripteur de tuile
+           p_tuile->p_liste_de_surfaces = NULL ;
+           p_tuile->row = row ;
+           p_tuile->col = col ;
+           if (col==TX-1) {
+               if (row==TY-1) {
+                   p_tuile->p_tuile_suivante =  NULL ;
+               } else {
+                   p_tuile->p_tuile_suivante =  p_liste_de_tuiles+TX*(row+1) ;
+               }
+           } else {
+                  p_tuile->p_tuile_suivante =  p_liste_de_tuiles+TX*row+col+1 ;
+           }
+     }
+    }
+
+    // Allocation de l'espace necessaire à l'image générée
+    p_image = (LGPixel_t *) ( malloc(IMAGE_WIDTH*IMAGE_HEIGHT*sizeof(LGPixel_t))) ;
+
+    // Creation de la scene
+    p_scene = (LGScene_t *) malloc(sizeof(LGScene_t)) ;
+    p_scene->p_liste_de_tuiles = p_liste_de_tuiles ;
+    p_scene->p_image = p_image ;
+    p_scene->largeur = IMAGE_WIDTH;
+    p_scene->ng_fond = NG_FOND ; // Un niveau de gris du fond arbitraire
+
+    // Creation des objets de la scène
+    // La scène se réduit à 5 objets :
+    //   - une texture de grande taille (sensée représenter la video entrante)
+    //   - un logo telecom paristech (2 versions)
+    //   - un curseur utilisant le plan de masque pour découper la forme de l'objet (2 versions)
+    //   L'ordre de création corrrespond à l'ordre d'affichage
+
+    // Lecture du png
+    Image image_video ;
+    image_video.pixel = NULL ;
+    image_read(&image_video,"images/bbb.png") ;
+
+    // Création de l'objet correspondant
+    table_des_objets[0].p_texture = (LGPixel_t *) image_video.pixel ;
+    table_des_objets[0].p_masque  = (unsigned int *) NULL ;
+    table_des_objets[0].largeur   = image_video.width ;
+    table_des_objets[0].hauteur   = image_video.height ;
+    table_des_attributs[0].alpha = 255 ;
+    table_des_attributs[0].interpolation = 1 ;
+    table_des_surfaces[0] = (LGSurface_t*) malloc(TX*TY*sizeof(LGSurface_t)) ;
+
+    // Le Logo TPT
+    table_des_objets[1].p_texture = (LGPixel_t *) tpt_image ;
+    table_des_objets[1].p_masque  = (unsigned int *) NULL ;
+    table_des_objets[1].largeur   = tpt_width ;
+    table_des_objets[1].hauteur   = tpt_height ;
+    table_des_attributs[1].alpha = 255 ;
+    table_des_attributs[1].interpolation = 1 ;
+    table_des_surfaces[1] = (LGSurface_t*) malloc(TX*TY*sizeof(LGSurface_t)) ;
+
+    // Le Logo TPT (2eme version) sans interpolation
+    table_des_objets[2].p_texture = (LGPixel_t *) tpt_image ;
+    table_des_objets[2].p_masque  = (unsigned int *) NULL ;
+    table_des_objets[2].largeur   = tpt_width ;
+    table_des_objets[2].hauteur   = tpt_height ;
+    table_des_attributs[2].alpha = 255 ;
+    table_des_attributs[2].interpolation = 0 ;
+    table_des_surfaces[2] = (LGSurface_t*) malloc(TX*TY*sizeof(LGSurface_t)) ;
+
+    // Le curseur (avec masque) sans interpolation
+    table_des_objets[3].p_texture = (LGPixel_t *) cursor_image ;
+    table_des_objets[3].p_masque  = (unsigned int *) cursor_masque ;
+    table_des_objets[3].largeur   = cursor_width ;
+    table_des_objets[3].hauteur   = cursor_height ;
+    table_des_attributs[3].alpha = 255 ;
+    table_des_attributs[3].interpolation = 0 ;
+    table_des_surfaces[3] = (LGSurface_t*) malloc(TX*TY*sizeof(LGSurface_t)) ;
+
+    // Le curseur (avec masque) avec interpolation et semi transparent
+    table_des_objets[4].p_texture = (LGPixel_t *) cursor_image ;
+    table_des_objets[4].p_masque  = (unsigned int *) cursor_masque ;
+    table_des_objets[4].largeur   = cursor_width ;
+    table_des_objets[4].hauteur   = cursor_height ;
+    table_des_attributs[4].alpha = 100 ;
+    table_des_attributs[4].interpolation = 1 ;
+    table_des_surfaces[4] = (LGSurface_t*) malloc(TX*TY*sizeof(LGSurface_t)) ;
+
+
+
+    // On initialise les pointeurs vers les objets dans chaque tuile
+    for(obj=0;obj<NB_OBJ;obj++) {
+      for(row=0;row<TY;row++) {
+         for(col=0;col<TX;col++) {
+             p_surface = table_des_surfaces[obj]+TX*row+col ;
+             p_surface->p_obj = &table_des_objets[obj] ;
+             p_surface->p_attributs = &table_des_attributs[obj] ;
+             p_surface->p_surface_suivante = NULL ;
+         }
+      }
+    }
+
+   ////////////////////////////////////////////////////////////////////////////////////
+   // Phase de placement/déplacement  des objets et rendu
+   // Le déplacement des objets et le rendu doivent pouvoir être "Théoriquement" réalisés en temps réel
+   ////////////////////////////////////////////////////////////////////////////////////
+
+
+    // On "place" les objets dans la scène
+    // rappel des appels de fonction:
+    // obj_place_corners(obj_num, x_top_left,y_top_left, x_bottom_right, y_bottom_right)
+    // obj_place(obj_num, x_top_left,y_top_left, zoom_factor)
+
+    // on place la texture correspondant à la video
+    obj_place_corners(0,-100,300,700,100) ;
+    // on place le logo TPT avec interpolation
+    obj_place(1,300,100,to_LG_fp32(2.0)) ;
+    // on place le logo TPT sans interpolation
+    obj_place(2,120,300,to_LG_fp32(1.0)) ;
+    // on place le curseur avec interpolation et transparence
+    obj_place(4,50,100,to_LG_fp32(4.0)) ;
+    // on place le curseur sans interpolation
+    obj_place(3,400,300,to_LG_fp32(4.5)) ;
+    // On met à jour les listes chaînées dans les tuiles
+    maj_scene() ;
+
+
+    // Parcours de la scène pour le rendu
+    dbgprintf("\nComposeur \n") ;
+    composeur(p_scene) ;
+
+    // Sauvegarde de l'image
+    Image wimage ;
+    wimage.width = IMAGE_WIDTH ;
+    wimage.height = IMAGE_HEIGHT ;
+    wimage.pixel = (unsigned char *) p_image ;
+    image_write(&wimage,"appli0.png") ;
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    // génération d'une seconde image
+    // dans ce scénario, nous déplaçons un curseur de 30 vers le bas et à droite
+    //////////////////////////////////////////////////////////////////////////////////////
+    // on place le curseur sans interpolation
+    obj_place(3,370,270,to_LG_fp32(4.5)) ;
+    maj_scene() ;
+
+    // Parcours de la scène pour le rendu
+    dbgprintf("\nComposeur \n") ;
+    composeur(p_scene) ;   // TODO : donner un pointeur de la liste graphique au composeur. Utilisez les intéruptions.
+
+    return 0;
+}

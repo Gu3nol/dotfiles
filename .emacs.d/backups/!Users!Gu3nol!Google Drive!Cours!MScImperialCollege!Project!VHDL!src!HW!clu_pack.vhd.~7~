@@ -1,0 +1,36 @@
+---------------------------------------------------------
+-- Package for the Top level Control Logic Unit
+-- clu_pack.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is implemented on-chip using
+-- the Cadence Encounter tool
+
+-- It is developed for an 8x8 hexagonal pixel array
+-- and characterisation array
+--------------------------------------------------------
+
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+
+PACKAGE clu_pack IS
+  -- Alias
+  ALIAS sl IS std_logic;
+  ALIAS slv IS std_logic_vector;
+
+  ALIAS sg IS signed;
+  ALIAS unsg IS unsigned;
+
+  -- Constants definining commands from the host CPU to CLU using SPI
+  CONSTANT op_start : slv(1 DOWNTO 0) := "11";
+  CONSTANT op_stop  : slv(1 DOWNTO 0) := "01";
+  CONSTANT op_reset : slv(1 DOWNTO 0) := "10";
+
+  -- Constants definining commands from the CLU to the host CPU using SPI
+  CONSTANT st_rdy   : slv(1 DOWNTO 0) := "11";
+  CONSTANT st_wip   : slv(1 DOWNTO 0) := "01";
+  CONSTANT st_reset : slv(1 DOWNTO 0) := "10";
+
+END PACKAGE clu_pack;

@@ -1,0 +1,31 @@
+\documentclass{letter}
+\usepackage{hyperref}
+\signature{Gu\'enol\'e Lallement}
+\address{8 rue de Boissy \\ 91470 Forges-les-Bains \\ France}
+
+\longindentation=0pt
+\begin{document}
+
+\begin{letter}{Barclays Bank PLC \\ Leicester LE87 2BB\\ UK}
+\opening{Dear Sir or Madam,}
+
+I am currently the owner of a bank account at Barclays UK. However, I moved to France for an unlimited time and I would like to update my contact details. I cannot do it on-line as only a valid UK address can be entered.
+
+I have already sent a previous mail. This time I am including all the necessary proof of residence.
+
+Then, I am writing to you to give you my address using the enclosed form.
+
+Thank you for your time and consideration.
+
+I look forward to your reply.
+
+\closing{Regards,}
+
+\encl{Changes to customer address form.\newline Photocopy of French National ID Card with address.\newline Photocopy of bank statement with address.}
+
+\end{letter}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

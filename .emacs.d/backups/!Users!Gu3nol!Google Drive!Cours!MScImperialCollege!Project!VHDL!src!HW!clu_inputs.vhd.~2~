@@ -1,0 +1,11 @@
+---------------------------------------------------------
+-- Top level Control Logic Unit Input generation
+-- clu.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is used to generate the inputs for the
+-- CLU
+
+-- It is for TB purposed only
+--------------------------------------------------------

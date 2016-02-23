@@ -1,0 +1,8 @@
+/* init.c */
+
+#include "serial.h"
+
+extern char start_data, end_data,
+            start_bss, end_bss;
+
+/* Mise à zéro du .bss */

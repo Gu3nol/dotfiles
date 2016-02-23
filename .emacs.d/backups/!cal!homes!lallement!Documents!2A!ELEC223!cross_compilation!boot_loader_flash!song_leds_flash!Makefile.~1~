@@ -1,0 +1,39 @@
+# OPTION DE COMPILATION
+PREFIX   = arm-none-eabi-
+CC	     = $(PREFIX)gcc
+AS       = $(PREFIX)as
+OBJDUMP  = $(PREFIX)objdump
+OBJCOPY  = $(PREFIX)objcopy
+
+PRG      = song_leds
+
+LDSCRIPT = ldscript
+OFILES   = $(PRG).o serial.o init.o leds.o timer.o gpio.o buzzer.o crt0.o
+
+CFLAGS	 = -Wall -Wextra -Werror -O1 -g -nostdlib -std=gnu99
+LDFLAGS  = $(shell $(CC) -print-libgcc-file-name) -T
+BINFLAGS = --input-target=elf32-littlearm --output-target=binary
+
+all : $(PRG).elf $(PRG).bin
+
+compile : $(PRG).elf
+
+flash : $(PRG).bin
+	echo "L 0x0c200000" > /dev/ttyS0
+	cat $< > /dev/ttyS0
+
+go : flash
+	echo "G 0x0c200000" > /dev/ttyS0
+
+.PHONY : clean compile flash go
+
+# Production des fichiers binaires
+$(PRG).bin : $(PRG).elf
+	$(OBJCOPY) $(BINFLAGS) $< $@
+
+# Production des fichiers objets
+$(PRG).elf : $(OFILES) $(LDSCRIPT)
+	$(CC) $(CFLAGS) $(OFILES) $(LDFLAGS) $(LDSCRIPT) -o $@
+
+clean:
+	rm -f *.o *.elf *.lst *.bin

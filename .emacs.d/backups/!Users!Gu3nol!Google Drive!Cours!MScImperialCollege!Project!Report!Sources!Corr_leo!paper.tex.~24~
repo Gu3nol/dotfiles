@@ -1,0 +1,335 @@
+% *** MISC UTILITY PACKAGES ***
+\documentclass[9pt, conference]{IEEEtran}
+%
+\usepackage{ifpdf}
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+\usepackage[pdftex]{graphicx}
+\else
+\fi
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithmic}
+% *** ALIGNMENT PACKAGES ***
+%
+\usepackage{array}
+\usepackage{mdwmath}
+\usepackage{mdwtab}
+\usepackage{eqparbox}
+% *** SUBFIGURE PACKAGES ***
+\usepackage[tight,footnotesize]{subfigure}
+% \usepackage[caption=false]{caption}
+% \usepackage[font=footnotesize]{subfig}
+
+\usepackage{fixltx2e}
+\usepackage{stfloats}
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% *** VARIOUS PACKAGES ***
+\usepackage{upgreek}
+\usepackage{amssymb}
+\usepackage{sistyle}
+\usepackage{tabularx}
+\usepackage{csquotes}
+\usepackage{xcolor}
+\usepackage{chemist}
+\usepackage{gensymb}
+\usepackage{threeparttable}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{pifont}
+\usepackage{marvosym}
+\usepackage{float}
+
+% Package Natbib with Vancouver numerical style
+\usepackage[numbers, sort&compress]{natbib}
+
+% \overfullrule=2cm
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor linearity}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title and author
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Bio-inspired pH sensing using \\Ion Sensitive Field Effect Transistors}
+% author names and affiliations
+\author{\IEEEauthorblockN{Gu\'enol\'e Lallement\textsuperscript{*}, Pantelis Georgiou\textsuperscript{\textdagger} }
+  \IEEEauthorblockA{\textsuperscript{*}Department of Electrical and Electronic Engineering, \textsuperscript{\textdagger}Institute of Bio-medical Engineering\\
+    Imperial College London,\\
+    SW7 2BT, United Kingdom\\
+    Email: \{guenole.lallement14, pantelis\}@imperial.ac.uk}
+}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+  % \boldmath
+  In this paper, a CMOS hexagonal transistor structure is presented. The new design is applied in the context of genetic sequencing using Ion Sensitive Field Effect Transistors as pH-sensors. The main advantages of this transistor are the low parasitic drain and source area caused by the enclosed gate. The benefit in term of attenuation and Input Referred Noise have been investigated for two commercial CMOS processing: 0.18 and 0.35 $\mu m$.
+
+  A complete pH-sensing system with a characterization array is implemented in standard CMOS AMS 0.35 $\mu m$ as a proof of concept and has been sent for tape-out. No adaptation to the standard technology have been made to realize the structure.
+
+\end{abstract}
+\IEEEpeerreviewmaketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+Nowadays, thanks to the progress of biotechnology and sixty years after the discovery of DNA, the genetic code of many species has been decrypted. This work must insure the continuity toward the goal of ``the \$1,000 genome''.~\citep{RefWorks:127} With this aim, new strategies converge into the concept of Lab-On-Chip (LOC) which integrates chemical sensors into solid state platform. One of the currently used component is the ISFET which is able to perform pH measurements. However, they are not ideal components and present defects that need to be compensated to achieve effective measurements.
+
+Bio-electronic designers are looking to integrate more and more sensors on a space which is getting smaller. Nevertheless, Nature is full of fascinatingly organized forms and systems that can help to  make more efficient electronic systems. This is the case of the honeycomb which is the most compact structure existing. From this idea, some designers had the idea to conceive DNA microarrays with sensing wells presenting an hexagonal shape. It allows to minimize space and increase the density of sensors. Therefore, this work explores the possibility of the hexagonal structure adapted to pH-sensing. Investigations have shown that enclosed-gate transistor structures and especially hexagonal transistors present many advantages in term of density, speed and stray capacitances.
+
+This thesis presents a new implementation of ISFETs based on an hexagonal design. The characterization of these structures was made through simulations with the software suite Cadence Virtuoso in 0.18 $\mu m$ and 0.35 $\mu m$ technology. Finally, a complete prototype was made to perform future experiments. The system includes a characterization array and a sensing array of 64x64 pixels.
+
+It is the first time that such an hexagonal structure is applied directly to ISFETs and pH-sensing.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Extended CMOS ISFET model}
+The core of this work is to improve pH-based DNA micro-arrays. This section presents a well-known pH sensor: the Ion Sensitive Field Effect Transistor. (ISFET)
+
+\subsection{Overview}
+The ISFET transistor is a chemically sensitive device based on a FET transistors. Its behavior is very similar to MOSFETs with the difference that it depends on the ion concentration of the solution in contact with the gate of the terminal. The sensitivity to a chemical specie is due to the sensing membrane which replaces the polysicon gate and metal.~\citep{RefWorks:117} In the case of pH detection, the insulating membrane requires no extra proceeding. Indeed, hydrogen ions can bind to the standard passivation layer used on commercial CMOS technology, generally silicon nitride \chemform{Si_3N_4} or silicon oxynitride \chemform{SiO_xN_y}.~\citep{RefWorks:125}
+
+\subsection{Operation}
+In the simple case of a MOSFET transistor, the threshold voltage is given by Eq.~\ref{mosfet_vt}. The first term is the work function difference between the gate metal and the silicon, the second term reflects the accumulated charges in the oxide $Q_{ox}$, at the oxide-silicon interface $Q_{ss}$ and the depletion region $Q_{B}$, and the last term is related to the Fermi potential which depends on the doping concentration of the silicon.
+\begin{equation}
+  V_{th(MOSFET)} = \frac{\Phi_{m} - \Phi_{Si}}{q} - \frac{Q_{ox} + Q_{ss} + Q_{B}}{C_{ox}} + 2\Phi_{f}
+  \label{mosfet_vt}
+\end{equation}
+
+In the previous equation all terms are physical. Whereas, the expression of the ISFET threshold voltage can be described as a shift of the MOSFET threshold voltage due to the ions in solution (Eq.~\ref{isfet_vt}).
+\begin{equation}
+  V_{th(ISFET)} = V_{th(MOSFET)} + V_{chem}
+  \label{isfet_vt}
+\end{equation}
+
+As reported by~\citep{RefWorks:123} the chemically related terms $V_{chem}$ can be given using the reference electrode potential and the chemical potential related to pH. However, a more intuitive relation presented in Eq.~\ref{v_chem_2} is often preferred to describe the pH influence.
+\begin{equation}
+  V_{chem} = \gamma + 2.3\alpha U_{t}\ pH
+  \label{v_chem_2}
+\end{equation}
+
+This expression is derived from the Nerst equation; $U_{t}$ is the thermal voltage, $\gamma$ groups all the non-chemically related potentials and $\alpha \in [0,1]$ describes the deviation from the ideal Nerstian sensitivity.
+
+\subsection{Effect of the passivation capacitance }
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.115]{../Figs/Chap1/ISFET_model.png}
+  \caption{\scriptsize ISFET macromodel.~\citep{RefWorks:123}}
+  \label{Fig:ISFETmodel}
+\end{figure}
+
+The implementation in unmodified CMOS is possible by using the ``extended gate'' approach~\citep{RefWorks:139}. For this reason, the implementation of ISFET in CMOS results into the addition of a passivation capacitance at the gate of the FET. Two additional electrochemical capacitances (Gouy-Chapman and Helmholz capacitances) are also included in the ISFET macromodel as shown in Fig.~\ref{Fig:ISFETmodel}.
+
+Moreover, intrinsic and parasitic capacitances must be added to this model. The gate-source $C_{gs}$, gate-drain $C_{gd}$ and gate-bulk $C_{gb}$ capacitances are due to the overlapping conductive area between the gate-source, gate-drain and gate-bulk. Their value is mainly due to the gate area and the operating region of the transistor.~\citep{RefWorks:152}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.08]{../Figs/Chap2//ISFET_cap_para.png}
+  \caption{\scriptsize Reduced CMOS ISFET stack capacitor model.~\citep{RefWorks:124}}
+  \label{Fig:ISFET_cap_para}
+\end{figure}
+
+All these capacitances scale the gate voltage through a capacitive divider and modify the performance of the sensor.~\citep{RefWorks:124} The attenuation between the input signal and the gate is;
+\begin{equation}
+  \frac{V_{g}}{V_{in}} = G = \frac{C_{pass}}{C_{pass} + C_{gs}' + C_{gd} + C_{gb}}
+  \label{V_g_V_in}
+\end{equation}
+
+The two layers responsible of the value of the passivation capacitance are the passivation layer \chemform{Si_xN_y} and the insulating layer \chemform{SiO_2}. The overall passivation capacitance is approximately given by;
+\begin{equation}
+  \begin{aligned}
+    C_{pass} &=  W_{s}L_{s}\epsilon_{0}\ \frac{\epsilon_{Si0_{2}} \epsilon_{Si_{x}N_{y}}}{\epsilon_{Si0_{2}}t_{Si_{x}N_{y}} + \epsilon_{Si_{x}N_{y}}t_{Si0_{2}}}
+  \end{aligned}
+  \label{c_pass}
+\end{equation}
+where $\epsilon_{X}$ are the dielectric constants of the considered layer, $t_{X}$ the thickness of each layer, $W_{s}$ and $L_{s}$ the size of the top sensing surface.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Challenges of Enclosed Gate Transistors}
+It has been demonstrated that the hexagonal tilling is the densest way to arrange circles in two dimensions. In this idea, an hexagonal organization of ISFETs would be beneficial to improve the packing density of micro array. Moreover, hexagonal transistors are part of a category called enclosed-gate transistor (EGT) which presents interesting properties. Applied to ISFETs, these features could also improve the pH-detection.
+
+The main advantages of EGTs are the low parasitic drain and source capacitance caused by the small area. The matching properties of this structure have also been showed compared to standards transistors. Circle-type transistors (CGTs) would be an optimum solution as it ensures better properties such as speed and reduced strain capacitances yet they are not easy to implement and to pack in a large microarray. According to the honeycomb properties, the hexagonal structure seems to be a favorable compromise to bring the advantages of CGTs into pH-sequencing.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bio-inspired pH-sensor}
+\subsection{Proposed architecture}
+An hexagonal structure is derived from all the constraints and the specification. It is a trade-off between the respect of the design rules and the specifications of EGTs (only 45$\degree$ angle are allowed - Fig.~\ref{Fig:HEX_0_35}). Since no adaptation to the technology was made in order to realize the transistor we are not in the strict case of EGTs. Nonetheless for the benefit of this work the assumption about a continuous diffusion layer under the gate is done.
+
+The same analysis has been made for the standard AMS CMOS 0.18 $\mu m$ process to estimate the projection of hexagonal ISFETs for deeper sub-micron technology.
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\label{Fig:HEX_0_35}\includegraphics[width=0.20\textwidth]{../Figs/Chap3/Hex_0_35_small.png}}
+  \subfigure[]{\label{Fig:Hex_sch}\includegraphics[width=0.23\textwidth]{../Figs/Chap3/Hex_non_reg}}
+  \caption{\scriptsize Layout of the hexagonal transistor with its corresponding modelization.}
+  \label{Fig:Hex_model}
+\end{figure}
+
+\subsection{Modelization}
+A model of the proposed architecture is presented in Fig.~\ref{Fig:Hex_sch} with $L_1$ and $L_2$ are respectively the inner and outer length, $H_1$ the inner height and $H_2$ the outer height.
+
+The ratio $[W/L]_{eff}$ is approximated by integrating the I/V relationship over the total gate length of the transistor for an infinitesimal distance $dx$.~\citep{RefWorks:51}. The calculation is done when the voltage drop along the channel is linear \textit{i.e.:} $v_{gs} - v_{TH} = v_{ds}$
+
+\paragraph{For the sides 1 and 4}
+With respect to the source $(\forall x \in [L_1,L_2])$, the incremental voltage drop along the channel is given by;
+\begin{eqnarray}
+  v_{cs}(x) = \frac{v_{ds}(x-L_2)}{L_1-L_2}
+  \implies dv_{cs}(x) = \frac{v_{ds}}{L_1-L_2}dx
+\end{eqnarray}
+
+Moreover, the mobile channel charge determines the incremental resistance;
+\begin{eqnarray}
+  dR_{ds}(x) = \frac{1}{\mu C_{ox}(v_{gs}-V_{TH}-v_{cs}(x))}\ \left( \frac{dx}{x} \right )
+\end{eqnarray}
+
+The current through the channel is proportional to the voltage drop $dv_{cs}(x)$ across the incremental resistance $dR_{cs}(x)$, and by integrating over the total length $l_1$ of the transistor;
+\begin{alignat}{2}
+  i_{ds} = \frac{dv_{cs}(x)}{dR_{ds}(x)}
+  \implies i_{ds} = \frac{1}{ln\left[\frac{L_2}{L_1} \right ]}        \frac{\mu C_{ox}}{2}\  (v_{gs} - v_{TH})^2
+\end{alignat}
+
+\paragraph{For the others sides, 2,3 and 5,6}
+The same derivation is done by integrating over the total length $l_2$ of the transistor, so we obtain;
+\begin{alignat}{2}
+  &i_{ds}
+  &= \frac{1}{ln\left[\frac{H_2}{H_1} \right ]cos(45\degree)}        \frac{\mu C_{ox}}{2}\  (v_{gs} - v_{TH})^2
+\end{alignat}
+
+\paragraph{Finally,} when the six sides of the hexagon are taken into account, the current-voltage characteristic gives;
+\begin{equation}
+  \left [ \frac{W}{L} \right ] _{eff} = \left. 2 \middle / \left( ln \left [\frac{L_2}{L_1} \right ]\right ) \right. + \left. 4 \middle / \left( ln \left [\frac{H_2}{H_1} \right ] cos(45\degree) \right ) \right.
+  \label{WL_HEX_eff}
+\end{equation}
+
+\subsection{Pixel integration }
+ \begin{figure}[t]
+   \centering
+   \subfigure[0.35 $\mu m$ process]{\label{Fig:att_035}\includegraphics[width=0.5\textwidth]{../Figs/Chap3/att_035}}
+   \subfigure[0.18 $\mu m$ process]{\label{Fig:att_018}\includegraphics[width=0.5\textwidth]{../Figs/Chap3/att_018}}
+   \caption{\scriptsize Total attenuation between the input and the output of the pixel.}
+   \label{Fig:att}
+ \end{figure}
+
+
+
+To identify the behavior of the new device in the context of pH-sensing, a pixel architecture a corresponding test bench is presented.~\citep{RefWorks:124}
+
+
+\subsubsection{Pixel scheme}
+Since the maximum density integration of pH-sensor is desired, the implementation of the ISFET into a pixel is restricted to only two transistors as shown in Fig.~\ref{Fig:Pixel}. A source follower configuration tracks the pH variations through the potential of single floating gate ISFET and a single nMOS switch enables the output voltage readout. A command signal connected to a logic circuit is used to enable the pixel.
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\label{Fig:Pixel}\includegraphics[width=0.195\textwidth]{../Figs/Chap3/Pixel}}
+  \subfigure[]{\label{Fig:TB_Pixel}\includegraphics[width=0.28\textwidth]{../Figs/Chap3/TB_Pixel}}
+  \caption{\scriptsize Schematic of the pixel and the corresponding testbench.}
+  \label{Fig:Pixel_sch}
+\end{figure}
+
+
+
+\subsubsection{Test methodology}
+In an attempt to quantitatively evaluate the impact of the parasitic capacitance a test bench is introduced as in Fig.~\ref{Fig:TB_Pixel}. Various device's sizes and biasing current have been simulated to evaluate the impact of the geometry for different operating regions. The passivation capacitance effect is modeled by a capacitor $C_{pass}$ in series with the gate of the ISFET. The output voltage $V_{out}$ is read through a capacitive load of 3 pF. Lastly, the AC component $V_{in}$ is set to $0.2V_{pp} \ @100Hz$ whereas the DC component depends of the process power supply voltage.
+
+With the Eq.~\ref{c_pass} and the process node parameters, the resulting passivation capacitance can be calculated. The sensing area $W_sL_s$ is defined as the area of the smallest hexagonal transistor created in 0.35 $\mu m$. This value (39.78 $\mu m^2$) is kept constant for both nodes thought this investigation whereas the size $WL$ of the ISFET is a design parameter. Finally $C_{pass}$ is set to $900 aF$ for both processes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results and discussions}
+ \begin{figure}[t]
+   \centering
+   \subfigure[0.35 $\mu m$ process]{\label{Fig:SNR_035}\includegraphics[width=0.45\textwidth]{../Figs/Chap3/SNR_035}}
+   \subfigure[0.18 $\mu m$ process]{\label{Fig:SNR_018}\includegraphics[width=0.45\textwidth]{../Figs/Chap3/SNR_018}}
+   \caption{\scriptsize Total SNR/pH for the two node process.}
+   \label{Fig:att}
+ \end{figure}
+
+\subsection{Attenuation}
+To estimate the value of $\frac{V_{out}}{V_{in}}$ two AC attentions are calculated;
+\begin{itemize}
+\item $G = \frac{V_{g}}{V_{in}}$ represents the attenuation related to the capacitances.
+\item $A_{\nu} = \frac{V_{out}}{V_{g}}$ is the attenuation of the source follower. The biasing currents 1nA/10uA are for the weak/strong inversion.
+\end{itemize}
+
+Three different models of transistors are presented. \textit{Sch} refers to an ideal model which includes only the intrinsic capacitances of the standard ISFET. \textit{Std} refers to the standard transistor with its parasitic capacitances and \textit{Hex} corresponds to the hexagonal transistor with parasitic capacitances.
+
+The mixed effect of the two AC attenuation $A_{\nu} \times G$ between the input and the output is plotted in Fig.~\ref{Fig:att}. Ideally, if the gate-channel intrinsic and parasitic capacitances are negligible compared to $C_{pass}$ then $A_{v} \rightarrow 1$. However, the simulated results show that any input signal is significantly attenuated through the capacitive network described previously. In both operating regions, decreasing the length of the device significantly decreases the attenuation.
+
+For both $0.35 \mu m$ and $0.18 \mu m$ process a trend emerges showing a small difference in attenuation between the hexagonal and the standard transistor. Whereas the new structure exhibits characteristics close to an ideal transistor, the standard counterpart causes a larger attenuation of the input voltage at the gate. In addition this trend is increased when the feature size is reduced. The maximum difference in attenuation between hexagonal and standard devices is always measured for the smallest device in each process node.
+
+This observation can be justified because for technology scaling, smaller features are associated with smaller parasitic capacitances and therefore less attenuation. Similarly, when changing from one process to the an other one the difference between the two geometry increases, showing an impact more important on the output response. However, in this case, the difference between the ideal transistor and the hexagonal is also in expansion.
+
+\subsection{Input Referred Noise - SNR}
+In addition, the noise of the pixel is measured at the output. The Input Referred Noise is calculated using $V_{IRN} = \frac{V_{ORN}}{A_{\nu} \times G}$ , where $V_{IRN}$ is the IRN voltage and $V_{ORN}$ to the Total Output Noise.
+
+To assess%assess il te manque un s à la fin à chaque fois que tu utilises ce verbe% the performance of the device the Signal to Noise Ratio is used as shown in Eq.~\ref{Eq:SNR}. This parameter evaluates the insensitivity of the new hexagonal transistor to the parasitic noise. The evolution of this parameter is presented in Fig.~\ref{Fig:att} for a bandwidth from 0.1Hz to 100GHz.
+\begin{equation}
+  SNR = \frac{P_{in}}{P_{noise}} = 20.log\left ( \frac{V_{in}}{V_{IRN}} \right )
+  \label{Eq:SNR}
+\end{equation}
+To reflect the pH-sensing utilization of the pixel, $V_{in}$ is set to $59 mV/pH$ the ideal Nerstian sensitivity.
+
+The results obtained %show that ou alors obtain% that the hexagonal transistor and the technology scaling not only reduced the parasitic effects, %but also improve% it also improve%d comme reduceD% the noise robustness of the device compared to the rectangular transistor.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{On-chip system architecture}
+
+\subsection{Complete system design}
+A complete on-chip has been %was% developed to test, experiment and demonstrate the pixel behavior. The two main elements of the design are a pH-sensing and a characterization array as shown in Fig.~\ref{Fig:System}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.25]{../Figs/Chap4/System}
+  \caption{\scriptsize Block diagram of the complete system.}
+  \label{Fig:System}
+\end{figure}
+
+The system is both a proof of concept for the hexagonal transistor and a characterization system for experimental measurements. All the system is realized using the AMS $0.35 \mu m$ CMOS process.
+
+\subsection{CMOS fabricated prototype}
+To perform experiments on the hexagonal ISFET, the system was included for tape-out in July 2015. The digital blocks are %were% merged together and generated using the Cadence Encounter tool. An extended view of the chip layout as it was sent to the foundry is illustrated in Fig.~\ref{Fig:SystemLayout} with the main blocks highlighted. The total area occupied is approximately $400 \mu m^2$.
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.47]{../Figs/Chap4/Layout_array_system}
+  \caption{\scriptsize Layout of the whole system with extended view of the pH-sensing array.}
+  \label{Fig:SystemLayout}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+This preliminary investigation has presented a new transistor architecture based on hexagonal honeycomb for pH sensing applications. It explores the behavior of an hexagonal ISFET across device sizes with respect to a standard counterpart. A new pseudo-hexagonal layout is presented with a model to evaluate its key parameters. However some adaptations had to be done due to the design constraints of the technology used. A pixel based on this new transistor is detailed and tested for various sizes and processes. Simulation results indicate a small benefit for the new structure in term of attenuation, Input Referred Noise and SNR/pH. Since the results obtained through simulations have to be confirmed by experimentation a complete system with a pH-sensing array and a characterization array is presented. A prototype was realized in July 2015.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{thebibliography}{11 }
+
+\bibliographystyle{unsrtnat}
+\bibliography{../IEEEabrv,../misc,../isfets,../hexfet}
+
+
+% \end{thebibliography}
+
+% that's all folks
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

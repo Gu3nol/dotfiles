@@ -1,0 +1,90 @@
+-- Guénolé Lallement
+-- pix word cache
+-- VHDL & Logic Synthesis Coursework
+LIBRARY IEEE;
+LIBRARY WORK;
+
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+USE work.pix_cache_pak.ALL;
+
+ENTITY pix_word_cache IS
+  PORT(
+    clk, wen_all, reset, pw : IN  std_logic;
+    pixopin                 : IN  pixop_t;
+    pixnum                  : IN  std_logic_vector(3 DOWNTO 0);
+    store                   : OUT store_t;
+    is_same                 : OUT std_logic
+    );
+END pix_word_cache;
+
+
+ARCHITECTURE arch OF pix_word_cache IS
+  -- Intern signals
+  SIGNAL din1, dout1 : pixop_t;
+  SIGNAL ram         : store_t;
+  -- Alias
+  ALIAS usg IS unsigned;
+
+BEGIN
+  -- Change process
+  CHANGE : PROCESS(wen_all, pixopin, dout1, pw)
+  BEGIN
+    IF pw = '0' THEN
+      din1 <= same;
+    ELSE
+      din1 <= pixopin;
+    END IF;
+
+
+    IF wen_all = '0' THEN
+
+      -- The only possible cases for pixopin are same or invert
+      IF pixopin = same THEN
+        din1 <= dout1;
+      ELSIF pixopin = invert THEN
+        CASE dout1 IS
+          WHEN same   => din1 <= invert;
+          WHEN invert => din1 <= same;
+          WHEN black  => din1 <= white;
+          WHEN white  => din1 <= black;
+          WHEN OTHERS => NULL;
+        END CASE;
+      END IF;
+    ELSE
+      NULL;
+    END IF;
+  END PROCESS CHANGE;
+
+-- Combitional process
+  CP : PROCESS(pixnum, ram)
+  BEGIN
+    -- The output is always available
+    dout1   <= ram(to_integer(usg(pixnum)));
+    store   <= ram;
+    is_same <= '1';
+
+    -- Check if the ram data changes
+    FOR i IN ram'range LOOP
+      IF ram(i) /= same THEN
+        is_same <= '0';
+      END IF;
+    END LOOP;
+  END PROCESS CP;
+
+-- Registered process
+  RP : PROCESS(clk)
+  BEGIN
+    IF rising_edge(clk) THEN
+      -- Reset and WEN
+      IF wen_all = '1' OR reset = '1' THEN
+        ram <= (OTHERS => same);
+      END IF;
+
+      -- Writting
+      IF pw = '1' THEN
+        ram(to_integer(usg(pixnum))) <= din1;
+      END IF;
+    END IF;
+  END PROCESS RP;
+END ARCHITECTURE arch;

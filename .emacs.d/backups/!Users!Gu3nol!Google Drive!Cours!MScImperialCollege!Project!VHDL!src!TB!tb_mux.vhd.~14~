@@ -1,0 +1,69 @@
+---------------------------------------------------------
+-- Testbench for the Analog Mux
+-- tb_mux.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is for testing purpose
+
+-- It is developed for an 12 switches selector
+--------------------------------------------------------
+
+LIBRARY IEEE;
+
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+
+ENTITY tb_mux IS
+  PORT(
+    -- Columns/Row signals
+    anag_mux_test : OUT std_logic_vector(11 DOWNTO 0)
+    );
+END tb_mux;
+
+ARCHITECTURE behav OF tb_dec IS
+  -- Array coordinate
+  SIGNAL anag_coord : std_logic_vector(3 DOWNTO 0);
+
+
+  -- One hot decoder functions
+  FUNCTION anag_mux_num(anag_mux : std_logic_vector(3 DOWNTO 0)) RETURN integer IS
+    VARIABLE num : integer;
+  BEGIN
+    num := To_integer(unsigned(anag_mux(3 DOWNTO 0))-1);
+    RETURN num;
+  END FUNCTION anag_mux_num;
+
+BEGIN
+
+  -- Generate the outputs for the anag mux
+  anag_mux_output : PROCESS(anag_coord)
+  BEGIN
+    anag_mux_test <= (OTHERS => '0');
+    CASE anag_coord IS
+      WHEN "0000" =>
+        anag_mux_test <= (OTHERS => '0');
+      WHEN "1101" | "1110" | "1111" =>
+        NULL;
+      WHEN OTHERS =>
+        anag_mux_test(anag_mux_num(anag_coord)) <= '1';
+    END CASE;
+  END PROCESS anag_mux_output;
+
+  mux_coord_process : PROCESS
+  BEGIN
+    WAIT FOR 500 ns;
+    anag_coord <= (OTHERS => '0');
+
+    FOR i IN 0 TO 15 LOOP
+      WAIT FOR 1 us;
+      anag_coord <= std_logic_vector(to_unsigned(i, anag_coord'length));
+    END LOOP;
+
+    REPORT "All tests finished OK, terminating with failure ASSERT."
+      SEVERITY failure;
+
+
+  END PROCESS mux_coord_process;
+
+END behav;

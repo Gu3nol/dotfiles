@@ -1,0 +1,21 @@
+\renewcommand{\baselinestretch}{1.5}
+\chapter{VHDL and SystemVerilog implementation}
+\label{App:VHDLandSV}
+
+
+\inputminted[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+%bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]{vhdl}{clu.vhd}
+
+
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

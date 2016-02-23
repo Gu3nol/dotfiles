@@ -1,0 +1,43 @@
+/*
+ * =============================================================================
+ *
+ *       Filename:  video_in.cpp
+ *
+ * =============================================================================
+ */
+
+module video_in (
+                 input               signal_clk,
+                 input               pixel_clk,
+                 input               signal_resetn,
+                 input               frame_valid,
+                 input               line_valid,
+                 input               pixel_in,
+                 output              p_int,
+                 // WB slave signal
+                 input logic [31:0]  p_wb_slave_DAT_I,
+                 output logic [31:0] p_wb_slave_DAT_O,
+                 input logic [31:0]  p_wb_slave_ADR_I,
+                 output logic        p_wb_slave_ACK_O,
+                 input               p_wb_slave_CYC_I,
+                 output              p_wb_slave_ERR_O,
+                 input               p_wb_slave_LOCK_I,
+                 output              p_wb_slave_RTY_O,
+                 input [3:0]         p_wb_slave_SEL_I,
+                 input               p_wb_slave_STB_I,
+                 input               p_wb_slave_WE_I,
+                 // WB master signal
+                 output logic [31:0] p_wb_master_DAT_O,
+                 input logic [31:0]  p_wb_master_DAT_I,
+                 output logic [31:0] p_wb_master_ADR_O,
+                 input logic         p_wb_master_ACK_I,
+                 output              p_wb_master_CYC_O,
+                 input               p_wb_master_ERR_I,
+                 output              p_wb_master_LOCK_O,
+                 input               p_wb_master_RTY_I,
+                 output [3:0]        p_wb_master_SEL_O,
+                 output              p_wb_master_STB_O,
+                 output              p_wb_master_WE_O);
+
+
+endmodule

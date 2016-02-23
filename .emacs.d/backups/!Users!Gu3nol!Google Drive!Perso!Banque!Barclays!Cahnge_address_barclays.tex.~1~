@@ -1,0 +1,23 @@
+\documentclass[fontsize=12pt, paper=a4]{scrlttr2}
+
+% Dont forget to read the KOMA-Script documentation, scrguien.pdf
+
+\setkomavar{fromname}{Gu\'enol\'e Lallement} % your name
+\setkomavar{fromaddress}{8 rue de Boissy \\ 91470 Forges-les-Bains \\ France}
+
+\setkomavar{signature}{Gu\'enol\'e Lallement} % printed after the \closing
+\renewcommand{\raggedsignature}{\raggedright} % make the signature ragged right
+
+\setkomavar{subject}{} % subject of the letter
+
+\begin{document}
+\begin{letter}{Name and \\ Address \\ of \\ Recipient}
+
+\opening{}  % eg. Hello
+
+
+
+\closing{Kind regards,} %eg. Regards
+
+\end{letter}
+\end{document}

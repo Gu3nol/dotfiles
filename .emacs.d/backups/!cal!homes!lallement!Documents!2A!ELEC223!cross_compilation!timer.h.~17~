@@ -1,0 +1,29 @@
+#ifndef TIMER_H
+#define TIMER_H
+
+#include <stdint.h>
+
+#define ON 1
+#define OFF 0
+
+/* Définition de la fréquence */
+#define PRESCALER(frequency) (66e6/frequency*2-1)
+
+/* Configuration de l'Autoreload */
+#define ONE_SHOT 0
+#define INTERVAL_MODE 1
+
+/* Configuration du reload Manuel */
+#define NO_OPERATION 0
+#define UPDATE 1
+
+void timer_frequency(uint8_t timer_number, uint8_t frequency);
+void timer_count(uint8_t timer_number, uint16_t value);
+uint32_t get_timer(uint8_t timer_number);
+void timer_start(uint8_t timer_number);
+void timer_stop(uint8_t timer_number);
+void timer_manuel_reload(uint8_t timer_number, uint8_t value);
+void timer_auto_reload(uint8_t timer_number, uint8_t value);
+void timer_set(uint8_t timer_number, uint16_t value);
+
+#endif

@@ -1,0 +1,242 @@
+\documentclass[conference]{IEEEtran}
+% *** MISC UTILITY PACKAGES ***
+%
+\usepackage{ifpdf}
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithmic}
+% *** ALIGNMENT PACKAGES ***
+%
+\usepackage{array}
+\usepackage{mdwmath}
+\usepackage{mdwtab}
+\usepackage{eqparbox}
+% *** SUBFIGURE PACKAGES ***
+\usepackage[tight,footnotesize]{subfigure}
+%\usepackage[caption=false]{caption}
+%\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+% *** FLOAT PACKAGES ***
+%
+\usepackage{fixltx2e}
+\usepackage{stfloats}
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% *** VARIOUS PACKAGES ***
+\usepackage{upgreek}
+\usepackage{amssymb}
+\usepackage{sistyle}
+\usepackage{tabularx}
+\usepackage{csquotes}
+
+%\overfullrule=2cm
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor linearity}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            Document                                                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                           Title and author                                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Full Custom Design of a Digital-to-Analogue Converter in 0.18 $\upmu$m CMOS}
+% author names and affiliations
+\author{\IEEEauthorblockN{Gu\'enol\'e Lallement }
+\IEEEauthorblockA{Department of Electrical and Electronic Engineering\\
+Imperial College London,\\
+SW7 2BT, UK\\
+Email: guenole.lallement14@imperial.ac.uk -- CID: 009987468}
+}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            Abstract                                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+%\boldmath
+
+Abstract here
+
+\end{abstract}
+\IEEEpeerreviewmaketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            Introduction                                                                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+Introduction
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                             System Overview                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Ion Sensitive Field Effect Transistor}
+
+blablab
+
+
+\subsection{Operation}
+
+blablabla
+
+\subsection{Passivation capacitznce }
+
+
+blablabla
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                       Circuit Implementation                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Circuit Implementation}
+This section describes the circuit implementation derived from the system overview.
+
+\subsection{Serial-to-Parallel Converter}
+
+
+\subsection{Charge-Scaling DAC}
+
+\subsubsection{Capacitors and Attenuation Capacitor}
+\subsubsection{OpAmp}
+
+\subsubsection{Biasing circuit}
+
+\subsection{Other sub-systems}
+\subsubsection{Output clock}
+\subsubsection{Voltage references}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            Simulated Results                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simulated Results}
+\subsection{Test Strategy}
+To verify the correct operation of the circuit/sub blocks and show that they work as expected different test benches have been used. The main one is presented of figure \ref{TB_GLOBAL_DAC}. This one contains all the power supply required by the DAC to operate and a load to respect the specifications. A ready-to-use veriloga module has been provided to generate input data on \textit{SI} and the signal \textit{EN} at the specified frequency (cf. table\ref{technical_spec}). The module also produces reference output through \textit{VOUTREF} and \textit{CLK10MREF}.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.22]{illustrations/TB_GLOBAL_DAC.png}
+\caption{\label{TB_GLOBAL_DAC}Main test bench of the DAC}
+\end{figure}
+
+\subsection{Simulated Results and Achieved Specifications}
+From the output characteristic of the DAC in figure \ref{DAC_OUT} we are able to estimate the relative error of the system.
+\begin{center}
+$VOUT = \frac{CODE[7:0]}{255} + 0.4$
+\end{center}
+\begin{center}
+$ERR_{rel} = \frac{|VOUT_{ideal} - VOUT_{out}|}{VOUT_{ideal}}$
+\end{center}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.24]{illustrations/DAC_OUT.png}
+\caption{\label{DAC_OUT} Input/Output characteristic for the DAC}
+\end{figure}
+
+Table \ref{technical_spec} presents all the specifications extracted from the simulation and compared to the target specifications.
+\begin{table}[!ht]
+% increase table row spacing, adjust to taste
+\renewcommand{\arraystretch}{1.3}
+\caption{Technical specifications}
+\label{technical_spec}
+\centering
+\begin{tabular}{p{0.85cm}  p{2cm}  p{1.1cm}  p{1.5cm}  p{1cm}}
+\hline
+Name & Specifications & Targeted value & Simulated value & Units\\
+\hline
+Area & Total silicon area & $\leqslant$ 1 & 0.045 & mm$^{2}$\\
+
+%VDD & Power supply & 1.8 & 1.8 & V\\
+
+$P_{diss} $  & Power dissipation & $\leqslant$ 10 & $\leqslant$ 0.5 & mW\\
+
+$f_{clk} $  & Output clock frequency & 10 & 10 $\pm$ 0.01\%  & MHz\\
+
+$f_{s} $  & Conversion rate & 10 & 10  & kHz\\
+
+R  & Output voltage range & 0.4 - 1.4 & 0.4 - 1.4  & V\\
+
+$Z_{l} $  & Load impedance for VOUT & 10 // 10 & 10 // 10  & k$\ohm$ // pF \\
+
+$ER_{rel} $  & Relative error & $\leqslant$ 1.5 & $\leqslant$ 0.04  & $\%$ \\
+
+INL  & Integral Non Linearity & $\leqslant$ 1/2 & $\leqslant$ 0.001 & LSB \\
+
+DNL  & Differential Non Linearity & $\leqslant$ 1/2 & $\leqslant$ 0.03 & LSB \\
+\hline
+\end{tabular}
+\end{table}
+
+The final proposed design succeeded to beat all the targeted technical specifications with $\leqslant$ 0.04 \% of relative error, a power consumption of $\leqslant$ 0.5 mW, and a possible silicon area of implementation of 0.045 mm$^{2}$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            Realisation                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Realisation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            Conclusion                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                            Reference section                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{11 }
+
+%1
+ \bibitem{ref:Pelgrom}
+M.J.M.~Pelgrom, \emph{Analog-to-Digital Conversion},
+Dordrecht : Springer, 2010.
+
+\end{thebibliography}
+
+% that's all folks
+\end{document}

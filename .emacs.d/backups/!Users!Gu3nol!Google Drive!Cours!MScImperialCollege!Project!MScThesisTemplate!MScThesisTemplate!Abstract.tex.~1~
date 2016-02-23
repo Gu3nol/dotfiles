@@ -1,0 +1,14 @@
+\renewcommand{\baselinestretch}{1.5}
+\chapter{Abstract}
+\renewcommand{\baselinestretch}{\mystretch}
+
+%\setlength{\parindent}{2em}
+
+The abstract is written here. This should concisely state the main aim of the work and the achievements.
+
+
+
+
+
+
+

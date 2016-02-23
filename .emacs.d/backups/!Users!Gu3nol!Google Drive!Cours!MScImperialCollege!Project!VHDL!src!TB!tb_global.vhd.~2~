@@ -1,0 +1,19 @@
+---------------------------------------------------------
+-- Top level Control Logic Unit
+-- clu.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is implemented on-chip using
+-- the Cadence Encounter tool
+
+-- It is developed for an 8x8 hexagonal pixel array
+-- and characterisation array
+--------------------------------------------------------
+
+LIBRARY IEEE;
+
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+USE work.clu_pack.ALL;
+USE work.ALL;

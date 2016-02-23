@@ -1,0 +1,8 @@
+/* init.c */
+
+extern
+
+int init(void) {
+
+
+}

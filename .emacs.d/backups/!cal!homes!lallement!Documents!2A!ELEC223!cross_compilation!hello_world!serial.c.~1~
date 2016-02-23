@@ -1,0 +1,44 @@
+/* serial.c */
+
+#include "serial.h"
+#include "port.h"
+#include "timer.h"
+#include "utils.h"
+
+/*********************************
+ * Configuration du port série   *
+ *********************************/
+void serial_init() {
+  UBRDIV0 = 0x23;
+  UCNO0 = 0x5;
+  ULCON0 = 0x3;
+  UFCON0 = 0xf1;
+}
+
+/*********************************
+ * Reception/Envoie de caractère *
+ *********************************/
+
+void serial_putc(char c) {
+  while(!(UTRSTAT0 & (1<<1))); // On test le bit 1 de UTRSTAT0 pour transmettre
+  UTXH0 = c;
+}
+
+void serial_puts(const char* c) {
+  while (*c) serial_putc(*c++);
+}
+
+char serial_getc(void) {
+  while(!(UTRSTAT0 & (1<<0))); // On test le bit 1 de UTRSTAT0 pour recevoir
+  return URXH0;
+}
+
+signed char serial_timer_getc(uint8_t timer_number, uint16_t value) {
+  timer_set_s(timer_number, value, 1);
+  timer_start(timer_number);
+
+  while(!timer_get(timer_number));        // On doit attendre que le compteur prenne la bonne valeur
+  while(!(UTRSTAT0 & (1<<0)) && TCNTO(timer_number));
+
+  return (UTRSTAT0 & (1<<0)) ? URXH0 : -1;
+}

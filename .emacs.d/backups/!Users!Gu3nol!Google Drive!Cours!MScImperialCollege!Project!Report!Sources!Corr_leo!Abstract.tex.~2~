@@ -1,0 +1,12 @@
+\renewcommand{\baselinestretch}{1.5}
+\chapter{Abstract}
+\renewcommand{\baselinestretch}{\mystretch}
+
+%\setlength{\parindent}{2em}
+
+Recent developments in the field of DNA sequencing systems and the completion of the Human Genome project in 2003 have identified the need to reach a \$1,000 genome. The work presented in this thesis engages the design of a novel CMOS hexagonal transistor as a pH-sensor. This new architecture is applied in the context of DNA microarrays using Ion Sensitive Field Effect Transistors as pH-sensors. The idea of the hexagon comes from the honeycomb and its properties. The main advantages of this transistor structure are the low parasitic drain and source area caused by the enclosed gate and the small perimeter. The benefit in term of attenuation and Input Referred Noise %were% have been investigated for two commercial CMOS processes: 0.18 and 0.35 $\mu m$. The simulation results obtained with Cadence Spectre show that the hexagonal transistor present%s% a behavior close to an ideal transistor. In extension the choices %pas de s% of hexagonal transistor over regular rectangular structures in term of parasitics capacitances, size and area are highlighted. Lastly, the impact of the geometry and the technology scaling are evaluated in a pixel architecture. A complete pH-sensing system with a characterization array is implemented in standard CMOS AMS 0.35 $\mu m$ as a proof of concept and %was% has been sent for tape-out. No adaptation to the standard techlogy %technology ?% have been made to realize the structure.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

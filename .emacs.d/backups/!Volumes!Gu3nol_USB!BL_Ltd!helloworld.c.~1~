@@ -1,0 +1,215 @@
+/*
+ *  ADSD Coursework
+ *  Authors: Guénolé Lallement & Vincent Bugaut
+ */
+
+#include <stdio.h>
+#include "platform.h"
+
+#include <stdlib.h> // Standard C functions, e.g. exit()
+#include <stdbool.h> // Provides a Boolean data type for ANSI/ISO-C
+#include "xparameters.h" // Parameter definitions for processor peripherals
+#include "xscugic.h" // Processor interrupt controller device driver
+#include "xdotproduct.h" // Hardware Accelerator Driver
+#include "xscutimer.h" // Timer Driver
+
+#define N 10
+#define TIMER_LOAD_VALUE 0xFFFFFFFF
+
+XDotproduct HlsMacc; // HLS macc HW instance
+XScuGic ScuGic; //Interrupt Controller Instance
+XScuTimer ScuTimer; // Timer
+
+int timer_init(XScuTimer *scuTimerPtr)
+{
+	XScuTimer_Config *cfgPtr;
+	int status;
+	cfgPtr = XScuTimer_LookupConfig(XPAR_PS7_SCUTIMER_0_DEVICE_ID);
+	if (!cfgPtr) {
+		print("ERROR: Lookup of timer configuration failed.\n\r");
+		return XST_FAILURE;
+	}
+	status = XScuTimer_CfgInitialize(scuTimerPtr,cfgPtr,cfgPtr->BaseAddr);
+	if (status != XST_SUCCESS) {
+		print("ERROR: Could not initialize timer.\n\r");
+		return XST_FAILURE;
+	}
+	return status;
+	status = XScuTimer_SelfTest(scuTimerPtr);
+	if (status != XST_SUCCESS) {
+		print("ERROR: Self Test of the timer failed.\n\r");
+		return XST_FAILURE;
+	}
+	return status;
+}
+
+volatile static int RunHlsMacc = 0;
+volatile static int ResultAvailHlsMacc = 0;
+
+int hls_macc_init(XDotproduct *hls_maccPtr)
+{
+	XDotproduct_Config *cfgPtr;
+	int status;
+	cfgPtr = XDotproduct_LookupConfig(XPAR_XDOTPRODUCT_0_DEVICE_ID);
+	if (!cfgPtr) {
+		print("ERROR: Lookup of accelerator configuration failed.\n\r");
+		return XST_FAILURE;
+	}
+	status = XDotproduct_CfgInitialize(hls_maccPtr, cfgPtr);
+	if (status != XST_SUCCESS) {
+		print("ERROR: Could not initialize accelerator.\n\r");
+		return XST_FAILURE;
+	}
+	return status;
+}
+
+void hls_macc_start(void *InstancePtr){
+	XDotproduct *pAccelerator = (XDotproduct *)InstancePtr;
+	XDotproduct_InterruptEnable(pAccelerator,1);
+	XDotproduct_InterruptGlobalEnable(pAccelerator);
+	XDotproduct_Start(pAccelerator);
+}
+
+void hls_macc_isr(void *InstancePtr){
+	XDotproduct *pAccelerator = (XDotproduct *)InstancePtr;
+	XDotproduct_InterruptGlobalDisable(pAccelerator); //Disable the global interrupt
+	XDotproduct_InterruptDisable(pAccelerator,0xffffffff); //Disable the local interrupt
+	XDotproduct_InterruptClear(pAccelerator,1); // Clear the local interrupt
+	ResultAvailHlsMacc = 1;
+	if(RunHlsMacc){
+		hls_macc_start(pAccelerator); // Restart the core if it should run again
+	}
+}
+
+
+int setup_interrupt() //This functions sets up the interrupt on the ARM
+{
+	int result;
+	XScuGic_Config *pCfg = XScuGic_LookupConfig(XPAR_SCUGIC_SINGLE_DEVICE_ID);
+	if (pCfg == NULL){
+		print("Interrupt Configuration Lookup Failed\n\r");
+		return XST_FAILURE;
+	}
+	result = XScuGic_CfgInitialize(&ScuGic,pCfg,pCfg->CpuBaseAddress);
+	if(result != XST_SUCCESS){
+		return result;
+	}
+	// self-test
+	result = XScuGic_SelfTest(&ScuGic);
+	if(result != XST_SUCCESS){
+		return result;
+	}
+	// Initialize the exception handler
+	Xil_ExceptionInit();
+	// Register the exception handler
+	//print("Register the exception handler\n\r");
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,(Xil_ExceptionHandler)XScuGic_InterruptHandler,&ScuGic);
+	//Enable the exception handler
+	Xil_ExceptionEnable();
+	// Connect the Adder ISR to the exception table
+	//print("Connect the Adder ISR to the Exception handler table\n\r");
+	result = XScuGic_Connect(&ScuGic,XPAR_FABRIC_DOTPRODUCT_0_INTERRUPT_INTR,(Xil_InterruptHandler)hls_macc_isr,&HlsMacc);
+	if(result != XST_SUCCESS){
+		return result;
+	}
+	//print("Enable the Adder ISR\n\r");
+	XScuGic_Enable(&ScuGic,XPAR_FABRIC_DOTPRODUCT_0_INTERRUPT_INTR);
+	return XST_SUCCESS;
+}
+
+void sw_macc(int x[], int y[], int *output)
+{
+	static int acc;
+	int i;
+	acc=0;
+	  for (i = 0; i < N; i++) {
+		acc += x[i]*y[i];
+	  }
+	  *output=acc;
+}
+
+int main()
+{
+	print("Program to test communication with HLS MACC peripheral in PL\n\r");
+	// Generation of random input values for the computation of the sample
+	int i;
+	int x[N];
+	int y[N];
+	for (i=0;i<N;i++) {
+		x[i]= rand();
+		y[i]= rand();
+	}
+	int res_hw;
+	int res_sw;
+	int time_hw;
+	int time_sw;
+	int status;
+	//Setup the timer
+	status = timer_init(&ScuTimer);
+	if(status != XST_SUCCESS){
+		print("HLS peripheral setup failed\n\r");
+		exit(-1);
+	}
+	//Setup the hardware accelerator
+	status = hls_macc_init(&HlsMacc);
+	if(status != XST_SUCCESS){
+		print("HLS peripheral setup failed\n\r");
+		exit(-1);
+	}
+	//Setup the interrupt
+	status = setup_interrupt();
+	if(status != XST_SUCCESS){
+		print("Interrupt setup failed\n\r");
+		exit(-1);
+	}
+	//Load and start the timer
+	XScuTimer_LoadTimer(&ScuTimer,TIMER_LOAD_VALUE);
+	XScuTimer_Start(&ScuTimer);
+	//set the input parameters of the HLS block
+	for (i=0;i<N;i++) {
+	XDotproduct_WriteReg(XPAR_DOTPRODUCT_0_S_AXI_AXILITES_BASEADDR,XDOTPRODUCT_AXILITES_ADDR_X_0_DATA+i*8,x[i]);
+	XDotproduct_WriteReg(XPAR_DOTPRODUCT_0_S_AXI_AXILITES_BASEADDR,XDOTPRODUCT_AXILITES_ADDR_Y_0_DATA+i*8,y[i]);
+	}
+	time_hw = TIMER_LOAD_VALUE - XScuTimer_GetCounterValue(&ScuTimer);
+	/*if (XDotproduct_IsReady(&HlsMacc))
+		print("HLS peripheral is ready. Starting... ");
+	else {
+		print("!!! HLS peripheral is not ready! Exiting...\n\r");
+		exit(-1);
+	}*/
+	if (1) { // use interrupt
+		hls_macc_start(&HlsMacc);
+		while(!ResultAvailHlsMacc); // spin
+		res_hw = XDotproduct_Get_output_r(&HlsMacc);
+		XScuTimer_Stop(&ScuTimer); // TEST
+		//time_hw = TIMER_LOAD_VALUE - XScuTimer_GetCounterValue(&ScuTimer); // TEST
+		print("Interrupt received from HLS HW.\n\r");
+	} else { // Simple non-interrupt driven test
+		XDotproduct_Start(&HlsMacc);
+		do {
+		res_hw = XDotproduct_Get_output_r(&HlsMacc);
+		XScuTimer_Stop(&ScuTimer); // TEST
+		time_hw = TIMER_LOAD_VALUE - XScuTimer_GetCounterValue(&ScuTimer); // TEST
+		} while (!XDotproduct_IsReady(&HlsMacc));
+		print("Detected HLS peripheral complete. Result received.\n\r");
+	}
+	//Load and start the timer
+	XScuTimer_LoadTimer(&ScuTimer,TIMER_LOAD_VALUE);
+	XScuTimer_Start(&ScuTimer);
+	//call the software version of the function
+	sw_macc(x, y, &res_sw);
+	XScuTimer_Stop(&ScuTimer); // TEST
+	time_sw = TIMER_LOAD_VALUE - XScuTimer_GetCounterValue(&ScuTimer); // TEST
+	printf("Result from HW: %d; Result from SW: %d\n\r", res_hw, res_sw);
+	printf("Time for HW: %u; Time for SW: %u\n\r", time_hw, time_sw);
+	if (res_hw == res_sw) {
+		print("*** Results match ***\n\r");
+		status = 0;
+	}
+	else {
+		print("!!! MISMATCH !!!\n\r");
+		status = -1;
+	}
+	cleanup_platform();
+	return status;
+}

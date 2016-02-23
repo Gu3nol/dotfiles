@@ -1,0 +1,62 @@
+#ifndef APPLI_H
+#define APPLI_H
+
+// Indice maximal des tuiles en X
+#define TX        20
+// Indice maximal des tuiles en Y
+#define TY        15
+// Taille maximale de la tuile
+#define TILE_SIZE 32
+// Largeur de l'image 640
+#define IMAGE_WIDTH    (TX*TILE_SIZE)
+// Hauteur de l'image 480
+#define IMAGE_HEIGHT   (TY*TILE_SIZE)
+// Niveau de gris du fond  (0 : noir , 255 = blanc)
+#define NG_FOND  200
+// Le nombre d'objets de la scène
+#define NB_OBJ 5
+
+// Conversion de constantes flottantes en virgule fixe LG_fp32
+#define to_LG_fp32(a) ((long int) (a * 65536.0))
+
+#include "LGApi.h"
+#include "utils.h"
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//// Les variables globales
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+extern LGScene_t     *p_scene ;                      // La scène a traiter
+extern LGPixel_t     *p_image ;                      // L'image a générer
+extern LGTuile_t     *p_liste_de_tuiles ;            // La liste des tuiles
+extern LGObj_t       table_des_objets[NB_OBJ] ;      // La table des objets
+extern LGSurface_t   *table_des_surfaces[NB_OBJ] ;   // La table des surfaces
+extern LGAttributs_t table_des_attributs[NB_OBJ] ;   // La table des attributs
+
+void  obj_inv_transform(
+                    int num_obj,
+                    LG_fp32       x0,
+                    LG_fp32       y0,
+                    LG_fp32       a_x,
+                    LG_fp32       a_y,
+                    LG_fp32       b_x,
+                    LG_fp32       b_y);
+
+void obj_place(
+              int num_obj,
+              short xi0,
+              short yi0,
+              LG_fp32 zoom
+               );
+
+void obj_place_corners(
+              int num_obj,
+              short xi0,
+              short yi0,
+              short xi1,
+              short yi1
+                       );
+
+void maj_scene();
+
+#endif //APPLI_H

@@ -1,0 +1,568 @@
+\chapter{Bio-inspired pH-sensor}
+\renewcommand{\baselinestretch}{\mystretch}
+\label{chap:BioinspiredpHSensor}
+% \setlength{\parindent}{0pt}
+
+\section{Presentation of the pH-sensing system}
+\PARstart{T}{his} thesis is based on two parts. On the one hand, the idea is to use a novel geometry and study its potential benefit for 0.18 $\mu m$ and 0.35 $\mu m$ CMOS processes. Then it must implement a pixel for a DNA microarray in AMS 0.35 $\mu m$ standard CMOS technology without alteration of the process. On the other hand, a peripheral system is created to test the new array and characterize the hexagonal ISFET and an experimental Lab-On-Chip device.
+
+In this section, the hexagonal architecture and the pixel implementation are described. Various metrics and analysis were tested and detailed. It starts from the modelization of new hexagonal transistors to a pixel architecture and the evaluation of its performances. All this work was done using the Cadence Virtuoso Software Suite.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Modeling of the 0.35 $\mu m$ hexagonal ISFET}
+For the purpose of a future implementation in standard CMOS AMS 0.35 $\mu m$, the layout design of the hexagonal transistor have to respect some design rules. In this section, these limitations concerning DRC and LVS recognition are detailed and lead to a proposed architecture. Then, the transistor parameters and the model of this new structure are established according to the standard hexagonal MOSFET.
+
+\subsection{AMS 0.35 $\mu m$ design rules - The transistor structure}
+First of all, in Table~\ref{Tab:NMOS_layer} are defined all the necessary layers required to design a nMOS transistor.
+\begin{table}[h]
+  \centering
+  \begin{threeparttable}
+    \begin{tabular}{@{} c | *3c @{}}
+      \toprule
+      \multicolumn{1}{c }{Layers} & Description & Color indication \\
+      \midrule
+      DIFF & Diffusion layer  & Light green \\
+      NPLUS & $n+$ implant layer & Creme\\
+      PPLUS & $p+$ implant layer & Yellow \\
+      POLY1 & Polysilicon 1 layer & Red \\
+      CONT & Contact (connect METAL1 to DIFF, POLY1) & Dark green \\
+      METAL1 & Metal 1 layer & Blue \\
+      \bottomrule
+    \end{tabular}
+  \end{threeparttable}
+  \caption{\footnotesize Layers required for a NMOS transistor.}
+  \label{Tab:NMOS_layer}
+\end{table}
+
+With these layers and according to the design process guidelines of the technology, it is possible to define a clear and simple set of the rules which have an impact on the design of an hexagonal EGT. The most important rules that have led the final architecture are therefore presented in Table~\ref{Tab:design_rules}.
+\begin{table}[h]
+  \centering
+  \begin{threeparttable}
+    \begin{tabular}{@{} c | *2c @{}}
+      \toprule
+      \multicolumn{1}{c }{Rules} & Information \\
+      \midrule
+      Corners & Authorized angles: 90$\degree$, 135$\degree$  \\
+      Minimum POLY1 to DIFF spacing & 0.2 $\mu m$ \\
+      Minimum POLY1 extension of gate & 0.5 $\mu m$ \\
+      Minimum gate length of NMOS & Smallest feature: 0.35 $\mu m$  \\
+      Minimum METX enclosure of CONT & Spacing between source, gate and drain \\
+      Orientation of CONT and VIAS & Authorized angles: 0$\degree$, 90$\degree$ \\
+      \bottomrule
+    \end{tabular}
+  \end{threeparttable}
+  \caption{\footnotesize Significant design rules.}
+  \label{Tab:design_rules}
+\end{table}
+
+As the purpose of this thesis is to respect the aforementioned rules, it leads to some considerations about the possible design. Indeed, the creation of a regular hexagon with 60\degree angles is no longer possible. Due to the Manhattan architecture the angles allowed are limited to 0\degree, 45\degree and 90\degree. It also involves that the size of the sides of the hexagon will not be equal. Moreover as a result of the on-grid constraint the length of the transistor will not be the same on all edges.
+
+Finally, all the other design guidelines concerning spacing between layers and enclosure sizes will determine the minimum lengths of the overall structure. The most constraining things are intimately related to the spacing between the gate and source/drain contacts. The fact that contacts and vias can not be rotated is also a particular consideration in term of final area.
+
+\subsection{Proposed architecture}
+According to the previous study, it is possible to draw various structures in accordance with the principles defined. However, all structures are not feasible and acceptable and many of them were discarded. The Fig.~\ref{Fig:Hex_dis} presents some of non admissible layouts which could lead to potential confusions.
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\label{Fig:HEX_a}\includegraphics[width=0.26\textwidth]{Figs/Chap3/HEX_a_0_35.png}}
+  \subfigure[]{\label{Fig:HEX_b}\includegraphics[width=0.27\textwidth]{Figs/Chap3/HEX_b_0_35.png}}
+  \subfigure[]{\label{Fig:HEX_c}\includegraphics[width=0.24\textwidth]{Figs/Chap3/HEX_c_0_35.png}}
+  \caption{\footnotesize Discarded structures for hexagonal transistors.}
+  \label{Fig:HEX_dis}
+\end{figure}
+
+
+\paragraph{(a)} On the first schematic~\ref{Fig:HEX_a} a full enclosed gate structure was experienced. The gate contact was placed on the side because it cannot be placed on the diffusion layer. However, when the LVS was executed on this layout the following error appeared; ``Waffle trans gate : these gates cannot be identified correctly due to angle/size of poly hole and are discarded from LVS.'' It involves that EGTs would not be implemented in the chosen process because this one does not allow waffle, \textit{i.e.} closed-structure. A completely enclosed gate will form an unauthorized hole in a polysilicon surface. This organization was abandoned.
+\paragraph{(b)} From the previous attempt, others approaches were tested. Fig.~\ref{Fig:HEX_a} includes two ideas tested separately and then combined. In the interest of clarity only the combined solution is presented. On the one hand, from the layout ~\ref{Fig:HEX_a}, a part of the gate was removed on the right side to ``open'' the gate. Nevertheless, the DRC rules do not allow a contact of three different gates over a diffusion layer. In other words, it is impossible to design a cross (or partial cross like $\dashv$) with poly-gates. On the other hand, the diffusion layer was removed under the ``cross'' on the left side. If the gate was left open the same error than in Fig.~\ref{Fig:HEX_a} also returned by the DRC and if the figure is as in Fig.~\ref{Fig:HEX_b}, this time, during the LVS process, an inconsistent length of device appeared. This solution is not suitable either.
+\paragraph{(c)} Finally for Fig.~\ref{Fig:HEX_a}, during the LVS gate recognition operated by the software, this structure was analyzed as two transistors in parallel. This was no more a single device. This interpretation can simply be explained by the two contacts used. This structure should be removed from further analysis even though in this case the design rules were respected.
+
+\paragraph{Solution} In the end, a final hexagonal structure was derived from all the constraints and the specifications. It is declared in Fig.~\ref{Fig:HEX_0_35}. This is a trade-off between the respect of the rules and the specifications of EGTs. The outer square represents the substrate contact of the device (\textit{i.e.} the bulk). The size used was decreased at the most to reduce the final area.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.05]{Figs/Chap3/Hex_0_35.png}
+  \caption{\footnotesize Layout of the proposed hexagonal transistor in AMS 0.35 $\mu m$ (L = 0.35 $\mu m$).}
+  \label{Fig:HEX_0_35}
+\end{figure}
+
+This structure is free of any DRC/LVS errors and matches the requirements of the chosen technology. However, no adaptation to the technology was made in order to realize the transistor and so we notice that we are not in the strict case of enclosed-gate transistors. Indeed, even though the gate encircles an inner contact, the diffusion layer is not continuous because of the LVS rules about waffle structures.
+
+Nonetheless for the benefit of this work and in the interest of simplification, an assumption of perfect EGT is made. The gate is considered unbroken over the diffusion layer.
+
+\subsection{Extension to the AMS 0.18 $\mu m$ technology}
+This work intent to estimate the projection of hexagonal ISFETs for deeper sub-micron technology. With this aim, the same analysis was made for the standard AMS CMOS 0.18 $\mu m$ process. Most of the rules followed previously are still valid and determine the final architecture which is given in Fig.~\ref{Fig:HEX_0_18}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.05]{Figs/Chap3/Hex_0_18.png}
+  \caption{\footnotesize Layout of the proposed hexagonal transistor in AMS 0.18 $\mu m$ (L = 0.23 $\mu m$).}
+  \label{Fig:HEX_0_18}
+\end{figure}
+
+This time, the structure did not pass the DRC. In fact, the new design rules are not allowing 90$\degree$ over the diffusion layer. It is obviously the case on the top and bottom of the transistor. In this case, hexagonal structures are not possible at all. However, to support the idea of this work, result in 0.18$\mu m$ are also given and bring a complementary information.
+
+The indicated layout in this process was realized and will not be tested.
+
+\subsection{The transistor parameters}
+\label{trans_param}
+In order to use the transistor designed in an effective circuit, the effective $W/L_{eff}$ of the device have to be determined. For this purpose, a model of the proposed architecture is presented in Fig.~\ref{Fig:Hex_sch}. As it was mentioned before, this is a non-regular hexagonal layout due to the design constraints. As a consequence, the 45$\degree$ angle is found to describe the structure. Furthermore, due to the perfect EGT assumption, the contact on the gate is considered negligible and the channel of the transistor would appear all around the gate. This is why the gate polysilicon (in gray on the model) encloses all the drain area.
+
+Other parameters such as $L_1$ and $L_2$, respectively the inner and outer length, as well as $H_1$ the inner height and $H_2$ the outer height, help to describe the figure.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{Figs/Chap3/Hex_non_reg}
+  \caption{\footnotesize Hexagonal transistor model for the evaluation of the effective width and length.}
+  \label{Fig:Hex_sch}
+\end{figure}
+
+It should be mentioned that due to grid constraint alignment the apparent length $l_2$ is a function of the length $l_1$;
+\begin{equation}
+  l_2 = \sqrt{2}\ l_1
+\end{equation}
+
+In our case, the ratio $W/L_{eff}$ was approximated by integrating the I/V relationship over the total gate length of the transistor for an infinitesimal distance $dx$. The calculation is done when the voltage drop along the channel is linear;
+\begin{eqnarray}
+  v_{gs} - v_{TH} = v_{ds}
+\end{eqnarray}
+It corresponds to the transition point between the linear and the saturation region of the transistor. This method is adapted from\citep{RefWorks:51, RefWorks:153} where it was verified. However, for our particular structure, we need to separately consider the six sides of the transistor.
+\paragraph{For the sides 1 and 4}
+With respect to the source $(\forall x \in [L_1,L_2])$, the incremental voltage drop along the channel is given by;
+\begin{eqnarray}
+  v_{cs}(x) = \frac{v_{ds}(x-L_2)}{L_1-L_2}
+  \implies dv_{cs}(x) = \frac{v_{ds}}{L_1-L_2}dx
+\end{eqnarray}
+
+Moreover, the mobile channel charge determines the incremental resistance;
+\begin{eqnarray}
+  dR_{ds}(x) = \frac{1}{\mu C_{ox}(v_{gs}-V_{TH}-v_{cs}(x))}\ \left( \frac{dx}{x} \right )
+\end{eqnarray}
+
+Then thanks to the Ohm's law, the current through the channel is proportional to the voltage drop $dv_{cs}(x)$ across the incremental resistance $dR_{cs}(x)$;
+\begin{alignat}{2}
+  &&i_{ds}
+  &= \frac{dv_{cs}(x)}{dR_{ds}(x)} \notag\\
+  &\Rightarrow\quad
+  &i_{ds}(x)\left (\frac{dx}{x} \right)
+  &= \frac{v_{ds}}{L_1-L_2} \ \mu C_{ox} (v_{ds}-v_{cs}(x))\notag\\
+  &\Rightarrow\quad
+  &&= \frac{v_{ds}^2}{(L_1-L_2)^2} \ \mu C_{ox} (L_{1}-x)
+\end{alignat}
+
+By integrating over the total length $l_1$ of the transistor;
+\begin{alignat}{2}
+  &&\int_{L_1}^{L_2} \frac{i_{ds}}{x} \, \mathrm{d}x
+  &= \int_{L_1}^{L_2} \frac{v_{ds}^2}{(L_1-L_2)^2} \ \mu C_{ox} (L_{1}-x)  \, \mathrm{d}x \notag\\
+  &\Rightarrow\quad
+  &i_{ds}
+  &= \frac{1}{ln\left[\frac{L_2}{L_2} \right ]}        \frac{\mu C_{ox}}{2}\  v_{ds}^2\notag\\
+  &\Rightarrow\quad
+  &&= \frac{1}{ln\left[\frac{L_2}{L_1} \right ]}        \frac{\mu C_{ox}}{2}\  (v_{gs} - v_{TH})^2
+\end{alignat}
+
+\paragraph{For the others sides, 2,3 and 5,6}
+This time the incremental voltage drop along the channel is given by;
+\begin{eqnarray}
+  v_{cs}(x) = \frac{v_{ds}(x-H_2cos(45\degree))}{(H_1-H_2)cos(45\degree)}
+  \implies dv_{cs}(x) = \frac{v_{ds}}{(H_1-H_2)cos(45\degree)}dx
+\end{eqnarray}
+
+Using the same derivation but this time integrating over the total length $l_2$ of the transistor, we obtain;
+\begin{alignat}{2}
+  &&\int_{H_1cos(45\degree)}^{H_2cos(45\degree)} \frac{i_{ds}}{x} \, \mathrm{d}x
+  &= \int_{H_1cos(45\degree)}^{H_2cos(45\degree)} \frac{ \mu C_{ox}v_{ds}^2}{(H_1-H_2)^2cos(45\degree)} \ (H_{1}-\frac{x}{cos(45\degree)}) \, \mathrm{d}x \notag\\
+  &\Rightarrow\quad
+  &i_{ds}
+  &= \frac{1}{ln\left[\frac{H_2}{H_1} \right ]cos(45\degree)}        \frac{\mu C_{ox}}{2}\  (v_{gs} - v_{TH})^2
+\end{alignat}
+
+\paragraph{Finally,} when the six sides of the hexagon are taken into account, the current-voltage characteristic is;
+\begin{eqnarray}
+  6i_{ds} = \left[ \left. 2 \middle / \left( ln \left [\frac{L_2}{L_1} \right ]\right ) \right. + \left. 4 \middle / \left( ln \left [\frac{H_2}{H_1} \right ] cos(45\degree) \right ) \right. \right].     \frac{\mu C_{ox}}{2}\  (v_{gs} - v_{TH})^2 \notag\\
+\end{eqnarray}
+Then,
+\begin{equation}
+  \left [ \frac{W}{L} \right ] _{eff} = \left. 2 \middle / \left( ln \left [\frac{L_2}{L_1} \right ]\right ) \right. + \left. 4 \middle / \left( ln \left [\frac{H_2}{H_1} \right ] cos(45\degree) \right ) \right.
+  \label{WL_HEX_eff}
+\end{equation}
+
+The Eq.~\ref{WL_HEX_eff} defines a relationship between the simple geometrical parameters $L_1, L_2, H_1, H_2$ of the gate to the effective $W/L_{eff}$ ratio. For instance, in 0.35 $\mu m$, by considering the ground rules of the technology used, for an hexagonal transistor with a minimum gate length of 0.35 $\mu m$, the effective gate width is equal to 10.41 $\mu m$.
+
+\textit{N.B.:} The EGT assumption will of course affect this formula in our case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hexagonal ISFET analysis}
+By now, the layout and the design of a new hexagonal ISFET is designed. This part focuses on the various metrics extracted to characterize the new transistor. The architecture is simulated using a 0.35 $\mu m$ standard CMOS technology in Cadence Spectre environment. In all cases, the layout of each hexagonal transistors created was extracted and associated to a corresponding schematic.
+
+\subsection{Transistor geometry W/L}
+According to the rules and architecture previously defined, hexagonal transistor with different sizes were realized. Because this thesis tends to study the evolution of hexagonal EGTs for decreasing size, the range of length examined was set from 2 $\mu m$ to the smallest feature 0.35 $\mu m$.
+
+\subsubsection{0.35 $\mu m$ process}
+Afterward, using the foundry provided tool based on the technology, the extracted $W/L_{exp}$ is compared to theoretical $W/L_{th}$ value obtained by the Eq.~\ref{WL_HEX_eff}. The figure~\ref{Fig:WL_035} introduces the values given for the 0.35 $\mu m$ process.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap3/W_L_curves}
+  \caption{\footnotesize Extracted $W/L_{exp}$ versus theoretical $W/L_{th}$ in 0.35 $\mu m$ process.}
+  \label{Fig:WL_035}
+\end{figure}
+
+Using a power fit to the experimental data, this indicates the inversely proportional relation between the $W/L$ transistor design variable and the length. However, due to the assumption made on the structure which consists in neglecting the gate contact, an error appears between the experimental and the theoretical value. The corresponding width for a given length as well than the relative error on the estimation of the ratio $W/L$ is presented in Tab.~\ref{Tab:WL_values_35}.
+\begin{table}[h]
+  \centering
+  \begin{threeparttable}
+    \begin{tabular}{@{} c c | c @{}}
+      \toprule
+      \multicolumn{1}{c }{Length [$\mu m$]\tnote{1}} & Width [$\mu m$] & Relative error on $W/L$ [\%] \\
+      \midrule
+      0.35 & 10.41  & 6.83 \\
+      0.5 & 10.84 & 5.71 \\
+      0.8 & 11.69 & 4.09 \\
+      1.0 & 12.25 & 3.35 \\
+      1.5 & 13.67 & 2.29 \\
+      2.0 & 15.08 & 1.98 \\
+      \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+    \item[1] \scriptsize Timing constraints and no existing methods to design hexagonal transistors limit the implementation to only relevant length sizes.
+    \end{tablenotes}
+  \end{threeparttable}
+  \caption{\footnotesize Corresponding width, length and relative error on transistor design parameter in 0.35 $\mu m$ process.}
+  \label{Tab:WL_values_035}
+\end{table}
+
+Obviously the relative error increases when the transistor length decreases. This behavior is perfectly normal. Indeed, when the size of the transistor is reduced, the area of the gate contact is more and more influent on the total area of the gate. However, the size of the contact and then the removed part is always the same for all the features. As a consequence it corresponds to a bigger part of the gate when this last one is smaller and smaller; the error increases.
+
+Unfortunately, no relation could be identified to correct the formula of Eq.~\ref{WL_HEX_eff} as no model seems to fit the data obtained. The trend is nevertheless acceptable.
+
+Finally, in the next part of this work, to refer to the size and parameters of the transistor, the values given by the simulator are used.
+
+\subsubsection{0.18 $\mu m$ process}
+The experiment was repeated with a smaller process. Fig.~\ref{Fig:WL_018} represents the extracted and theoretical values in 0.18 $\mu m$ process.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap3/W_L_curves_018}
+  \caption{\footnotesize Extracted $W/L_{exp}$ versus theoretical $W/L_{th}$ in 0.18 $\mu m$ process.}
+  \label{Fig:WL_018}
+\end{figure}
+
+The same analysis can be done and conclusions on the expected results are the same than previously. The power fitting also reveals an inversely proportional relation between the length and the $W/L$ ratio. The designed transistors and their features are presented in Tab.~\ref{Tab:WL_values_018}.
+\begin{table}[h]
+  \centering
+  \begin{threeparttable}
+    \begin{tabular}{@{} c c | c @{}}
+      \toprule
+      \multicolumn{1}{c }{Length [$\mu m$]\tnote{1}} & Width [$\mu m$] & Relative error on $W/L$ [\%] \\
+      \midrule
+      0.23 & 5.56  & 8.22 \\
+      0.25 & 5.66 & 7.93 \\
+      0.30 & 5.85 & 7.35 \\
+      0.35 & 6.05 & 6.75 \\
+      0.38 & 6.14 & 6.46 \\
+      \bottomrule
+    \end{tabular}
+    \begin{tablenotes}
+    \item[1] \scriptsize Timing constraints and no existing methods to design hexagonal transistors limit the implementation to only relevant length sizes.
+    \end{tablenotes}
+  \end{threeparttable}
+   \caption{\footnotesize Corresponding width, length and relative error on transistor design parameter in 0.18 $\mu m$ process. }
+  \label{Tab:WL_values_035}
+\end{table}
+
+The influence of the gate contact, which is smaller in this case, have still a bigger influence for small devices. It should also be mentioned that this time it is not possible to reach the smallest feature (0.18 $\mu m$) due to the limitation of the LVS recognition tool.
+
+\subsection{Area}
+In Section \ref{chap:LitteratureReview} the influence of the drain on the parasitic capacitance for a given length is highlighted.
+
+With this in mind, the Fig.~\ref{HEX_area} presents the percentage of total and drain areas of the hexagonal transistor with respect to a standard transistor of the same width and length.\citep{RefWorks:57} Two trends can also be deducted from the observed values.
+\paragraph{On the total area,} for decreasing values of the length the relative difference between the hexagonal and the standard transistor falls off until a point where the relative difference grows again. This situation is created by the continuous reduction of the size of the transistor until it reaches the design rule's limits. In fact, for small features - below ~0.5 $\mu m$ - the layout of the device gets to its minimum. It is no more possible to create smaller device without breaking the design rules.
+This design limitation explains the rising of the relative difference for these sizes (e.g. 0.35 $\mu m$); the standard transistor is still reduced in size whereas the hexagonal one cannot.
+\paragraph{On the drain area,} it is always achievable to reduce the area of this contact. Then, the hexagonal transistor shows a continuous reduction of this region.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap3/HEX_area.png}
+  \caption{\footnotesize Relative difference of the drain and total area for a hexagonal transistor with respect of a standard transistor with the same parameters.}
+  \label{Fig:HEX_area}
+\end{figure}
+
+The conclusion is that for given W and L, although efficient implementations in terms of area can be achieved with a standard approach, standard transistors present a relatively high drain area and, consequently, drain capacitances. The hexagonal transistors, on the other hand, show a reduction of the drain area, up to 25\% for L = 0.35 $\mu m$, while the increase in the total layout area is around 42\%. These percentages depend strongly on the length of the transistor, yet, in our case, an optimum is reached for length around 0.5 $\mu m$ due to the design considerations. Then, when this limit is reached, it might be the time to change the technology process or break the design rules. Lastly, for large L the benefit of a reduced drain capacitance could be overcomed by the augmentation in the total layout area as it is also the case in~\citep{RefWorks:57}.
+
+\subsection{Channel-Gate capacitance}
+In this subsection, the extracted values of Channel-Gate capacitances are presented for two family processes. All the capacitance of the macromodel presented in Fig.~\ref{Fig:ISFET_cap_para} (Section~\ref{ext_ISFET_model}) has been extracted yet only the global channel-gate capacitance $C_g$ is presented. For a given hexagonal transistor the corresponding standard transistor with the same width and length is associated. The last one is used as a reference to evaluate the benefit of the new architecture.
+
+\subsubsection{0.35 $\mu m$ process}
+The evolution of $C_g$ for hexagonal transistor and the analogous standard transistor is displayed in Fig.~\ref{Fig:HEX_Cg_035} and the corresponding value of $WL$ for a given length in Table~\ref{Tab:WLK}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap3/C_g_035.png}
+  \caption{\footnotesize Extracted gate-channel capacitance for hexagonal \textcolor{blue}{$\blacksquare$} and standard \textcolor{dkgreen}{$\blacklozenge$} transistors in 0.35 $\mu m$ process.}
+  \label{Fig:HEX_Cg_035}
+\end{figure}
+
+\begin{table}[h]
+  \centering
+    \begin{tabular}{@{} c c @{}}
+      \toprule
+      \multicolumn{1}{c |}{Length [$\mu m$]} & $WL$ [$\mu m^2$] \\
+      \midrule
+      0.35 & 3.64 \\
+      0.5 & 5.42 \\
+      0.8 & 9.34 \\
+      1.0 & 12.2 \\
+      1.5 & 20.5 \\
+      2.0 & 30.2 \\
+      \bottomrule
+    \end{tabular}
+   \caption{\footnotesize Corresponding $WL$ for a given length in 0.35 $\mu m$ process.}
+  \label{Tab:WL_values_035}
+\end{table}
+
+According to~\citep{RefWorks:152}, the channel-gate parasitic and intrinsic capacitances are proportional to the gate area ($C_g \propto WL$) therefore a linear relationship should be expected. For this reason, a linear regression is applied on the data. \textit{N.B.:} In our case, the design rules set a corresponding width for a given length, and because the relation between W and L is linear, it appears that ($C_g \propto L$).
+
+The analysis of the values obtained shows a tiny difference between the channel-gate capacitance. For instance, for $WL = 3.64 \mu m^2$ (\textit{i.e.} $L = 0.35 \mu m$) the difference in capacitance is only ~0.2 fF. This characteristic increases with the size of the device. The maximum value measured in this work is a divergence of 0.42 fF for the biggest feature.
+
+\subsubsection{0.18 $\mu m$ process}
+As always the same analysis is performed with the 0.18 $\mu m$ process. For the sake of simplicity, only the extracted gate-channel capacitances are presented in Fig.~\ref{Fig:HEX_Cg_018}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap3/C_g_018.png}
+  \caption{\footnotesize Extracted gate-channel capacitance for hexagonal \textcolor{blue}{$\blacksquare$} and standard \textcolor{dkgreen}{$\blacklozenge$} transistors in 0.18 $\mu m$ process.}
+  \label{Fig:HEX_Cg_018}
+\end{figure}
+
+The same conclusions appear in this case; the difference decreases for smaller lengths. However, the figures obtained from one process to the other are different. There is no continuity as if changing from one process to the other has reset the values. This observation is probably due to the different technology models used in each case. However the results obtained confirm the previous experience.
+
+\subsubsection{Consequences?}
+In a positive way the results obtained confirm the theory about EGTs and hexagonal transistors presented in Section~\ref{Chap:LiteratureReview}. After all the position adopted should be more subtle than that. On the one hand, a difference exists in terms of capacitances but the question about the real impact of it can be raised. On the other hand, for a given process the capacitance difference decreases when the device gets smaller.
+
+This observation is consistent with the physic of the phenomenon. In fact, when the smallest feature of a technology is reached, the effective gate area of the hexagonal transistor and the standard transistor are almost the same. In practice, the contact area between gate-source and gate-drain is the same for the standard transistor, whereas the gate-source contact area of the hexagonal transistor is bigger than the gate-drain area. Despite this last affirmation, by studying in detail the capacitance, the following equation appears for $L \rightarrow 0.18/0.35 \mu m$;
+\begin{equation}
+C_{gs}^{hex} + C_{gd}^{hex} \approx C_{gs}^{std} + C_{gd}^{std} \implies C_{g}^{hex} \approx C_{g}^{hex}
+\end{equation}
+
+As a consequence, the question about benefit of the hexagonal transistor remains to be addressed, especially for small lengths. In the previous Chapter the impact of the passivation capacitance on ISFET was shown then the question about the influence of the hexagonal transistor with the passivation capacitance should still be considered.
+
+\subsection{Gain $g_m$}
+In this last section, the gain of a standard ($g_m^{std}$) and a hexagonal ($g_m^{hex}$) transistor -- with the same design parameters W and L -- are compared and shown in Table~\ref{Tab:gm}. This simulation is used to predict the behavior of the built architecture in a future circuit.
+\begin{table}[h]
+    \centering
+  \begin{threeparttable}
+    \begin{tabular}{@{} c | *2c @{}}
+      \toprule
+      \multicolumn{1}{c |}{Length [$\mu m$]} & Gain $g_m^{hex}$\tnote{*} [mS] & Gain $g_m^{std}$\tnote{*} [mS]\\
+      \midrule
+       0.35 & 2.184 & 2.184 \\
+       0.5 & 1.866 & 1.861 \\
+       0.8 & 1.496 & 1.493 \\
+       1.0 & 1.342 &  1.339 \\
+       1.5 & 1.103 & 1.100 \\
+       2.0 & 0.964 & 0.965 \\
+      \bottomrule
+    \end{tabular}
+%   \raggedright
+    \begin{tablenotes}
+    \item[*]  \scriptsize Value measured at $V_{gs} = 1.8V$
+    \end{tablenotes}
+  \end{threeparttable}
+  \caption{\footnotesize Evaluation of the $g_m$ for a hexagonal and a standard transistor in 0.35 $\mu m$ process.}
+  \label{Tab:gm}
+\end{table}
+
+In this case, the differences found between the transistor are considered as negligible. Both transistors present the same gain.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pixel architecture}
+\label{Pixel_architecture}
+In the previous Section the various parameters and built-in characteristics of the hexagonal transistor are extracted and compared to a standard transistor. However, the work of this thesis involves to identify the behavior of the new device in the context of pH-sensing. For this reason, a pixel architecture is developed and presented. The methodology presented in this part is adapted from the work detailed in~\citep{RefWorks:124}.
+
+\subsection{Pixel scheme}
+One objective of this work is to reach a maximum density integration of pH-sensor on a CMOS microarray. For this reason, the implementation of the ISFET into a pixel was restricted to only two transistors. It allows high ISFET densities and thus scaling and faster detection on a single chip. An ideal solution would be to use only one transistor as it is the case in LED matrix, yet such implementations are still under development and might be considered later.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=1]{Figs/Chap3/Pixel}
+  \caption{\footnotesize Schematic of the pixel using an hexagonal ISFET.}
+  \label{Fig:Pixel}
+\end{figure}
+
+\paragraph{Architecture} Each pixel presented in Fig~\ref{Fig:Pixel} is based on a source follower configuration as presented in Section~\ref{readout}. It tracks the pH variations through the gate potential. The circuit consists of a single floating gate ISFET biased by a voltage reference provided using an external reference electrode. A single nMOS switch is used as a switch to enable the output voltage readout. A command signal connected to a logic circuit is used to enable the pixel. Therefore, the output of the pixel cannot exceed $V_{DD} - V_{th}$. Lastly, a current sink is provided for all the pixels of an array. As a consequence, this source can be considered more as a part of the readout circuit than the pixel. All transistors bulk are connected to the ground (lower potential) to minimize body effects.
+
+\paragraph{Gain $A_{\nu}$ of the source follower} According to \citep{RefWorks:153}, the theoretical gain of the pixel is shown in~\ref{Pixel_gain}, whereby $g_m$ is the ISFET transconductance, $r_0$ is the output resistance of the ISFET and $r_s$ is the output resistance of the current sink. Lastly $g_{mb}$ is ``correction parameter'' to take into consideration the non-zero body-source voltage $V_{BS}$.
+\begin{equation}
+  A_{\nu} = \frac{V_{out}}{V_g} = \frac{\frac{1}{g_{mb}} \ // \ r_0 \ // \ r_s}{(\frac{1}{g_{mb}} \ // \ r_0 \ // \ r_s) + 1/g_{m}}
+\label{Pixel_gain}
+\end{equation}
+
+Due to the term $1/g_{m}$ at the denominator, the expected gain is less than 1. The typical value of $A_{\nu}$ is around 0.8. This expression is only valid in the case of a negligible ON resistance $R_{ON}$ of the switch. For this reason, the $W$ and $L$ of this transistor must be well designed to guarantee this assumption.
+
+\subsection{Operation}
+In an attempt to quantitatively evaluate the impact of the parasitic capacitance of the hexagonal transistor on the attenuation at the floating gate the ISFET pixel had to be simulated in a correct environment.
+
+\paragraph{Pixel testbench}
+Fig.~\ref{Fig:TB_Pixel} introduces the testbench used for a single pixel. Various devices sizes and biasing currents ($I_{ref}$) were simulated to evaluate the impact of the geometry for different operating regions (weak and strong inversion). The simulation of the passivation capacitance effect is modeled using a capacitor $C_{pass}$ in series with the gate of the transistor tested. The output voltage $V_{out}$ is read through a capacitive load of 3 pF which represents the capacitance of the readout circuit (this also includes the transmission line). Lastly, the AC component of the input signal $V_{in}$ is set to $0.2V_{pp} \ @100Hz$ whereas the DC component depends of the power supply voltage of the process used.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=1]{Figs/Chap3/TB_Pixel}
+  \caption{\footnotesize Testbench of the pixel.}
+  \label{Fig:TB_Pixel}
+\end{figure}
+
+\paragraph{Evaluation of the passivation capacitance}
+In Section~\ref{Eval_Pass_Capp} was presented a technique to evaluate the passivation capacitance. From the Eq.~\ref{c_pass} and according to the process node parameters used in this thesis, the resulting passivation capacitances are calculated and detailed in Table~\ref{Tab:Value_Pass_Cap}.
+\begin{table}[h]
+    \centering
+  \begin{threeparttable}
+    \begin{tabular}{@{} c | *2c @{}}
+      \toprule
+      \multicolumn{1}{c |}{ Parameters\tnote{*} } &0.35 $\mu m$& 0.18$\mu m$\\
+      \midrule
+       $\epsilon_{Si0_2}$ & 3.9 & 3.9 \\
+       $\epsilon_{Si_3N_4}$ & 7.9 & 7.9 \\
+       $t_{Si0_2} [nm]$ & 1030 & 1350 \\
+       $t_{Si_3N_4} [nm]$ & 1000 &  450 \\
+       $C_{pass} [aF]$ & 901.2 & 873.4 \\
+      \bottomrule
+    \end{tabular}
+%   \raggedright
+    \begin{tablenotes}
+    \item[*]  \scriptsize Value from the AMS specifications.
+    \item[**]  \scriptsize $\epsilon_0 = 8.85.10^{-12} F/m$.
+    \end{tablenotes}
+  \end{threeparttable}
+  \caption{\footnotesize Evaluation of the passivation capacitance for $W_sL_s = 39.78 \mu m^2$.}
+  \label{Tab:Value_Pass_Cap}
+\end{table}
+
+For the simulation purposes, the size of the sensing area $W_sL_s$ is defined as the area of the smallest hexagonal transistor created in 0.35 $\mu m$. On the one hand, this value of 39.78 $\mu m^2$ is kept constant for both nodes thought this investigation. On the other hand, the size $WL$ of the ISFET is a design parameter. In fact, for a CMOS DNA microarray, the size of the sensing area is generally different from the pH-sensor area;  $W_sL_s$  is determined by the size of the DNA sample that we want to analyze.
+
+Since the value calculated are still an approximation of the real passivation capacitance and because the figures obtained for each process are sufficiently closed to be rounded then the $C_{pass}$ is set to $900 aF$.
+
+\subsection{Attenuation}
+To estimate the value of $\frac{V_{out}}{V_{in}}$ presented in the Eq.~\ref{V_g_V_in}, two AC attentions are calculated;
+\begin{my_itemize}
+\item $G = \frac{V_{g}}{V_{in}}$ represents the attenuation related to the passivation and parasitic capacitances.
+\item $A_{\nu} = \frac{V_{out}}{V_{g}}$ is the attenuation due to the source follower. As it is mentioned above, two biasing currents are used; the weak inversion is set to 1nA and the strong inversion to 10uA.
+\end{my_itemize}
+\textit{N.B.:} The value $A_{\nu}$  is constantly measured around $0.8$. It confirms the assumption whereby the attenuation is mostly due to G and therefore related to the passivation capacitance and gate parasitics.
+
+To perform a comparison three different models of transistors are presented. \textit{Sch} refers to a standard transistor with no parasitics capacitances. It is an ideal model which includes only the intrinsic capacitances of the ISFET. \textit{Std} refers to the standard transistor with its parasitic capacitances. \textit{Hex} corresponds to the hexagonal transistor with parasitic capacitances.
+
+The mixed effect of the two AC attenuation $A_{\nu} \times G$ between the input and the output is plotted in Fig.~\ref{Fig:att}. Ideally, if the gate-channel intrinsic and parasitic capacitances are negligible compared to $C_{pass}$ then $A_{v} \rightarrow 1$. However, the simulated results show that any input signal is significantly attenuated through the capacitive network described previously. In both operating region, decreasing the length of the device significantly decreases the attenuation.
+\begin{figure}[h!]
+  \centering
+  \subfigure[0.35 $\mu m$ process]{\label{Fig:att_035}\includegraphics[width=0.85\textwidth]{Figs/Chap3/att_035}}
+  \subfigure[0.18 $\mu m$ process]{\label{Fig:att_018}\includegraphics[width=0.85\textwidth]{Figs/Chap3/att_018}}
+  \caption{\footnotesize Total attenuation between the input and the output of the pixel.}
+  \label{Fig:att}
+\end{figure}
+
+The behavior is hyperbolic because for a given passivation capacitance, the gain G is inversely proportional to the intrinsic and parasitic capacitance of the device as shown in Eq.~\ref{V_g_V_in} in Section~\ref{Effect_Pass_Capp}. Moreover, these capacitances are proportional to the gate area.~\citep{RefWorks:152} In our case, because of the design rules (\textit{cf.} Table~\ref{Tab:WL_values_035} and~\ref{Tab:WL_values_018}) the attenuation is directly proportional to the length of the device. The measured attenuation results agree with this expected $1/x$ behavior.
+
+For the sake of completeness the values of the attenuation (in linear representation and dB) are presented in Appendix \ref{App:MeasureAttINR}. For both $0.35 \mu m$ and $0.18 \mu m$ process a trend emerges showing a small difference in attenuation between the hexagonal and the standard transistor. Whereas the new structure exhibits characteristics close to an ideal transistor (without parasitic capacitances), the standard counterpart causes a larger attenuation of the input voltage at the gate. In addition this trend is increased when the feature size is reduced. The figures confirm that the maximum difference in attenuation between hexagonal and standard devices are always measured for the smallest device in each process node.
+
+This observation can be justified since for technology scaling, smaller features are associated with smaller parasitic capacitances and therefore less attenuation. Similarly, when changing from one process to the other the difference between the two geometry increases, showing an impact more important on the output response. However, in this case, the difference between the ideal transistor and the hexagonal is also in expansion. The models of technology used by the simulator could explain this difference.
+
+\subsection{Input referred noise - SNR}
+As any solid state device, the noise of the pixel due to the resistance at the output node of the source follower is a a band-related phenomenon. A first noise bandwidth is recorded between 0.1Hz and 10kHz and represents the low frequency variations such as pH-signals. For this range, the main contribution to noise is the Flicker noise. Another larger integration interval from 0.1Hz to 100GHz is used to capture all noise contribution which includes the thermal noise of the transistor channel. The thermal contribution is particularly related to the channel equivalent resistance which is related to transistor dimensions.~\citep{RefWorks:108}
+
+Accordingly, the first interval could be considered as a more realistic approach of pH-sensing~\citep{RefWorks:112} but as we are studying a new geometry, it is relevant to extend the study and consider the dimensions-related sources of noise.
+
+In addition, the noise is measured at the output of the pixel. Then it is called the Total Output Noise instead of the Input Referred Noise. Therefore, this last component is calculated using Eq. 20, where $V_{IRN}$ is the voltage corresponding to the IRN and $V_{ORN}$ to the Total Output Noise. The results of the simulations can be found in Appendix~\ref{App:MeasureAttINR}.
+\begin{equation}
+V_{IRN} = \frac{V_{ORN}}{A_{\nu} \times G}
+\label{Eq:IRN}
+\end{equation}
+
+To assess the performance of the device the Signal to Noise Ratio is calculated (Eq.~\ref{Eq:SNR}). This parameter evaluates the insensitivity of the new hexagonal transistor to the parasitic noise with respect of the standard device.~\citep{RefWorks:108} The evolution of this parameter is presented in Fig.~\ref{Fig:att} for a bandwidth from 0.1Hz to 100GHz.
+\begin{figure}[h!]
+  \centering
+  \subfigure[0.35 $\mu m$ process]{\label{Fig:SNR_035}\includegraphics[width=0.85\textwidth]{Figs/Chap3/SNR_035}}
+  \subfigure[0.18 $\mu m$ process]{\label{Fig:SNR_018}\includegraphics[width=0.85\textwidth]{Figs/Chap3/SNR_018}}
+  \caption{\footnotesize Total SNR/pH for the two node process.}
+  \label{Fig:att}
+\end{figure}
+
+\begin{equation}
+SNR = \frac{P_{in}}{P_{noise}} = 20.log\left ( \frac{V_{in}}{V_{IRN}} \right )
+\label{Eq:SNR}
+\end{equation}
+To reflect the pH-sensing utilization of the pixel, the input signal amplitude is set to $V_{in} = 59 mV/pH$, the ideal Nerstian sensitivity at 25\degree C.
+
+The results obtained matched the conclusion presented in~\citep{RefWorks:124} that showed that it is preferable to design ISFET pixels with small gate areas and low biasing currents.
+
+\subsection{Results}
+An extract of the simulation results is shown in Table~\ref{Tab:att} and~\ref{Tab:IRN} containing the total measured attenuation and the input referred noise figures. Only minimum size devices measurement are presented because they correspond to the minimum input referred noise.
+
+\begin{table*}[h]
+\centering
+\ra{1.3}
+\begin{tabular}{@{}crrr@{}}
+\toprule
+& \multicolumn{3}{c}{\shortstack{Attenuation $V_{out}/V_{int} [dB]$\\($I_d = 1nA$/$I_d = 10 uA$)}} \\
+\cmidrule{2-4}
+Feature size $[\mu m]$ & Sch & Std & Hex \\
+\midrule
+0.35&16.42/16.70&16.87/17.14&16.51/16.78\\
+0.18&14.53/16.05&15.75/17.26&15.01/16.55\\
+\bottomrule
+\end{tabular}
+\caption{Simulation results summary -- Attenuation.}
+\label{Tab:att}
+\end{table*}
+
+
+\begin{table*}[h]
+\centering
+\ra{1.3}
+\begin{tabular}{@{}crrr@{}}
+\toprule
+& \multicolumn{3}{c}{\shortstack{Input Referred Noise [mV]\\($I_d = 1nA$/$I_d = 10 uA$)}} \\
+\cmidrule{2-4}
+Feature size $[\mu m]$ & Sch & Std & Hex\\
+\midrule
+0.35& 0.766/0.858&0.809/0.895&0.782/0.868\\
+0.18& 0.878/1.720&1.015/1.964&0.941/1.840\\
+\bottomrule
+\end{tabular}
+\caption{Simulation results summary -- IRN.}
+\label{Tab:IRN}
+\end{table*}
+
+From these simulations we can confirm the theory about the improved channel-gate intrinsic and parasitic capacitances presented by the hexagonal transistor. Indeed, the result in term of attenuation demonstrated that the structure is close to an ideal transistor. This conclusion should be qualified for the reason that only a small difference in attenuation and SNR/pH is observed with respect to the standard structure. The maximum difference in attenuation is 0.4 dB and 0.7dB respectively for the 0.35 and 0.18 nodes. The same conclusion can be draw in term of SNR.
+
+A projection trend for deeper submicron features shows that the benefit of hexagonal transistors increases when the size of the device is reduced. Experimental measurements should confirm this tendency.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Pixel layout}
+One challenge of the project is to design a complete array of pixel sensor using the AMS $0.35 \mu m$ technology. In this section, the layout of the whole pixel is illustrated as it is integrated on the chip.
+ \begin{figure}[h!]
+   \centering
+   \includegraphics[scale=0.3]{Figs/Chap3/Pixel_layout.png}
+   \caption{\footnotesize Architecture of the pixel.}
+   \label{Fig:Pixel_layout}
+ \end{figure}
+
+Fig.~\ref{Fig:Pixel_layout} shows the pixel layout. The whole system is protected inside a guard ring. When the pixel is assembled in an array, the guard ring encloses completely the sensitive transistors. The sensing area is an hexagon following the shape of the ISFET. It has an area of roughly $61.3 \mu m^2$ whereas the pixel presents an overall area of $85.4 \mu m^2$.
+
+The layouts created are not only limited to one size. A whole range of pixel from $0.35 \mu m$ to $2 \mu m$ was implemented as well as their standard counterpart. The aim is to create a characterization structure with all the necessary requirement to evaluate the performance of hexagonal ISFET with respect of a corresponding rectangular transistor. The corresponding layouts are presented in Section~\ref{charac_array}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+In this section a novel pixel architecture was introduced and characterized.
+
+\paragraph{Intrinsic characteristic} Due to design consideration the implementation of a regular hexagon is not possible. A solution using $45\degree$ angles and non perfect enclosed gate transistors is developed. It allows tape-out without DRC violations. A model for the effective $W/L_{eff}$ is also presented. However, it assumes an enclosed transistor. As a consequence, the estimation of the width and length presents a systemic error due to the influence of the gate contact. Nevertheless, because the implementation in our case would not be a final solution (gate not closed) it would be useless to refine the model. A better solution would be to ``break'' the design rules.
+
+On the one hand, an estimation of the total and drain area compared to a corresponding standard transistor is presented. The results observed demonstrate the theory concerning EGTs. On the other hand, the figures concerning the channel-gate capacitances of the hexagonal transistor with respect of its standard counterpart are limited. The difference in capacitance for a given length is confirmed, yet this difference is no more than half a femto Farad. In addition, from one process node to the other this difference increases and for a given area the intrinsic and parasitic capacitances of the hexagonal structure are less.
+
+\paragraph{Attenuation and Noise} As a pH-sensing system, the new structure has to be included into a pixel. A minimal solution is used to focus on the pixel geometry and its potential benefit. Three principal metrics are evaluated; the attenuation, the Input Referred Noise and the SNR/pH. Thanks to the Chapter~\ref{chap:ISFETsCMOS} the impact of the parasitic capacitances when they are coupled with the passivation capacitance was demonstrated. The expected behavior of the attenuation is met for both devices, yet, the benefit of the new architecture is still restricted. Concerning the IRN and SNR/pH the same conclusion can be drawn. The technology scaling not only reduces the parasitic effects, it also improves the noise robustness of the device compared to the rectangular transistor.
+
+With this preliminary investigation a difference in all these indicators is confirmed. The hexagonal transistor presents a behavior closed to an ideal transistor yet the simulations obtained need to be confirmed through on-chip experiments. A complete pixel layout is then developed to be included in a whole pH-sensing system. Additionally, a characterization array is also necessary to determine with accuracy the impact of geometry scaling on the performance of the device. This topic is the subject of the following section.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

@@ -1,0 +1,360 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/" . "drone-browser/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/" . "node_modules/")
+ ("/Users/Gu3nol/Google Drive/Perso/" . "Dev/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/" . "public/")
+ ("/Users/Gu3nol/.oh-my-zsh/custom/plugins/" . "example/")
+ ("/Users/Gu3nol/.oh-my-zsh/custom/" . "plugins/")
+ ("/Users/Gu3nol/.oh-my-zsh/" . "tools/")
+ ("/Users/Gu3nol/Google Drive/Pro/CV-Cover_Letter/" . "CV_EN/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/" . "Sources/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/" . "Chapters/")
+ ("/Volumes/Macintosh HD/" . "Network/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/" . "SourceFiles/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/SourceFiles/" . "Chapters/")
+ ("/Volumes/" . "Macintosh HD/")
+ ("/" . "Volumes/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/" . "src/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/" . "pipelined_wb_ram/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/VHDL/" . "HW/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/" . "VHDL/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/" . "Digital/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/" . "src/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/" . "TB/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/" . "sdk.src/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/" . "HW/")
+ ("/Users/Gu3nol/Downloads/project_code/project_code/" . "hardware_files/")
+ ("/Users/Gu3nol/Downloads/project_code/" . "project_code/")
+ ("/Users/" . "Gu3nol/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/" . "VHDL_and_Logic_Synthesis/")
+ ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/DepotGIT/Soft/" . "KubzProgram/")
+ ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/DepotGIT/" . "Soft/")
+ ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/" . "DepotGIT/")
+ ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/" . "Electronique/")
+ ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PAF/tron3d/soft/" . "XBeePython/")
+ ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PAF/tron3d/" . "soft/")
+ ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PAF/" . "tron3d/")
+ ("/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/" . "PACT/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/" . "hardware_files/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/" . "src/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex3/" . "project_ex3/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex4/" . "project_ex4/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex1/" . "project_ex1/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/IC-VHDL-Coursework-master/" . "source/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/" . "VHDL-master/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/" . "Coursework/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex2/" . "project_ex2/")
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/" . "ex2/")
+ ("/Users/Gu3nol/Downloads/IC-VHDL-Coursework-master/simulation/" . "fabian/")
+ ("/Users/Gu3nol/Downloads/IC-VHDL-Coursework-master/" . "simulation/")
+ ("/Users/Gu3nol/Google Drive/Cours/MSc Imperial College/VHDL_and_Logic_Synthesis/Coursework/ex3/" . "project_ex3/")
+ ("/Users/Gu3nol/Google Drive/Cours/MSc Imperial College/VHDL_and_Logic_Synthesis/Coursework/ex2/" . "project_ex2/")
+ ("/Users/Gu3nol/Google Drive/Cours/MSc Imperial College/VHDL_and_Logic_Synthesis/Coursework/ex1/" . "project_ex1/")
+ ("/Users/Gu3nol/Google Drive/Cours/MSc Imperial College/VHDL_and_Logic_Synthesis/" . "Coursework/")
+ ("/Users/Gu3nol/Downloads/" . "project_code/")
+ ("/Users/Gu3nol/Google Drive/Cours/MSc Imperial College/VHDL_and_Logic_Synthesis/Coursework/ex0/" . "project_ex0/")
+ ("/Users/Gu3nol/Google Drive/Cours/MSc Imperial College/VHDL_and_Logic_Synthesis/Coursework/" . "ex3/")
+ ("/Users/Gu3nol/Documents/" . "DATA/")
+ ("/Users/Gu3nol/Google Drive/Cours/MSc Imperial College/Full-Custom Integrated Circuit Design/Coursework/TB_DAC/" . "veriloga/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/Exercices/FIFO/" . "src/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/Exercices/" . "FIFO/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/median/" . "src/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/" . "median/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/pipelined_wb_ram/" . "wb_bram/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/ChibiOS_2.6.3/demos/" . "ARM7-AT91SAM7X-FATFS-GCC/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/ChibiOS_2.6.3/" . "demos/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC223/cross_compilation/" . "boot_loader/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC223/" . "cross_compilation/")
+ ("/Users/Gu3nol/.zsh/" . "functions/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/computer/plume_api/python/" . "__pycache__/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/computer/plume_api/" . "python/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/computer/" . "plume_api/")
+ ("/Users/Gu3nol/.emacs.d/" . "emacs_py/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/receiver/STM32/" . "src/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/receiver/" . "STM32/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/" . "ChibiOS_2.6.3/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/" . "soft/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/" . "Plume/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/" . "ELEC222/")
+ ("/Users/Gu3nol/Google Drive/Cours/" . "MScImperialCollege/")
+ ("/Users/Gu3nol/Google Drive/" . "Cours/")
+ ("/Users/Gu3nol/" . "Google Drive/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/public/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/"
+ "/Users/Gu3nol/.oh-my-zsh/"
+ "/Users/Gu3nol/.oh-my-zsh/themes/"
+ "/Users/Gu3nol/.oh-my-zsh/custom/"
+ "/Users/Gu3nol/zsh_save/"
+ "/Users/Gu3nol/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/Chapters/"
+ "/Users/Gu3nol/Google Drive/Pro/CV-Cover_Letter/CV_EN/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/Paper/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/Appendices/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/VHDL/HW/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/SourceFiles/Chapters/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/SourceFiles/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex2/project_ex2/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/guenole/ChibiOS_2.6.3/demos/ARM7-AT91SAM7X-FATFS-GCC/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/SourceFiles/Appendices/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MScThesisTemplate/MScThesisTemplate/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/median/src/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/VERILOG/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/VHDL/TB/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/pipelined_wb_ram/wb_bram/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/pipelined_wb_ram/wshb_if/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/Exercices/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/Exercices/FIFO/src/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/TB/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/HW/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/HW/VERILOG/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/receiver/STM32/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/HW/cadence_src/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex1/project_ex1/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex3/project_ex3/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/hardware_files/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/tb_files/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/sdk.src/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/src_ap_fixed/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_lib/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_src/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/src/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SVM_dataset/"
+ "/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/DepotGIT/Soft/KubzProgram/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/behav_files/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/VHDL-master/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/IC-VHDL-Coursework-master/source/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "client.js"
+ "client.coffee"
+ "server.coffee"
+ "server.js"
+ "package.json"
+ ".gitignore"
+ "readme.md"
+ "screenshot.png"
+ "Makefile"
+ "README.md"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/" (22220 32990 0 0) "server.js" "server.coffee" "screenshot.png" "readme.md" "public/" "package.json" "node_modules/" "components/" "component.json" "Cakefile" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/" (22103 39166 0 0) "VHDL_and_Logic_Synthesis/" "Project/" "Optical_Communication/" "MEMS_and_nanotechnology/" "High_Performance_Analog_Elec/" "Full_Custom_Integrated_Circuit_Design/" "First Destination Form.doc" "Feedback form.doc" "CMOS_Circuit_Design__Layout__and_Simulation__3rd_Edition.pdf" "Analogue_Signal_Processing.7z" "Analogue_Signal_Processing/" "Analogue_Integrated_Circuitsand_Systems/" "Analog Design Essentials, Sansen.pdf" "Advanced_Electronic_Devices/" "ADSD/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/" (22071 27430 0 0) "PhD/" "nainA-Télécom ParisTech/" "MScImperialCollege/" "2A-TelecomParisTech/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/" (22220 32906 0 0) "VirtualBox VMs/" "Public/" "Pictures/" "Music/" "Movies/" "Library/" "Google Drive/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc" ".zsh_save/" ".zsh_history" ".zsh-update" ".zcompdump-Mururoa-5.0.8" ".zcompdump" ".zcompcache/" ".Xauthority" ".wireshark-etc/" ".wireshark/" ".wget-hsts" ".Trash/" ".thefuck/" ".subversion/" ".ssh/" ".sh_history" ".serverauth.535" ".serverauth.2023" ".rnd" ".putty/" ".profile" ".oh-my-zsh/" ".npm/" ".node-gyp/" ".matlab/" ".macports/" ".local/" ".latexmkrc" ".inkscape-etc/" ".gnupg/" ".gnome2/" ".gitconfig" ".fontconfig/" ".epspdf/" ".emacs.d/" ".emacs" ".DS_Store" ".cups/" ".config/" ".CFUserTextEncoding" ".cache/" ".bash_history" ".aspell.en.pws" ".aspell.en.prepl" ".android/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/" (22220 31903 0 0) "drone-browser/" "ar-drone/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/" (22220 30060 0 0) "node_modules/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/" (22220 27924 0 0) "Voyage Asie/" "Transcripts/" "Prêt taux 0% - Télécom ParisTech Alumni/" "Papiers Identité/" "Logement Londres/" "LeBonCoin/" "Justificatif de domicile.doc" "Dev/" "Cours Particulier/" "Banque/" "Aide à la mobilité - Télécom ParisTech/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/" (22215 13116 0 0) "Temp/" "Pro/" "Perso/" "Icon
+" "Divers/" "Cours/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/public/" (22220 32001 0 0) "style.css" "index.html" "default.jpg" "client.js" "client.coffee" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/" (22220 32127 0 0) "faye/" "express/" "ar-drone/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/" (22220 28339 0 0) "test/" "repl.js" "README.md" "package.json" "node_modules/" "Makefile" "LICENSE" "lib/" "index.js" "examples/" "CONTRIBUTING.md" "Changes.md" ".travis.yml" ".npmignore" ".jshintrc" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/log/" (22218 58751 0 0) ".easter-egg" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/themes/" (22219 10113 0 0) "zhann.zsh-theme" "ys.zsh-theme" "xiong-chiamiov.zsh-theme" "xiong-chiamiov-plus.zsh-theme" "wuffers.zsh-theme" "wezm.zsh-theme" "wezm+.zsh-theme" "wedisagree.zsh-theme" "trapd00r.zsh-theme" "tonotdo.zsh-theme" "tjkirch_mod.zsh-theme" "tjkirch.zsh-theme" "theunraveler.zsh-theme" "terminalparty.zsh-theme" "takashiyoshida.zsh-theme" "suvash.zsh-theme" "superjarin.zsh-theme" "sunrise.zsh-theme" "sunaku.zsh-theme" "strug.zsh-theme" "steeef.zsh-theme" "sporty_256.zsh-theme" "sorin.zsh-theme" "sonicradish.zsh-theme" "Soliah.zsh-theme" "smt.zsh-theme" "skaro.zsh-theme" "simple.zsh-theme" "simonoff.zsh-theme" "sammy.zsh-theme" "robbyrussell.zsh-theme" "rkj.zsh-theme" "rkj-repos.zsh-theme" "rixius.zsh-theme" "risto.zsh-theme" "rgm.zsh-theme" "re5et.zsh-theme" "pygmalion.zsh-theme" "pure.zsh-theme" "pmcgee.zsh-theme" "philips.zsh-theme" "peepcode.zsh-theme" "obraun.zsh-theme" "norm.zsh-theme" "nicoulaj.zsh-theme" "nebirhos.zsh-theme" "nanotech.zsh-theme" "my_theme.zsh-theme" "muse.zsh-theme" "murilasso.zsh-theme" "mrtazz.zsh-theme" "mortalscumbag.zsh-theme" "mira.zsh-theme" "minimal.zsh-theme" "miloshadzic.zsh-theme" "mikeh.zsh-theme" "michelebologna.zsh-theme" "mh.zsh-theme" "mgutz.zsh-theme" "maran.zsh-theme" "macovsky.zsh-theme" "macovsky-ruby.zsh-theme" "lukerandall.zsh-theme" "linuxonly.zsh-theme" "lambda.zsh-theme" "kphoen.zsh-theme" "kolo.zsh-theme" "kiwi.zsh-theme" "kennethreitz.zsh-theme" "kardan.zsh-theme" "kafeitu.zsh-theme" "junkfood.zsh-theme" "juanghurtado.zsh-theme" "jtriley.zsh-theme" "jreese.zsh-theme" "josh.zsh-theme" "jonathan.zsh-theme" "jnrowe.zsh-theme" "jispwoso.zsh-theme" "jbergantine.zsh-theme" "jaischeema.zsh-theme" "itchy.zsh-theme" "intheloop.zsh-theme" "imajes.zsh-theme" "humza.zsh-theme" "honukai.zsh-theme" "half-life.zsh-theme" "gozilla.zsh-theme" "gnzh.zsh-theme" "gianu.zsh-theme" "geoffgarside.zsh-theme" "gentoo.zsh-theme" "garyblessington.zsh-theme" "gallois.zsh-theme" "gallifrey.zsh-theme" "fwalch.zsh-theme" "funky.zsh-theme" "frontcube.zsh-theme" "frisk.zsh-theme" "fox.zsh-theme" "fletcherm.zsh-theme" "flazz.zsh-theme" "fishy.zsh-theme" "fino.zsh-theme" "fino-time.zsh-theme" "example.zsh-theme" "evan.zsh-theme" "essembeh.zsh-theme" "emotty.zsh-theme" "edvardm.zsh-theme" "eastwood.zsh-theme" "duellj.zsh-theme" "dstufft.zsh-theme" "dst.zsh-theme" "dpoggi.zsh-theme" "dogenpunk.zsh-theme" "dieter.zsh-theme" "daveverwer.zsh-theme" "darkblood.zsh-theme" "dallas.zsh-theme" "cypher.zsh-theme" "crunch.zsh-theme" "crcandy.zsh-theme" "cloud.zsh-theme" "clean.zsh-theme" "candy.zsh-theme" "candy-kingdom.zsh-theme" "bureau.zsh-theme" "blinks.zsh-theme" "bira.zsh-theme" "awesomepanda.zsh-theme" "avit.zsh-theme" "aussiegeek.zsh-theme" "arrow.zsh-theme" "apple.zsh-theme" "amuse.zsh-theme" "alanpeabody.zsh-theme" "agnoster.zsh-theme" "afowler.zsh-theme" "af-magic.zsh-theme" "adben.zsh-theme" "3den.zsh-theme" ".#honukai.zsh-theme" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/custom/plugins/example/" (22218 58751 0 0) "example.plugin.zsh" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/custom/plugins/" (22218 58751 0 0) "example/" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/custom/" (22218 58751 0 0) "plugins/" "example.zsh" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/tools/" (22218 58751 0 0) "upgrade.sh" "uninstall.sh" "theme_chooser.sh" "require_tool.sh" "install.sh" "check_for_upgrade.sh" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/" (22218 58751 0 0) "tools/" "themes/" "templates/" "README.markdown" "plugins/" "oh-my-zsh.sh" "MIT-LICENSE.txt" "log/" "lib/" "custom/" "cache/" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/Gu3nol/zsh_save/" (22218 59296 0 0) "zshrc" "zsh/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Pro/CV-Cover_Letter/CV_EN/" (22099 32175 0 0) "tweaklist.sty" "README" "moderncvstyleoldstyle.sty" "moderncvstyleempty.sty" "moderncvstyleclassic.sty" "moderncvstylecasual.sty" "moderncvstylebanking.sty" "moderncviconsmarvosym.sty" "moderncviconsletters.sty" "moderncviconsawesome.sty" "moderncvdebugtools.sty" "moderncvcompatibility.sty" "moderncvcolorred.sty" "moderncvcolorpurple.sty" "moderncvcolororange.sty" "moderncvcolorgrey.sty" "moderncvcolorgreen.sty" "moderncvcolorblue.sty" "moderncvcolorblack.sty" "moderncvcollection.sty" "moderncv.cls" "CV.tex" "CV.synctex.gz" "CV.pdf" "CV.out" "CV.log" "CV.fls" "CV.fdb_latexmk" "CV.aux" "CHANGELOG" "auto/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Pro/CV-Cover_Letter/" (22099 31580 0 0) "moderncv-2.0.zip" "CV_FR/" "CV_EN/" "Cover_letter_Imperial_College.doc" "Cover_letter_EPFL.doc" "Cover_Letter.docx" "cover_Imperial_College/" "cover_EPFL/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Pro/CV-Cover_Letter/CV_FR/" (22099 32337 0 0) "tweaklist.sty" "README" "moderncvstyleoldstyle.sty" "moderncvstylefancy.sty" "moderncvstyleempty.sty" "moderncvstyleclassic.sty" "moderncvstylecasual.sty" "moderncvstylebanking.sty" "moderncviconsmarvosym.sty" "moderncviconsletters.sty" "moderncviconsawesome.sty" "moderncvheadvi.sty" "moderncvheadv.sty" "moderncvheadiv.sty" "moderncvheadiii.sty" "moderncvheadii.sty" "moderncvheadi.sty" "moderncvfooti.sty" "moderncvdebugtools.sty" "moderncvcompatibility.sty" "moderncvcolorred.sty" "moderncvcolorpurple.sty" "moderncvcolororange.sty" "moderncvcolorgrey.sty" "moderncvcolorgreen.sty" "moderncvcolorburgundy.sty" "moderncvcolorblue.sty" "moderncvcolorblack.sty" "moderncvcollection.sty" "moderncvbodyv.sty" "moderncvbodyiv.sty" "moderncvbodyiii.sty" "moderncvbodyii.sty" "moderncvbodyi.sty" "moderncv.cls" "KNOWN_BUGS" "CV.tex" "CV.synctex.gz" "CV.pdf" "CV.out" "CV.log" "CV.fls" "CV.fdb_latexmk" "CV.aux" "CHANGELOG" "auto/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/Chapters/" (22007 5111 0 0) "Chapter7.tex" "Chapter6.tex" "Chapter5.tex" "Chapter4.tex" "Chapter3.tex" "Chapter2.tex" "Chapter1.tex" "ChapAckn.tex" "ChapAbbr.tex" "Abstract.tex" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/" (22007 6464 0 0) "TitlePage.tex" "thesis.cls" "RefList.tex" "ref.bib" "README.md" "Paper/" "MScThesis.toc" "MScThesis.tex" "MScThesis.synctex.gz" "MScThesis.pdf" "MScThesis.out" "MScThesis.lot" "MScThesis.log" "MScThesis.lof" "MScThesis.fls" "MScThesis.fdb_latexmk" "MScThesis.blg" "MScThesis.bbl" "MScThesis.aux" "IEEEabrv.bib" "Figs/" "Chapters/" "auto/" "Appendices/" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/Paper/" (21999 5988 0 0) "paper.tex" "paper.pdf" "paper.fdb_latexmk" "Figs/" "auto/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/Appendices/" (21999 6023 0 0) "AppendixD.tex" "AppendixC.tex" "AppendixB.tex" "AppendixA.tex" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/Corr_leo/" (21998 48934 0 0) "Chapter6_corr.tex" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/VHDL/HW/" (21990 57043 0 0) "clu_inputs_SPI.vhd" "clu_inputs.vhd" "clu.vhd" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/VHDL/" (21953 64343 0 0) "TB/" "HW/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/" (21730 10768 0 0) "StageFH/" "SES222/" "ROSE/" "MDI210/" "INF227/" "INF223/" "INF220/" "FH226/" "ESPAGNOL/" "ELECINF359/" "ELEC390/" "ELEC342/" "ELEC223/" "ELEC222/" "ELEC221/" "ELEC220/" "DROIT201/" "DROIT200/" "ANGLAIS/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/DIGITAL_TIMING_ANALYSIS/" (21939 48009 0 0) "Top_VHDL_test.sdc" "Top_VHDL_func.sdc" "Top_VHDL.ctstch" "TOP_DIGITAL_test.sdc" "TOP_DIGITAL_func.sdc" "TOP_DIGITAL.ctstch" "logic_top_320x320_test.sdc" "logic_top_320x320.ctstch" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/" (21989 54184 0 0) "TapeOut/" "Screenshots/" "Report/" "Presentation_MSc_Group_meeting/" "MScThesisTemplate/" "MSc_Project_Interim_Report.gdoc" "Matlab/" "DM00054618.pdf" "DIGITAL_TIMING_ANALYSIS/" "Digital/" "Datasheet/" "Comparative_results.xlsx" "Cg.gdoc" "Biblio/" "0.35_rules/" "0.18_rules/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Screenshots/" (21910 44476 0 0) "TypeI_structure.PNG" "TB_Switch_OpAmp_trans.PNG" "TB_Switch_OpAmp_AMS_trans.PNG" "TB_Switch_OpAmp_AMS.PNG" "TB_Switch_OpAmp.PNG" "TB_Switch_Buffer.PNG" "TB_pixel.PNG" "Space_Pass_Cap.PNG" "PEX_Type_I_trans_2.PNG" "PEX_Type_I_trans_1.PNG" "PEX_Type_I.PNG" "OpAmp_tb.PNG" "OpAmp_AMS_tb_trans.PNG" "OpAmp_AMS_tb.PNG" "OpAmp.PNG" "gm_evaluation_zoom_l_1.PNG" "gm_evaluation_zoom_l_0_35.PNG" "gm_evaluation_l_0_35_global.PNG" "gm_evaluation_l_0_35.PNG" "gm_evaluation.PNG" "Contact_Gate_Out.PNG" "Contact_Gate_In.PNG" "CLU_input.PNG" "Charact_Vg_Vout_Pixel.PNG" "Buffer_tb.PNG" "Buffer.PNG" "B-mult.PNG" "Array.PNG" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Illustrations/" (21988 31682 0 0) "TB_Pixel.graffle" "System.graffle" "Pixel.svg" "Pixel.graffle" "Op-amp_symbol.svg" "Hybrid-pi_detailed_model.svg" "Hex_non_reg.graffle" "Hex.graffle" "FSM.graffle" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/" (21982 17335 0 0) "Sources/" "Skeleton.gdoc" "Notes.gdoc" "Literrature review - HexFET.gdoc" "Illustrations/" "Content.gdoc" "Biblio_Notes.gsheet" "BATMAN_layout.png" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/SourceFiles/Chapters/" (21982 13481 0 0) "Chapter6.tex" "Chapter5.tex" "Chapter4.tex" "Chapter3.tex" "Chapter2.tex" "Chapter1.tex" "ChapAckn.tex" "ChapAbbr.tex" "Abstract.tex" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/SourceFiles/" (21981 31879 0 0) "TitlePage.tex" "thesis.cls" "RefList.tex" "MScThesis.toc" "MScThesis.tex" "MScThesis.synctex.gz" "MScThesis.pdf" "MScThesis.out" "MScThesis.lot" "MScThesis.log" "MScThesis.lof" "MScThesis.fls" "MScThesis.fdb_latexmk" "MScThesis.blg" "MScThesis.bbl" "MScThesis.aux" "misc.bib" "isfets.bib" "IEEEabrv.bib" "hexfet.bib" "Figs/" "Chapters/" "auto/" "Appendices/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex2/" (21691 54888 0 0) "project_ex2/" "ex4_data_gen.py" "CW2.pdf" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/" (21742 1183 0 0) "tmp/" "Project_2015/" "ex4/" "ex3/" "ex2/" "ex1/" "ex0/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/" (21953 64819 0 0) "README.md" "Coursework/" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Volumes/Macintosh HD/Network/" (21519 26469 0 0) "../" "./")
+
+ ("/Volumes/" (21977 3032 0 0) "Macintosh HD/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/" (21977 5880 0 0) "SourceFiles_SAVE_22_08_15.zip" "SourceFiles/" "Skeleton.gdoc" "Notes.gdoc" "Literrature review - HexFET.gdoc" "Illustrations/" "Content (1).gdoc" "Biblio_Notes.gsheet" "auto/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/guenole/ChibiOS_2.6.3/demos/ARM7-AT91SAM7X-FATFS-GCC/" (21586 2203 0 0) "readme.txt" "mcuconf.h" "Makefile" "main.c" "halconf.h" "ffconf.h" "chconf.h" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/VERILOG/" (21953 64528 0 0) "top_digital.sv" "TB_top_digital.sv" "clu_synth.v" "clu_inputs_SPI.sv" "c35_CORELIBD.sv" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MScThesisTemplate/MScThesisTemplate/" (21964 54532 0 0) "TitlePage.tex" "thesis.cls" "RefList.tex" "references.bib" "MScThesisTemplate.tex" "MScThesisTemplate.pdf" "IEEEtran.bst" "IEEEabrv.bib" "Figs/" "ChapTwo.tex" "ChapOne.tex" "ChapAckn.tex" "ChapAbbr.tex" "AppA.tex" "Abstract.tex" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MSc_Thesis/SourceFiles/Appendices/" (21966 2252 0 0) "clu.vhd" "auto/" "AppendixD.tex" "AppendixC.tex" "AppendixB.tex" "AppendixA.tex" ".DS_Store" "../" "./")
+
+ ("/usr/local/texlive/2015/texmf-dist/tex/context/base/" (21857 59175 0 0) "xtag-xsl.mkii" "xtag-xsd.mkii" "xtag-utf.mkii" "xtag-stk.mkii" "xtag-run.mkii" "xtag-rng.mkii" "xtag-raw.mkii" "xtag-prs.mkii" "xtag-pre.mkii" "xtag-pmu.mkii" "xtag-pml.mkii" "xtag-mxr.mkii" "xtag-mxo.mkii" "xtag-mxn.mkii" "xtag-mxh.mkii" "xtag-mxc.mkii" "xtag-mxb.mkii" "xtag-mxa.mkii" "xtag-mmp.mkii" "xtag-mml.mkii" "xtag-mmc.mkii" "xtag-mer.mkii" "xtag-meo.mkii" "xtag-men.mkii" "xtag-meh.mkii" "xtag-mec.mkii" "xtag-meb.mkii" "xtag-mea.mkii" "xtag-map.mkii" "xtag-ini.mkii" "xtag-hyp.mkii" "xtag-ext.mkii" "xtag-exp.mkii" "xtag-ent.mkii" "xtag-cml.mkii" "xetx-utf.mkii" "xetx-ini.mkii" "xetx-cls.mkii" "xetx-chr.mkii" "x-xtag.mkiv" "x-xml-11.mkii" "x-xml-02.mkii" "x-xml-01.mkii" "x-xfdf.mkiv" "x-udhr.mkiv" "x-steps.mkiv" "x-steps.mkii" "x-sm2om.xsl" "x-set-12.mkiv" "x-set-12.mkii" "x-set-11.mkiv" "x-set-11.mkii" "x-set-02.mkii" "x-set-01.mkii" "x-sch-01.mkii" "x-sch-00.mkii" "x-res-50.mkiv" "x-res-50.mkii" "x-res-20.mkii" "x-res-12.mkii" "x-res-11.mkii" "x-res-10.mkii" "x-res-09.mkii" "x-res-08.mkii" "x-res-04.mkii" "x-res-03.mkii" "x-res-02.mkii" "x-res-01.mkiv" "x-res-01.mkii" "x-res-00.mkii" "x-physml.xsd" "x-physml.mkiv" "x-physml.mkii" "x-pfsense.ctx" "x-pfs-01.mkiv" "x-openmath.xsl" "x-openmath.mkii" "x-om2cml.xsl" "x-newpml.mkii" "x-newmmo.mkii" "x-newmml.mkiv" "x-newmml.mkii" "x-newmme.mkii" "x-newcml.mkii" "x-mathml.xsd" "x-mathml.mkiv" "x-mathml.mkii" "x-mathml.lua" "x-mathml-html.mkiv" "x-mathml-basics.mkiv" "x-math-svg.lua" "x-ldx.mkiv" "x-ldx.lua" "x-ldx.ctx" "x-html.mkiv" "x-foxet.mkiv" "x-foxet.mkii" "x-fo.mkii" "x-fig-03.mkii" "x-fig-02.mkii" "x-fig-01.mkii" "x-fig-00.xsd" "x-fig-00.mkii" "x-fig-00.dtd" "x-fe.mkii" "x-fdf-00.mkii" "x-entities.mkiv" "x-dir-05.mkiv" "x-dir-05.mkii" "x-dir-01.tex" "x-ct.mkiv" "x-ct.lua" "x-corres.rng" "x-corres.mkii" "x-contml.xsd" "x-contml.mkii" "x-chemml.xsd" "x-chemml.mkiv" "x-chemml.mkii" "x-chemml.lua" "x-cals.mkiv" "x-cals.lua" "x-calcmath.mkiv" "x-calcmath.mkii" "x-calcmath.lua" "x-asciimath.mkiv" "x-asciimath.lua" "verb-xml.mkii" "verb-tex.mkii" "verb-sql.mkii" "verb-raw.mkii" "verb-pl.mkii" "verb-pas.mkii" "verb-mp.mkii" "verb-jv.mkii" "verb-js.mkii" "verb-ini.mkii" "verb-eif.mkii" "verb-c.mkii" "util-you.lua" "util-tpl.lua" "util-tab.lua" "util-str.lua" "util-sto.lua" "util-sta.lua" "util-sql.lua" "util-sql-users.lua" "util-sql-tracers.lua" "util-sql-tickets.lua" "util-sql-sessions.lua" "util-sql-loggers.lua" "util-sql-imp-swiglib.lua" "util-sql-imp-library.lua" "util-sql-imp-client.lua" "util-soc.lua" "util-seq.lua" "util-sci.lua" "util-sbx.lua" "util-ran.lua" "util-prs.lua" "util-pck.lua" "util-mrg.lua" "util-lua.lua" "util-lib.lua" "util-jsn.lua" "util-fmt.lua" "util-env.lua" "util-dim.lua" "util-deb.lua" "unic-run.mkii" "unic-ini.mkiv" "unic-ini.mkii" "unic-ini.lua" "unic-exp.mkii" "unic-cjk.mkii" "unic-251.mkii" "unic-039.mkii" "unic-037.mkii" "unic-035.mkii" "unic-034.mkii" "unic-033.mkii" "unic-032.mkii" "unic-031.mkii" "unic-030.mkii" "unic-005.mkii" "unic-004.mkii" "unic-003.mkii" "unic-002.mkii" "unic-001.mkii" "unic-000.mkii" "typo-wrp.mkiv" "typo-wrp.lua" "typo-txt.mkvi" "typo-tal.mkiv" "typo-tal.lua" "typo-sus.mkiv" "typo-sus.lua" "typo-spa.mkiv" "typo-spa.lua" "typo-scr.mkiv" "typo-rep.mkiv" "typo-rep.lua" "typo-prc.mkvi" "typo-prc.lua" "typo-par.mkiv" "typo-pag.mkiv" "typo-pag.lua" "typo-mar.mkiv" "typo-mar.lua" "typo-man.lua" "typo-lig.mkiv" "typo-lan.mkiv" "typo-lan.lua" "typo-krn.mkiv" "typo-krn.lua" "typo-itm.mkiv" "typo-itc.mkvi" "typo-itc.lua" "typo-inj.mkiv" "typo-inj.lua" "typo-ini.mkiv" "typo-ini.mkii" "typo-ini.lua" "typo-fln.mkiv" "typo-fln.lua" "typo-dub.lua" "typo-dua.lua" "typo-drp.mkiv" "typo-drp.lua" "typo-dir.mkiv" "typo-dir.lua" "typo-dig.mkiv" "typo-dig.lua" "typo-dha.lua" "typo-del.mkiv" "typo-cln.mkiv" "typo-cln.lua" "typo-chr.mkiv" "typo-chr.lua" "typo-cap.mkiv" "typo-cap.lua" "typo-brk.mkiv" "typo-brk.lua" "typo-bld.mkiv" "typo-bld.lua" "type-xtx.mkii" "type-win.mkii" "type-tmf.mkiv" "type-tmf.mkii" "type-siz.mkiv" "type-siz.mkii" "type-set.mkiv" "type-set.mkii" "type-run.mkiv" "type-run.mkii" "type-pre.mkii" "type-otf.mkiv" "type-otf.mkii" "type-one.mkiv" "type-one.mkii" "type-msw.mkii" "type-mac.mkii" "type-lua.mkiv" "type-ini.mkvi" "type-ini.mkii" "type-ini.lua" "type-imp-xitsbidi.mkiv" "type-imp-xits.mkiv" "type-imp-unfonts.mkiv" "type-imp-texgyre.mkiv" "type-imp-punknova.mkiv" "type-imp-postscript.mkiv" "type-imp-osx.mkiv" "type-imp-opendyslexic.mkiv" "type-imp-mscore.mkiv" "type-imp-mathtimes.mkiv" "type-imp-mathdigits.mkiv" "type-imp-mathdesign.mkiv" "type-imp-lucida-typeone.mkiv" "type-imp-lucida-opentype.mkiv" "type-imp-lmnames.mkiv" "type-imp-libertine.mkiv" "type-imp-liberation.mkiv" "type-imp-lato.mkiv" "type-imp-latinmodern.mkiv" "type-imp-kurier.mkiv" "type-imp-iwona.mkiv" "type-imp-ipaex.mkiv" "type-imp-informal.mkiv" "type-imp-inconsolata.mkiv" "type-imp-hvmath.mkiv" "type-imp-husayni.mkiv" "type-imp-hgz.mkiv" "type-imp-ghz.mkiv" "type-imp-euler.mkiv" "type-imp-ebgaramond.mkiv" "type-imp-dejavu.mkiv" "type-imp-cow.mkiv" "type-imp-computer-modern-unicode.mkiv" "type-imp-cleartype.mkiv" "type-imp-charter.mkiv" "type-imp-cambria.mkiv" "type-imp-buy.mkiv" "type-imp-averia.mkiv" "type-imp-asana.mkiv" "type-imp-antykwapoltawskiego.mkiv" "type-imp-antykwa.mkiv" "type-hgz.mkii" "type-ghz.mkii" "type-fsf.mkii" "type-fbk.mkiv" "type-exp.mkii" "type-def.mkiv" "type-def.mkii" "type-cow.mkii" "type-cbg.mkii" "type-buy.mkii" "trac-xml.lua" "trac-vis.mkiv" "trac-vis.mkii" "trac-vis.lua" "trac-tim.lua" "trac-tex.mkiv" "trac-tex.lua" "trac-set.lua" "trac-pro.lua" "trac-par.lua" "trac-log.lua" "trac-lmx.lua" "trac-jus.mkiv" "trac-jus.lua" "trac-inf.lua" "trac-fil.lua" "trac-exp.lua" "trac-deb.mkiv" "trac-deb.lua" "trac-ctx.mkiv" "trac-ctx.lua" "toks-tra.mkiv" "toks-tra.lua" "toks-scn.lua" "toks-map.mkiv" "toks-map.lua" "toks-ini.mkiv" "toks-ini.lua" "thrd-trg.mkii" "thrd-tab.mkii" "thrd-ran.mkii" "thrd-pic.mkii" "task-ini.mkiv" "task-ini.lua" "tabl-xtb.mkvi" "tabl-xtb.lua" "tabl-xnt.mkvi" "tabl-tsp.mkiv" "tabl-tsp.mkii" "tabl-tbl.mkiv" "tabl-tbl.mkii" "tabl-tbl.lua" "tabl-tab.mkiv" "tabl-tab.mkii" "tabl-pln.mkiv" "tabl-pln.mkii" "tabl-nte.mkiv" "tabl-nte.mkii" "tabl-ntb.mkiv" "tabl-ntb.mkii" "tabl-mis.mkiv" "tabl-ltb.mkiv" "tabl-ltb.mkii" "tabl-com.mkiv" "tabl-com.mkii" "syst-tex.mkii" "syst-str.mkii" "syst-rtp.mkiv" "syst-rtp.mkii" "syst-pln.mkiv" "syst-pln.mkii" "syst-new.mkii" "syst-mes.mkiv" "syst-lua.mkiv" "syst-lua.lua" "syst-ini.mkiv" "syst-ini.mkii" "syst-gen.mkii" "syst-fnt.mkiv" "syst-fnt.mkii" "syst-ext.mkii" "syst-con.mkiv" "syst-con.mkii" "syst-con.lua" "syst-aux.mkiv" "syst-aux.lua" "symb-was.mkii" "symb-uni.mkii" "symb-run.mkiv" "symb-run.mkii" "symb-nav.mkii" "symb-mvs.mkii" "symb-mis.mkii" "symb-jmn.mkii" "symb-ini.mkiv" "symb-ini.mkii" "symb-ini.lua" "symb-imp-nav.mkiv" "symb-imp-mvs.mkiv" "symb-imp-mis.mkiv" "symb-imp-jmn.mkiv" "symb-imp-eur.mkiv" "symb-imp-cow.mkiv" "symb-imp-cc.mkiv" "symb-glm.mkii" "symb-eur.mkii" "symb-cow.mkii" "supp-vis.mkiv" "supp-vis.mkii" "supp-tpi.mkii" "supp-spe.mkii" "supp-ran.mkiv" "supp-ran.mkii" "supp-ran.lua" "supp-pdf.tex" "supp-pdf.mkii" "supp-pat.mkii" "supp-num.mkii" "supp-mrk.mkii" "supp-mps.mkii" "supp-mpe.tex" "supp-mpe.mkii" "supp-mis.tex" "supp-mis.mkii" "supp-mat.mkiv" "supp-mat.mkii" "supp-lat.mkii" "supp-fun.mkii" "supp-fil.mkii" "supp-eps.mkii" "supp-emp.mkii" "supp-dir.mkiv" "supp-dir.mkii" "supp-box.mkiv" "supp-box.mkii" "supp-box.lua" "supp-ali.mkii" "strc-xml.mkiv" "strc-tag.mkiv" "strc-tag.lua" "strc-syn.mkiv" "strc-syn.mkii" "strc-syn.lua" "strc-swd.mkii" "strc-sec.mkiv" "strc-sec.mkii" "strc-sbe.mkiv" "strc-rsc.lua" "strc-ren.mkiv" "strc-reg.mkiv" "strc-reg.mkii" "strc-reg.lua" "strc-ref.mkvi" "strc-ref.mkii" "strc-ref.lua" "strc-pag.mkiv" "strc-pag.mkii" "strc-pag.lua" "strc-num.mkiv" "strc-num.mkii" "strc-num.lua" "strc-not.mkvi" "strc-not.mkii" "strc-not.lua" "strc-mat.mkiv" "strc-mat.mkii" "strc-mat.lua" "strc-mar.mkiv" "strc-mar.mkii" "strc-mar.lua" "strc-lst.mkvi" "strc-lst.mkii" "strc-lst.lua" "strc-lnt.mkvi" "strc-lnt.mkii" "strc-lev.mkvi" "strc-lev.lua" "strc-lab.mkiv" "strc-itm.mkvi" "strc-itm.mkii" "strc-itm.lua" "strc-ini.mkvi" "strc-ini.lua" "strc-ind.mkiv" "strc-flt.mkvi" "strc-flt.mkii" "strc-flt.lua" "strc-enu.mkvi" "strc-doc.mkiv" "strc-doc.lua" "strc-des.mkvi" "strc-des.mkii" "strc-def.mkiv" "strc-con.mkvi" "strc-con.lua" "strc-blk.mkiv" "strc-blk.mkii" "strc-blk.lua" "strc-bkm.mkiv" "strc-bkm.lua" "status-mkiv.tex" "status-mkiv.lua" "status-lua.pdf" "status-files.pdf" "spec-yy.mkii" "spec-xtx.mkii" "spec-xet.mkii" "spec-win.mkii" "spec-var.mkii" "spec-tst.mkii" "spec-tr.mkii" "spec-tpd.mkii" "spec-ps.mkii" "spec-pdf.mkii" "spec-mis.mkii" "spec-ini.mkii" "spec-fdf.mkii" "spec-dvi.mkii" "spec-dpx.mkii" "spec-dpm.mkii" "spec-def.mkii" "spac-ver.mkiv" "spac-ver.lua" "spac-prf.mkiv" "spac-par.mkiv" "spac-pag.mkiv" "spac-lin.mkiv" "spac-hor.mkiv" "spac-hor.lua" "spac-grd.mkiv" "spac-grd.mkii" "spac-gen.mkii" "spac-flr.mkiv" "spac-def.mkiv" "spac-chr.mkiv" "spac-chr.lua" "spac-ali.mkiv" "spac-ali.lua" "spac-adj.mkiv" "spac-adj.lua" "sort-lan.mkii" "sort-lan.lua" "sort-ini.mkiv" "sort-ini.mkii" "sort-ini.lua" "sort-def.mkii" "scrp-tha.lua" "scrp-ini.mkiv" "scrp-ini.lua" "scrp-eth.lua" "scrp-cjk.lua" "scrn-wid.mkvi" "scrn-wid.lua" "scrn-ref.mkvi" "scrn-ref.lua" "scrn-pag.mkvi" "scrn-pag.lua" "scrn-nav.mkii" "scrn-int.mkii" "scrn-ini.mkvi" "scrn-ini.lua" "scrn-hlp.mkvi" "scrn-hlp.mkii" "scrn-hlp.lua" "scrn-fld.mkvi" "scrn-fld.mkii" "scrn-fld.lua" "scrn-but.mkvi" "scrn-but.lua" "scrn-bar.mkvi" "s-youless.mkiv" "s-typesetting-kerning.mkiv" "s-syntax.mkiv" "s-syntax.mkii" "s-structure-sections.mkiv" "s-sql-tables.mkiv" "s-sql-tables.lua" "s-set-31.mkiv" "s-reg-01.mkiv" "s-references-show.mkiv" "s-ptj-01.tex" "s-present-tiles.mkiv" "s-pre-96.tex" "s-pre-93.tex" "s-pre-71.mkiv" "s-pre-71.mkii" "s-pre-71.lua" "s-pre-70.mkiv" "s-pre-69.mkiv" "s-pre-68.tex" "s-pre-67.tex" "s-pre-66.tex" "s-pre-64.tex" "s-pre-63.tex" "s-pre-62.tex" "s-pre-61.tex" "s-pre-60.mkiv" "s-pre-60.mkii" "s-pre-50.tex" "s-pre-30.mkiv" "s-pre-30.mkii" "s-pre-27.tex" "s-pre-26.tex" "s-pre-23.tex" "s-pre-22.tex" "s-pre-19.tex" "s-pre-18.tex" "s-pre-17.mkiv" "s-pre-17.mkii" "s-pre-16.tex" "s-pre-15.tex" "s-pre-14.tex" "s-pre-13.tex" "s-pre-12.tex" "s-pre-11.tex" "s-pre-10.tex" "s-pre-09.tex" "s-pre-08.tex" "s-pre-07.tex" "s-pre-06.tex" "s-pre-05.tex" "s-pre-04.tex" "s-pre-03.tex" "s-pre-02.tex" "s-pre-01.tex" "s-pre-00.tex" "s-physics-units.mkiv" "s-pages-statistics.mkiv" "s-mod.ctx" "s-mod-02.mkiv" "s-mod-02.mkii" "s-mod-01.mkiv" "s-mod-01.mkii" "s-mod-00.mkiv" "s-mod-00.mkii" "s-math-repertoire.mkiv" "s-math-parameters.mkiv" "s-math-parameters.lua" "s-math-extensibles.mkiv" "s-math-coverage.mkiv" "s-math-coverage.lua" "s-math-characters.mkiv" "s-math-characters.lua" "s-map-10.mkiv" "s-map-10.mkii" "s-mag-01.tex" "s-languages-words.mkiv" "s-languages-words.lua" "s-languages-system.mkiv" "s-languages-system.lua" "s-languages-sorting.mkiv" "s-languages-sorting.lua" "s-languages-hyphenation.mkiv" "s-languages-hyphenation.lua" "s-languages-frequencies.mkiv" "s-languages-frequencies.lua" "s-languages-counters.mkiv" "s-languages-counters.lua" "s-jap-00.mkii" "s-inf-04.mkiv" "s-inf-03.mkiv" "s-inf-02.mkiv" "s-inf-01.mkvi" "s-grk-00.mkii" "s-fonts-vectors.mkiv" "s-fonts-vectors.lua" "s-fonts-tables.mkiv" "s-fonts-tables.lua" "s-fonts-system.mkiv" "s-fonts-system.lua" "s-fonts-shapes.mkiv" "s-fonts-shapes.lua" "s-fonts-missing.mkiv" "s-fonts-missing.lua" "s-fonts-ligatures.mkiv" "s-fonts-goodies.mkiv" "s-fonts-goodies.lua" "s-fonts-features.mkiv" "s-fonts-features.lua" "s-fonts-coverage.mkiv" "s-fonts-coverage.lua" "s-fnt-24.mkiv" "s-fnt-21.mkiv" "s-fnt-20.mkiv" "s-fnt-10.mkiv" "s-fnt-02.mkii" "s-fnt-01.mkii" "s-figures-names.mkiv" "s-faq-03.tex" "s-faq-02.tex" "s-faq-01.tex" "s-faq-00.tex" "s-def-01.mkiv" "s-chi-00.mkii" "s-cdr-01.tex" "s-art-01.mkiv" "s-abr-04.tex" "s-abr-03.tex" "s-abr-02.tex" "s-abr-01.tex" "rlxtools.rlx" "rlxcache.rlx" "regi-vis.mkii" "regi-utf.mkii" "regi-uni.mkii" "regi-syn.mkii" "regi-pdfdoc.lua" "regi-mac.mkii" "regi-ini.mkiv" "regi-ini.mkii" "regi-ini.lua" "regi-ibm.mkii" "regi-demo.lua" "regi-def.mkii" "regi-cyr.mkii" "regi-cyp.mkii" "regi-cp1258.lua" "regi-cp1257.mkii" "regi-cp1257.lua" "regi-cp1256.lua" "regi-cp1255.lua" "regi-cp1254.mkii" "regi-cp1254.lua" "regi-cp1253.mkii" "regi-cp1253.lua" "regi-cp1252.mkii" "regi-cp1252.lua" "regi-cp1251.mkii" "regi-cp1251.lua" "regi-cp1250.mkii" "regi-cp1250.lua" "regi-8859-9.mkii" "regi-8859-9.lua" "regi-8859-8.lua" "regi-8859-7.mkii" "regi-8859-7.lua" "regi-8859-6.lua" "regi-8859-5.mkii" "regi-8859-5.lua" "regi-8859-4.mkii" "regi-8859-4.lua" "regi-8859-3.mkii" "regi-8859-3.lua" "regi-8859-2.mkii" "regi-8859-2.lua" "regi-8859-16.mkii" "regi-8859-16.lua" "regi-8859-15.mkii" "regi-8859-15.lua" "regi-8859-14.lua" "regi-8859-13.mkii" "regi-8859-13.lua" "regi-8859-11.lua" "regi-8859-10.mkii" "regi-8859-10.lua" "regi-8859-1.mkii" "regi-8859-1.lua" "publ-xml.mkiv" "publ-usr.mkiv" "publ-usr.lua" "publ-tra.mkiv" "publ-tra.lua" "publ-sor.lua" "publ-reg.lua" "publ-oth.lua" "publ-old.mkiv" "publ-jrn.lua" "publ-ini.mkiv" "publ-ini.lua" "publ-imp-test.bib" "publ-imp-replacements.lua" "publ-imp-page.mkvi" "publ-imp-list.mkvi" "publ-imp-definitions.mkvi" "publ-imp-default.mkvi" "publ-imp-default.lua" "publ-imp-commands.mkvi" "publ-imp-cite.mkvi" "publ-imp-author.mkvi" "publ-imp-aps.mkvi" "publ-imp-aps.lua" "publ-imp-apa.mkvi" "publ-imp-apa.lua" "publ-fnd.lua" "publ-dat.lua" "publ-aut.lua" "prop-mis.mkii" "prop-lay.mkii" "prop-ini.mkiv" "prop-ini.mkii" "ppchtex.mkiv" "ppchtex.mkii" "phys-dim.mkiv" "phys-dim.lua" "pdfr-il2.mkii" "pdfr-ec.mkii" "pdfr-def.mkii" "page-var.mkiv" "page-txt.mkvi" "page-txt.mkii" "page-str.mkiv" "page-str.mkii" "page-str.lua" "page-spr.mkiv" "page-spr.mkii" "page-sid.mkiv" "page-sid.mkii" "page-set.mkiv" "page-set.mkii" "page-sel.mkvi" "page-run.mkiv" "page-run.mkii" "page-pst.mkiv" "page-pst.lua" "page-plg.mkiv" "page-plg.mkii" "page-par.mkiv" "page-par.mkii" "page-otr.mkvi" "page-one.mkiv" "page-one.mkii" "page-not.mkiv" "page-not.mkii" "page-mul.mkiv" "page-mul.mkii" "page-mrk.mkiv" "page-mix.mkiv" "page-mix.lua" "page-mis.mkii" "page-mbk.mkvi" "page-mar.mkii" "page-mak.mkvi" "page-mak.mkii" "page-log.mkii" "page-lin.mkvi" "page-lin.mkii" "page-lin.lua" "page-lay.mkiv" "page-lay.mkii" "page-ins.mkiv" "page-ins.mkii" "page-ins.lua" "page-inj.mkvi" "page-inj.lua" "page-ini.mkiv" "page-ini.mkii" "page-inf.mkiv" "page-imp.mkiv" "page-imp.mkii" "page-grd.mkiv" "page-flw.mkiv" "page-flw.mkii" "page-flt.mkiv" "page-flt.lua" "page-fac.mkiv" "page-com.mkiv" "page-col.mkiv" "page-brk.mkiv" "page-box.mkvi" "page-bck.mkiv" "page-bck.mkii" "page-app.mkiv" "page-app.mkii" "pack-rul.mkiv" "pack-rul.mkii" "pack-rul.lua" "pack-pos.mkiv" "pack-obj.mkiv" "pack-obj.mkii" "pack-obj.lua" "pack-mrl.mkiv" "pack-mis.mkvi" "pack-lyr.mkiv" "pack-lyr.mkii" "pack-fen.mkiv" "pack-cut.mkiv" "pack-com.mkiv" "pack-box.mkiv" "pack-box.mkii" "pack-bck.mkvi" "pack-bar.mkiv" "norm-xtx.mkii" "norm-tex.mkii" "norm-ptx.mkii" "norm-ltx.mkii" "norm-etx.mkii" "norm-ctx.mkiv" "norm-ctx.mkii" "norm-alo.mkii" "node-typ.lua" "node-tst.lua" "node-tsk.lua" "node-tra.lua" "node-tex.lua" "node-snp.lua" "node-shp.lua" "node-ser.lua" "node-rul.mkiv" "node-rul.lua" "node-res.lua" "node-ref.lua" "node-pro.lua" "node-ppt.lua" "node-pag.mkiv" "node-pag.lua" "node-nut.lua" "node-mig.mkiv" "node-mig.lua" "node-met.lua" "node-ltp.lua" "node-inj.lua" "node-ini.mkiv" "node-ini.lua" "node-fnt.lua" "node-fin.mkiv" "node-fin.lua" "node-ext.lua" "node-dir.lua" "node-bck.mkiv" "node-bck.lua" "node-aux.lua" "node-acc.lua" "mult-sys.mkiv" "mult-sys.mkii" "mult-ro.mkii" "mult-prm.mkiv" "mult-prm.lua" "mult-pe.mkii" "mult-nl.mkii" "mult-mro.mkii" "mult-mps.lua" "mult-mpe.mkii" "mult-mno.mkii" "mult-mnl.mkii" "mult-mit.mkii" "mult-mfr.mkii" "mult-mes.lua" "mult-men.mkii" "mult-mde.mkii" "mult-mcs.mkii" "mult-low.lua" "mult-it.mkii" "mult-ini.mkiv" "mult-ini.mkii" "mult-ini.lua" "mult-fun.lua" "mult-fst.mkii" "mult-fr.mkii" "mult-en.mkii" "mult-dim.mkvi" "mult-def.mkiv" "mult-def.mkii" "mult-def.lua" "mult-de.mkii" "mult-con.mkii" "mult-com.mkii" "mult-chk.mkiv" "mult-chk.mkii" "mult-chk.lua" "mult-aux.mkiv" "mult-aux.mkii" "mult-aux.lua" "mtx-context-xml.tex" "mtx-context-timing.tex" "mtx-context-sql.tex" "mtx-context-select.tex" "mtx-context-precache.tex" "mtx-context-markdown.tex" "mtx-context-listing.tex" "mtx-context-ideas.tex" "mtx-context-copy.tex" "mtx-context-common.tex" "mtx-context-combine.tex" "mtx-context-arrange.tex" "mlib-run.lua" "mlib-pps.mkiv" "mlib-pps.lua" "mlib-pdf.mkiv" "mlib-pdf.lua" "mlib-lua.lua" "mlib-int.lua" "mlib-ctx.mkiv" "mlib-ctx.lua" "metatex.tex" "metatex.lus" "meta-xml.mkiv" "meta-xml.mkii" "meta-txt.mkii" "meta-tex.mkiv" "meta-tex.mkii" "meta-tex.lua" "meta-pre.mkii" "meta-pdh.mkiv" "meta-pdh.lua" "meta-pdf.mkiv" "meta-pdf.mkii" "meta-pdf.lua" "meta-pag.mkiv" "meta-pag.mkii" "meta-nav.mkii" "meta-mis.mkii" "meta-ini.mkiv" "meta-ini.mkii" "meta-ini.lua" "meta-imp-txt.mkiv" "meta-imp-tab.mkiv" "meta-imp-pre.mkiv" "meta-imp-nav.mkiv" "meta-imp-mis.mkiv" "meta-imp-fen.mkiv" "meta-imp-dum.mkiv" "meta-imp-clp.mkiv" "meta-grd.mkiv" "meta-fun.mkiv" "meta-fun.lua" "meta-fnt.mkiv" "meta-fnt.lua" "meta-fig.mkiv" "meta-fig.mkii" "meta-dum.mkii" "meta-clp.mkii" "math-vfu.lua" "math-uni.mkii" "math-ttv.lua" "math-tim.mkii" "math-tex.mkii" "math-tag.lua" "math-stc.mkvi" "math-scr.mkiv" "math-run.mkii" "math-ren.lua" "math-rad.mkvi" "math-pln.mkiv" "math-pln.mkii" "math-noa.lua" "math-mis.mkiv" "math-map.lua" "math-lbr.mkii" "math-int.mkiv" "math-inl.mkiv" "math-ini.mkiv" "math-ini.mkii" "math-ini.lua" "math-frc.mkiv" "math-frc.mkii" "math-frc.lua" "math-fou.mkii" "math-for.mkiv" "math-fen.mkiv" "math-fbk.lua" "math-ext.lua" "math-eul.mkii" "math-dis.mkiv" "math-dir.lua" "math-dim.lua" "math-del.mkiv" "math-def.mkiv" "math-cow.mkii" "math-arr.mkiv" "math-arr.mkii" "math-ams.mkii" "math-ali.mkiv" "math-act.lua" "math-acc.mkvi" "m-zint.mkiv" "m-visual.mkiv" "m-visual.mkii" "m-units.mkiv" "m-units.mkii" "m-translate.mkiv" "m-trackers.mkiv" "m-timing.mkiv" "m-tex4ht.mkii" "m-subsub.tex" "m-streams.tex" "m-steps.mkvi" "m-steps.mkii" "m-steps.lua" "m-sql.mkiv" "m-spreadsheet.mkiv" "m-spreadsheet.lua" "m-scite.mkiv" "m-r.mkii" "m-punk.mkiv" "m-pstricks.mkiv" "m-pstricks.mkii" "m-pstricks.lua" "m-pipemode.mkiv" "m-pictex.tex" "m-pdfsnc.mkii" "m-oldnum.mkiv" "m-oldfun.mkiv" "m-oldbibtex.mkiv" "m-obsolete.mkiv" "m-obsolete.mkii" "m-ntb-to-xtb.mkiv" "m-nodechart.mkvi" "m-nodechart.lua" "m-newmat.tex" "m-narrowtt.tex" "m-mkivhacks.mkiv" "m-mkii.mkiv" "m-matrix.mkiv" "m-mathcrap.mkiv" "m-markdown.mkiv" "m-markdown.lua" "m-logcategories.mkiv" "m-level.mkii" "m-layout.tex" "m-json.mkiv" "m-ipsum.mkiv" "m-hemistich.mkiv" "m-graph.mkiv" "m-graph.mkii" "m-format.tex" "m-fields.mkiv" "m-educat.tex" "m-edtsnc.mkii" "m-dratex.mkii" "m-directives.mkiv" "m-datastrc.tex" "m-database.mkiv" "m-database.mkii" "m-database.lua" "m-cweb.tex" "m-chemic.mkiv" "m-chemic.mkii" "m-chart.mkvi" "m-chart.mkii" "m-chart.lua" "m-barcodes.mkiv" "m-arabtex.mkii" "lxml-xml.lua" "lxml-tex.lua" "lxml-tab.lua" "lxml-sor.mkiv" "lxml-sor.lua" "lxml-mis.lua" "lxml-lpt.lua" "lxml-ini.mkiv" "lxml-ini.lua" "lxml-inf.lua" "lxml-ent.lua" "lxml-dir.lua" "lxml-ctx.mkiv" "lxml-ctx.lua" "lxml-css.mkiv" "lxml-css.lua" "lxml-aux.lua" "luat-usr.mkiv" "luat-usr.lua" "luat-sto.lua" "luat-sta.lua" "luat-soc.lua" "luat-run.lua" "luat-mac.lua" "luat-lua.lua" "luat-lib.mkiv" "luat-iop.lua" "luat-ini.mkiv" "luat-ini.lua" "luat-fmt.lua" "luat-fio.lua" "luat-exe.lua" "luat-env.lua" "luat-cod.mkiv" "luat-cod.lua" "luat-cnf.lua" "luat-cbk.lua" "luat-bwc.lua" "luat-bas.mkiv" "lpdf-xmp.lua" "lpdf-wid.lua" "lpdf-u3d.lua" "lpdf-tag.lua" "lpdf-swf.lua" "lpdf-ren.lua" "lpdf-pdx.xml" "lpdf-pda.xml" "lpdf-nod.lua" "lpdf-mov.lua" "lpdf-mis.lua" "lpdf-ini.lua" "lpdf-grp.lua" "lpdf-fmt.lua" "lpdf-fld.lua" "lpdf-epd.lua" "lpdf-epa.lua" "lpdf-enc.lua" "lpdf-col.lua" "lpdf-ano.lua" "layo-ini.mkiv" "layo-ini.lua" "lang-wrd.mkiv" "lang-wrd.lua" "lang-vn.mkii" "lang-url.mkiv" "lang-url.mkii" "lang-url.lua" "lang-ura.mkii" "lang-txt.lua" "lang-spe.mkii" "lang-spa.mkiv" "lang-spa.mkii" "lang-sla.mkii" "lang-run.mkii" "lang-rep.mkiv" "lang-rep.lua" "lang-mis.mkiv" "lang-mis.mkii" "lang-lab.mkiv" "lang-lab.mkii" "lang-lab.lua" "lang-jap.mkii" "lang-ita.mkii" "lang-ini.mkiv" "lang-ini.mkii" "lang-ini.lua" "lang-ind.mkii" "lang-hyp.mkiv" "lang-hyp.lua" "lang-grk.mkii" "lang-ger.mkii" "lang-frq.mkiv" "lang-frq.mkii" "lang-frq-nl.lua" "lang-frq-en.lua" "lang-frq-de.lua" "lang-frd.mkiv" "lang-frd.mkii" "lang-dis.mkii" "lang-dis.lua" "lang-def.mkiv" "lang-def.lua" "lang-cyr.mkii" "lang-ctx.mkii" "lang-chi.mkii" "lang-cel.mkii" "lang-bal.mkii" "lang-art.mkii" "lang-ana.mkii" "lang-alt.mkii" "lang-all.xml" "l-xml.lua" "l-url.lua" "l-unicode.lua" "l-table.lua" "l-string.lua" "l-set.lua" "l-sandbox.lua" "l-pdfview.lua" "l-package.lua" "l-os.lua" "l-number.lua" "l-md5.lua" "l-math.lua" "l-lua.lua" "l-lpeg.lua" "l-io.lua" "l-gzip.lua" "l-function.lua" "l-file.lua" "l-dir.lua" "l-boolean.lua" "java-stp.mkii" "java-ini.mkiv" "java-ini.mkii" "java-ini.lua" "java-imp-stp.mkiv" "java-imp-rhh.mkiv" "java-imp-fld.mkiv" "java-imp-fil.mkiv" "java-imp-exa.mkiv" "java-fld.mkii" "java-fil.mkii" "java-exa.mkii" "java-ans.mkii" "hand-ini.mkiv" "hand-ini.mkii" "hand-def.mkii" "grph-wnd.lua" "grph-u3d.lua" "grph-trf.mkiv" "grph-trf.mkii" "grph-swf.lua" "grph-raw.mkiv" "grph-raw.lua" "grph-inc.mkiv" "grph-inc.mkii" "grph-inc.lua" "grph-fil.lua" "grph-fig.mkiv" "grph-fig.mkii" "grph-epd.mkiv" "grph-epd.lua" "font-xtx.mkii" "font-vf.lua" "font-var.mkvi" "font-unk.mkiv" "font-unk.mkii" "font-uni.mkiv" "font-uni.mkii" "font-trt.lua" "font-tra.mkiv" "font-tfm.lua" "font-syn.lua" "font-sym.mkvi" "font-sty.mkvi" "font-sol.mkvi" "font-sol.lua" "font-set.mkvi" "font-sel.mkvi" "font-sel.lua" "font-run.mkiv" "font-run.mkii" "font-pre.mkiv" "font-pat.lua" "font-ott.lua" "font-otp.lua" "font-otn.lua" "font-oti.lua" "font-oth.lua" "font-otf.lua" "font-otd.lua" "font-otc.lua" "font-otb.lua" "font-ota.lua" "font-odv.lua" "font-odk.lua" "font-nod.lua" "font-mis.lua" "font-mat.mkvi" "font-map.lua" "font-lua.lua" "font-log.lua" "font-lib.mkvi" "font-ldr.lua" "font-jap.mkii" "font-inj.lua" "font-ini.mkvi" "font-ini.mkii" "font-ini.lua" "font-hsh.lua" "font-heb.mkii" "font-gds.mkvi" "font-gds.lua" "font-fil.mkvi" "font-fea.mkvi" "font-fbk.lua" "font-ext.lua" "font-enh.lua" "font-enc.lua" "font-emp.mkvi" "font-def.lua" "font-ctx.lua" "font-con.lua" "font-col.mkvi" "font-col.lua" "font-cid.lua" "font-chk.mkiv" "font-chk.lua" "font-chi.mkii" "font-bfm.mkii" "font-aux.mkvi" "font-aux.lua" "font-arb.mkii" "font-agl.lua" "font-age.lua" "font-afm.lua" "font-afk.lua" "filt-ini.mkii" "filt-bas.mkii" "file-syn.mkvi" "file-syn.lua" "file-res.mkvi" "file-res.lua" "file-mod.mkvi" "file-mod.lua" "file-lib.mkvi" "file-lib.lua" "file-job.mkvi" "file-job.lua" "file-ini.mkvi" "file-ini.lua" "export-example.tex" "export-example.rng" "export-example.css" "enco-x5.mkii" "enco-win.mkii" "enco-vna.mkii" "enco-vis.mkii" "enco-uc.mkii" "enco-tbo.mkii" "enco-t5.mkii" "enco-run.mkii" "enco-raw.mkii" "enco-qx.mkii" "enco-pol.mkii" "enco-pfr.mkii" "enco-pdf.mkii" "enco-mis.mkii" "enco-lat.mkii" "enco-l7x.mkii" "enco-ini.mkiv" "enco-ini.mkii" "enco-il2.mkii" "enco-ibm.mkii" "enco-heb.mkii" "enco-grk.mkii" "enco-fsl.mkii" "enco-fro.mkii" "enco-fpl.mkii" "enco-ffr.mkii" "enco-fde.mkii" "enco-el.mkii" "enco-ecm.mkii" "enco-ec.mkii" "enco-def.mkii" "enco-cyr.mkii" "enco-com.mkii" "enco-chi.mkii" "enco-cas.mkii" "enco-ans.mkii" "enco-agr.mkii" "enco-acc.mkii" "enco-037.mkii" "enco-032.mkii" "data-zip.lua" "data-vir.lua" "data-use.lua" "data-tre.lua" "data-tmp.lua" "data-tmf.lua" "data-tex.lua" "data-sch.lua" "data-res.lua" "data-pre.lua" "data-out.lua" "data-met.lua" "data-lua.lua" "data-lst.lua" "data-inp.lua" "data-ini.lua" "data-gen.lua" "data-fil.lua" "data-exp.lua" "data-env.lua" "data-ctx.lua" "data-crl.lua" "data-con.lua" "data-bin.lua" "data-aux.lua" "core-var.mkii" "core-uti.mkiv" "core-uti.mkii" "core-uti.lua" "core-two.mkiv" "core-two.mkii" "core-two.lua" "core-sys.mkiv" "core-sys.mkii" "core-sys.lua" "core-stg.mkii" "core-par.mkii" "core-mis.mkii" "core-job.mkii" "core-ini.mkiv" "core-ini.mkii" "core-gen.mkii" "core-fnt.mkii" "core-fil.mkii" "core-env.mkiv" "core-env.mkii" "core-env.lua" "core-def.mkiv" "core-def.mkii" "core-dat.mkiv" "core-dat.lua" "core-ctx.mkiv" "core-ctx.mkii" "core-ctx.lua" "core-ctx.ctx" "core-con.mkiv" "core-con.mkii" "core-con.lua" "context.rme" "context.mkiv" "context.mkii" "context.lus" "context.css" "context-version.png" "context-version.pdf" "context-timing.lmx" "context-help.lmx" "context-fonttest.lmx" "context-error.lmx" "context-debug.lmx" "context-characters.lmx" "context-base.lmx" "cont-yes.mkiv" "cont-sys.ori" "cont-run.mkiv" "cont-run.lua" "cont-ro.mkiv" "cont-ro.mkii" "cont-pe.mkiv" "cont-nop.mkiv" "cont-nl.mkiv" "cont-nl.mkii" "cont-new.mkiv" "cont-new.mkii" "cont-log.mkiv" "cont-log.mkii" "cont-it.mkiv" "cont-it.mkii" "cont-gb.mkiv" "cont-gb.mkii" "cont-fr.mkiv" "cont-fr.mkii" "cont-fil.mkiv" "cont-fil.mkii" "cont-err.mkii" "cont-en.mkiv" "cont-en.mkii" "cont-de.mkiv" "cont-de.mkii" "cont-cs.mkiv" "cont-cs.mkii" "colo-xwi.mkii" "colo-x11.mkii" "colo-run.mkiv" "colo-run.mkii" "colo-run.lua" "colo-rgb.mkii" "colo-ini.mkiv" "colo-ini.mkii" "colo-ini.lua" "colo-imp-xwi.mkiv" "colo-imp-x11.mkiv" "colo-imp-rgb.mkiv" "colo-imp-ema.mkiv" "colo-imp-dem.mkiv" "colo-icc.lua" "colo-hex.mkii" "colo-grp.mkiv" "colo-ext.mkiv" "colo-ext.mkii" "colo-ema.mkii" "cldf-ver.mkiv" "cldf-ver.lua" "cldf-scn.lua" "cldf-prs.lua" "cldf-int.mkiv" "cldf-int.lua" "cldf-ini.mkiv" "cldf-ini.lua" "cldf-com.mkiv" "cldf-com.lua" "cldf-bas.mkiv" "cldf-bas.lua" "chem-str.mkiv" "chem-str.lua" "chem-ini.mkiv" "chem-ini.lua" "char-utf.mkiv" "char-utf.lua" "char-tex.lua" "char-map.lua" "char-ini.mkiv" "char-ini.lua" "char-fio.lua" "char-ent.lua" "char-enc.mkiv" "char-enc.lua" "char-def.lua" "char-cjk.lua" "char-act.mkiv" "catc-xml.mkiv" "catc-xml.mkii" "catc-sym.mkiv" "catc-sym.mkii" "catc-ini.mkiv" "catc-ini.mkii" "catc-ini.lua" "catc-def.mkiv" "catc-def.mkii" "catc-ctx.mkiv" "catc-ctx.mkii" "catc-act.mkiv" "catc-act.mkii" "bxml-apa.mkiv" "buff-ver.mkiv" "buff-ver.mkii" "buff-ver.lua" "buff-par.mkvi" "buff-par.lua" "buff-ini.mkiv" "buff-ini.mkii" "buff-ini.lua" "buff-imp-xml.mkiv" "buff-imp-xml.lua" "buff-imp-tex.mkiv" "buff-imp-tex.lua" "buff-imp-parsed-xml.mkiv" "buff-imp-parsed-xml.lua" "buff-imp-nested.mkiv" "buff-imp-nested.lua" "buff-imp-mp.mkiv" "buff-imp-mp.lua" "buff-imp-lua.mkiv" "buff-imp-lua.lua" "buff-imp-escaped.mkiv" "buff-imp-escaped.lua" "buff-imp-default.mkiv" "buff-imp-default.lua" "blob-ini.mkiv" "blob-ini.lua" "bibl-tst.lua" "bibl-tra.mkiv" "bibl-tra.mkii" "bibl-tra.lua" "bibl-bib.mkiv" "bibl-bib.lua" "back-u3d.mkiv" "back-swf.mkiv" "back-pdf.mkiv" "back-pdf.lua" "back-ini.mkiv" "back-ini.lua" "back-exp.mkiv" "back-exp.lua" "attr-neg.mkiv" "attr-neg.lua" "attr-mkr.mkiv" "attr-mkr.lua" "attr-lay.mkiv" "attr-lay.lua" "attr-ini.mkiv" "attr-ini.lua" "attr-eff.mkiv" "attr-eff.lua" "attr-col.mkiv" "attr-col.lua" "anch-tab.mkiv" "anch-snc.mkiv" "anch-snc.mkii" "anch-pos.mkiv" "anch-pos.mkii" "anch-pos.lua" "anch-pgr.mkiv" "anch-pgr.mkii" "anch-pgr.lua" "anch-bck.mkvi" "anch-bar.mkiv" "anch-bar.mkii" "../" "./")
+
+ ("/var/folders/sx/99gyyzgs55n6djcbg7c_vskh0000gn/T/" (21953 6620 0 0) "TemporaryItems/" "qtsingleapp-TexMak-44c1-1f5-lockfile" "qt_menu.nib/" "lsuseractivityd.log" "LaTeXiT-2.6.1/" "icssuis501" "ics4695" "com.omnigroup.OmniGraffle6/" "com.Monity.Widget/" "com.google.GoogleDrive.FinderSyncAPIExtension/" "com.apple.WebKit.WebContent+com.apple.mail/" "com.apple.WebKit.WebContent+com.apple.finder/" "com.apple.WebKit.WebContent+com.apple.appstore/" "com.apple.WeatherKitService/" "com.apple.TextEdit/" "com.apple.SocialPushAgent/" "com.apple.soagent/" "com.apple.quicklook.ui.helper/" "com.apple.Preview/" "com.apple.photolibraryd/" "com.apple.ncplugin.weather/" "com.apple.MailServiceAgent/" "com.apple.mail/" "com.apple.lateragent/" "com.apple.internetaccounts/" "com.apple.iCal.CalendarNC/" "com.apple.DataDetectorsDynamicData/" "com.apple.corerecents.recentsd/" "com.apple.cloudphotosd/" "com.apple.CloudPhotosConfiguration/" "com.apple.CalendarAgent.CalNCService/" "com.apple.CalendarAgent/" "com.apple.BKAgentService/" "com.apple.appstore.PluginXPCService/" "com.apple.appstore/" "com.apple.AddressBook.InternetAccountsBridge/" "Cleanup At Startup/" "_region_.tex" ".CalendarLocks/" ".AddressBookLocks/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/MScThesisTemplate/" (21878 54353 0 0) "MScThesisTemplate.zip" "MScThesisTemplate/" ".DS_Store" "../" "./")
+
+ ("/Volumes/Macintosh HD/" (21585 1180 0 0) "Volumes/" "var/" "usr/" "Users/" "tmp/" "System/" "sbin/" "private/" "opt/" "Network/" "net/" "Library/" "installer.failurerequests" "Informations sur l’utilisateur/" "home/" "etc/" "dev/" "cores/" "bin/" "Applications/" ".vol/" ".Trashes/" ".Spotlight-V100/" ".PKInstallSandboxManager/" ".OSInstallerMessages" ".fseventsd/" ".file" ".DS_Store" ".DocumentRevisions-V100/" "../" "./")
+
+ ("/var/" (21799 46655 0 0) "yp/" "vm/" "tmp/" "spool/" "rwho/" "run/" "rpc/" "root/" "networkd/" "netboot/" "msgs/" "mail/" "log/" "lib/" "Keychains/" "jabberd/" "folders~orig/" "folders/" "empty/" "db/" "backups/" "audit/" "at/" "agentx/" "../" "./")
+
+ ("/var/folders/" (21907 3246 0 0) "zz/" "sx/" "6q/" "44/" "../" "./")
+
+ ("/var/folders/sx/" (21584 59219 0 0) "99gyyzgs55n6djcbg7c_vskh0000gn/" "../" "./")
+
+ ("/var/folders/sx/99gyyzgs55n6djcbg7c_vskh0000gn/" (21596 8757 0 0) "T/" "Cleanup At Startup/" "C/" "0/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/median/src/" (21938 22900 0 0) "transcript" "MEDIAN_tb.sv" "MEDIAN_IMAGE_tb.sv" "MEDIAN.sv" "MED_tb.sv" "MED.sv" "MCE_tb.sv" "MCE.sv" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/median/simulation/" (21585 2005 0 0) "work/" "vsim.wlf" "transcript" "MEDIAN_v.sdo" "MEDIAN.vo" "bogart_filtre.pgm" "bogart_bruite.hex" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/Cours/" (21585 1629 0 0) "synthese.pdf" "MANIP_synthese/" "handout_wishb_intfc.pdf" "handout_fifo_horloges.pdf" "cours_1_hdl_sverilog.pdf" "archi_FPGA.pdf" "Arch.pdf" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/" (21938 29872 0 0) "src/" "README.md" "pinout.md" "ModelSim_Project_VHDL/" "ModelSim_Project_VERILOG/" "doc/" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/ModelSim_Project_VERILOG/" (21938 19716 0 0) "work/" "Digital_VERILOG.mpf" "Digital_VERILOG.cr.mti" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/pipelined_wb_ram/wb_bram/" (21585 2803 0 0) "wb_bram.sv" "testbench/" "synthese/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/pipelined_wb_ram/" (21585 1977 0 0) "wshb_if/" "wb_bram/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/" (21585 1684 0 0) "simple_wb_ram/" "pipelined_wb_ram/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/Exercices/FIFO/" (21585 2049 0 0) "src/" "fifo_async/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/Exercices/" (21585 1713 0 0) "test_compteur.sv" "Test_bench.sv" "FIFO/" "Exo_PMS_exercice1.sv" "Exo_Parallelisme_Machines_Sequentielles.txt" "compteur.sv" "Afficheur_7_segment.sv" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/VHDL/TB/" (21938 8350 0 0) "tb_global.vhd" "tb_clu_inputs_SPI.vhd" "tb_clu_inputs.vhd" "tb_clu.vhd" "clu_pack.vhd" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Digital/src/" (21938 7351 0 0) "VHDL/" "VERILOG/" "place_io_top.io" "place_io.io" "Launch.tcl" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/median/" (21890 43935 0 0) "synthese/" "src/" "simulation/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/" (21694 40176 0 0) "wishbone/" "median/" "Exercices/" "Divers/" "Cours/" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/TB/" (21935 31780 0 0) "tb_global.vhd" "tb_clu_inputs_SPI.vhd" "tb_clu_inputs.vhd" "tb_clu.vhd" "clu_pack.vhd" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/median/synthese/" (21585 2019 0 0) "synthesis.tcl" "Makefile" "global.tcl" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/Exercices/FIFO/src/" (21585 2605 0 0) "tb_fifo_sm.sv" "tb_fifo_ref.sv" "fifo_sm.sv" "fifo_ref.sv" "../" "./")
+
+ ("/Users/Gu3nol/Downloads/" (21935 28853 0 0) "Op-amp_symbol.svg" "Hybrid-pi_detailed_model.svg" "6822061_I_Wanna_Go_Bang_Original_Mix.aiff" ".localized" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex2/project_ex2/" (21898 34718 0 0) "work/" "wave.do" "vsim.wlf" "ex4_data_pak.vhd" "ex2.mpf" "ex2.cr.mti" "draw_octant_old.vhd" "draw_octant.vhd" "draw_any_octant_tb_generic.vhd" "draw_any_octant.vhd" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/receiver/STM32/" (21918 34251 0 0) "src/" "README.md" "openocd.cfg" "Makefile" "include/" "debug_octave/" "conf.binary" "cctb.py" "build/" "board_STM32F427xxx_SWD/" ".gdbinit" ".DS_Store" ".dep/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/HW/VERILOG/" (21935 30894 0 0) "top_digital.sv" "clu_synth.v" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/" (21934 37864 0 0) "TB/" "place_io_top.io" "place_io.io" "Launch.tcl" "HW/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/HW/" (21934 21442 0 0) "VERILOG/" "clu_inputs_SPI.vhd" "clu_inputs.vhd" "clu.vhd" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/TapeOut/" (21932 51184 0 0) "BATMAN_GUENOLE_v1.txt" ".#BATMAN_GUENOLE_v1.txt" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/src/HW/cadence_src/" (21906 31644 0 0) "clu_pack.vhd" "clu.vhd" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/VHDL/" (21905 29483 0 0) "src/" "README.md" "pinout.md" "ModelSim_Project/" "doc/" ".gitignore" ".git/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex1/project_ex1/" (21897 43624 0 0) "work/" "wave.do" "vsim.wlf" "ex2.cr.mti" "ex1_data_pak_0.vhd" "ex1_data_pak.vhd" "ex1.mpf" "ex1.cr.mti" "draw_octant_tb.vhd" "draw_octant.vhd" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex3/project_ex3/" (21897 43624 0 0) "work/" "vsim.wlf" "ram_fsm_wrapper.vhd" "ram_fsm_tb.vhd" "ram_fsm.vhd" "ex3.mpf" "ex3.cr.mti" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Temp/" (21890 50773 0 0) "profile_pict.jpg" "billet_eurostar.pdf" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/ChibiOS_2.6.3/demos/ARM7-AT91SAM7X-FATFS-GCC/" (21586 55937 0 0) "readme.txt" "mcuconf.h" "Makefile" "main.c" "halconf.h" "ffconf.h" "chconf.h" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/pipelined_wb_ram/wshb_if/" (21585 2918 0 0) "wshb_if.sv" "testbench/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/ModelSim_project/" (21761 58719 0 0) "work/" "vtrun.do" "vsim.wlf" "VHDL_vdp.mpf" "VHDL_vdp.cr.mti" "full_commands_tmp.txt" "full_commands_1000.txt" "full_commands.txt" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/behav_files/" (21764 15206 0 0) "vdp_behav.vhd" "README.txt" "rcb_behav.vhd.bak" "rcb_behav.vhd" "db_behav_new.vhd" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/src_ap_fixed/" (21781 24979 0 0) "testData.h" "testData.cpp" "SV.h" "SV.cpp" "result.h" "result.cpp" "README.md" "MemoryGenerationExtended.m" "MemoryGeneration.m" "gold.h" "fp_type.h" "fp_test.cpp" "fp_tanh.h" "fp_tanh.cpp" "fp_svm.h" "fp_svm.cpp" "fp_hyp_cordic.h" "fp_hyp_cordic.cpp" "alpha.h" "alpha.cpp" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/sdk.src/" (21781 25075 0 0) "timer.h" "timer.c" "testData.h" "testData.c" "SV.h" "SV.c" "result.h" "result.c" "README.md" "main.c" "interrup.h" "interrup.c" "gold.h" "Fp_svm_hls.h" "Fp_svm_hls.c" "alpha.h" "alpha.c" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/" (21764 15206 0 0) "src/" "report/" "ModelSim_project/" "doc/" "complete_design_archive/" "code_review_archive/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/tb_files/" (21762 61251 0 0) "vtrun.do" "vram.vhd" "vdp_testbench_random.vhd" "vdp_testbench.vhd" "vdp_pack_plus.vhd" "vdp_pack.vhd" "utility_pack.vhd" "random/" "full_commands.txt" "ad-hoc/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/" (21764 14697 0 0) "tb_files/" "README.docx" "post_lib_files/" "post_hardware_files/" "hardware_files/" "behav_files/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/hardware_files/" (21764 15206 0 0) "VDP_contraints.fdc" "vdp.vhd" "rcb.vhd" "project_pack.vhd" "exercises.vhd" "db.vhd" "config_pack.vhd" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW/" (21779 5132 0 0) "SW_src/" "SW_lib/" "SW_host/" "SW_bit/" "README.md" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/" (21779 5440 0 0) "SW/" "README.md" "MATLAB/" "HW/" "BB_files/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/" (21779 5499 0 0) "src_mixed/" "src_ap_fixed/" "sdk.src/" "README.md" "parse_SV_vector.py" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_lib/" (21772 4627 0 0) "sv.h" "results.h" "Readme.txt" "inputs.h" "gold.h" "alphabias.h" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_src/" (21771 11788 0 0) "rs232.c" "Readme.txt" "memorybase.c" "float.c" "experiment.c" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/src/" (21768 7037 0 0) "testData.h" "testData.c" "SV.h" "SV.c" "result.h" "result.c" "MemoryGenerationExtended.m" "MemoryGeneration.m" "fp_type.h" "fp_test.c" "fp_tanh.h" "fp_tanh.c" "fp_svm.h" "fp_svm.c" "fp_hyp_cordic.h" "fp_hyp_cordic.c" "alpha.h" "alpha.c" ".DS_Store" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

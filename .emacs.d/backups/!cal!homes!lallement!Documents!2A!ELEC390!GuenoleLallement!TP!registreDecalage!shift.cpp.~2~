@@ -1,0 +1,15 @@
+// shift.cpp
+
+#include "shift.h"
+
+// Constructeur
+shifter::shifter(sc_module_name name)
+  :sc_module(name)
+{
+  SC_METHOD(shift);
+  sensitive << clk.pos();
+}
+
+// Processus
+void shifter::shift();
+{

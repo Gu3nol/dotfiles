@@ -1,0 +1,10 @@
+---------------------------------------------------------
+-- Testbench for the Analog Mux
+-- tb_mux.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is for testing purpose
+
+-- It is developed for an 12 switches selector
+--------------------------------------------------------

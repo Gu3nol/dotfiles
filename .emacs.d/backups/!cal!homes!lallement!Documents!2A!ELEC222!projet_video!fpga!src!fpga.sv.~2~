@@ -1,0 +1,21 @@
+/*
+ * Création du module fpga
+ *
+ * Nom 	        Type 	Nombre de bits 	Utilisation
+ * CLK       	entrée 	1 	            Horloge
+ * LED_VERTE 	sortie 	1 	            Affichage
+ * LED_ROUGE 	sortie 	1 	            Affichage
+ * SW 	        entrée 	1 	            commande 0/1
+ * NRST 	    entrée 	1 	            commande 0/1
+ *
+ * Fonction : Destiné à contenir le code global du fpga
+ *
+ */
+
+module fpga (input   CLK, SW, NRST,
+             output LED_VERTE, LED_ROUGE);
+
+
+
+endmodule // fpga
+

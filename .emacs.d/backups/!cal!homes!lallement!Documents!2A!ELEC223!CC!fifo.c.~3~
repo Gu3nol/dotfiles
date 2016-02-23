@@ -1,0 +1,12 @@
+/* fifo.c */
+
+#include "fifo.h"
+#include "port.h"
+
+void send_word_to_fifo (int16_t word) {
+
+
+}
+
+void send_stereo_sample (int16_t sample[2]) {
+}

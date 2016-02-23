@@ -1,0 +1,9 @@
+/* init.c */
+
+extern char start_data, end_data,
+            start_bss, end_bss;
+
+/* Mise à zéro du .bss */
+void init() {
+  for (dst = &start_bss; dst < &end_bss; dst++) *dst = 0;
+}

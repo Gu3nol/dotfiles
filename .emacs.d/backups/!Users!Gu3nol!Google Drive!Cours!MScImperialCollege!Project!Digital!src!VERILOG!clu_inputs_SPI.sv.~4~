@@ -1,0 +1,31 @@
+//---------------------------------------------------------
+// Top level Control Logic Unit Input generation
+// clu_inputs_SPI.sv
+// MSc Project 2015
+// @Author: Guénolé LALLEMENT
+
+// This SystemVerilog code is used to generate the inputs for the
+// CLU
+
+// It is for TB purposed only
+//--------------------------------------------------------
+
+module clu_inputs_SPI ( input logic mclk, spi_clk, nrst, rdy,
+                        output logic CS, SPI_din, CLK_EN
+                        );
+   // Constant defining comands from the host CPU to CLU using SPI
+   const logic [1:0]                 op_stop = 2'b11;
+
+
+
+
+   // Interns variable
+   logic [1:0]                       op_cmd_i;
+
+
+
+   //always_ff @(posedge mclk)
+   //  begin
+   //     if (~nrst) //
+
+endmodule // clu_inputs_SPI

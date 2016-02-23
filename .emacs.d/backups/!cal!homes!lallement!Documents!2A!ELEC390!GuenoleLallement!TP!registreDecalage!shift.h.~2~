@@ -1,0 +1,9 @@
+// shift.h
+
+#include "systemc.h"
+
+SC_MODULE(shifter) {
+  // Ports
+  sc_in<bool> clk;
+
+  sc_in

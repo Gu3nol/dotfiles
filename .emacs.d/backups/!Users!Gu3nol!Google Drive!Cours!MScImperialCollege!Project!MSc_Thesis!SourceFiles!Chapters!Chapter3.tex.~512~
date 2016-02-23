@@ -1,0 +1,478 @@
+\chapter{Literature Review}
+\label{chap:LiteratureReview}
+\renewcommand{\baselinestretch}{\mystretch}
+
+% \setlength{\parindent}{0pt}
+
+\section{Introduction}
+\PARstart{T}{his} chapter describes the latest development about ISFETs to perform DNA sequencing as well as explanation on EGTs and especially hexagonal transistors. Section \ref{readout} part focus on ISFETs and pertinent methods use for pH sensing. The methods to compensate the defect of ISFET are then presented in Section \ref{compensation_strat}. Finally, Section \ref{design} presents the properties/advantages/application of circular and hexagonal MOSFET.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Extended CMOS ISFET model}
+\label{ext_ISFET_model}
+This section presents some important results about the ISFETs model and the impact on its utilization in pH-sensing circuits. The intention is to go further than what has been presented before in Chapter \ref{chap:Background} especially in terms of capacitances model and scalability of the technology.
+
+\subsection{Impact of technology scaling}
+The idea of modern DNA sequencing and especially HTS is to increase to number of sample analyzed during a run. On solution is to use parallelism on DNA micro-arrays. Then, designers focus on techniques to include more and more sensors on a single chip/array to perform.
+
+A solution to this problem is obviously to decrease the size of the sensor by following the Moore's law, yet it addresses new challenges that we have to analyze to go further.
+
+In \citep{RefWorks:124}, a complete investigation of the impact of technology scaling on ISFET performance for genetic sequencing is presented. It studies the performance of ISFETs as pH sensors for two commercial CMOS process families including the 0.35 and 0.18 $\mu$m processing nodes which are used in this thesis.
+
+A practical way to evaluate the performance is presented in Fig. \ref{Fig:ISFET_snr} where the maximum Signal-Noise Ratio for each technology is shown. The amplitude of the input signal is estimated for the maximum Nerstian sensitivity of 59mV/pH.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{Figs/Chap2//ISFET_SNR_pH.png}
+  \caption{\footnotesize SNR for process family 1 (0.35/0.18 $\mu$m) and process family 2 (0.13/0.09 $\mu$m)\citep{RefWorks:124}}
+  \label{Fig:ISFET_snr}
+\end{figure}
+These graph approve the fact that noise increase significantly for small process nodes.
+
+As a consequence, with technology scaling the pH sensing becomes less and less reliable. With small enough process nodes the increasing of output noise is too important. For respectable pH genetic sequencing the selection of the design process should matches the SNR requirement of the whole sensing system.
+
+Finally ``simulation results indicate that the attenuation due to to the presence of the passivation capacitance is the dominant factor in determining the input referred noise.''\citep{RefWorks:124}. For this reason, the next part will describe in detail the impact of the passivation layer.
+
+\subsection{The passivation capacitances}
+As mentioned in Chapter \ref{chap:Background}, the ISFET macro model contains electrochemical capacitances which affect the output response of the device. A more complete analysis is given based on the work of \citep{RefWorks:119} to figure out the effect of the insulating layer.
+
+\subsubsection{CMOS ISFET stack capacitors model}
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap2//ISFET_stack_cap.png}
+  \caption{\footnotesize CMOS ISFET stack capacitors model \citep{RefWorks:119}}
+  \label{Fig:ISFET_att}
+\end{figure}
+Fig. \ref{Fig:ISFET_att} clarifies a new proposed model to incorporate all the capacitances involved in the ISFET. This model includes both chemical and trapped charges capacitances, intrinsic and parasitic capacitors to give a clear relation between the biasing voltage and the floating gate voltage.
+
+However, for the purpose of this thesis, we are going to limit our utilization of this stack capacitor model to only certain capacitances. The capacitive network considered in the rest of this work is presented in Fig. \label{Fig:ISFET_cap_para}
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.15]{Figs/Chap2//ISFET_cap_para.png}
+  \caption{\footnotesize Reduced CMOS ISFET stack capacitors model \citep{RefWorks:124}}
+  \label{Fig:ISFET_cap_para}
+\end{figure}
+On the one hand, the intrinsic parasitic capacitance of this model are the gate-source $C_{gs}$, gate-drain $C_{gd}$ and gate-bulk $C_{gb}$ capacitances due to the overlapping conductive area between the gate-source, gate-drain and gate-bulk. Their value is mainly due to the gate area and the operating region of the transistor.\citep{RefWorks:152}. On the other hand, the passivation capacitance is external of the MOS part of the ISFET.
+
+\subsubsection{Evaluation of the passivation capacitance}
+When creating a rigorous model of the passivation capacitance of an ISFET, a simple parallel plate capacitance model is not really sufficient because of some fringing field effects. However, for the benefit of this work this capacitance will be modeled by two capacitors in series and assuming negligible fringing effects.\citep{RefWorks:125}
+
+The two layers responsible of the value of the passivation capacitance are the passivation layer \chemform{Si_xN_y} and the insulating layer \chemform{SiO_2}. The overall passivation capacitance is then approximately given by;
+\begin{equation}
+  \begin{aligned}
+    C_{pass} &= \frac{C_{Si0_{2}} C_{Si_{x}N_{y}}}{C_{Si0_{2}} + C_{Si_{x}N_{y}}} \\
+    &= W_{s}L_{s}\epsilon_{0}\ \frac{\epsilon_{Si0_{2}} \epsilon_{Si_{x}N_{y}}}{\epsilon_{Si0_{2}}t_{Si_{x}N_{y}} + \epsilon_{Si_{x}N_{y}}t_{Si0_{2}}}
+  \end{aligned}
+  \label{c_pass}
+\end{equation}
+where $\epsilon_{Si0_{2}}$ and $\epsilon_{Si_{x}N_{y}}$ are the dielectric constants of the considered layer, $\epsilon_{0}$ the vacuum permittivity, $t_{Si_{x}N_{y}}$ and $t_{Si0_{2}}$ the thickness of each layer, $W_{s}$ and $L_{s}$ the size of the top sensing surface.
+
+In current DNA micro-array, the size of the sensing area is determined by the size of the wells.\citep{RefWorks:128} reports a size of $W_{s}L_{s} = 2\mu m$.
+
+\subsubsection{Effects of the passivation capacitance}
+
+According to the model presented in Fig. \ref{Fig:ISFET_cap_para}, a model of attenuation for the ISFET can be derived from the capacitance. Indeed, all these capacitances (passivation \& chemicals) scale the gate voltage through a capacitive divider (\textit{cf}. Fig. \ref{Fig:ISFET_model}).\citep{RefWorks:118}
+
+In the pixel architecture that has been chosen in this thesis, the bulk (B port) and the drain (D port) are connected respectively to ground and $V_{DD}$, then $C_{gb}$ and $C_{gd}$ are set to constant potentials and will rule the gate potential at low frequencies. The gate voltage can be estimated as;
+\begin{equation}
+  V_{g} = \frac{C_{pass}V_{in} + C_{gs}V_{S} + C_{gd}V_{DD}}{C_{pass} + C_{gs} + C_{gd} + C_{gb}}
+  \label{V_g}
+\end{equation}
+
+On the contrary, at higher frequency, $C_{gb}$ and $C_{gd}$ come out in parallel. Moreover, due to the Miller's effect on the gate-source capacitance -- $C_{gs}$ is connected to the terminals of a source follower which is a voltage amplifier with a negative gain $A_{v}$ -- the effective value of this capacitance will decrease by a factor $1-|A_{v}|$.
+\begin{equation}
+  C_{gs}' = C_{gs}\ 1-|A_{v}|
+  \label{C_gs}
+\end{equation}
+
+Finally, the  attenuation between the input signal and the gate is finally given by;
+\begin{equation}
+  \frac{V_{g}}{V_{in}} = G = \frac{C_{pass}}{C_{pass} + C_{gs}' + C_{gd} + C_{gb}}
+  \label{V_g_V_in}
+\end{equation}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.2]{Figs/Chap2//ISFET_macro.png}
+  \caption{\footnotesize Macro model of attenuation\citep{RefWorks:124}}
+  \label{Fig:ISFET_macro}
+\end{figure}
+As a consequence the capacitive network will attenuate any input AC signals. A generalized expected behavior of the ISFET (Fig. \ref{Fig:ISFET_macro}) describes this network as a gain $G$ on the input signal and/or noise $V_{in}^2$.
+
+The result obtained on the total attenuation between the input and the output of the ISFET sensor is presented in Fig. \ref{Fig:ISFET_att}
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap2//ISFET_att.png}
+  \caption{\footnotesize Total attenuation between the input and output of ISFET sensor\citep{RefWorks:124}}
+  \label{Fig:ISFET_att}
+\end{figure}
+
+These results exhibit the notion that the minimum size in a given process node for an ISFET is associated with the lowest value of parasitic capacitances.\citep{RefWorks:124, RefWorks:119, RefWorks:122} Consequently it leads to less attenuation of the gate potential and less input referred noise. However, in a given process family, decrease the feature size node increase the SNR because the attenuation is reduced (Fig. \ref{Fig:ISFET_snr}) and the input referred noise rise.
+
+\subsubsection{Conclusion}
+The works mentioned before suggest that it is necessary to find other approach to reduce the attenuation. In this thesis, the approach will be to modify the geometry of the transistor and reduce the values of $C_{gb}$, $C_{gd}$ and $C_{gs}$.
+
+When the size of the ISFET is decreased, the passivation capacitance $C_{pass}$ becomes more and more smaller and closer to the values of the parasitic capacitance of the transistor. In this case, the attenuation defined in \ref{V_g_V_in} will rise and the sensitivity of the pH-sensor will drop.
+
+However, if $C_{gb}$, $C_{gd}$ and $C_{gs}$ stay negligible compared to $C_{pass}$ then $A_{v} \rightarrow 1$. the initial sensitivity of the pH-sensor is preserved.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Readout techniques}
+\label{readout}
+Now that the ISFET parameters such as threshold voltage, transconductance, drift and noise have been defined, readout or calibration circuit designs are required to incorporate the sensor into a measurement system. This part is an overview of the different readout techniques presented in the literature for pH-sensing using ISFETs
+
+\subsubsection{Source and drain follower configurations}
+There are two fundamental ISFET readout techniques. On the one hand, the drain current can be fixed and the source voltage is read. On the other hand, the drain-source voltage is fixed and then the drain current is read. In both cases, a fixed voltage is required for the reference electrode so that changes in pH will directly alter the ISFET’s threshold voltage only.
+
+An example of such technique is provided in Fig. \ref{Fig:SD} where the current is set using a current source $I_{bias}$ and the output voltage is read through a resistor $R_{L}$.
+\begin{figure}[h]
+  \centering
+  \subfigure[Without feedback]{\label{Fig:SD}\includegraphics[width=0.3\textwidth]{Figs/Chap2//SD_follower_ter.png}}
+  \subfigure[With feedback]{\label{Fig:SD_FB}\includegraphics[width=0.4\textwidth]{Figs/Chap2//SD_FB.png}}
+  \caption{\footnotesize Schematic diagram of a readout circuit using a source/drain follower\citep{RefWorks:107}}
+  \label{Fig:SD_sch}
+\end{figure}
+An other common approach for readout circuits is also presented in Fig. \ref{Fig:SD_FB}. This time, a negative current-feedback is inserted to stabilize the ISFET's DC operating point. Therefore, the current through $R_{f}$ is constant, then $V_{a}$ and $V_{out}$ become constant providing a better image of any change in pH. The linearity of the system is increased.
+
+On the basis of the technique depicted above, the circuit of Fig. \ref{SD_follower} also use a feedback loop through a source follower. In this case, the ISFET operates in saturation region via the constant current source and a source follower formed by the transistor M1 a and current source.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.15]{Figs/Chap2//SD_follower.png}
+  \caption{\footnotesize Saturation-based ISFET readout using feedback loop \citep{RefWorks:106}}
+  \label{Fig:SD_follower}
+\end{figure}
+
+\subsubsection{Differential measurements}
+The idea behind differential measurements is to cancel the parasitic components, such as the solution potential, between two sensors used in a same readout circuit. In \citep{RefWorks:129} a method using the subtracted output of two op-amps in feedback mode. The pH sensitivity is the difference between the two ISFET sensitivities. It unwind the requirements about the ideality of the reference electrode.
+
+However, new solutions based on translinear principle have been developed.\citep{RefWorks:100} An ISFET based Gilbert cell using differential measurement is presented in Fig. \ref{Fig:ISFET_gilbert}. In this circuit, the output current is proportional to the difference in pH of the two ISFETs leading to a drift reduction and temperature stability. The major drawback of this solution is that one ISFET has to be constantly exposed to a reference pH solution.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{Figs/Chap2//ISFET_gilbert.png}
+  \caption{\footnotesize ISFET based Gilbert gain cell with differential measurement\citep{RefWorks:100}}
+  \label{Fig:ISFET_gilbert}
+\end{figure}
+
+The last methods for differential measurements were based on the use of an ion-insensitive transistor as a reference, the REFET. However, this technology is no longer really use for pH sensing because it needed to fabricate a stable REFET which has been successful yet.\citep{RefWorks:126}
+
+\subsubsection{pH-to-time measurement}
+An other approach using a digital readout scheme is possible and provide various advantages in term of robustness and dynamic range. When compared with the analogue counterpart it also performs lower power consumption, smaller area and less susceptibility to environmental noise and parasitics.\citep{RefWorks:96}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap2//ISFET_PWM.png}
+  \caption{\footnotesize Minimal readout scheme for ISFET based on pulse width modulation\citep{RefWorks:98}}
+  \label{Fig:ISFET_PWM}
+\end{figure}
+In Fig. \ref{Fig:ISFET_PWM} a pH-to-time solution called pulse-width-modulation (PWM) is presented. This time the circuit use a PG-ISFET inverters, which is two ISFETs with a common floating gate exposed to the chemical solution. A triangular wave input is fed to the extra programmable terminal (the second ISFET) and serve as an input reference. Using the coupling capacitance phenomenon on the floating gate it turns ON and OFF the sensing transistor. The output is a chemically controlled PWM signal
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.2]{Figs/Chap2//ISFET_TDC.png}
+  \caption{\footnotesize Comparison between conventional and pH-to-time solution\citep{RefWorks:97}}
+  \label{Fig:ISFET_TDC}
+\end{figure}
+However, as presented in Fig. \ref{Fig:ISFET_TDC}, to obtain a digital signal and process them, the pH-to-time output needs to be integrated with a time to digital converter (TDC). In a conventional approach this conversion is done using an analogue to digital converter (ADC), which is the system developed in this thesis.
+
+\subsubsection{Frequency measurement}
+The last possible methods to use ISFETs involve proceeding data in the frequency domain to improve the sensitivity and the robustness of the sensing system. In Fig. \ref{Fig:ISFET_fr}, an adaptive ISFET chemical imager chip\citep{RefWorks:103} is presented.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap2//ISFET_fr.png}
+  \caption{\footnotesize ISFET readout using the frequency domain\citep{RefWorks:103}}
+  \label{Fig:ISFET_fr}
+\end{figure}
+In this architecture, the ISFET output is read using a source/drain follower to track the changes in threshold voltage or current due to pH variation. Then, it use an integrate-and-fire circuitry to convert the output readout to spike. This conversion is done using a Capacitor $C_{mem}$ which generates spikes when a certain voltage is reached. The last output stage is used to Address-Event Encoding to convert the signal in digital and  minimize the power consumption of the whole system.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Compensation strategies}
+\label{compensation_strat}
+This section present the compensation strategies to overcome the defects of ISFETs presented previously. They are classified by ``level'' of utilization, from the high-level compensation (external methods) to methods “closer” to the physic of the device (physical methods).
+
+In this project the idea is to explore a new physical methods to compensate the parasitic capacitances effects in ISFETs. Yet, it is interesting to study others methods because most of the time these techniques can be merged to a more robust compensation technique (miscellaneous methods).
+
+\subsection{External methods}
+Most of the external methods use nowadays perform temperature compensation. Indeed, the ISFET present an athermal point for which the temperature coefficient is minimal. This point is defined for a bias current around 50 $\mu A$.\citep{RefWorks:113} This athermal point is dependent of the pH, then it is impossible to temperature compensation directly in a readout circuit.
+
+As a consequence, an external circuit must be added to the system as shown in Fig. \ref{Fig:Ext_met}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap2//Ext_met.png}
+  \caption{\footnotesize Block diagram of an external method for ISFET temperature compensation\citep{RefWorks:95}}
+  \label{Fig:Ext_met}
+\end{figure}
+
+Others external methods involving external analytic technique such as ``Progressive Polynomial Method'' can be used as detailed in \citep{RefWorks:99} to counteract effect such as drift. Such mathematical methods are generally partially integrated on-chip with an external software part. However using a readout circuitry is a more efficient and less area-consuming way to proceed.
+
+\subsection{Using a readout circuitry}
+The utilization of a readout circuitry are mostly used to compensate drift and temperature. The first solution is to perform differential measurement between two devices as mentioned before. Providing that the drift is the same in the devices, this parasitic effect is easily compensate during the reading. It should be mentioned that it is either possible to use two ISFETs or one ISFET and one REFET.\citep{RefWorks:126, RefWorks:129}
+
+An alternative and more elegant solution to counteract ISFET defect is to introduce Correlated Double Sampling as in \citep{RefWorks:105}. This discrete time method helps to reduce drift during the ISFET operation, it is also used for low frequency noise cancellation, for instance 1/f noise.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.3]{Figs/Chap2//CDS.png}
+  \caption{\footnotesize Readout circuit using correlated double sampling (CDS)\citep{RefWorks:105}}
+  \label{Fig:CDS}
+\end{figure}
+
+The Fig. \ref{Fig:CDS} presents a circuit using CDS method, the output of the ISFET readout circuit is fed to a CDS stage which use an Op-Amp and switched capacitor technique. The system works by sampling the continuous signal during a sampling phases S1 and resolve the difference between sampling during holding phases S2. Such methods allow to reduce drift yet it can also be used for array calibration (and counteract trapped charges). In this case, the input of the system is the output of different pixels of the array during a calibration phase.
+
+\subsection{Physical methods}
+The last section presents methods which are directly related to the physic/geometry of the devices. These methods are often use to compensate trapped charges effects. Currently, to two most common methods are based on using Programmable gate ISFETs and UV illumination. Nevertheless, they require additional processing steps and may lead to extra costs.
+
+CMOS-based programmable gate ISFET \citep{RefWorks:114} consist of adding an extra capacitor on the floating gate of the device as shown in Fig. \ref{Fig:PG_ISFET}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.6]{Figs/Chap2//PG_ISFET.png}
+  \caption{\footnotesize Macromodel of a PG-ISFET\citep{RefWorks:114}}
+  \label{Fig:PG_ISFET}
+\end{figure}
+
+An auto-offset-removal circuit for chemical sensing based on the PG-ISFET is presented in \citep{RefWorks:115}. By applying a control gate voltage $V_{CG}$ and using the capacitive coupling between $C_{pass}$ and $C_{CG}$, the designer can compensate offset, drift and mismatches. For instance, trapped charges can be canceled using the following relation:
+\begin{equation}
+  C_{pass}V_{TC} = - C_{CG}V_{CG}
+  \label{trapped_charges}
+\end{equation}
+
+For its part, UV illumination removes trapped charges by giving enough energy to the charges in the passivation layer, principally electrons, to escape. Then, it reduces the difference in threshold voltage between ISFETs in a same array and then improve matching. The Fig. \ref{Fig:UV} shows the rising of the threshold voltage due to the UV illumination after 3 and 10 minutes of UV illumination. \citep{RefWorks:104} reports that an exposure time of 10 hours leads to a dispersion of less than 10 mV between ISFETs of a same die.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.4]{Figs/Chap2//UV.png}
+  \caption{\footnotesize UV radiation of CMOS die. Laser treatment brings the threshold voltages back to normal.\citep{RefWorks:104}}
+  \label{Fig:UV}
+\end{figure}
+
+\subsection{Miscellaneous}
+The methods aforementioned operate on different level of circuit design. Some example in the literature develops new intelligent system which use several techniques for the same sensor.\citep{RefWorks:102, RefWorks:121} The essential feature of these pH measurement systems is that they support multiparameters compensation simultaneously.
+
+Even though the accuracy of such system is significantly increased, it also lead to bulky or expensive systems. Nowadays, designers should focus on solutions which present on-chip compensation and complete integration inside a system. It would help to reduce the cost of ISFET pH-sensing and spread the technology.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Design considerations}
+\label{design}
+This part brings the latest considerations in terms of EGTs and their structures as well as the hexagonal MOSFET, which is the main component of this thesis. Naturally, hexagonal MOSFETs are non-conventional structures which can’t be explained without studying the various structures depicted above.
+
+\subsection{Gate-enclosed layout transistors}
+\label{sec:gate-enclosed-layout}
+\subsubsection{Area} As it is mentioned before, EGTs regroup various type of structures (cf. Section \ref{sec:HEX_app}) and in this sense \citep{RefWorks:57} offers an analysis of the performance such as speed and area for MOS transistors with different layout style. Various structure such as ring doughnut (\textit{ie.} square-shape) and polygonal-shape layout are investigated.
+
+In Table \ref{Tab:EGT_result_area} are presented the results about the area for different layouts with respect to standard MOS layout involving fingers transistors. As predicted, for a given length EGTs present a higher area yet the drain area and the perimeters are reduced which induced less parasitic capacitances. Indeed, the intrinsic gate parasitic capacitances are proportional to the gate area, therefore any reduction of this area will affect the output response of the transistor.\citep{RefWorks:152}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{@{} c | *3c @{}}
+    \toprule
+    \multicolumn{1}{c |}{} & $Area_{layout}$  & $Area_{drain}$ & $Perimeter_{drain}$ \\
+    \midrule
+    Ring doughnut & +10\% & -81\% & -68\% \\
+    Hexagonal doughnut & +6\% & -76\% & -67\% \\
+    Octagonal doughnut & +5\% & -75\% & -66\% \\
+    3 fingers & -28\% & -33\% & -12\% \\
+    5 fingers & -36\% & -43\% & +11\% \\
+    15 fingers & -39\% & -47\% & +72\% \\
+    \bottomrule
+  \end{tabular}
+  \caption{\footnotesize Comparison of different layout styles\citep{RefWorks:57}}
+  \label{Tab:EGT_result_area}
+\end{table}
+
+Fig. \ref{Fig:EGT_area} in return exposes the percentage of total and drain area of the ring transistor compared to the standard MOS transistor with the same length.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap2//EGT_area.png}
+  \caption{\footnotesize Total and drain area of the ring transistor compare its MOS counterpart\citep{RefWorks:57}}
+  \label{Fig:EGT_area}
+\end{figure}
+
+This figures demonstrates that for large L the benefit in term of total layout area overcome the benefit of a reduced drain capacitance; the transistor becomes two big compare to its MOS finger reference. The area-efficient of EGTs layout design is also demonstrated in \citep{RefWorks:50}, this time focusing on octagonal layout.
+
+It should also be noticed that in EGTs the drain diffusion is generally surrounded by the transistor channel and source. As a consequence, it reduces ``the area and perimeter of the output diffusion while permitting large W/L ratios through the parallel connection of several minimal-dimension cells.''\citep{RefWorks:46}
+
+\subsubsection{W/L} Concerning EGTs, an other parameter which is essential for the correct operation of a transistor is the determination of the equivalent width $W$ and length $L$. The Equation \ref{WL_EGT_n} gives the equivalent W/L for any regular polygonal-shape MOS transistor with $n$-side as the one shown in Fig. \ref{Fig:EGT_oct} (\textit{cf.} Section \label{sec:HEX_app}).
+\begin{equation}
+  \left [\frac{W}{L}\right]_{eq} = 2n\frac{tan(\pi/n)}{ln(w2/w1)}
+  \label{WL_EGT_n}
+\end{equation}
+This formula is derived in \citep{RefWorks:143} using a general charge sheet model and infinitesimal displacement. Obviously, it is a simplified model of the physic involved yet it has been verified confirmed in \citep{RefWorks:62}.
+
+One more approach to evaluate the width and length of a gate-enclosed transistor is based on a mid-line approximation. Indeed, for EGTs, $L$ can not be considered as constant, then in order to facilitate the computation of the W/L ratio, $L$ is considered as the minimum distance from source to drain and $W$ the total distance obtained at a mid-line between source and drain. However, in \citep{RefWorks:145} it appears that the mid-line approximation could incur an error of more than 10\% in the evaluation of the $(W/L)_{eq}$ ratio. As a consequence, this technique will not be considered in the rest of this work.
+
+The last  model of MOS transistors with non rectangular-gate geometries is presented in \citep{RefWorks:59} with revisions in \citep{RefWorks:58}. In this case, analytic expressions related to the geometry of the terminal and the characteristics parameters are given for several other ``exotic'' enclosed-gate geometries (non-symmetric structure, trapezoid, non -regular, etc...). The approximation of the Laplace equation presented in the comment will be used in the next part of this thesis to evaluate the geometric characteristic of a new non-regular hexagonal transistor.
+
+Finally, \citep{RefWorks:143} proposes a complete ``physical dc I–V model for short-channel polygonal-shape enclosed-layout transistors in both the linear and saturation regions of operation accounting for second-order effects such as depletion region non-uniformity, carrier velocity and channel length modulation''. As regard of the number of sides of the structure the results measured show minor difference on the EGT behavior.
+
+\subsubsection{Speed}
+To increase the switching speed of an inverter, the designer can increase the ratio;
+\begin{equation}
+  S = \frac{W/L}{C_{out}}
+\end{equation}
+where $C_{out}$ is the capacitance at the output node.\citep{RefWorks:45}.
+
+However the output diffusion (\textit{ie.} the drain) of EGTs is surrounded by the transistor channel and gate, it reduces the area and the length of the perimeter of the drain then reduce $C_{out}$ and allow large $W/L$ ratios. This explanation explain briefly why the speed of EGTs is better. Considerations about the capacitance at the output node and especially parasitic capacitances, which are not well described intervene in switching speed of enclosed layouts.
+
+\subsection{Circular MOSFET}
+\label{sec:circular-mosfet}
+Before studying hexagonal MOSFETs it is necessary to focus on circular MOSFET (CGTs) and their principal properties.
+
+\subsubsection{Modeling}
+Mos circular gate transistors (CGTs) are parts of a enclosed layout transistors but their modelization can be simplified. In Fig. \ref{Fig:CGT} is illustrated the top-view and the corresponding cross-section layout of a conventional n-channel CGT (contacts to diffusion regions are not represented).
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\label{Fig:top}\includegraphics[width=0.4\textwidth]{Figs/Chap2//CGT_top.png}}
+  \subfigure[]{\label{Fig:cross}\includegraphics[width=0.5\textwidth]{Figs/Chap2//CGT_cross.png}}
+  \caption{\footnotesize Basic top-view layout of (a) conventional CGT and (b) its cross section\citep{RefWorks:11}}
+  \label{Fig:CGT}
+\end{figure}
+
+The voltage to source, drain, gate and bulk potential are represented respectively by $V_S, V_D, V_G$ and $V_B$. $a_{msk}$ and $b_{msk}$ are the internal and external radius of the gate annulus and the index $_{msk}$ stands for mask or drawn values. Supposed exchangeable, the background surface is here associated to the source region, whereas the area enclosed by the circle of radius $a_{msk}$ is assigned to the drain region.
+
+Then, using the previous notations, the CGT effective aspect ratio is given by Eq. \ref{WL_CGT} which is first derived in \citep{RefWorks:83}.
+\begin{equation}
+  \left [\frac{W}{L}\right]_{eq} = \frac{2\pi}{ln(b_{msk}/a_{msk})}
+  \label{WL_CGT}
+\end{equation}
+
+Lastly, the gate-to-channel capacitance in CGTs is related to the annulus area and given by Eq. \ref{C_CGT} also borrowed from \citep{RefWorks:83}.
+\begin{equation}
+  \begin{aligned}
+    C_{CG} &= \pi C_{ox}\ (b_{msk}^2 - a_{msk}^2) \\
+    &= \pi C_{ox}L_{msk}\ (L_{msk} + 2a_{msk})
+  \end{aligned}
+  \label{C_CGT}
+\end{equation}
+where $L_{msk} = (b_{msk} - a_{msk})$ is the channel length of the device.
+
+\subsubsection{Properties}
+In \citep{RefWorks:11} a more compact architecture of CGTs is presented, which present more effective rapports between current-driving strength and active area. This property is particularly useful to implement CMOS ESD robust and area-efficient output buffer as in \citep{RefWorks:144, RefWorks:49, RefWorks:84, RefWorks:50}. Indeed, ``Effective reduction of the layout area of CMOS output buffers with consideration of the electrostatic discharge (ESD) reliabilities presents an important challenge in contemporary CMOS technologies.''
+
+As a matter of fact, the current-driving capability per layout area for CGT with respect to conventional rectangular-gate transistors (RGTs) is more effective for smaller devices.
+
+\subsubsection{Costs}
+In term of advantages CGTs are most of the time optimal but due to design rules consideration they require extra processing steps or cost.
+
+The only exception to this assumption is presented in \citep{RefWorks:9} where capacitance characteristics improvement and power enhancement is realized this time for RF LDMOS transistors using annular layout structure without changing the process flow.
+
+Indeed, the  annular-structure  LDMOS  transistor  exhibit better  performance than the square structure. The higher drain current and $g_m$ in the annular-structure, compared with the square or polygonal-shape structures, is due to less corner effects. However, it is still affect the cost due to the extra-step necessary this time on the realization of the layout mask.
+
+At the moment, most of the CAD tools used to generate the integrated circuits layouts and the masks for the fabrication step are still unable to make a real circle-type device. Other approaches should be favored.
+
+For instance, in \citep{RefWorks:142} a test chip in a standard CMOS 0.18$\mu m$ process is fabricated. As technical limitations do not permit the fabrication of annular devices, polygonal-shape structures with eight sides are fabricated and used for comparison. In fact, EGT layout style can be implemented by any regular polygon with n sides and when $n \to \infty$ the layout is nearly a circle.
+
+\subsection{Hexagonal MOSFET}
+\label{sec:hexagonal-mosfet}
+In this sense, a circle-type layout (CGTs) would be the optimum solution as it ensures better properties such as speed and reduced strain capacitances. It also presents the most uniform current flow, yet as it is not easily realizable, a polygonal shape with as many sides as possible would be a better option. Nevertheless, it has been demonstrated in Section \ref{sec:Honeycomb} that hexagonal structures present better packing properties which would be ideal for HTS and large DNA microarrays.
+
+Because the hexagonal transistor is an EGT, it presents all the characteristic mentioned before. However, they are easier to fabricate because of their regular geometry with less sides ($n$ = 6). As presented in Fig. \ref{Fig:HEX}, the effective ratio $W/L$ is determined by integrating the current–voltage relationship for an infinitesimal distance $dx$ over the total gate length of the transistor.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{Figs/Chap2/Hex}
+  \caption{\footnotesize Schematic for the calculation of the effective width of hexagonal transistor \citep{RefWorks:51}}
+  \label{Fig:HEX}
+\end{figure}
+
+The Eq. \ref{WL_HEX} links the effective $W/L$ ratio to the geometrical parameters $W_1$ and $W_2$ of the gate all-around the transistor. It should be mentioned that $W_1$ and $W_2$ are most of the time determined by the ground rules of the used technology as it will be the case in this thesis.
+\begin{equation}
+  \left [\frac{W}{L}\right]_{eq} = \left. 6 \middle / \left( ln\left [\frac{W_2}{W_1} \right ] cos(30\degree) \right ) \right.
+  \label{WL_HEX}
+\end{equation}
+
+From \citep{RefWorks:58, RefWorks:59}, an analytic expression of geometric ratio $W/L$ can be applied and solve for the hexagonal transistor giving almost identical results. Furthermore in Fig. \ref{Fig:HEX_IDS_VGS} is plotted the measured $I_{DS}-V_{GS}$ characteristic for different $W/L$ values with respect to Hspice simulation based on the calculated $W/L$ ration. Obviously, a good machine exist between the simulated and the measured values.
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.25]{Figs/Chap2/HEX_IDS_VGS}
+  \caption{\footnotesize $I_{DS}-V_{GS}$ characteristic for transistors with the minimum gate length\citep{RefWorks:51}}
+  \label{Fig:HEX_IDS_VGS}
+\end{figure}
+
+It should be mentioned that this method will be used and adapted in Section \ref{trans_param} to determine the parameters of the hexagonal transistor proposed in this work.
+
+In DNA sequencing it has been demonstrated that competitive designs and circuits with a high accuracy and a high operation speed have to be realized while minimizing the area consumption. Despite of the ISFETs defect, to obtain a high accuracy it is important that the different sensors are matched to present a similar output response. Then, for a wide range of applications, an high-density and matched hexagonal transistor structure in standard CMOS technology would be ideal. In this way, the matching parameters of an hexagonal structure have been extracted in \citep{RefWorks:51} using the method described in \citep{RefWorks:48}.
+
+Fig. \ref{Fig:HEX_DEV} presents two standard deviation parameters calculated using data extracted from test structures based on an interdigitated finger layout and an hexagonal transistor pair layout
+\begin{figure}[h]
+  \centering
+  \subfigure[Threshold voltage]{\label{Fig:HEX_VT}\includegraphics[width=0.5\textwidth]{Figs/Chap2//HEX_VT.png}}
+  \subfigure[Current factor]{\label{Fig:HEX_BETA}\includegraphics[width=0.5\textwidth]{Figs/Chap2//HEX_BETA.png}}
+  \caption{\footnotesize Standard deviation of the current factor for hexagonal transistors\citep{RefWorks:51}}
+  \label{Fig:HEX_DEV}
+\end{figure}
+
+On the top, Fig. \label{Fig:HEX_VT} shows the standard deviation of the threshold voltage in function of the inverse of the square root of the gate area. Similarly, on the bottom, Fig. \label{Fig:HEX_BETA} presents standard deviation of the current factor in function of the inverse of the square root of the gate area. In both cases, the full line is the fitted curve for the finger transistor and the dashed line is the fitted curve for the hexagonal transistors.
+
+It can be concluded from this figure that the mismatch of the hexagonal transistors is improved compared to his finger-style counterpart yet it respect the same linear behavior.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
+Many techniques and information have been described in this Chapter. The intention is to define a solid background about the most interesting material concerning ISFETs of course but also hexagonal transistors.
+
+\subsection{Challenges of ISFET compensation}
+\label{sec:chall-isfet-comp}
+Ion Sensitive Field Effect Transistors are able to perform pH measurement, ye they require correct readout circuits and compensation techniques to be accurate. With the extended CMOS ISFET model presented in Section \ref{ext_ISFET_model}, it is now possible to address the issue related to the parasitic capacitance. The impact of the passivation capacitance in term of attenuation or input referred noise should be tackle to increase the sensitivity of the pH-sensor.
+
+The common calibration or readout circuit requires to incorporate this sensor are going to be useful in the design of a complete pH-sensors using a new architecture of ISFET. Of course, all the on-chip compensation techniques will not be included at the moment but the literature shows that most of the actual techniques described in Section \ref{readout} and \ref{compensation_strat} are compatible with an improved ISFET sensor. In other, a future system could easily include a non-regular ISFET to continue toward a less sensitive DNA sequencing system.
+
+\subsection{Challenges of Hexagonal MOSFET}
+\label{sec:chall-hexag-mosf}
+The previous Section \label{design} exposes the properties of non-rectangular transistors, from the general enclosed-gate to the hexagonal transistors which is at the core of this work.
+
+The main advantages for this thesis of EGTs are the low parasitic drain and source capacitance caused by the small area. The matching properties of this structure have also been showed compared to standards transistors. Furthermore, a direct relationship exists between the drain capacitance of the current source and the maximum achievable dynamic performance. A smaller parasitic capacitance gives a more linear and faster device.
+
+Circle-type transistors (CGTs) would be an optimum solution as it ensures better properties such as speed and reduced strain capacitances yet they are not easy to implement and to pack in a large microarray. According to the honeycomb properties, the hexagonal structure seems to be a favorable compromise to bring the advantages of CGTs into pH-sequencing.
+\begin{table}[h]
+    \centering
+  \begin{threeparttable}
+
+    \begin{tabular}{@{} c | *6c @{}}
+      \toprule
+      \multicolumn{1}{c |}{} & \shortstack{Modeling \\ \-\ } & \shortstack{Matching \\ \-\ }  & \shortstack{Reduced strain \\ capacitances} & \shortstack{Increased \\ speed} & \shortstack{Area \\ efficiency} & \shortstack{High \\aspect ratio} \\
+      \midrule
+      \citep{RefWorks:57} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:11} & -- & -- & -- & -- & -- & -- \\
+      \citep{RefWorks:51} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:152} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:50} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:46} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:143} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:62} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:145} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:45} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:58, RefWorks:59} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:83} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:144} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:49} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:84} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:9} & -- & \textcolor{green}{\ding{52}} & -- & -- & -- & -- \\
+      \citep{RefWorks:142} & -- & -- & -- & -- & -- & --\\
+      \citep{RefWorks:48} & -- & -- & -- & -- & -- & --\\
+      \bottomrule
+    \end{tabular}
+%   \raggedright
+    \begin{tablenotes}
+    \item[]  \scriptsize - In \textcolor{red}{red}, references related to hexagonal transistors only
+    \item[]  \scriptsize - In \textcolor{blue}{blue}, references related to circular gate transistors only
+    \item[]  \scriptsize - In black, references related to EGTs in general
+    \end{tablenotes}
+  \end{threeparttable}
+  \caption{\footnotesize Challenges addressed by EGTs in the literature}
+  \label{Tab:Chall__EGT}
+\end{table}
+
+In conclusion of the techniques and papers mentioned, Table \ref{Tab:Chall__EGT} exposes the challenges of enclosed-gate transistors and whether each references has addressed it. Even though most of the techniques present various model for EGTs they are mostly dealing with speed and high aspect ratio. The improved matching is often related to area efficiency because it consider EGTs as a structure of more than one transistor for integration purposes. Finally, the reduces strain capacitances is often presented yet not really described and the physic behind is not really developed. Most of the time, designers deal with experimental device instead of complete physical models. It should be mentioned that the article dealing only with hexagonal transistor are sporadic, that is why the understanding of hexagonal transistor should be done without studying the others enclosed-gate structure.
+
+
+With reduced strain capacitance, gain in area, better matching and packing density hexagonal transistor could be a solution to overcome some of the ISFET defect in term of parasitic capacitances and improve large scale pH-sensing. Exploiting theses advantages, hexagonal transistors are very well suited for applications with a demand for both good matching and a small area and then can be used for high-performance circuit design.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../MScThesis"
+%%% End:

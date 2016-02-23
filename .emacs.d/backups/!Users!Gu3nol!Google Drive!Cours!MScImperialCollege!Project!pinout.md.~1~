@@ -1,0 +1,10 @@
+######################################
+PINOUT.txt
+@author: Guénolé Lallement
+
+## Digital
+#
+SCLK: Serial Clk
+MOSI:
+MISO:
+CS: Chip Select

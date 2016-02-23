@@ -1,0 +1,80 @@
+---------------------------------------------------------
+-- Top level Control Logic Unit Input generation
+-- clu.vhd
+-- MSc Project 2015
+-- @Author: Guénolé LALLEMENT
+
+-- This VHDL code is used to generate the inputs for the
+-- CLU
+
+-- It is for TB purposed only
+--------------------------------------------------------
+
+LIBRARY IEEE;
+
+USE IEEE.std_logic_1164.ALL;
+USE IEEE.numeric_std.ALL;
+USE work.clu_pack.ALL;
+USE work.ALL;
+
+ENTITY tb_clu_inputs_SPI IS
+END tb_clu_inputs_SPI;
+
+ARCHITECTURE behav OF tb_clu_inputs_SPI IS
+
+  SIGNAL mclk_i, spi_clk_i, nrst_i, rdy_i, CS_i, SPI_din_i, CLK_EN_i : sl;
+
+BEGIN
+  -- Declaration of the clu_inpits instance
+  clu_inputs_SPI_i : ENTITY clu_inputs_SPI
+    PORT MAP(
+      mclk => mclk_i,
+      spi_clk => spi_clk_i,
+      nrst => nrst_i,
+      rdy  => rdy_i,
+      CS => CS_i,
+      SPI_din  => SPI_din_i,
+      CLK_EN => CLK_EN_i
+      );
+
+  -- Master clock generation
+  clkgen : PROCESS
+  BEGIN
+    mclk_i <= '0';
+    WAIT FOR 500 ns;
+    mclk_i <= '1';
+    WAIT FOR 500 ns;
+  END PROCESS clkgen;
+
+  -- CLK enable generation
+  clk_en_gen : PROCESS
+  BEGIN
+    CLK_EN_i <= '0';
+    WAIT FOR
+
+    -- Master clock generation
+  SPI_clkgen : PROCESS
+  BEGIN
+    spi_clk_i <= '0';
+    WAIT FOR 5 ns;
+    spi_clk_i <= '1';
+    WAIT FOR 5 ns;
+  END PROCESS SPI_clkgen;
+
+  -- nReset generation
+  nrstgen : PROCESS
+  BEGIN
+    WAIT FOR 10 ns;
+    nrst_i <= '1';
+    WAIT FOR 2000 ns;
+    nrst_i <= '0';
+    WAIT FOR 2000 ns;
+    nrst_i <= '1';
+    WAIT FOR 25 us;
+    REPORT "All tests finished OK, terminating with failure ASSERT."
+      SEVERITY failure;
+  END PROCESS nrstgen;
+
+  rdy_i <= '1';
+
+END behav;

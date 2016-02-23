@@ -1,0 +1,14 @@
+/* sound.c */
+
+#include "sound.h"
+#include "fifo.h"
+
+void test_tone(const int16_t sample[72]) {
+  int i = 0;
+  while(i < 72) {
+    send_stereo_sample(sample[i],sample[i]);
+    i++;
+  }
+}
+
+void send

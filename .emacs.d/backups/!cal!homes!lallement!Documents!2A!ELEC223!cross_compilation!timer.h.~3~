@@ -1,0 +1,13 @@
+#ifndef TIMER_H
+#define TIMER_H
+
+#include <stdint.h>
+
+#define ON   1
+#define OFF  0
+
+void set_timer(uint8_t timer_number, uint32_t value);
+void start_timer(uint8_t timer_number);
+void stop_timer(uint8_t timer_number);
+
+#endif

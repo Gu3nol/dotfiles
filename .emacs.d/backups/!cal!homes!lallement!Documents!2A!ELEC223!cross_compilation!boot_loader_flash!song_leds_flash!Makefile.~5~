@@ -1,0 +1,17 @@
+# OPTION DE COMPILATION
+PREFIX   = arm-none-eabi-
+CC	     = $(PREFIX)gcc
+
+PRG      = song_leds
+
+OFILES   = serial.o init.o leds.o timer.o gpio.o buzzer.o
+CFLAGS	 = -Wall -Wextra -Werror -O1 -g -nostdlib -std=gnu99
+
+.PHONY : clean
+
+# Production des fichiers objets
+$(PRG).o : $(OFILES)
+	$(CC) $(CFLAGS) $(OFILES) -o $@
+
+clean:
+	rm -f *.o *.elf *.lst *.bin

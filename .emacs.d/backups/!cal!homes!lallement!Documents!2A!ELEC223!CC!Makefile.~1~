@@ -1,0 +1,26 @@
+# OPTION DE COMPILATION
+PREFIX   = arm-none-eabi-
+CC	     = $(PREFIX)gcc
+AS       = $(PREFIX)as
+OBJDUMP  = $(PREFIX)objdump
+OBJCOPY  = $(PREFIX)objcopy
+
+LDSCRIPT = ldscript
+OFILES   = boot.o serial.o utils.o init.o timer.o gpio.o boot_loader.c crt0.o
+
+CFLAGS	 = -Wall -Wextra -Werror -O1 -g -nostdlib -std=gnu99
+LDFLAGS  = $(shell $(CC) -print-libgcc-file-name) -T
+
+PRG      = boot
+
+#all : hello.lst boot.elf
+all : $(PRG).elf
+
+.PHONY : clean
+
+# Production des fichiers objets
+$(PRG).elf : $(OFILES) $(LDSCRIPT)
+	$(CC) $(CFLAGS) $(OFILES) $(LDFLAGS) $(LDSCRIPT) -o $@
+
+clean:
+	rm -f *.o *.elf *.lst

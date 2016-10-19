@@ -95,6 +95,7 @@
 
 ;; ----- ido-work-directory-list -----
 (
+ "/Users/Gu3nol/.ssh/"
  "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/plot/"
  "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/blender_plot/"
  "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/"
@@ -144,11 +145,11 @@
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex3/project_ex3/"
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/hardware_files/"
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/tb_files/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/"
 )
 
 ;; ----- ido-work-file-list -----
 (
+ "id_rsa"
  "plot_voltages.py"
  "plot.py"
  "plot.blend"
@@ -158,11 +159,12 @@
  "Makefile"
  "avit.zsh-theme"
  "constants.js"
- "repl.js"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
+ ("/Users/Gu3nol/.ssh/" (21585 2108 0 0) "known_hosts" "id_rsa.pub" "id_rsa" "../" "./")
+
  ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/plot/node_modules/" (21586 2469 0 0) "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/plot/" (21586 55938 0 0) "run.py" "plot_voltages.py" "plot.py" "npm-debug.log" "node_modules/" "../" "./")
@@ -361,8 +363,6 @@
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex1/project_ex1/" (21897 43624 0 0) "work/" "wave.do" "vsim.wlf" "ex2.cr.mti" "ex1_data_pak_0.vhd" "ex1_data_pak.vhd" "ex1.mpf" "ex1.cr.mti" "draw_octant_tb.vhd" "draw_octant.vhd" ".DS_Store" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex3/project_ex3/" (21897 43624 0 0) "work/" "vsim.wlf" "ram_fsm_wrapper.vhd" "ram_fsm_tb.vhd" "ram_fsm.vhd" "ex3.mpf" "ex3.cr.mti" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Temp/" (21890 50773 0 0) "profile_pict.jpg" "billet_eurostar.pdf" ".DS_Store" "../" "./")
 )
 
 ;; ----- ido-unc-hosts-cache -----

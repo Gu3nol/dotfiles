@@ -1,9 +1,0 @@
-/* buzzer.c */
-
-#include "buzzer.h"
-#include "timer.h"
-#include "gpio.h"
-
-void buzzer_init(void) {
-  gpio_pin_config(&PCONE, 6, 2) // Passage de PE6 sur le timer3
-}

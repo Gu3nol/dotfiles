@@ -30,7 +30,7 @@ ZSH_THEME="avit"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -53,7 +53,7 @@ plugins=(git macports osx sudo web-search colored-man-pages cp extract)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/MacGPG2/bin:/Library/TeX/texbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/local/MacGPG2/bin:/Library/TeX/texbin:/Users/Gu3nol/Library/Android/sdk/platform-tools"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # PYTHONPATH
@@ -97,7 +97,7 @@ export LANG=en_US.UTF-8
 alias mv='nocorrect mv'       # no spelling correction on mv
 alias cp='nocorrect cp'       # no spelling correction on cp
 alias mkdir='nocorrect mkdir' # no spelling correction on mkdir
-alias j=jobs
+#alias j=jobs
 alias h=history
 alias grep=egrep
 alias ls='ls -G'
@@ -145,27 +145,13 @@ setopt multios                     # allow multiple redirection echo 'a'>b>c
 setopt bang_hist                   # allow ! for accessing history
 setopt nohup                       # don't hup running jobs on logout.
 
-# on slow disk access, show moving dots
-expand-or-complete-with-dots() {
-  echo -n "\e[31m......\e[0m"
-  zle expand-or-complete
-  zle redisplay
-}
-zle -N expand-or-complete-with-dots
-bindkey "^I" expand-or-complete-with-dots
-
 # Just look for hosts and users in the following lists
 users=(lallement gu3nol guenole)
 hosts=(localhost a406-01.enst.fr ssh.enst.fr ib-pegasus.ib.ic.ac.uk ib-zeus.ib.ic.ac.uk)
 zstyle ':completion:*' users $users
 zstyle ':completion:*:hosts' hosts $hosts
-
 
 unsetopt LIST_AMBIGUOUS
 setopt  COMPLETE_IN_WORD
 
-# Just look for hosts and users in the following lists
-users=(lallement gu3nol guenole)
-hosts=(localhost a406-01.enst.fr ssh.enst.fr ib-pegasus.ib.ic.ac.uk ib-zeus.ib.ic.ac.uk)
-zstyle ':completion:*' users $users
-zstyle ':completion:*:hosts' hosts $hosts
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

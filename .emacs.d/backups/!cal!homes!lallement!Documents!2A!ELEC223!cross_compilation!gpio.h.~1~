@@ -1,9 +1,0 @@
-#ifndef GPIO_H
-#define GPIO_H
-
-#include <stdint.h>
-
-#define OUTPUT 0x01
-#define INPUT  0x00
-
-#endif

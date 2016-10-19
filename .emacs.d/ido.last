@@ -2,13 +2,22 @@
 
 ;; ----- ido-last-directory-list -----
 (
- ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/" . "drone-browser/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/plot/" . "node_modules/")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/" . "plot/")
+ ("/Users/Gu3nol/.dotfiles/" . ".emacs.d/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/node_modules/ar-drone/" . "lib/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/node_modules/" . "ar-drone/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/" . "node_modules/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/ar-drone/" . "lib/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/" . "ar-drone/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/" . "lib/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/" . "ar-drone/")
  ("/Users/Gu3nol/Google Drive/Perso/Dev/" . "node_modules/")
  ("/Users/Gu3nol/Google Drive/Perso/" . "Dev/")
- ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/" . "public/")
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/" . "node_modules/")
  ("/Users/Gu3nol/.oh-my-zsh/custom/plugins/" . "example/")
  ("/Users/Gu3nol/.oh-my-zsh/custom/" . "plugins/")
- ("/Users/Gu3nol/.oh-my-zsh/" . "tools/")
+ ("/Users/Gu3nol/.oh-my-zsh/" . "themes/")
  ("/Users/Gu3nol/Google Drive/Pro/CV-Cover_Letter/" . "CV_EN/")
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/" . "Sources/")
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/Project/Report/Sources/" . "Chapters/")
@@ -81,17 +90,27 @@
  ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/" . "ELEC222/")
  ("/Users/Gu3nol/Google Drive/Cours/" . "MScImperialCollege/")
  ("/Users/Gu3nol/Google Drive/" . "Cours/")
- ("/Users/Gu3nol/" . "Google Drive/")
+ ("/Users/Gu3nol/" . ".oh-my-zsh/")
 )
 
 ;; ----- ido-work-directory-list -----
 (
- "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/public/"
- "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/"
- "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/"
- "/Users/Gu3nol/.oh-my-zsh/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/plot/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/blender_plot/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/"
+ "/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/monitoring/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/ChibiOS/demos/STM32/RT-STM32F407-DISCOVERY/"
  "/Users/Gu3nol/.oh-my-zsh/themes/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/node_modules/ar-drone/lib/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/ar-drone/lib/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/lib/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/public/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/"
+ "/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/node-ar-drone/"
+ "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/"
+ "/Users/Gu3nol/.oh-my-zsh/"
  "/Users/Gu3nol/.oh-my-zsh/custom/"
  "/Users/Gu3nol/zsh_save/"
  "/Users/Gu3nol/"
@@ -126,43 +145,73 @@
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/hardware_files/"
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/tb_files/"
  "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/sdk.src/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/src_ap_fixed/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_lib/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_src/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/src/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SVM_dataset/"
- "/Users/Gu3nol/Google Drive/Cours/nainA-Télécom ParisTech/PACT/Electronique/DepotGIT/Soft/KubzProgram/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/behav_files/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/VHDL-master/"
- "/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/tmp/IC-VHDL-Coursework-master/source/"
 )
 
 ;; ----- ido-work-file-list -----
 (
- "client.js"
- "client.coffee"
- "server.coffee"
- "server.js"
- "package.json"
- ".gitignore"
- "readme.md"
- "screenshot.png"
- "Makefile"
+ "plot_voltages.py"
+ "plot.py"
+ "plot.blend"
  "README.md"
+ "monitoring.py"
+ "run.py"
+ "Makefile"
+ "avit.zsh-theme"
+ "constants.js"
+ "repl.js"
 )
 
 ;; ----- ido-dir-file-cache -----
 (
- ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/" (22220 32990 0 0) "server.js" "server.coffee" "screenshot.png" "readme.md" "public/" "package.json" "node_modules/" "components/" "component.json" "Cakefile" ".gitignore" ".git/" "../" "./")
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/plot/node_modules/" (21586 2469 0 0) "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/plot/" (21586 55938 0 0) "run.py" "plot_voltages.py" "plot.py" "npm-debug.log" "node_modules/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/blender_plot/" (21586 55938 0 0) "run.py" "plume_receiver.py" "plot.blend" "__pycache__/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/" (22483 2918 0 0) "README.md" "plot/" "monitoring/" "led/" "joystick/" "demo.py" "blender_plot/" "blender_augmented_reality/" ".#README.md" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/app/monitoring/" (21586 55938 0 0) "run.py" "monitoring.py" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/ChibiOS/demos/STM32/RT-STM32F407-DISCOVERY/" (22432 53620 0 0) "readme.txt" "mcuconf.h" "Makefile" "main.c" "halconf.h" "debug/" "chconf.h" ".project" ".cproject" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/themes/" (22342 49946 0 0) "zhann.zsh-theme" "ys.zsh-theme" "xiong-chiamiov.zsh-theme" "xiong-chiamiov-plus.zsh-theme" "wuffers.zsh-theme" "wezm.zsh-theme" "wezm+.zsh-theme" "wedisagree.zsh-theme" "trapd00r.zsh-theme" "tonotdo.zsh-theme" "tjkirch_mod.zsh-theme" "tjkirch.zsh-theme" "theunraveler.zsh-theme" "terminalparty.zsh-theme" "takashiyoshida.zsh-theme" "suvash.zsh-theme" "superjarin.zsh-theme" "sunrise.zsh-theme" "sunaku.zsh-theme" "strug.zsh-theme" "steeef.zsh-theme" "sporty_256.zsh-theme" "sorin.zsh-theme" "sonicradish.zsh-theme" "Soliah.zsh-theme" "smt.zsh-theme" "skaro.zsh-theme" "simple.zsh-theme" "simonoff.zsh-theme" "sammy.zsh-theme" "robbyrussell.zsh-theme" "rkj.zsh-theme" "rkj-repos.zsh-theme" "rixius.zsh-theme" "risto.zsh-theme" "rgm.zsh-theme" "re5et.zsh-theme" "pygmalion.zsh-theme" "pure.zsh-theme" "pmcgee.zsh-theme" "philips.zsh-theme" "peepcode.zsh-theme" "obraun.zsh-theme" "norm.zsh-theme" "nicoulaj.zsh-theme" "nebirhos.zsh-theme" "nanotech.zsh-theme" "my_theme.zsh-theme" "muse.zsh-theme" "murilasso.zsh-theme" "mrtazz.zsh-theme" "mortalscumbag.zsh-theme" "mira.zsh-theme" "minimal.zsh-theme" "miloshadzic.zsh-theme" "mikeh.zsh-theme" "michelebologna.zsh-theme" "mh.zsh-theme" "mgutz.zsh-theme" "maran.zsh-theme" "macovsky.zsh-theme" "macovsky-ruby.zsh-theme" "lukerandall.zsh-theme" "linuxonly.zsh-theme" "lambda.zsh-theme" "kphoen.zsh-theme" "kolo.zsh-theme" "kiwi.zsh-theme" "kennethreitz.zsh-theme" "kardan.zsh-theme" "kafeitu.zsh-theme" "junkfood.zsh-theme" "juanghurtado.zsh-theme" "jtriley.zsh-theme" "jreese.zsh-theme" "josh.zsh-theme" "jonathan.zsh-theme" "jnrowe.zsh-theme" "jispwoso.zsh-theme" "jbergantine.zsh-theme" "jaischeema.zsh-theme" "itchy.zsh-theme" "intheloop.zsh-theme" "imajes.zsh-theme" "humza.zsh-theme" "honukai.zsh-theme" "half-life.zsh-theme" "gozilla.zsh-theme" "gnzh.zsh-theme" "gianu.zsh-theme" "geoffgarside.zsh-theme" "gentoo.zsh-theme" "garyblessington.zsh-theme" "gallois.zsh-theme" "gallifrey.zsh-theme" "fwalch.zsh-theme" "funky.zsh-theme" "frontcube.zsh-theme" "frisk.zsh-theme" "fox.zsh-theme" "fletcherm.zsh-theme" "flazz.zsh-theme" "fishy.zsh-theme" "fino.zsh-theme" "fino-time.zsh-theme" "example.zsh-theme" "evan.zsh-theme" "essembeh.zsh-theme" "emotty.zsh-theme" "edvardm.zsh-theme" "eastwood.zsh-theme" "duellj.zsh-theme" "dstufft.zsh-theme" "dst.zsh-theme" "dpoggi.zsh-theme" "dogenpunk.zsh-theme" "dieter.zsh-theme" "daveverwer.zsh-theme" "darkblood.zsh-theme" "dallas.zsh-theme" "cypher.zsh-theme" "crunch.zsh-theme" "crcandy.zsh-theme" "cloud.zsh-theme" "clean.zsh-theme" "candy.zsh-theme" "candy-kingdom.zsh-theme" "bureau.zsh-theme" "blinks.zsh-theme" "bira.zsh-theme" "awesomepanda.zsh-theme" "avit.zsh-theme" "aussiegeek.zsh-theme" "arrow.zsh-theme" "apple.zsh-theme" "amuse.zsh-theme" "alanpeabody.zsh-theme" "agnoster.zsh-theme" "afowler.zsh-theme" "af-magic.zsh-theme" "adben.zsh-theme" "3den.zsh-theme" "../" "./")
+
+ ("/Users/Gu3nol/.oh-my-zsh/" (22342 49946 0 0) "tools/" "themes/" "templates/" "README.md" "plugins/" "oh-my-zsh.sh" "log/" "LICENSE.txt" "lib/" "custom/" "cache/" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/Gu3nol/" (22360 3276 0 0) "VirtualBox VMs/" "Public/" "Pictures/" "Music/" "Movies/" "Library/" "Google Drive/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc" ".zsh_history" ".zsh-update" ".zcompdump-Mururoa-5.0.8" ".zcompdump" ".zcompcache/" ".Xauthority" ".wireshark-etc/" ".wireshark/" ".wget-hsts" ".Trash/" ".thefuck/" ".subversion/" ".ssh/" ".sh_history" ".serverauth.535" ".serverauth.2023" ".rnd" ".putty/" ".profile" ".oracle_jre_usage/" ".oh-my-zsh/" ".npmrc" ".npm/" ".node-gyp/" ".matlab/" ".macports/" ".local/" ".links/" ".latexmkrc" ".iterm2_shell_integration.zsh" ".iterm2/" ".inkscape-etc/" ".gnupg/" ".gnome2/" ".gitconfig" ".fontconfig/" ".emacs.d/" ".emacs" ".DS_Store" ".dotfiles/" ".cups/" ".config/" ".CFUserTextEncoding" ".cache/" ".aspell.en.pws" ".aspell.en.prepl" ".android/" "../" "./")
+
+ ("/Users/Gu3nol/.dotfiles/.emacs.d/" (22335 13024 0 0) "lisp/" "ido.last" "eproject.lst" "emacs_py/" "elpa/" "backups/" "autosaves/" "auto-save-list/" "ac-comphist.dat" "../" "./")
+
+ ("/Users/Gu3nol/.dotfiles/" (22246 60648 0 0) ".zshrc" ".zsh_old/" ".gitconfig" ".git/" ".emacs.d/" ".emacs" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/" (22221 51980 0 0) "views/" "README.md" "public/" "plugins/" "package.json" "node_modules/" "LICENSE" "config.js.example" "config.js" "bower_components/" "bower.json" "AUTHORS" "app.js" ".gitmodules" ".gitignore" ".git/" ".DS_Store" ".combox/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/node_modules/ar-drone/lib/" (22221 47333 0 0) "video/" "Repl.js" "navdata/" "misc/" "control/" "constants.js" "Client.js" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/node_modules/ar-drone/" (22221 47334 0 0) "test/" "README.md" "package.json" "node_modules/" "Makefile" "LICENSE" "lib/" "index.js" "examples/" "CONTRIBUTING.md" "Changes.md" ".travis.yml" ".npmignore" ".jshintrc" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ardrone-webflight/node_modules/" (22221 49506 0 0) "socket.io/" "opencv/" "line-reader/" "express/" "ejs/" "dronestream/" "dateformat/" "buffered-reader/" "ar-drone/" ".DS_Store" ".bin/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/ar-drone/lib/" (22220 32127 0 0) "video/" "Repl.js" "navdata/" "misc/" "control/" "constants.js" "Client.js" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/ar-drone/" (22220 32132 0 0) "test/" "README.md" "package.json" "node_modules/" "Makefile" "LICENSE" "lib/" "index.js" "examples/" "CONTRIBUTING.md" ".travis.yml" ".npmignore" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/" (22220 32200 0 0) "ffmpeg/" "faye/" "express/" "ar-drone/" ".bin/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/lib/" (22220 41598 0 0) "video/" "Repl.js" "navdata/" "misc/" "control/" "constants.js" "Client.js" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/" (22220 41763 0 0) "test/" "takeoff.js" "repl.js" "README.md" "package.json" "node_modules/" "NEXT.md" "Makefile" "LICENSE" "lib/" "journal/" "index.js" "examples/" "cutout.js" "CONTRIBUTING.md" "Changes.md" ".travis.yml" ".npmignore" ".jshintrc" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/" (22221 51196 0 0) "server.js" "server.coffee" "screenshot.png" "readme.md" "public/" "package.json" "node_modules/" "components/" "component.json" "Cakefile" ".gitignore" ".git/" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/" (22221 47236 0 0) "drone-browser/" "ardrone-wpa2/" "ardrone-webflight/" "ar-drone/" ".DS_Store" "../" "./")
+
+ ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/node-ar-drone/" (22220 35146 0 0) "test/" "repl.js" "README.md" "package.json" "Makefile" "LICENSE" "lib/" "index.js" "examples/" "CONTRIBUTING.md" "Changes.md" ".travis.yml" ".jshintrc" ".gitignore" ".git/" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/" (22103 39166 0 0) "VHDL_and_Logic_Synthesis/" "Project/" "Optical_Communication/" "MEMS_and_nanotechnology/" "High_Performance_Analog_Elec/" "Full_Custom_Integrated_Circuit_Design/" "First Destination Form.doc" "Feedback form.doc" "CMOS_Circuit_Design__Layout__and_Simulation__3rd_Edition.pdf" "Analogue_Signal_Processing.7z" "Analogue_Signal_Processing/" "Analogue_Integrated_Circuitsand_Systems/" "Analog Design Essentials, Sansen.pdf" "Advanced_Electronic_Devices/" "ADSD/" ".DS_Store" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Cours/" (22071 27430 0 0) "PhD/" "nainA-Télécom ParisTech/" "MScImperialCollege/" "2A-TelecomParisTech/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/" (22220 32906 0 0) "VirtualBox VMs/" "Public/" "Pictures/" "Music/" "Movies/" "Library/" "Google Drive/" "Downloads/" "Documents/" "Desktop/" "Applications/" ".zshrc" ".zsh_save/" ".zsh_history" ".zsh-update" ".zcompdump-Mururoa-5.0.8" ".zcompdump" ".zcompcache/" ".Xauthority" ".wireshark-etc/" ".wireshark/" ".wget-hsts" ".Trash/" ".thefuck/" ".subversion/" ".ssh/" ".sh_history" ".serverauth.535" ".serverauth.2023" ".rnd" ".putty/" ".profile" ".oh-my-zsh/" ".npm/" ".node-gyp/" ".matlab/" ".macports/" ".local/" ".latexmkrc" ".inkscape-etc/" ".gnupg/" ".gnome2/" ".gitconfig" ".fontconfig/" ".epspdf/" ".emacs.d/" ".emacs" ".DS_Store" ".cups/" ".config/" ".CFUserTextEncoding" ".cache/" ".bash_history" ".aspell.en.pws" ".aspell.en.prepl" ".android/" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/" (22220 31903 0 0) "drone-browser/" "ar-drone/" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Perso/Dev/" (22220 30060 0 0) "node_modules/" "../" "./")
 
@@ -173,13 +222,7 @@
 
  ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/public/" (22220 32001 0 0) "style.css" "index.html" "default.jpg" "client.js" "client.coffee" "../" "./")
 
- ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/drone-browser/node_modules/" (22220 32127 0 0) "faye/" "express/" "ar-drone/" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Perso/Dev/node_modules/ar-drone/" (22220 28339 0 0) "test/" "repl.js" "README.md" "package.json" "node_modules/" "Makefile" "LICENSE" "lib/" "index.js" "examples/" "CONTRIBUTING.md" "Changes.md" ".travis.yml" ".npmignore" ".jshintrc" "../" "./")
-
  ("/Users/Gu3nol/.oh-my-zsh/log/" (22218 58751 0 0) ".easter-egg" "../" "./")
-
- ("/Users/Gu3nol/.oh-my-zsh/themes/" (22219 10113 0 0) "zhann.zsh-theme" "ys.zsh-theme" "xiong-chiamiov.zsh-theme" "xiong-chiamiov-plus.zsh-theme" "wuffers.zsh-theme" "wezm.zsh-theme" "wezm+.zsh-theme" "wedisagree.zsh-theme" "trapd00r.zsh-theme" "tonotdo.zsh-theme" "tjkirch_mod.zsh-theme" "tjkirch.zsh-theme" "theunraveler.zsh-theme" "terminalparty.zsh-theme" "takashiyoshida.zsh-theme" "suvash.zsh-theme" "superjarin.zsh-theme" "sunrise.zsh-theme" "sunaku.zsh-theme" "strug.zsh-theme" "steeef.zsh-theme" "sporty_256.zsh-theme" "sorin.zsh-theme" "sonicradish.zsh-theme" "Soliah.zsh-theme" "smt.zsh-theme" "skaro.zsh-theme" "simple.zsh-theme" "simonoff.zsh-theme" "sammy.zsh-theme" "robbyrussell.zsh-theme" "rkj.zsh-theme" "rkj-repos.zsh-theme" "rixius.zsh-theme" "risto.zsh-theme" "rgm.zsh-theme" "re5et.zsh-theme" "pygmalion.zsh-theme" "pure.zsh-theme" "pmcgee.zsh-theme" "philips.zsh-theme" "peepcode.zsh-theme" "obraun.zsh-theme" "norm.zsh-theme" "nicoulaj.zsh-theme" "nebirhos.zsh-theme" "nanotech.zsh-theme" "my_theme.zsh-theme" "muse.zsh-theme" "murilasso.zsh-theme" "mrtazz.zsh-theme" "mortalscumbag.zsh-theme" "mira.zsh-theme" "minimal.zsh-theme" "miloshadzic.zsh-theme" "mikeh.zsh-theme" "michelebologna.zsh-theme" "mh.zsh-theme" "mgutz.zsh-theme" "maran.zsh-theme" "macovsky.zsh-theme" "macovsky-ruby.zsh-theme" "lukerandall.zsh-theme" "linuxonly.zsh-theme" "lambda.zsh-theme" "kphoen.zsh-theme" "kolo.zsh-theme" "kiwi.zsh-theme" "kennethreitz.zsh-theme" "kardan.zsh-theme" "kafeitu.zsh-theme" "junkfood.zsh-theme" "juanghurtado.zsh-theme" "jtriley.zsh-theme" "jreese.zsh-theme" "josh.zsh-theme" "jonathan.zsh-theme" "jnrowe.zsh-theme" "jispwoso.zsh-theme" "jbergantine.zsh-theme" "jaischeema.zsh-theme" "itchy.zsh-theme" "intheloop.zsh-theme" "imajes.zsh-theme" "humza.zsh-theme" "honukai.zsh-theme" "half-life.zsh-theme" "gozilla.zsh-theme" "gnzh.zsh-theme" "gianu.zsh-theme" "geoffgarside.zsh-theme" "gentoo.zsh-theme" "garyblessington.zsh-theme" "gallois.zsh-theme" "gallifrey.zsh-theme" "fwalch.zsh-theme" "funky.zsh-theme" "frontcube.zsh-theme" "frisk.zsh-theme" "fox.zsh-theme" "fletcherm.zsh-theme" "flazz.zsh-theme" "fishy.zsh-theme" "fino.zsh-theme" "fino-time.zsh-theme" "example.zsh-theme" "evan.zsh-theme" "essembeh.zsh-theme" "emotty.zsh-theme" "edvardm.zsh-theme" "eastwood.zsh-theme" "duellj.zsh-theme" "dstufft.zsh-theme" "dst.zsh-theme" "dpoggi.zsh-theme" "dogenpunk.zsh-theme" "dieter.zsh-theme" "daveverwer.zsh-theme" "darkblood.zsh-theme" "dallas.zsh-theme" "cypher.zsh-theme" "crunch.zsh-theme" "crcandy.zsh-theme" "cloud.zsh-theme" "clean.zsh-theme" "candy.zsh-theme" "candy-kingdom.zsh-theme" "bureau.zsh-theme" "blinks.zsh-theme" "bira.zsh-theme" "awesomepanda.zsh-theme" "avit.zsh-theme" "aussiegeek.zsh-theme" "arrow.zsh-theme" "apple.zsh-theme" "amuse.zsh-theme" "alanpeabody.zsh-theme" "agnoster.zsh-theme" "afowler.zsh-theme" "af-magic.zsh-theme" "adben.zsh-theme" "3den.zsh-theme" ".#honukai.zsh-theme" "../" "./")
 
  ("/Users/Gu3nol/.oh-my-zsh/custom/plugins/example/" (22218 58751 0 0) "example.plugin.zsh" "../" "./")
 
@@ -188,8 +231,6 @@
  ("/Users/Gu3nol/.oh-my-zsh/custom/" (22218 58751 0 0) "plugins/" "example.zsh" "../" "./")
 
  ("/Users/Gu3nol/.oh-my-zsh/tools/" (22218 58751 0 0) "upgrade.sh" "uninstall.sh" "theme_chooser.sh" "require_tool.sh" "install.sh" "check_for_upgrade.sh" "../" "./")
-
- ("/Users/Gu3nol/.oh-my-zsh/" (22218 58751 0 0) "tools/" "themes/" "templates/" "README.markdown" "plugins/" "oh-my-zsh.sh" "MIT-LICENSE.txt" "log/" "lib/" "custom/" "cache/" ".gitignore" ".git/" "../" "./")
 
  ("/Users/Gu3nol/zsh_save/" (22218 59296 0 0) "zshrc" "zsh/" ".DS_Store" "../" "./")
 
@@ -322,38 +363,6 @@
  ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/ex3/project_ex3/" (21897 43624 0 0) "work/" "vsim.wlf" "ram_fsm_wrapper.vhd" "ram_fsm_tb.vhd" "ram_fsm.vhd" "ex3.mpf" "ex3.cr.mti" "../" "./")
 
  ("/Users/Gu3nol/Google Drive/Temp/" (21890 50773 0 0) "profile_pict.jpg" "billet_eurostar.pdf" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ROSE/Plume/soft/ChibiOS_2.6.3/demos/ARM7-AT91SAM7X-FATFS-GCC/" (21586 55937 0 0) "readme.txt" "mcuconf.h" "Makefile" "main.c" "halconf.h" "ffconf.h" "chconf.h" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/2A-TelecomParisTech/ELEC222/wishbone/pipelined_wb_ram/wshb_if/" (21585 2918 0 0) "wshb_if.sv" "testbench/" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/ModelSim_project/" (21761 58719 0 0) "work/" "vtrun.do" "vsim.wlf" "VHDL_vdp.mpf" "VHDL_vdp.cr.mti" "full_commands_tmp.txt" "full_commands_1000.txt" "full_commands.txt" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/behav_files/" (21764 15206 0 0) "vdp_behav.vhd" "README.txt" "rcb_behav.vhd.bak" "rcb_behav.vhd" "db_behav_new.vhd" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/src_ap_fixed/" (21781 24979 0 0) "testData.h" "testData.cpp" "SV.h" "SV.cpp" "result.h" "result.cpp" "README.md" "MemoryGenerationExtended.m" "MemoryGeneration.m" "gold.h" "fp_type.h" "fp_test.cpp" "fp_tanh.h" "fp_tanh.cpp" "fp_svm.h" "fp_svm.cpp" "fp_hyp_cordic.h" "fp_hyp_cordic.cpp" "alpha.h" "alpha.cpp" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/sdk.src/" (21781 25075 0 0) "timer.h" "timer.c" "testData.h" "testData.c" "SV.h" "SV.c" "result.h" "result.c" "README.md" "main.c" "interrup.h" "interrup.c" "gold.h" "Fp_svm_hls.h" "Fp_svm_hls.c" "alpha.h" "alpha.c" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/" (21764 15206 0 0) "src/" "report/" "ModelSim_project/" "doc/" "complete_design_archive/" "code_review_archive/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/tb_files/" (21762 61251 0 0) "vtrun.do" "vram.vhd" "vdp_testbench_random.vhd" "vdp_testbench.vhd" "vdp_pack_plus.vhd" "vdp_pack.vhd" "utility_pack.vhd" "random/" "full_commands.txt" "ad-hoc/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/" (21764 14697 0 0) "tb_files/" "README.docx" "post_lib_files/" "post_hardware_files/" "hardware_files/" "behav_files/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/VHDL_and_Logic_Synthesis/Coursework/Project_2015/src/hardware_files/" (21764 15206 0 0) "VDP_contraints.fdc" "vdp.vhd" "rcb.vhd" "project_pack.vhd" "exercises.vhd" "db.vhd" "config_pack.vhd" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW/" (21779 5132 0 0) "SW_src/" "SW_lib/" "SW_host/" "SW_bit/" "README.md" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/" (21779 5440 0 0) "SW/" "README.md" "MATLAB/" "HW/" "BB_files/" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/HW/" (21779 5499 0 0) "src_mixed/" "src_ap_fixed/" "sdk.src/" "README.md" "parse_SV_vector.py" ".DS_Store" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_lib/" (21772 4627 0 0) "sv.h" "results.h" "Readme.txt" "inputs.h" "gold.h" "alphabias.h" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/SW_src/" (21771 11788 0 0) "rs232.c" "Readme.txt" "memorybase.c" "float.c" "experiment.c" "../" "./")
-
- ("/Users/Gu3nol/Google Drive/Cours/MScImperialCollege/ADSD/GITrepo/SVM_Project/src/" (21768 7037 0 0) "testData.h" "testData.c" "SV.h" "SV.c" "result.h" "result.c" "MemoryGenerationExtended.m" "MemoryGeneration.m" "fp_type.h" "fp_test.c" "fp_tanh.h" "fp_tanh.c" "fp_svm.h" "fp_svm.c" "fp_hyp_cordic.h" "fp_hyp_cordic.c" "alpha.h" "alpha.c" ".DS_Store" "../" "./")
 )
 
 ;; ----- ido-unc-hosts-cache -----

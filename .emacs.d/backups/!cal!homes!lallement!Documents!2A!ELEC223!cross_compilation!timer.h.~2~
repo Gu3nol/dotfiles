@@ -1,9 +1,0 @@
-#ifndef TIMER_H
-#define TIMER_H
-
-#include <stdint.h>
-
-#define ON   1
-#define OFF  0
-
-#endif

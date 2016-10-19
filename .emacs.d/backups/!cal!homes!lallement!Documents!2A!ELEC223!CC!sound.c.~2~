@@ -1,4 +1,0 @@
-/* sound.c */
-
-#include "sound.h"
-#include "fifo.h"
